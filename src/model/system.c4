@@ -1,0 +1,196 @@
+// Logical model for BeautyCustomerService.
+//
+// Every element maps to a real path in the source repository. Elements are
+// grouped by their owning layer (routes / services / domain / ui) so the
+// model mirrors the code layout rather than an invented abstraction.
+
+model {
+  customer = actor 'Customer' {
+    description 'End user chatting through WeChat Work customer service'
+  }
+
+  operator = actor 'Operator' {
+    description 'Human operator handling escalated tickets'
+  }
+
+  beauty = system 'Beauty Customer Service' {
+    description 'WeChat-based beauty consultation and knowledge service'
+
+    // ---- HTTP entry (src/routes) ----
+
+    wechatCallback = service 'WeChat KF Callback' {
+      description 'Receives encrypted WeChat Work callbacks; src/routes/wechat-kf-routes.js'
+    }
+
+    knowledgeRoutes = service 'Knowledge Routes' {
+      description 'Knowledge scan, sync and lifecycle endpoints; src/routes/knowledge-routes.js'
+    }
+
+    materialRoutes = service 'Material Routes' {
+      description 'Beauty material ingestion endpoints; src/routes/material-routes.js'
+    }
+
+    handoffRoutes = service 'Handoff Routes' {
+      description 'Human handoff ticket endpoints; src/routes/handoff-routes.js'
+    }
+
+    integrationRoutes = service 'Integration Routes' {
+      description 'Feature overview and integration status; src/routes/integration-routes.js'
+    }
+
+    operatorUi = ui 'Operator Console' {
+      description 'Single-page console for operators; src/ui/operator.html'
+    }
+
+    // ---- Orchestration and answer path (src/services) ----
+
+    answerOrchestrator = service 'Answer Orchestrator' {
+      description 'Decides auto-reply vs handoff; src/services/answer-orchestrator.js'
+    }
+
+    answerLoop = service 'Knowledge Answer Loop' {
+      description 'Retrieval-augmented answer loop; src/services/knowledge-answer-loop-service.js'
+    }
+
+    replyPolicy = service 'Reply Policy' {
+      description 'Confidence and risk thresholds for auto-reply; src/services/reply-policy-service.js'
+    }
+
+    evaluationGate = service 'Evaluation Gate' {
+      description 'Local publication policy gate; src/services/evaluation-gate.js'
+    }
+
+    handoffService = service 'Handoff Service' {
+      description 'Creates and tracks human handoff tickets; src/services/handoff-service.js'
+    }
+
+    // ---- Knowledge lifecycle (src/services) ----
+
+    knowledgeScan = service 'Knowledge Scan' {
+      description 'Discovers candidate knowledge; src/services/knowledge-scan-service.js'
+    }
+
+    knowledgeSync = service 'Knowledge Sync' {
+      description 'Pushes approved knowledge to RAGFlow; src/services/knowledge-sync-service.js'
+    }
+
+    knowledgeLifecycle = service 'Knowledge Lifecycle' {
+      description 'Promotion and retirement of knowledge; src/services/knowledge-lifecycle-service.js'
+    }
+
+    knowledgeAlert = service 'Knowledge Alert' {
+      description 'Surfaces knowledge freshness issues; src/services/knowledge-alert-service.js'
+    }
+
+    documentRegistry = service 'Document Registry' {
+      description 'Tracks material and document identity; src/services/knowledge-document-registry.js'
+    }
+
+    governance = service 'Knowledge Governance' {
+      description 'Publication decisions and governance; src/services/knowledge-governance-service.js'
+    }
+
+    materialService = service 'Material Service' {
+      description 'Material ingestion rules; src/services/material-service.js'
+    }
+
+    materialBatch = service 'Material Batch' {
+      description 'Batch material processing; src/services/material-batch-service.js'
+    }
+
+    // ---- Platform adapters (src/services) ----
+
+    ragflowKnowledge = service 'RAGFlow Knowledge' {
+      description 'RAGFlow retrieval and dataset access; src/services/ragflow-knowledge-service.js'
+    }
+
+    ragflowLifecycleProbe = service 'RAGFlow Lifecycle Probe' {
+      description 'Verifies RAGFlow dataset state; src/services/ragflow-lifecycle-probe-service.js'
+    }
+
+    wechatPlatform = service 'WeChat KF Platform' {
+      description 'WeChat Work conversation operations; src/services/wechat-kf-platform.js'
+    }
+
+    // ---- Domain (src/domain) ----
+
+    store = store 'Local Store' {
+      description 'JSON-file backed state; src/domain/store.js'
+    }
+
+    ids = service 'ID Generation' {
+      description 'Identifier helpers; src/domain/ids.js'
+    }
+
+    // ---- Message ingress ----
+
+    fakeWechat = service 'Fake WeChat' {
+      description 'Local message ingress kept for regression; src/services/fake-wechat-platform.js'
+    }
+  }
+
+  // ---- External systems (top level, outside the system boundary) ----
+
+  wechatWork = external 'WeChat Work' {
+    description 'WeChat Work customer service platform'
+  }
+
+  ragflow = external 'RAGFlow' {
+    description 'RAG and knowledge base service'
+  }
+
+  llmWiki = external 'LLM Wiki' {
+    description 'LLM-generated wiki candidate source'
+  }
+
+  // ---- Relationships: ingress ----
+
+  wechatWork -> beauty.wechatCallback 'posts encrypted callback'
+  customer -> fakeWechat 'messages (local dev)'
+  fakeWechat -> beauty.answerOrchestrator 'forwards message'
+  beauty.wechatCallback -> beauty.wechatPlatform 'decrypts and dispatches'
+  beauty.wechatPlatform -> beauty.answerOrchestrator 'passes normalized message'
+
+  // ---- Relationships: answer path ----
+
+  beauty.answerOrchestrator -> beauty.answerLoop 'asks for answer'
+  beauty.answerLoop -> beauty.ragflowKnowledge 'retrieves candidates'
+  beauty.answerLoop -> beauty.replyPolicy 'checks thresholds'
+  beauty.replyPolicy -> beauty.evaluationGate 'gates publication'
+  beauty.evaluationGate -> beauty.store 'reads feedback candidates'
+  beauty.answerOrchestrator -> beauty.handoffService 'escalates when uncertain'
+  beauty.handoffService -> beauty.store 'persists ticket'
+
+  // ---- Relationships: knowledge lifecycle ----
+
+  beauty.knowledgeRoutes -> beauty.knowledgeScan 'starts scan'
+  beauty.knowledgeRoutes -> beauty.knowledgeSync 'triggers sync'
+  beauty.materialRoutes -> beauty.materialService 'accepts material'
+  beauty.materialService -> beauty.documentRegistry 'registers document'
+  beauty.materialBatch -> beauty.materialService 'batch ingests'
+  beauty.knowledgeScan -> beauty.governance 'submits candidates'
+  beauty.governance -> beauty.evaluationGate 'applies decision'
+  beauty.knowledgeSync -> beauty.ragflowKnowledge 'pushes dataset'
+  beauty.knowledgeSync -> llmWiki 'reads candidate wiki'
+  beauty.knowledgeLifecycle -> beauty.documentRegistry 'promotes or retires'
+  beauty.knowledgeLifecycle -> beauty.ragflowLifecycleProbe 'verifies dataset state'
+  beauty.knowledgeAlert -> beauty.store 'reports freshness'
+
+  // ---- Relationships: storage and ids ----
+
+  beauty.store -> beauty.ids 'generates identifiers'
+
+  // ---- Relationships: operator ----
+
+  operator -> beauty.operatorUi 'uses'
+  beauty.operatorUi -> beauty.handoffRoutes 'manages tickets'
+  beauty.operatorUi -> beauty.knowledgeRoutes 'operates knowledge'
+  beauty.operatorUi -> beauty.integrationRoutes 'checks status'
+  beauty.handoffService -> beauty.wechatPlatform 'notifies customer'
+
+  // ---- Relationships: external ----
+
+  beauty.ragflowKnowledge -> ragflow 'queries datasets'
+  beauty.ragflowLifecycleProbe -> ragflow 'inspects datasets'
+  beauty.wechatPlatform -> wechatWork 'calls open API'
+}
