@@ -1,0 +1,97 @@
+// Dynamic views: scenario flows and sequence diagrams.
+//
+// Verified against likec4 1.58.0: `variant sequence` and `parallel` are
+// available; opt/loop/break/alt/try are NOT in this version. Branching and
+// error handling therefore go to Mermaid per the tool-track rules.
+//
+// Sequence views connect leaf elements only. View folders (`views 'Label'`)
+// are not supported in this version, so grouping is by filename instead.
+
+views {
+  // diagram variant: the full message-to-answer chain
+  dynamic view chatToAnswer {
+    title 'Customer Message to Answer'
+    description 'Ingress through retrieval and policy, ending in reply or handoff'
+
+    customer -> beauty.fakeWechat 'asks a beauty question'
+    beauty.fakeWechat -> beauty.answerOrchestrator 'forwards message'
+    beauty.answerOrchestrator -> beauty.answerLoop 'requests answer'
+    beauty.answerLoop -> beauty.ragflowKnowledge 'retrieves candidates'
+    beauty.ragflowKnowledge -> ragflow 'queries dataset'
+    ragflow -> beauty.ragflowKnowledge 'returns passages'
+    beauty.answerLoop -> beauty.replyPolicy 'checks confidence'
+    beauty.replyPolicy -> beauty.answerOrchestrator 'auto-reply allowed'
+    beauty.answerOrchestrator -> beauty.wechatPlatform 'sends reply'
+    beauty.wechatPlatform -> wechatWork 'posts message'
+  }
+
+  // sequence variant: customer question with retrieval
+  dynamic view retrievalSequence {
+    variant sequence
+    title 'Answer Retrieval Sequence'
+
+    customer -> beauty.wechatCallback 'sends question'
+    beauty.wechatCallback -> beauty.wechatPlatform 'decrypts'
+    beauty.wechatPlatform -> beauty.answerOrchestrator 'normalized message'
+    beauty.answerOrchestrator -> beauty.answerLoop 'asks for answer'
+    beauty.answerLoop -> beauty.ragflowKnowledge 'retrieve'
+    beauty.ragflowKnowledge -> ragflow 'query'
+    beauty.ragflowKnowledge -> beauty.answerLoop 'passages'
+    beauty.answerLoop -> beauty.replyPolicy 'confidence'
+    beauty.replyPolicy -> beauty.answerOrchestrator 'decision'
+  }
+
+  // sequence variant: concurrent reads during policy evaluation
+  dynamic view evaluationSequence {
+    variant sequence
+    title 'Policy Evaluation Reads'
+
+    beauty.answerOrchestrator -> beauty.evaluationGate 'evaluate'
+    beauty.evaluationGate -> beauty.store 'read candidates'
+    parallel {
+      beauty.evaluationGate -> beauty.replyPolicy 'check thresholds'
+      beauty.evaluationGate -> beauty.store 'read policy state'
+    }
+  }
+
+  // sequence variant: escalation to human
+  dynamic view handoffSequence {
+    variant sequence
+    title 'Escalation to Human Operator'
+
+    beauty.answerOrchestrator -> beauty.handoffService 'create ticket'
+    beauty.handoffService -> beauty.store 'persist ticket'
+    beauty.handoffService -> beauty.wechatPlatform 'notify customer'
+    operator -> beauty.operatorUi 'opens ticket'
+    beauty.operatorUi -> beauty.handoffRoutes 'claim ticket'
+  }
+
+  // sequence variant: knowledge promotion into RAGFlow
+  dynamic view knowledgeSyncSequence {
+    variant sequence
+    title 'Knowledge Promotion and Sync'
+
+    operator -> beauty.operatorUi 'triggers sync'
+    beauty.operatorUi -> beauty.knowledgeRoutes 'request sync'
+    beauty.knowledgeRoutes -> beauty.knowledgeScan 'scan candidates'
+    beauty.knowledgeScan -> beauty.governance 'submit for decision'
+    beauty.governance -> beauty.evaluationGate 'apply publication rule'
+    beauty.knowledgeRoutes -> beauty.knowledgeSync 'push approved'
+    beauty.knowledgeSync -> llmWiki 'read candidate wiki'
+    beauty.knowledgeSync -> beauty.ragflowKnowledge 'write dataset'
+  }
+
+  // notes example: configuration gating is a real behaviour worth documenting
+  dynamic view configGatedFlow {
+    title 'Configuration-Gated Retrieval'
+
+    beauty.answerOrchestrator -> beauty.ragflowKnowledge 'attempts retrieval'
+    beauty.ragflowKnowledge -> beauty.ragflowKnowledge 'checks config gate' {
+      notes '''
+        **Gate**: retrieval runs only when `useRagflow` is on **and**
+        an API key plus dataset id/name are configured.
+        Without them the service refuses to fabricate results.
+      '''
+    }
+  }
+}
