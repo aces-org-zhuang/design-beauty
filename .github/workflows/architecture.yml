@@ -1,0 +1,79 @@
+name: architecture
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # Must satisfy the pinned likec4 engines requirement.
+          # See package.json engines. Do not lower this.
+          node-version: '22.22.2'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Validate model
+        run: npm run validate
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: likec4-site
+          path: ./dist
+          retention-days: 7
+
+  publish:
+    needs: validate
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.2'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+
+  # Architectural drift detection.
+  #
+  # The project repo holds a submodule pointer to this repo. When a service,
+  # dependency, or deployment target changes in the project code but the model
+  # does not, this job fails and asks for the model to be updated in the same
+  # PR. Set PROJECT_REPO below to enable it.
+  drift:
+    needs: validate
+    if: false  # enable after the project repo path is configured
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.2'
+      - name: Compare model pinned commit with the project repo pointer
+        run: |
+          echo "PROJECT_REPO not configured; drift check is a placeholder."
+          exit 1
