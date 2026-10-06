@@ -1,0 +1,55 @@
+// Element views: landscape, container, and component detail.
+// Every view is named because the name becomes the export filename and the
+// share URL. View properties must precede predicates.
+
+views {
+  view index {
+    title 'Beauty Customer Service — Overview'
+    description 'Top-level systems, actors and external platforms'
+    include *
+  }
+
+  view context {
+    title 'System Context'
+    description 'Customers and operators reach the service; WeChat Work, RAGFlow and LLM Wiki are external'
+    include customer, operator, beauty, wechatWork, ragflow, llmWiki
+  }
+
+  view container {
+    title 'Containers and Integrations'
+    description 'HTTP ingress, orchestration, knowledge lifecycle and external adapters'
+    include beauty.wechatCallback, beauty.fakeWechat, beauty.operatorUi
+    include beauty.answerOrchestrator, beauty.answerLoop, beauty.handoffService
+    include beauty.knowledgeRoutes, beauty.materialRoutes, beauty.integrationRoutes
+    include beauty.ragflowKnowledge, beauty.wechatPlatform, beauty.store
+    include wechatWork, ragflow, llmWiki
+  }
+
+  view answerPath of beauty {
+    title 'Answer Path'
+    description 'Message ingress through retrieval, policy, and either reply or handoff'
+    include beauty.fakeWechat, beauty.wechatCallback, beauty.wechatPlatform
+    include beauty.answerOrchestrator, beauty.answerLoop, beauty.replyPolicy
+    include beauty.evaluationGate, beauty.handoffService, beauty.ragflowKnowledge
+    include beauty.store, wechatWork, ragflow
+  }
+
+  view knowledgeLifecycle of beauty {
+    title 'Knowledge Lifecycle'
+    description 'Scan, governance, sync to RAGFlow, promotion and freshness alerting'
+    include beauty.knowledgeRoutes, beauty.materialRoutes, beauty.knowledgeScan
+    include beauty.governance, beauty.evaluationGate, beauty.knowledgeSync
+    include beauty.knowledgeLifecycle, beauty.documentRegistry, beauty.knowledgeAlert
+    include beauty.materialService, beauty.materialBatch
+    include beauty.ragflowKnowledge, beauty.ragflowLifecycleProbe, beauty.store
+    include ragflow, llmWiki
+  }
+
+  view operatorSurface {
+    title 'Operator Surface'
+    description 'What the operator console depends on'
+    include operator, beauty.operatorUi
+    include beauty.handoffRoutes, beauty.knowledgeRoutes, beauty.integrationRoutes
+    include beauty.handoffService, beauty.materialRoutes
+  }
+}
