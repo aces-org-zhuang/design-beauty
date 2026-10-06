@@ -1,0 +1,57 @@
+// Deployment model.
+//
+// Logical elements deploy onto runtime nodes. Relations from the logical
+// model are inherited automatically; only deployment-specific ones are
+// declared here.
+//
+// Note: deployment views do NOT support global style or `include ... with`.
+// Use local style rules inside the view.
+
+deployment {
+  environment local 'Local Development' {
+    zone appTier 'Application Tier' {
+      vm appVm 'localhost:8787' {
+        service = instanceOf beauty {
+          title 'Beauty Customer Service'
+          technology 'Node.js >=20'
+        }
+      }
+    }
+
+    zone dataTier 'Data Tier' {
+      vm storeVm 'local filesystem' {
+        store = instanceOf beauty.store {
+          title 'Local JSON Store'
+          technology 'data/local-mvp-store.json'
+        }
+      }
+
+      vm ragflowVm 'localhost:9380' {
+        ragflow = instanceOf ragflow {
+          title 'RAGFlow'
+          technology 'HTTP'
+        }
+      }
+
+      vm wikiVm 'localhost:19828' {
+        wiki = instanceOf llmWiki {
+          title 'LLM Wiki'
+          technology 'HTTP'
+        }
+      }
+    }
+
+    appTier.appVm.service -> dataTier.ragflowVm.ragflow 'retrieval over HTTP'
+    appTier.appVm.service -> dataTier.wikiVm.wiki 'reads candidate wiki'
+    appTier.appVm.service -> dataTier.storeVm.store 'reads and writes'
+  }
+
+  environment wechat 'WeChat Work Cloud' {
+    zone wechatTier 'WeChat Work' {
+      external wechatApi 'qyapi.weixin.qq.com' {
+        title 'WeChat Work Open API'
+        technology 'HTTPS'
+      }
+    }
+  }
+}
