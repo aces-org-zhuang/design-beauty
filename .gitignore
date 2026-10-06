@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# likec4 build 生成的临时打包配置
+likec4.config.bundled_*.mjs
