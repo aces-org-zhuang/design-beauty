@@ -1,0 +1,13 @@
+views {
+  deployment view localDeployment {
+    title 'Local Development Deployment'
+    description 'Single Node process, local JSON store, local RAGFlow and LLM Wiki'
+    include local.**
+  }
+
+  deployment view wechatDeployment {
+    title 'WeChat Work Cloud Boundary'
+    description 'External platform boundary for callback and outbound messages'
+    include wechat.**
+  }
+}
