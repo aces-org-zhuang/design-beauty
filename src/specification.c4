@@ -1,0 +1,58 @@
+specification {
+  element actor {
+    style {
+      shape person
+    }
+  }
+  element system
+  element service {
+    style {
+      shape component
+    }
+  }
+  element store {
+    style {
+      shape storage
+    }
+  }
+  element database {
+    style {
+      shape cylinder
+    }
+  }
+  element queue {
+    style {
+      shape queue
+    }
+  }
+  element external {
+    style {
+      color muted
+    }
+  }
+  element ui {
+    style {
+      shape browser
+    }
+  }
+
+  // Deployment node kinds must be declared here or the deployment block fails.
+  deploymentNode environment {
+    notation 'Environment'
+    style {
+      color gray
+    }
+  }
+  deploymentNode zone {
+    notation 'Zone'
+  }
+  deploymentNode vm {
+    notation 'VM'
+  }
+  deploymentNode external {
+    notation 'External'
+    style {
+      color muted
+    }
+  }
+}
