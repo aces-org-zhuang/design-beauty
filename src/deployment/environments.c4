@@ -8,34 +8,34 @@
 // Use local style rules inside the view.
 
 deployment {
-  environment local 'Local Development' {
-    zone appTier 'Application Tier' {
-      vm appVm 'localhost:8787' {
+  environment local '本地开发环境' {
+    zone appTier '应用层' {
+      vm appVm '本机 8787' {
         service = instanceOf beauty {
-          title 'Beauty Customer Service'
-          technology 'Node.js >=20'
+          title '美妆客服服务'
+          technology 'Node.js 20 及以上'
         }
       }
     }
 
-    zone dataTier 'Data Tier' {
-      vm storeVm 'local filesystem' {
+    zone dataTier '数据层' {
+      vm storeVm '本地文件系统' {
         store = instanceOf beauty.store {
-          title 'Local JSON Store'
+          title '本地 JSON 存储'
           technology 'data/local-mvp-store.json'
         }
       }
 
-      vm ragflowVm 'localhost:9380' {
+      vm ragflowVm '本机 9380' {
         ragflow = instanceOf ragflow {
-          title 'RAGFlow'
+          title 'RAGFlow 知识库'
           technology 'HTTP'
         }
       }
 
-      vm wikiVm 'localhost:19828' {
+      vm wikiVm '本机 19828' {
         wiki = instanceOf llmWiki {
-          title 'LLM Wiki'
+          title 'LLM Wiki 候选源'
           technology 'HTTP'
         }
       }
@@ -46,10 +46,10 @@ deployment {
     appTier.appVm.service -> dataTier.storeVm.store 'reads and writes'
   }
 
-  environment wechat 'WeChat Work Cloud' {
-    zone wechatTier 'WeChat Work' {
+  environment wechat '企业微信云端' {
+    zone wechatTier '企业微信' {
       external wechatApi 'qyapi.weixin.qq.com' {
-        title 'WeChat Work Open API'
+        title '企业微信开放 API'
         technology 'HTTPS'
       }
     }
