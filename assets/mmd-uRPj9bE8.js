@@ -1,26 +1,26 @@
 var e=e=>{switch(e){case`localDeployment`:return`---
-title: "Local Development Deployment"
+title: "本地开发部署"
 ---
 graph TB
-  subgraph LocalAppTier["\`Application Tier\`"]
-    LocalAppTier.AppVmService@{ shape: rectangle, label: "Beauty Customer Service" }
+  subgraph LocalAppTier["\`应用层\`"]
+    LocalAppTier.AppVmService@{ shape: rectangle, label: "美妆客服服务" }
   end
-  subgraph LocalDataTier["\`Data Tier\`"]
-    subgraph LocalDataTier.StoreVm["\`local filesystem\`"]
-      LocalDataTier.StoreVm.Store@{ shape: disk, label: "Local JSON Store" }
+  subgraph LocalDataTier["\`数据层\`"]
+    subgraph LocalDataTier.StoreVm["\`本地文件系统\`"]
+      LocalDataTier.StoreVm.Store@{ shape: disk, label: "本地 JSON 存储" }
     end
-    subgraph LocalDataTier.RagflowVm["\`localhost:9380\`"]
-      LocalDataTier.RagflowVm.Ragflow@{ shape: rectangle, label: "RAGFlow" }
+    subgraph LocalDataTier.RagflowVm["\`本机 9380\`"]
+      LocalDataTier.RagflowVm.Ragflow@{ shape: rectangle, label: "RAGFlow 知识库" }
     end
-    subgraph LocalDataTier.WikiVm["\`localhost:19828\`"]
-      LocalDataTier.WikiVm.Wiki@{ shape: rectangle, label: "LLM Wiki" }
+    subgraph LocalDataTier.WikiVm["\`本机 19828\`"]
+      LocalDataTier.WikiVm.Wiki@{ shape: rectangle, label: "LLM Wiki 候选源" }
     end
   end
   LocalAppTier.AppVmService -. "\`reads and writes\`" .-> LocalDataTier.StoreVm.Store
   LocalAppTier.AppVmService -. "\`[...]\`" .-> LocalDataTier.RagflowVm.Ragflow
   LocalAppTier.AppVmService -. "\`reads candidate wiki\`" .-> LocalDataTier.WikiVm.Wiki
 `;case`wechatDeployment`:return`---
-title: "WeChat Work Cloud Boundary"
+title: "企业微信云端边界"
 ---
 graph TB
 `;case`index`:return`---

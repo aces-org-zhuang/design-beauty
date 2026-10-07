@@ -1,5 +1,5 @@
 var e=e=>{switch(e){case`localDeployment`:return`@startuml
-title "Local Development Deployment"
+title "本地开发部署"
 top to bottom direction
 
 hide stereotype
@@ -33,38 +33,38 @@ skinparam rectangle<<LocalDataTierWikiVmWiki>>{
   FontColor #f8fafc
   BorderColor #475569
 }
-rectangle "Application Tier" <<LocalAppTier>> as LocalAppTier {
+rectangle "应用层" <<LocalAppTier>> as LocalAppTier {
   skinparam RectangleBorderColor<<LocalAppTier>> #3b82f6
   skinparam RectangleFontColor<<LocalAppTier>> #3b82f6
   skinparam RectangleBorderStyle<<LocalAppTier>> dashed
 
-  rectangle "==Beauty Customer Service\\n<size:10>[Node.js >=20]</size>\\n\\n基于企业微信的美妆咨询与知识服务" <<LocalAppTierAppVmService>> as LocalAppTierAppVmService
+  rectangle "==美妆客服服务\\n<size:10>[Node.js 20 及以上]</size>\\n\\n基于企业微信的美妆咨询与知识服务" <<LocalAppTierAppVmService>> as LocalAppTierAppVmService
 }
-rectangle "Data Tier" <<LocalDataTier>> as LocalDataTier {
+rectangle "数据层" <<LocalDataTier>> as LocalDataTier {
   skinparam RectangleBorderColor<<LocalDataTier>> #3b82f6
   skinparam RectangleFontColor<<LocalDataTier>> #3b82f6
   skinparam RectangleBorderStyle<<LocalDataTier>> dashed
 
-  rectangle "local filesystem" <<LocalDataTierStoreVm>> as LocalDataTierStoreVm {
+  rectangle "本地文件系统" <<LocalDataTierStoreVm>> as LocalDataTierStoreVm {
     skinparam RectangleBorderColor<<LocalDataTierStoreVm>> #3b82f6
     skinparam RectangleFontColor<<LocalDataTierStoreVm>> #3b82f6
     skinparam RectangleBorderStyle<<LocalDataTierStoreVm>> dashed
 
-    database "==Local JSON Store\\n<size:10>[data/local-mvp-store.json]</size>\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<LocalDataTierStoreVmStore>> as LocalDataTierStoreVmStore
+    database "==本地 JSON 存储\\n<size:10>[data/local-mvp-store.json]</size>\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<LocalDataTierStoreVmStore>> as LocalDataTierStoreVmStore
   }
-  rectangle "localhost:9380" <<LocalDataTierRagflowVm>> as LocalDataTierRagflowVm {
+  rectangle "本机 9380" <<LocalDataTierRagflowVm>> as LocalDataTierRagflowVm {
     skinparam RectangleBorderColor<<LocalDataTierRagflowVm>> #3b82f6
     skinparam RectangleFontColor<<LocalDataTierRagflowVm>> #3b82f6
     skinparam RectangleBorderStyle<<LocalDataTierRagflowVm>> dashed
 
-    rectangle "==RAGFlow\\n<size:10>[HTTP]</size>\\n\\nRAG 与知识库服务" <<LocalDataTierRagflowVmRagflow>> as LocalDataTierRagflowVmRagflow
+    rectangle "==RAGFlow 知识库\\n<size:10>[HTTP]</size>\\n\\nRAG 与知识库服务" <<LocalDataTierRagflowVmRagflow>> as LocalDataTierRagflowVmRagflow
   }
-  rectangle "localhost:19828" <<LocalDataTierWikiVm>> as LocalDataTierWikiVm {
+  rectangle "本机 19828" <<LocalDataTierWikiVm>> as LocalDataTierWikiVm {
     skinparam RectangleBorderColor<<LocalDataTierWikiVm>> #3b82f6
     skinparam RectangleFontColor<<LocalDataTierWikiVm>> #3b82f6
     skinparam RectangleBorderStyle<<LocalDataTierWikiVm>> dashed
 
-    rectangle "==LLM Wiki\\n<size:10>[HTTP]</size>\\n\\nLLM 生成的 wiki 候选来源" <<LocalDataTierWikiVmWiki>> as LocalDataTierWikiVmWiki
+    rectangle "==LLM Wiki 候选源\\n<size:10>[HTTP]</size>\\n\\nLLM 生成的 wiki 候选来源" <<LocalDataTierWikiVmWiki>> as LocalDataTierWikiVmWiki
   }
 }
 
@@ -73,7 +73,7 @@ LocalAppTierAppVmService .[#8D8D8D,thickness=2].> LocalDataTierRagflowVmRagflow 
 LocalAppTierAppVmService .[#8D8D8D,thickness=2].> LocalDataTierWikiVmWiki : <color:#8D8D8D>reads candidate wiki
 @enduml
 `;case`wechatDeployment`:return`@startuml
-title "WeChat Work Cloud Boundary"
+title "企业微信云端边界"
 top to bottom direction
 
 hide stereotype

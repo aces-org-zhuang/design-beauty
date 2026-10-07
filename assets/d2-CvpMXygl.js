@@ -1,35 +1,35 @@
 var e=e=>{switch(e){case`localDeployment`:return`direction: down
 
 LocalAppTier: {
-  label: "Application Tier"
+  label: "应用层"
 
   AppVmService: {
-    label: "Beauty Customer Service"
+    label: "美妆客服服务"
   }
 }
 LocalDataTier: {
-  label: "Data Tier"
+  label: "数据层"
 
   StoreVm: {
-    label: "local filesystem"
+    label: "本地文件系统"
 
     Store: {
-      label: "Local JSON Store"
+      label: "本地 JSON 存储"
       shape: stored_data
     }
   }
   RagflowVm: {
-    label: "localhost:9380"
+    label: "本机 9380"
 
     Ragflow: {
-      label: "RAGFlow"
+      label: "RAGFlow 知识库"
     }
   }
   WikiVm: {
-    label: "localhost:19828"
+    label: "本机 19828"
 
     Wiki: {
-      label: "LLM Wiki"
+      label: "LLM Wiki 候选源"
     }
   }
 }

@@ -38,7 +38,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "service" [
     likec4_id = "local.appTier.appVm.service";
     likec4_level = 1;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">Beauty Customer Service</FONT></TD></TR><TR><TD><FONT POINT-SIZE="13" COLOR="#bfdbfe">Node.js &gt;=20</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">基于企业微信的美妆咨询与知识服务</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">美妆客服服务</FONT></TD></TR><TR><TD><FONT POINT-SIZE="13" COLOR="#bfdbfe">Node.js 20 及以上</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">基于企业微信的美妆咨询与知识服务</FONT></TD></TR></TABLE>>;
     margin = "0.223,0.223";
     width = 4.445;
     height = 2.5;
@@ -46,7 +46,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "store" [
     likec4_id = "local.dataTier.storeVm.store";
     likec4_level = 2;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">Local JSON Store</FONT></TD></TR><TR><TD><FONT POINT-SIZE="13" COLOR="#bfdbfe">data/local-mvp-store.json</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">以 JSON 文件承载状态；src/domain/store.js</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">本地 JSON 存储</FONT></TD></TR><TR><TD><FONT POINT-SIZE="13" COLOR="#bfdbfe">data/local-mvp-store.json</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">以 JSON 文件承载状态；src/domain/store.js</FONT></TD></TR></TABLE>>;
     margin = "0.223,0";
     width = 4.445;
     height = 2.5;
@@ -56,7 +56,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "ragflow" [
     likec4_id = "local.dataTier.ragflowVm.ragflow";
     likec4_level = 2;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow</FONT></TD></TR><TR><TD><FONT POINT-SIZE="13" COLOR="#cbd5e1">HTTP</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 与知识库服务</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库</FONT></TD></TR><TR><TD><FONT POINT-SIZE="13" COLOR="#cbd5e1">HTTP</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 与知识库服务</FONT></TD></TR></TABLE>>;
     margin = "0.223,0.223";
     width = 4.445;
     height = 2.5;
@@ -67,7 +67,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "wiki" [
     likec4_id = "local.dataTier.wikiVm.wiki";
     likec4_level = 2;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">LLM Wiki</FONT></TD></TR><TR><TD><FONT POINT-SIZE="13" COLOR="#cbd5e1">HTTP</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">LLM 生成的 wiki 候选来源</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">LLM Wiki 候选源</FONT></TD></TR><TR><TD><FONT POINT-SIZE="13" COLOR="#cbd5e1">HTTP</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">LLM 生成的 wiki 候选来源</FONT></TD></TR></TABLE>>;
     margin = "0.223,0.223";
     width = 4.445;
     height = 2.5;
@@ -83,7 +83,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
     color = "#1b3d88";
     style = "filled";
     margin = 32;
-    label = <<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>APPLICATION TIER</B></FONT>>;
+    label = <<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>应用层</B></FONT>>;
     "service";
   }
   subgraph "cluster_datatier" {
@@ -94,7 +94,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
     color = "#1c3979";
     style = "filled";
     margin = 50;
-    label = <<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>DATA TIER</B></FONT>>;
+    label = <<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>数据层</B></FONT>>;
     subgraph "cluster_storevm" {
       likec4_id = "local.dataTier.storeVm";
       likec4_level = 1;
@@ -103,7 +103,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
       color = "#1b3d88";
       style = "filled";
       margin = 32;
-      label = <<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>LOCAL FILESYSTEM</B></FONT>>;
+      label = <<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>本地文件系统</B></FONT>>;
       "store";
     }
     subgraph "cluster_ragflowvm" {
@@ -114,7 +114,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
       color = "#1b3d88";
       style = "filled";
       margin = 32;
-      label = <<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>LOCALHOST:9380</B></FONT>>;
+      label = <<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>本机 9380</B></FONT>>;
       "ragflow";
     }
     subgraph "cluster_wikivm" {
@@ -125,7 +125,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
       color = "#1b3d88";
       style = "filled";
       margin = 32;
-      label = <<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>LOCALHOST:19828</B></FONT>>;
+      label = <<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>本机 19828</B></FONT>>;
       "wiki";
     }
   }
@@ -1852,34 +1852,34 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="clust1" class="cluster">
 <title>cluster_apptier</title>
 <polygon fill="#194b9e" stroke="#1b3d88" points="508,-458.2 508,-723.4 892,-723.4 892,-458.2 508,-458.2"/>
-<text xml:space="preserve" text-anchor="start" x="516" y="-710.5" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">APPLICATION TIER</text>
+<text xml:space="preserve" text-anchor="start" x="516" y="-710.5" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">应用层</text>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_datatier</title>
 <polygon fill="#1a468d" stroke="#1c3979" points="8,-8 8,-394.4 1392,-394.4 1392,-8 8,-8"/>
-<text xml:space="preserve" text-anchor="start" x="16" y="-381.5" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">DATA TIER</text>
+<text xml:space="preserve" text-anchor="start" x="16" y="-381.5" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">数据层</text>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_storevm</title>
 <polygon fill="#194b9e" stroke="#1b3d88" points="58,-58 58,-323.2 442,-323.2 442,-58 58,-58"/>
-<text xml:space="preserve" text-anchor="start" x="66" y="-310.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">LOCAL FILESYSTEM</text>
+<text xml:space="preserve" text-anchor="start" x="66" y="-310.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">本地文件系统</text>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_ragflowvm</title>
 <polygon fill="#194b9e" stroke="#1b3d88" points="508,-58 508,-323.2 892,-323.2 892,-58 508,-58"/>
-<text xml:space="preserve" text-anchor="start" x="516" y="-310.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">LOCALHOST:9380</text>
+<text xml:space="preserve" text-anchor="start" x="516" y="-310.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">本机 9380</text>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_wikivm</title>
 <polygon fill="#194b9e" stroke="#1b3d88" points="958,-58 958,-323.2 1342,-323.2 1342,-58 958,-58"/>
-<text xml:space="preserve" text-anchor="start" x="966" y="-310.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">LOCALHOST:19828</text>
+<text xml:space="preserve" text-anchor="start" x="966" y="-310.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">本机 19828</text>
 </g>
 <!-- service -->
 <g id="node1" class="node">
 <title>service</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="860.02,-670.2 539.98,-670.2 539.98,-490.2 860.02,-490.2 860.02,-670.2"/>
-<text xml:space="preserve" text-anchor="start" x="586.62" y="-593" font-family="Arial" font-size="20.00" fill="#eff6ff">Beauty Customer Service</text>
-<text xml:space="preserve" text-anchor="start" x="661.33" y="-572" font-family="Arial" font-size="13.00" fill="#bfdbfe">Node.js &gt;=20</text>
+<text xml:space="preserve" text-anchor="start" x="649.99" y="-593" font-family="Arial" font-size="20.00" fill="#eff6ff">美妆客服服务</text>
+<text xml:space="preserve" text-anchor="start" x="650.87" y="-572" font-family="Arial" font-size="13.00" fill="#bfdbfe">Node.js 20 及以上</text>
 <text xml:space="preserve" text-anchor="start" x="599.98" y="-550.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">基于企业微信的美妆咨询与知识服务</text>
 </g>
 <!-- store -->
@@ -1887,7 +1887,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <title>store</title>
 <path fill="#3b82f6" stroke="#2563eb" stroke-width="2" d="M410.02,-253.64C410.02,-262.67 338.3,-270 250,-270 161.7,-270 89.98,-262.67 89.98,-253.64 89.98,-253.64 89.98,-106.36 89.98,-106.36 89.98,-97.33 161.7,-90 250,-90 338.3,-90 410.02,-97.33 410.02,-106.36 410.02,-106.36 410.02,-253.64 410.02,-253.64"/>
 <path fill="none" stroke="#2563eb" stroke-width="2" d="M410.02,-253.64C410.02,-244.61 338.3,-237.27 250,-237.27 161.7,-237.27 89.98,-244.61 89.98,-253.64"/>
-<text xml:space="preserve" text-anchor="start" x="169.97" y="-192.8" font-family="Arial" font-size="20.00" fill="#eff6ff">Local JSON Store</text>
+<text xml:space="preserve" text-anchor="start" x="184.43" y="-192.8" font-family="Arial" font-size="20.00" fill="#eff6ff">本地 JSON 存储</text>
 <text xml:space="preserve" text-anchor="start" x="177.39" y="-171.8" font-family="Arial" font-size="13.00" fill="#bfdbfe">data/local&#45;mvp&#45;store.json</text>
 <text xml:space="preserve" text-anchor="start" x="112.88" y="-150.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">以 JSON 文件承载状态；src/domain/store.js</text>
 </g>
@@ -1895,7 +1895,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node3" class="node">
 <title>ragflow</title>
 <polygon fill="#64748b" stroke="#475569" stroke-width="0" points="860.02,-270 539.98,-270 539.98,-90 860.02,-90 860.02,-270"/>
-<text xml:space="preserve" text-anchor="start" x="657.22" y="-192.8" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="629.43" y="-192.8" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
 <text xml:space="preserve" text-anchor="start" x="683.03" y="-171.8" font-family="Arial" font-size="13.00" fill="#cbd5e1">HTTP</text>
 <text xml:space="preserve" text-anchor="start" x="644.16" y="-150.2" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
 </g>
@@ -1903,7 +1903,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node4" class="node">
 <title>wiki</title>
 <polygon fill="#64748b" stroke="#475569" stroke-width="0" points="1310.02,-270 989.98,-270 989.98,-90 1310.02,-90 1310.02,-270"/>
-<text xml:space="preserve" text-anchor="start" x="1108.89" y="-192.8" font-family="Arial" font-size="20.00" fill="#f8fafc">LLM Wiki</text>
+<text xml:space="preserve" text-anchor="start" x="1081.1" y="-192.8" font-family="Arial" font-size="20.00" fill="#f8fafc">LLM Wiki 候选源</text>
 <text xml:space="preserve" text-anchor="start" x="1133.03" y="-171.8" font-family="Arial" font-size="13.00" fill="#cbd5e1">HTTP</text>
 <text xml:space="preserve" text-anchor="start" x="1072.9" y="-150.2" font-family="Arial" font-size="15.00" fill="#cbd5e1">LLM 生成的 wiki 候选来源</text>
 </g>
