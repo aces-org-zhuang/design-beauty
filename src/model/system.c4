@@ -1,192 +1,192 @@
-// Logical model for BeautyCustomerService.
+// Logical model for Beauty客户Service.
 //
 // Every element maps to a real path in the source repository. Elements are
 // grouped by their owning layer (routes / services / domain / ui) so the
 // model mirrors the code layout rather than an invented abstraction.
 
 model {
-  customer = actor 'Customer' {
-    description 'End user chatting through WeChat Work customer service'
+  customer = actor '客户' {
+    description '通过企业微信咨询的终端用户'
   }
 
-  operator = actor 'Operator' {
-    description 'Human operator handling escalated tickets'
+  operator = actor '运营人员' {
+    description '处理升级工单的人工运营人员'
   }
 
-  beauty = system 'Beauty Customer Service' {
-    description 'WeChat-based beauty consultation and knowledge service'
+  beauty = system '美妆客服服务' {
+    description '基于企业微信的美妆咨询与知识服务'
 
     // ---- HTTP entry (src/routes) ----
 
-    wechatCallback = service 'WeChat KF Callback' {
-      description 'Receives encrypted WeChat Work callbacks; src/routes/wechat-kf-routes.js'
+    wechatCallback = service '微信客服回调入口' {
+      description '接收加密的企业微信回调；src/routes/wechat-kf-routes.js'
     }
 
-    knowledgeRoutes = service 'Knowledge Routes' {
-      description 'Knowledge scan, sync and lifecycle endpoints; src/routes/knowledge-routes.js'
+    knowledgeRoutes = service '知识库路由' {
+      description '知识扫描、同步与生命周期接口；src/routes/knowledge-routes.js'
     }
 
-    materialRoutes = service 'Material Routes' {
-      description 'Beauty material ingestion endpoints; src/routes/material-routes.js'
+    materialRoutes = service '素材路由' {
+      description '美妆素材接入接口；src/routes/material-routes.js'
     }
 
-    handoffRoutes = service 'Handoff Routes' {
-      description 'Human handoff ticket endpoints; src/routes/handoff-routes.js'
+    handoffRoutes = service '转人工路由' {
+      description '人工转接工单接口；src/routes/handoff-routes.js'
     }
 
-    integrationRoutes = service 'Integration Routes' {
-      description 'Feature overview and integration status; src/routes/integration-routes.js'
+    integrationRoutes = service '集成状态路由' {
+      description '功能概览与集成状态；src/routes/integration-routes.js'
     }
 
-    operatorUi = ui 'Operator Console' {
-      description 'Single-page console for operators; src/ui/operator.html'
+    operatorUi = ui '运营人员 Console' {
+      description '运营人员使用的单页控制台；src/ui/operator.html'
     }
 
     // ---- Orchestration and answer path (src/services) ----
 
-    answerOrchestrator = service 'Answer Orchestrator' {
-      description 'Decides auto-reply vs handoff; src/services/answer-orchestrator.js'
+    answerOrchestrator = service '应答编排器' {
+      description '决定自动回复还是转人工；src/services/answer-orchestrator.js'
     }
 
-    answerLoop = service 'Knowledge Answer Loop' {
-      description 'Retrieval-augmented answer loop; src/services/knowledge-answer-loop-service.js'
+    answerLoop = service '知识应答循环' {
+      description '检索增强的应答循环；src/services/knowledge-answer-loop-service.js'
     }
 
-    replyPolicy = service 'Reply Policy' {
-      description 'Confidence and risk thresholds for auto-reply; src/services/reply-policy-service.js'
+    replyPolicy = service '回复策略' {
+      description '自动回复的置信度与风险阈值；src/services/reply-policy-service.js'
     }
 
-    evaluationGate = service 'Evaluation Gate' {
-      description 'Local publication policy gate; src/services/evaluation-gate.js'
+    evaluationGate = service '评测���禁' {
+      description '本地发布策略门禁；src/services/evaluation-gate.js'
     }
 
-    handoffService = service 'Handoff Service' {
-      description 'Creates and tracks human handoff tickets; src/services/handoff-service.js'
+    handoffService = service '转人工服务' {
+      description '创建并跟踪人工转接工单；src/services/handoff-service.js'
     }
 
     // ---- Knowledge lifecycle (src/services) ----
 
-    knowledgeScan = service 'Knowledge Scan' {
-      description 'Discovers candidate knowledge; src/services/knowledge-scan-service.js'
+    knowledgeScan = service '知识扫描' {
+      description '发现候选知识；src/services/knowledge-scan-service.js'
     }
 
-    knowledgeSync = service 'Knowledge Sync' {
-      description 'Pushes approved knowledge to RAGFlow; src/services/knowledge-sync-service.js'
+    knowledgeSync = service '知识同步' {
+      description '把已批准知识推送到 RAGFlow；src/services/knowledge-sync-service.js'
     }
 
-    knowledgeLifecycle = service 'Knowledge Lifecycle' {
-      description 'Promotion and retirement of knowledge; src/services/knowledge-lifecycle-service.js'
+    knowledgeLifecycle = service '知识生命周期视图' {
+      description '知识的晋升与下线；src/services/knowledge-lifecycle-service.js'
     }
 
-    knowledgeAlert = service 'Knowledge Alert' {
-      description 'Surfaces knowledge freshness issues; src/services/knowledge-alert-service.js'
+    knowledgeAlert = service '知识告警' {
+      description '暴露知识新鲜度问题；src/services/knowledge-alert-service.js'
     }
 
-    documentRegistry = service 'Document Registry' {
-      description 'Tracks material and document identity; src/services/knowledge-document-registry.js'
+    documentRegistry = service '文档登记簿' {
+      description '跟踪素材与文档标识；src/services/knowledge-document-registry.js'
     }
 
-    governance = service 'Knowledge Governance' {
-      description 'Publication decisions and governance; src/services/knowledge-governance-service.js'
+    governance = service '知识治理' {
+      description '发布决策与治理；src/services/knowledge-governance-service.js'
     }
 
-    materialService = service 'Material Service' {
-      description 'Material ingestion rules; src/services/material-service.js'
+    materialService = service '素材服务' {
+      description '素材接入规则；src/services/material-service.js'
     }
 
-    materialBatch = service 'Material Batch' {
-      description 'Batch material processing; src/services/material-batch-service.js'
+    materialBatch = service '素材批处理' {
+      description '素材批处理；src/services/material-batch-service.js'
     }
 
     // ---- Platform adapters (src/services) ----
 
-    ragflowKnowledge = service 'RAGFlow Knowledge' {
-      description 'RAGFlow retrieval and dataset access; src/services/ragflow-knowledge-service.js'
+    ragflowKnowledge = service 'RAGFlow 知识库 知识检索' {
+      description 'RAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js'
     }
 
-    ragflowLifecycleProbe = service 'RAGFlow Lifecycle Probe' {
-      description 'Verifies RAGFlow dataset state; src/services/ragflow-lifecycle-probe-service.js'
+    ragflowLifecycleProbe = service 'RAGFlow 知识库 生命周期探针' {
+      description '校验 RAGFlow 数据集状态；src/services/ragflow-lifecycle-probe-service.js'
     }
 
-    wechatPlatform = service 'WeChat KF Platform' {
-      description 'WeChat Work conversation operations; src/services/wechat-kf-platform.js'
+    wechatPlatform = service '微信客服平台适配' {
+      description '企业微信会话操作；src/services/wechat-kf-platform.js'
     }
 
     // ---- Domain (src/domain) ----
 
-    store = store 'Local Store' {
-      description 'JSON-file backed state; src/domain/store.js'
+    store = store '本地存储' {
+      description '以 JSON 文件承载状态；src/domain/store.js'
     }
 
-    ids = service 'ID Generation' {
-      description 'Identifier helpers; src/domain/ids.js'
+    ids = service '标识生成' {
+      description '标识生成辅助；src/domain/ids.js'
     }
 
     // ---- Message ingress ----
 
-    fakeWechat = service 'Fake WeChat' {
-      description 'Local message ingress kept for regression; src/services/fake-wechat-platform.js'
+    fakeWechat = service '模拟微信入口' {
+      description '保留用于回归验证的本地消息入口；src/services/fake-wechat-platform.js'
     }
   }
 
   // ---- External systems (top level, outside the system boundary) ----
 
-  wechatWork = external 'WeChat Work' {
-    description 'WeChat Work customer service platform'
+  wechatWork = external '企业微信' {
+    description '企业微信客服平台'
   }
 
-  ragflow = external 'RAGFlow' {
-    description 'RAG and knowledge base service'
+  ragflow = external 'RAGFlow 知识库' {
+    description 'RAG 与知识库服务'
   }
 
-  llmWiki = external 'LLM Wiki' {
-    description 'LLM-generated wiki candidate source'
+  llmWiki = external 'LLM Wiki 候选源' {
+    description 'LLM 生成的 wiki 候选来源'
   }
 
   // ---- Relationships: ingress ----
 
-  wechatWork -> beauty.wechatCallback 'posts encrypted callback'
-  customer -> fakeWechat 'messages (local dev)'
-  fakeWechat -> beauty.answerOrchestrator 'forwards message'
-  beauty.wechatCallback -> beauty.wechatPlatform 'decrypts and dispatches'
-  beauty.wechatPlatform -> beauty.answerOrchestrator 'passes normalized message'
+  wechatWork -> beauty.wechatCallback '回调加密报文'
+  customer -> fakeWechat '发送消息（本地开发）'
+  fakeWechat -> beauty.answerOrchestrator '转发消息'
+  beauty.wechatCallback -> beauty.wechatPlatform '解密并分发'
+  beauty.wechatPlatform -> beauty.answerOrchestrator '传递归一化消息'
 
   // ---- Relationships: answer path ----
 
-  beauty.answerOrchestrator -> beauty.answerLoop 'asks for answer'
-  beauty.answerLoop -> beauty.ragflowKnowledge 'retrieves candidates'
-  beauty.answerLoop -> beauty.replyPolicy 'checks thresholds'
-  beauty.replyPolicy -> beauty.evaluationGate 'gates publication'
+  beauty.answerOrchestrator -> beauty.answerLoop '请求应答'
+  beauty.answerLoop -> beauty.ragflowKnowledge '检索候选知识'
+  beauty.answerLoop -> beauty.replyPolicy '校验阈值'
+  beauty.replyPolicy -> beauty.evaluationGate '把控发布'
   beauty.evaluationGate -> beauty.store 'reads feedback candidates'
-  beauty.answerOrchestrator -> beauty.handoffService 'escalates when uncertain'
+  beauty.answerOrchestrator -> beauty.handoffService '不确定时升级人工'
   beauty.handoffService -> beauty.store 'persists ticket'
 
   // ---- Relationships: knowledge lifecycle ----
 
   beauty.knowledgeRoutes -> beauty.knowledgeScan 'starts scan'
-  beauty.knowledgeRoutes -> beauty.knowledgeSync 'triggers sync'
-  beauty.materialRoutes -> beauty.materialService 'accepts material'
-  beauty.materialService -> beauty.documentRegistry 'registers document'
-  beauty.materialBatch -> beauty.materialService 'batch ingests'
+  beauty.knowledgeRoutes -> beauty.knowledgeSync '触发同步'
+  beauty.materialRoutes -> beauty.materialService '接收素材'
+  beauty.materialService -> beauty.documentRegistry '登记文档'
+  beauty.materialBatch -> beauty.materialService '批量接入'
   beauty.knowledgeScan -> beauty.governance 'submits candidates'
-  beauty.governance -> beauty.evaluationGate 'applies decision'
-  beauty.knowledgeSync -> beauty.ragflowKnowledge 'pushes dataset'
+  beauty.governance -> beauty.evaluationGate 'applies 决策结果'
+  beauty.knowledgeSync -> beauty.ragflowKnowledge '推送数据集'
   beauty.knowledgeSync -> llmWiki 'reads candidate wiki'
-  beauty.knowledgeLifecycle -> beauty.documentRegistry 'promotes or retires'
-  beauty.knowledgeLifecycle -> beauty.ragflowLifecycleProbe 'verifies dataset state'
-  beauty.knowledgeAlert -> beauty.store 'reports freshness'
+  beauty.knowledgeLifecycle -> beauty.documentRegistry '晋升或下线'
+  beauty.knowledgeLifecycle -> beauty.ragflowLifecycleProbe '校验数据集状态'
+  beauty.knowledgeAlert -> beauty.store '报告新鲜度'
 
   // ---- Relationships: storage and ids ----
 
-  beauty.store -> beauty.ids 'generates identifiers'
+  beauty.store -> beauty.ids '生成标识'
 
   // ---- Relationships: operator ----
 
-  operator -> beauty.operatorUi 'uses'
-  beauty.operatorUi -> beauty.handoffRoutes 'manages tickets'
-  beauty.operatorUi -> beauty.knowledgeRoutes 'operates knowledge'
-  beauty.operatorUi -> beauty.integrationRoutes 'checks status'
-  beauty.handoffService -> beauty.wechatPlatform 'notifies customer'
+  operator -> beauty.operatorUi '使用'
+  beauty.operatorUi -> beauty.handoffRoutes '管理工单'
+  beauty.operatorUi -> beauty.knowledgeRoutes '运营知识库'
+  beauty.operatorUi -> beauty.integrationRoutes '查看状态'
+  beauty.handoffService -> beauty.wechatPlatform '通知客户'
 
   // ---- Relationships: external ----
 
