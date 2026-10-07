@@ -10,87 +10,87 @@
 views {
   // diagram variant: the full message-to-answer chain
   dynamic view chatToAnswer {
-    title 'Customer Message to Answer'
-    description 'Ingress through retrieval and policy, ending in reply or handoff'
+    title '客户提问到应答'
+    description '进入后经检索与策略，最终回复或转人工'
 
-    customer -> beauty.fakeWechat 'asks a beauty question'
-    beauty.fakeWechat -> beauty.answerOrchestrator 'forwards message'
+    customer -> beauty.fakeWechat '提出美妆咨询'
+    beauty.fakeWechat -> beauty.answerOrchestrator '转发消息'
     beauty.answerOrchestrator -> beauty.answerLoop 'requests answer'
-    beauty.answerLoop -> beauty.ragflowKnowledge 'retrieves candidates'
+    beauty.answerLoop -> beauty.ragflowKnowledge '检索候选知识'
     beauty.ragflowKnowledge -> ragflow 'queries dataset'
-    ragflow -> beauty.ragflowKnowledge 'returns passages'
-    beauty.answerLoop -> beauty.replyPolicy 'checks confidence'
-    beauty.replyPolicy -> beauty.answerOrchestrator 'auto-reply allowed'
-    beauty.answerOrchestrator -> beauty.wechatPlatform 'sends reply'
-    beauty.wechatPlatform -> wechatWork 'posts message'
+    ragflow -> beauty.ragflowKnowledge '返回知识片段'
+    beauty.answerLoop -> beauty.replyPolicy '评估置信度'
+    beauty.replyPolicy -> beauty.answerOrchestrator '允许自动回复'
+    beauty.answerOrchestrator -> beauty.wechatPlatform '发送回复'
+    beauty.wechatPlatform -> wechatWork '发送消息'
   }
 
   // sequence variant: customer question with retrieval
   dynamic view retrievalSequence {
     variant sequence
-    title 'Answer Retrieval Sequence'
+    title '应答检索时序'
 
-    customer -> beauty.wechatCallback 'sends question'
-    beauty.wechatCallback -> beauty.wechatPlatform 'decrypts'
-    beauty.wechatPlatform -> beauty.answerOrchestrator 'normalized message'
-    beauty.answerOrchestrator -> beauty.answerLoop 'asks for answer'
-    beauty.answerLoop -> beauty.ragflowKnowledge 'retrieve'
-    beauty.ragflowKnowledge -> ragflow 'query'
-    beauty.ragflowKnowledge -> beauty.answerLoop 'passages'
-    beauty.answerLoop -> beauty.replyPolicy 'confidence'
-    beauty.replyPolicy -> beauty.answerOrchestrator 'decision'
+    customer -> beauty.wechatCallback '发送问题'
+    beauty.wechatCallback -> beauty.wechatPlatform '解密'
+    beauty.wechatPlatform -> beauty.answerOrchestrator '归一化消息'
+    beauty.answerOrchestrator -> beauty.answerLoop '请求应答'
+    beauty.answerLoop -> beauty.ragflowKnowledge '发起检索'
+    beauty.ragflowKnowledge -> ragflow '查询知识库'
+    beauty.ragflowKnowledge -> beauty.answerLoop '返回知识片段'
+    beauty.answerLoop -> beauty.replyPolicy '置信度'
+    beauty.replyPolicy -> beauty.answerOrchestrator '决策结果'
   }
 
   // sequence variant: concurrent reads during policy evaluation
   dynamic view evaluationSequence {
     variant sequence
-    title 'Policy Evaluation Reads'
+    title '策略评估读取时序'
 
-    beauty.answerOrchestrator -> beauty.evaluationGate 'evaluate'
-    beauty.evaluationGate -> beauty.store 'read candidates'
+    beauty.answerOrchestrator -> beauty.evaluationGate '执行评测'
+    beauty.evaluationGate -> beauty.store '读取候选'
     parallel {
-      beauty.evaluationGate -> beauty.replyPolicy 'check thresholds'
-      beauty.evaluationGate -> beauty.store 'read policy state'
+      beauty.evaluationGate -> beauty.replyPolicy '校验阈值'
+      beauty.evaluationGate -> beauty.store '读取策略状态'
     }
   }
 
   // sequence variant: escalation to human
   dynamic view handoffSequence {
     variant sequence
-    title 'Escalation to Human Operator'
+    title '升级到人工运营'
 
-    beauty.answerOrchestrator -> beauty.handoffService 'create ticket'
-    beauty.handoffService -> beauty.store 'persist ticket'
-    beauty.handoffService -> beauty.wechatPlatform 'notify customer'
-    operator -> beauty.operatorUi 'opens ticket'
-    beauty.operatorUi -> beauty.handoffRoutes 'claim ticket'
+    beauty.answerOrchestrator -> beauty.handoffService '创建工单'
+    beauty.handoffService -> beauty.store '持久化工单'
+    beauty.handoffService -> beauty.wechatPlatform '通知客户'
+    operator -> beauty.operatorUi '打开工单'
+    beauty.operatorUi -> beauty.handoffRoutes '认领工单'
   }
 
-  // sequence variant: knowledge promotion into RAGFlow
+  // sequence variant: knowledge promotion into RAGFlow 知识库
   dynamic view knowledgeSyncSequence {
     variant sequence
-    title 'Knowledge Promotion and Sync'
+    title '知识晋升与同步'
 
-    operator -> beauty.operatorUi 'triggers sync'
-    beauty.operatorUi -> beauty.knowledgeRoutes 'request sync'
-    beauty.knowledgeRoutes -> beauty.knowledgeScan 'scan candidates'
-    beauty.knowledgeScan -> beauty.governance 'submit for decision'
-    beauty.governance -> beauty.evaluationGate 'apply publication rule'
-    beauty.knowledgeRoutes -> beauty.knowledgeSync 'push approved'
-    beauty.knowledgeSync -> llmWiki 'read candidate wiki'
-    beauty.knowledgeSync -> beauty.ragflowKnowledge 'write dataset'
+    operator -> beauty.operatorUi '触发同步'
+    beauty.operatorUi -> beauty.knowledgeRoutes '请求同步'
+    beauty.knowledgeRoutes -> beauty.knowledgeScan '扫描候选项'
+    beauty.knowledgeScan -> beauty.governance 'submit for 决策结果'
+    beauty.governance -> beauty.evaluationGate '应用发布规则'
+    beauty.knowledgeRoutes -> beauty.knowledgeSync '推送已批准项'
+    beauty.knowledgeSync -> llmWiki '读取候选 wiki'
+    beauty.knowledgeSync -> beauty.ragflowKnowledge '写入数据集'
   }
 
   // notes example: configuration gating is a real behaviour worth documenting
   dynamic view configGatedFlow {
-    title 'Configuration-Gated Retrieval'
+    title '配置门控检索'
 
-    beauty.answerOrchestrator -> beauty.ragflowKnowledge 'attempts retrieval'
-    beauty.ragflowKnowledge -> beauty.ragflowKnowledge 'checks config gate' {
+    beauty.answerOrchestrator -> beauty.ragflowKnowledge '尝试检索'
+    beauty.ragflowKnowledge -> beauty.ragflowKnowledge '检查配置门控' {
       notes '''
         **Gate**: retrieval runs only when `useRagflow` is on **and**
         an API key plus dataset id/name are configured.
-        Without them the service refuses to fabricate results.
+        Without them the service ref使用 to fabricate results.
       '''
     }
   }
