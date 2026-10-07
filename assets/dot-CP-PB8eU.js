@@ -56,7 +56,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "ragflow" [
     likec4_id = "local.dataTier.ragflowVm.ragflow";
     likec4_level = 2;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库</FONT></TD></TR><TR><TD><FONT POINT-SIZE="13" COLOR="#cbd5e1">HTTP</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 与知识库服务</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库</FONT></TD></TR><TR><TD><FONT POINT-SIZE="13" COLOR="#cbd5e1">HTTP</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 检索与知识库服务</FONT></TD></TR></TABLE>>;
     margin = "0.223,0.223";
     width = 4.445;
     height = 2.5;
@@ -262,7 +262,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         fillcolor="#64748b",
         fontcolor="#f8fafc",
         height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 与知识库服务</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 检索与知识库服务</FONT></TD></TR></TABLE>>,
         likec4_id=ragflow,
         likec4_level=0,
         margin="0.223,0.223",
@@ -369,7 +369,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         fillcolor="#64748b",
         fontcolor="#f8fafc",
         height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 与知识库服务</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 检索与知识库服务</FONT></TD></TR></TABLE>>,
         likec4_id=ragflow,
         likec4_level=0,
         margin="0.223,0.223",
@@ -448,7 +448,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
             margin="0.5,0.223",
             width=4.584];
         operatorui [height=2.5,
-            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">运营人员 Console</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</FONT></TD></TR></TABLE>>,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">运营人员控制台</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</FONT></TD></TR></TABLE>>,
             likec4_id="beauty.operatorUi",
             likec4_level=1,
             margin="0.278,0.306",
@@ -496,7 +496,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
             margin="0.5,0.223",
             width=4.584];
         ragflowknowledge [height=2.5,
-            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>,
             likec4_id="beauty.ragflowKnowledge",
             likec4_level=1,
             margin="0.5,0.223",
@@ -573,7 +573,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         fillcolor="#64748b",
         fontcolor="#f8fafc",
         height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 与知识库服务</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 检索与知识库服务</FONT></TD></TR></TABLE>>,
         likec4_id=ragflow,
         likec4_level=0,
         margin="0.223,0.223",
@@ -726,7 +726,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         likec4_id="1nmiw6w",
         style=dashed];
     ragflowknowledge [height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>,
         likec4_id="beauty.ragflowKnowledge",
         likec4_level=0,
         margin="0.5,0.223",
@@ -754,7 +754,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         likec4_id="1iu7yf8",
         style=dashed];
     evaluationgate [height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">评测���禁</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">本地发布策略门禁；src/services/evaluation-gate.js</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">评测闸门</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">本地发布策略门禁；src/services/evaluation-gate.js</FONT></TD></TR></TABLE>>,
         likec4_id="beauty.evaluationGate",
         likec4_level=0,
         margin="0.5,0.223",
@@ -767,7 +767,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         fillcolor="#64748b",
         fontcolor="#f8fafc",
         height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 与知识库服务</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 检索与知识库服务</FONT></TD></TR></TABLE>>,
         likec4_id=ragflow,
         likec4_level=0,
         margin="0.223,0.223",
@@ -849,7 +849,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         margin="0.5,0.223",
         width=4.584];
     ragflowlifecycleprobe [height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库 生命周期探针</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">校验 RAGFlow<BR/>数据集状态；src/services/ragflow-lifecycle-probe-service.js</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 生命周期探针</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">校验 RAGFlow<BR/>数据集状态；src/services/ragflow-lifecycle-probe-service.js</FONT></TD></TR></TABLE>>,
         likec4_id="beauty.ragflowLifecycleProbe",
         likec4_level=0,
         margin="0.5,0.223",
@@ -927,7 +927,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         likec4_id="1vijps9",
         style=dashed];
     ragflowknowledge [height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>,
         likec4_id="beauty.ragflowKnowledge",
         likec4_level=0,
         margin="0.5,0.223",
@@ -955,7 +955,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         fillcolor="#64748b",
         fontcolor="#f8fafc",
         height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 与知识库服务</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 检索与知识库服务</FONT></TD></TR></TABLE>>,
         likec4_id=ragflow,
         likec4_level=0,
         margin="0.223,0.223",
@@ -969,7 +969,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         likec4_id="10tffly",
         style=dashed];
     evaluationgate [height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">评测���禁</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">本地发布策略门禁；src/services/evaluation-gate.js</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">评测闸门</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">本地发布策略门禁；src/services/evaluation-gate.js</FONT></TD></TR></TABLE>>,
         likec4_id="beauty.evaluationGate",
         likec4_level=0,
         margin="0.5,0.223",
@@ -1032,7 +1032,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
         ];
         operatorui [group=beauty,
             height=2.5,
-            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">运营人员 Console</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</FONT></TD></TR></TABLE>>,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">运营人员控制台</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</FONT></TD></TR></TABLE>>,
             likec4_id="beauty.operatorUi",
             likec4_level=1,
             margin="0.278,0.306",
@@ -1173,7 +1173,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "ragflowknowledge" [
     likec4_id = "beauty.ragflowKnowledge";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>;
     margin = "0.5,0.223";
     width = 4.584;
     height = 2.5;
@@ -1181,7 +1181,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "ragflow" [
     likec4_id = "ragflow";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 与知识库服务</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 检索与知识库服务</FONT></TD></TR></TABLE>>;
     margin = "0.223,0.223";
     width = 4.445;
     height = 2.5;
@@ -1347,7 +1347,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "ragflowknowledge" [
     likec4_id = "beauty.ragflowKnowledge";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>;
     margin = "0.5,0.223";
     width = 4.584;
     height = 2.5;
@@ -1355,7 +1355,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "ragflow" [
     likec4_id = "ragflow";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 与知识库服务</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#cbd5e1">RAG 检索与知识库服务</FONT></TD></TR></TABLE>>;
     margin = "0.223,0.223";
     width = 4.445;
     height = 2.5;
@@ -1465,7 +1465,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "evaluationgate" [
     likec4_id = "beauty.evaluationGate";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">评测���禁</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">本地发布策略门禁；src/services/evaluation-gate.js</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">评测闸门</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">本地发布策略门禁；src/services/evaluation-gate.js</FONT></TD></TR></TABLE>>;
     margin = "0.5,0.223";
     width = 4.584;
     height = 2.5;
@@ -1589,7 +1589,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "operatorui" [
     likec4_id = "beauty.operatorUi";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">运营人员 Console</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">运营人员控制台</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</FONT></TD></TR></TABLE>>;
     margin = "0.278,0.306";
     width = 4.445;
     height = 2.5;
@@ -1674,7 +1674,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "operatorui" [
     likec4_id = "beauty.operatorUi";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">运营人员 Console</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">运营人员控制台</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</FONT></TD></TR></TABLE>>;
     margin = "0.278,0.306";
     width = 4.445;
     height = 2.5;
@@ -1706,7 +1706,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "evaluationgate" [
     likec4_id = "beauty.evaluationGate";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">评测���禁</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">本地发布策略门禁；src/services/evaluation-gate.js</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">评测闸门</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">本地发布策略门禁；src/services/evaluation-gate.js</FONT></TD></TR></TABLE>>;
     margin = "0.5,0.223";
     width = 4.584;
     height = 2.5;
@@ -1733,7 +1733,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "ragflowknowledge" [
     likec4_id = "beauty.ragflowKnowledge";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>;
     margin = "0.5,0.223";
     width = 4.584;
     height = 2.5;
@@ -1825,7 +1825,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   "ragflowknowledge" [
     likec4_id = "beauty.ragflowKnowledge";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识库 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow 知识检索</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">RAGFlow<BR/>检索与数据集访问；src/services/ragflow-knowledge-service.js</FONT></TD></TR></TABLE>>;
     margin = "0.5,0.223";
     width = 4.584;
     height = 2.5;
@@ -1897,7 +1897,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <polygon fill="#64748b" stroke="#475569" stroke-width="0" points="860.02,-270 539.98,-270 539.98,-90 860.02,-90 860.02,-270"/>
 <text xml:space="preserve" text-anchor="start" x="629.43" y="-192.8" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
 <text xml:space="preserve" text-anchor="start" x="683.03" y="-171.8" font-family="Arial" font-size="13.00" fill="#cbd5e1">HTTP</text>
-<text xml:space="preserve" text-anchor="start" x="644.16" y="-150.2" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
+<text xml:space="preserve" text-anchor="start" x="631.65" y="-150.2" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 检索与知识库服务</text>
 </g>
 <!-- wiki -->
 <g id="node4" class="node">
@@ -1985,8 +1985,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node5" class="node">
 <title>ragflow</title>
 <polygon fill="#64748b" stroke="#475569" stroke-width="0" points="750.04,-180 430,-180 430,0 750.04,0 750.04,-180"/>
-<text xml:space="preserve" text-anchor="start" x="519.45" y="-93" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
-<text xml:space="preserve" text-anchor="start" x="534.18" y="-70" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
+<text xml:space="preserve" text-anchor="start" x="547.24" y="-93" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="521.67" y="-70" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 检索与知识库服务</text>
 </g>
 <!-- llmwiki -->
 <g id="node6" class="node">
@@ -2086,8 +2086,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node5" class="node">
 <title>ragflow</title>
 <polygon fill="#64748b" stroke="#475569" stroke-width="0" points="750.04,-180 430,-180 430,0 750.04,0 750.04,-180"/>
-<text xml:space="preserve" text-anchor="start" x="519.45" y="-93" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
-<text xml:space="preserve" text-anchor="start" x="534.18" y="-70" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
+<text xml:space="preserve" text-anchor="start" x="547.24" y="-93" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="521.67" y="-70" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 检索与知识库服务</text>
 </g>
 <!-- llmwiki -->
 <g id="node6" class="node">
@@ -2171,7 +2171,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node2" class="node">
 <title>operatorui</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1015.47,-1471.2 676.53,-1471.2 676.53,-1291.2 1015.47,-1291.2 1015.47,-1471.2"/>
-<text xml:space="preserve" text-anchor="start" x="773.19" y="-1384.2" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员 Console</text>
+<text xml:space="preserve" text-anchor="start" x="787.66" y="-1384.2" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员控制台</text>
 <text xml:space="preserve" text-anchor="start" x="700.54" y="-1361.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</text>
 </g>
 <!-- wechatcallback -->
@@ -2227,7 +2227,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node10" class="node">
 <title>ragflowknowledge</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="539.22,-502.8 70.78,-502.8 70.78,-322.8 539.22,-322.8 539.22,-502.8"/>
-<text xml:space="preserve" text-anchor="start" x="198.32" y="-424.8" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="226.1" y="-424.8" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识检索</text>
 <text xml:space="preserve" text-anchor="start" x="272.91" y="-401.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
 <text xml:space="preserve" text-anchor="start" x="110.78" y="-383.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>
@@ -2257,8 +2257,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node14" class="node">
 <title>ragflow</title>
 <polygon fill="#64748b" stroke="#475569" stroke-width="0" points="465.02,-180 144.98,-180 144.98,0 465.02,0 465.02,-180"/>
-<text xml:space="preserve" text-anchor="start" x="234.43" y="-93" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
-<text xml:space="preserve" text-anchor="start" x="249.16" y="-70" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
+<text xml:space="preserve" text-anchor="start" x="262.22" y="-93" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="236.65" y="-70" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 检索与知识库服务</text>
 </g>
 <!-- wechatwork -->
 <g id="node15" class="node">
@@ -2443,7 +2443,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node9" class="node">
 <title>ragflowknowledge</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1568.24,-825.6 1099.8,-825.6 1099.8,-645.6 1568.24,-645.6 1568.24,-825.6"/>
-<text xml:space="preserve" text-anchor="start" x="1227.34" y="-747.6" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="1255.12" y="-747.6" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识检索</text>
 <text xml:space="preserve" text-anchor="start" x="1301.93" y="-724.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
 <text xml:space="preserve" text-anchor="start" x="1139.8" y="-706.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>
@@ -2459,15 +2459,15 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node11" class="node">
 <title>evaluationgate</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="912.74,-502.8 519.3,-502.8 519.3,-322.8 912.74,-322.8 912.74,-502.8"/>
-<text xml:space="preserve" text-anchor="start" x="666.01" y="-415.8" font-family="Arial" font-size="20.00" fill="#eff6ff">评测���禁</text>
+<text xml:space="preserve" text-anchor="start" x="682.68" y="-415.8" font-family="Arial" font-size="20.00" fill="#eff6ff">评测闸门</text>
 <text xml:space="preserve" text-anchor="start" x="559.3" y="-392.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">本地发布策略门禁；src/services/evaluation&#45;gate.js</text>
 </g>
 <!-- ragflow -->
 <g id="node12" class="node">
 <title>ragflow</title>
 <polygon fill="#64748b" stroke="#475569" stroke-width="0" points="1494.04,-502.8 1174,-502.8 1174,-322.8 1494.04,-322.8 1494.04,-502.8"/>
-<text xml:space="preserve" text-anchor="start" x="1263.45" y="-415.8" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
-<text xml:space="preserve" text-anchor="start" x="1278.18" y="-392.8" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
+<text xml:space="preserve" text-anchor="start" x="1291.24" y="-415.8" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="1265.67" y="-392.8" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 检索与知识库服务</text>
 </g>
 <!-- wechatcallback&#45;&gt;wechatplatform -->
 <g id="edge1" class="edge">
@@ -2625,7 +2625,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node5" class="node">
 <title>ragflowlifecycleprobe</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2464.85,-825.6 2008.92,-825.6 2008.92,-645.6 2464.85,-645.6 2464.85,-825.6"/>
-<text xml:space="preserve" text-anchor="start" x="2113.53" y="-747.6" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 生命周期探针</text>
+<text xml:space="preserve" text-anchor="start" x="2141.31" y="-747.6" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 生命周期探针</text>
 <text xml:space="preserve" text-anchor="start" x="2190.21" y="-724.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">校验 RAGFlow</text>
 <text xml:space="preserve" text-anchor="start" x="2048.92" y="-706.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">数据集状态；src/services/ragflow&#45;lifecycle&#45;probe&#45;service.js</text>
 </g>
@@ -2683,7 +2683,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node13" class="node">
 <title>ragflowknowledge</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1469.1,-825.6 1000.66,-825.6 1000.66,-645.6 1469.1,-645.6 1469.1,-825.6"/>
-<text xml:space="preserve" text-anchor="start" x="1128.2" y="-747.6" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="1155.98" y="-747.6" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识检索</text>
 <text xml:space="preserve" text-anchor="start" x="1202.8" y="-724.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
 <text xml:space="preserve" text-anchor="start" x="1040.66" y="-706.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>
@@ -2698,14 +2698,14 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node15" class="node">
 <title>ragflow</title>
 <polygon fill="#64748b" stroke="#475569" stroke-width="0" points="1895.9,-502.8 1575.86,-502.8 1575.86,-322.8 1895.9,-322.8 1895.9,-502.8"/>
-<text xml:space="preserve" text-anchor="start" x="1665.32" y="-415.8" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
-<text xml:space="preserve" text-anchor="start" x="1680.04" y="-392.8" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
+<text xml:space="preserve" text-anchor="start" x="1693.1" y="-415.8" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="1667.54" y="-392.8" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 检索与知识库服务</text>
 </g>
 <!-- evaluationgate -->
 <g id="node16" class="node">
 <title>evaluationgate</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="804.6,-502.8 411.16,-502.8 411.16,-322.8 804.6,-322.8 804.6,-502.8"/>
-<text xml:space="preserve" text-anchor="start" x="557.87" y="-415.8" font-family="Arial" font-size="20.00" fill="#eff6ff">评测���禁</text>
+<text xml:space="preserve" text-anchor="start" x="574.54" y="-415.8" font-family="Arial" font-size="20.00" fill="#eff6ff">评测闸门</text>
 <text xml:space="preserve" text-anchor="start" x="451.16" y="-392.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">本地发布策略门禁；src/services/evaluation&#45;gate.js</text>
 </g>
 <!-- knowledgeroutes&#45;&gt;knowledgescan -->
@@ -2848,7 +2848,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node1" class="node">
 <title>operatorui</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="937.47,-550.8 598.53,-550.8 598.53,-370.8 937.47,-370.8 937.47,-550.8"/>
-<text xml:space="preserve" text-anchor="start" x="695.19" y="-463.8" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员 Console</text>
+<text xml:space="preserve" text-anchor="start" x="709.66" y="-463.8" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员控制台</text>
 <text xml:space="preserve" text-anchor="start" x="622.54" y="-440.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</text>
 </g>
 <!-- handoffroutes -->
@@ -2969,7 +2969,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node5" class="node">
 <title>ragflowknowledge</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3215.04,-815 2746.6,-815 2746.6,-635 3215.04,-635 3215.04,-815"/>
-<text xml:space="preserve" text-anchor="start" x="2874.13" y="-737" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="2901.91" y="-737" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识检索</text>
 <text xml:space="preserve" text-anchor="start" x="2948.73" y="-714" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
 <text xml:space="preserve" text-anchor="start" x="2786.6" y="-696" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>
@@ -2977,8 +2977,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node6" class="node">
 <title>ragflow</title>
 <polygon fill="#64748b" stroke="#475569" stroke-width="0" points="3796.46,-815 3476.42,-815 3476.42,-635 3796.46,-635 3796.46,-815"/>
-<text xml:space="preserve" text-anchor="start" x="3565.87" y="-728" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
-<text xml:space="preserve" text-anchor="start" x="3580.59" y="-705" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
+<text xml:space="preserve" text-anchor="start" x="3593.65" y="-728" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="3568.09" y="-705" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 检索与知识库服务</text>
 </g>
 <!-- replypolicy -->
 <g id="node7" class="node">
@@ -3151,7 +3151,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node6" class="node">
 <title>ragflowknowledge</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3651.38,-496 3182.94,-496 3182.94,-316 3651.38,-316 3651.38,-496"/>
-<text xml:space="preserve" text-anchor="start" x="3310.48" y="-418" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="3338.26" y="-418" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识检索</text>
 <text xml:space="preserve" text-anchor="start" x="3385.08" y="-395" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
 <text xml:space="preserve" text-anchor="start" x="3222.94" y="-377" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>
@@ -3159,8 +3159,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node7" class="node">
 <title>ragflow</title>
 <polygon fill="#64748b" stroke="#475569" stroke-width="0" points="4195.42,-496 3875.38,-496 3875.38,-316 4195.42,-316 4195.42,-496"/>
-<text xml:space="preserve" text-anchor="start" x="3964.83" y="-409" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
-<text xml:space="preserve" text-anchor="start" x="3979.56" y="-386" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
+<text xml:space="preserve" text-anchor="start" x="3992.62" y="-409" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="3967.05" y="-386" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 检索与知识库服务</text>
 </g>
 <!-- replypolicy -->
 <g id="node8" class="node">
@@ -3281,7 +3281,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node2" class="node">
 <title>evaluationgate</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1060.87,-334 667.43,-334 667.43,-154 1060.87,-154 1060.87,-334"/>
-<text xml:space="preserve" text-anchor="start" x="814.14" y="-247" font-family="Arial" font-size="20.00" fill="#eff6ff">评测���禁</text>
+<text xml:space="preserve" text-anchor="start" x="830.81" y="-247" font-family="Arial" font-size="20.00" fill="#eff6ff">评测闸门</text>
 <text xml:space="preserve" text-anchor="start" x="707.43" y="-224" font-family="Arial" font-size="15.00" fill="#bfdbfe">本地发布策略门禁；src/services/evaluation&#45;gate.js</text>
 </g>
 <!-- store -->
@@ -3390,7 +3390,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node6" class="node">
 <title>operatorui</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1052.36,-760 713.42,-760 713.42,-580 1052.36,-580 1052.36,-760"/>
-<text xml:space="preserve" text-anchor="start" x="810.08" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员 Console</text>
+<text xml:space="preserve" text-anchor="start" x="824.55" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员控制台</text>
 <text xml:space="preserve" text-anchor="start" x="737.44" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</text>
 </g>
 <!-- handoffroutes -->
@@ -3472,7 +3472,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node2" class="node">
 <title>operatorui</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="864.66,-615 525.72,-615 525.72,-435 864.66,-435 864.66,-615"/>
-<text xml:space="preserve" text-anchor="start" x="622.38" y="-528" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员 Console</text>
+<text xml:space="preserve" text-anchor="start" x="636.84" y="-528" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员控制台</text>
 <text xml:space="preserve" text-anchor="start" x="549.73" y="-505" font-family="Arial" font-size="15.00" fill="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</text>
 </g>
 <!-- knowledgeroutes -->
@@ -3500,7 +3500,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node6" class="node">
 <title>evaluationgate</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3576.53,-760 3183.09,-760 3183.09,-580 3576.53,-580 3576.53,-760"/>
-<text xml:space="preserve" text-anchor="start" x="3329.8" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">评测���禁</text>
+<text xml:space="preserve" text-anchor="start" x="3346.47" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">评测闸门</text>
 <text xml:space="preserve" text-anchor="start" x="3223.09" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">本地发布策略门禁；src/services/evaluation&#45;gate.js</text>
 </g>
 <!-- knowledgesync -->
@@ -3522,7 +3522,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node9" class="node">
 <title>ragflowknowledge</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2945.31,-180 2476.87,-180 2476.87,0 2945.31,0 2945.31,-180"/>
-<text xml:space="preserve" text-anchor="start" x="2604.4" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="2632.19" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识检索</text>
 <text xml:space="preserve" text-anchor="start" x="2679" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
 <text xml:space="preserve" text-anchor="start" x="2516.87" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>
@@ -3628,7 +3628,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <g id="node2" class="node">
 <title>ragflowknowledge</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1135.87,-180 667.43,-180 667.43,0 1135.87,0 1135.87,-180"/>
-<text xml:space="preserve" text-anchor="start" x="794.96" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="822.75" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识检索</text>
 <text xml:space="preserve" text-anchor="start" x="869.56" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
 <text xml:space="preserve" text-anchor="start" x="707.43" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>

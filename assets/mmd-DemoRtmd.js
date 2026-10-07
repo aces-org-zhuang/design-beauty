@@ -31,7 +31,7 @@ graph TB
   Operator@{ icon: "fa:user", shape: rounded, label: "运营人员" }
   Beauty@{ shape: rectangle, label: "美妆客服服务" }
   WechatWork@{ shape: rectangle, label: "企业微信" }
-  Ragflow@{ shape: rectangle, label: "RAGFlow 知识库" }
+  Ragflow@{ shape: rectangle, label: "RAGFlow" }
   LlmWiki@{ shape: rectangle, label: "LLM Wiki 候选源" }
   Customer -. "\`发送消息（本地开发）\`" .-> Beauty
   Operator -. "\`使用\`" .-> Beauty
@@ -47,7 +47,7 @@ graph TB
   Operator@{ icon: "fa:user", shape: rounded, label: "运营人员" }
   Beauty@{ shape: rectangle, label: "美妆客服服务" }
   WechatWork@{ shape: rectangle, label: "企业微信" }
-  Ragflow@{ shape: rectangle, label: "RAGFlow 知识库" }
+  Ragflow@{ shape: rectangle, label: "RAGFlow" }
   LlmWiki@{ shape: rectangle, label: "LLM Wiki 候选源" }
   Customer -. "\`发送消息（本地开发）\`" .-> Beauty
   Operator -. "\`使用\`" .-> Beauty
@@ -61,7 +61,7 @@ title: "容器与集成"
 graph TB
   subgraph Beauty["\`美妆客服服务\`"]
     Beauty.FakeWechat@{ shape: rectangle, label: "模拟微信入口" }
-    Beauty.OperatorUi@{ shape: rounded, label: "运营人员 Console" }
+    Beauty.OperatorUi@{ shape: rounded, label: "运营人员控制台" }
     Beauty.WechatCallback@{ shape: rectangle, label: "微信客服回调入口" }
     Beauty.AnswerOrchestrator@{ shape: rectangle, label: "应答编排器" }
     Beauty.KnowledgeRoutes@{ shape: rectangle, label: "知识库路由" }
@@ -69,11 +69,11 @@ graph TB
     Beauty.IntegrationRoutes@{ shape: rectangle, label: "集成状态路由" }
     Beauty.AnswerLoop@{ shape: rectangle, label: "知识应答循环" }
     Beauty.HandoffService@{ shape: rectangle, label: "转人工服务" }
-    Beauty.RagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识库 知识检索" }
+    Beauty.RagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识检索" }
     Beauty.WechatPlatform@{ shape: rectangle, label: "微信客服平台适配" }
     Beauty.Store@{ shape: disk, label: "本地存储" }
   end
-  Ragflow@{ shape: rectangle, label: "RAGFlow 知识库" }
+  Ragflow@{ shape: rectangle, label: "RAGFlow" }
   WechatWork@{ shape: rectangle, label: "企业微信" }
   LlmWiki@{ shape: rectangle, label: "LLM Wiki 候选源" }
   Beauty.FakeWechat -. "\`转发消息\`" .-> Beauty.AnswerOrchestrator
@@ -101,9 +101,9 @@ graph TB
   BeautyAnswerLoop@{ shape: rectangle, label: "知识应答循环" }
   BeautyHandoffService@{ shape: rectangle, label: "转人工服务" }
   BeautyReplyPolicy@{ shape: rectangle, label: "回复策略" }
-  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识库 知识检索" }
-  BeautyEvaluationGate@{ shape: rectangle, label: "评测���禁" }
-  Ragflow@{ shape: rectangle, label: "RAGFlow 知识库" }
+  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识检索" }
+  BeautyEvaluationGate@{ shape: rectangle, label: "评测闸门" }
+  Ragflow@{ shape: rectangle, label: "RAGFlow" }
   BeautyStore@{ shape: disk, label: "本地存储" }
   BeautyWechatCallback -. "\`解密并分发\`" .-> BeautyWechatPlatform
   BeautyFakeWechat -. "\`转发消息\`" .-> BeautyAnswerOrchestrator
@@ -130,14 +130,14 @@ graph TB
   BeautyKnowledgeAlert@{ shape: rectangle, label: "知识告警" }
   BeautyKnowledgeScan@{ shape: rectangle, label: "知识扫描" }
   BeautyKnowledgeSync@{ shape: rectangle, label: "知识同步" }
-  BeautyRagflowLifecycleProbe@{ shape: rectangle, label: "RAGFlow 知识库 生命周期探针" }
+  BeautyRagflowLifecycleProbe@{ shape: rectangle, label: "RAGFlow 生命周期探针" }
   BeautyMaterialService@{ shape: rectangle, label: "素材服务" }
   BeautyGovernance@{ shape: rectangle, label: "知识治理" }
-  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识库 知识检索" }
+  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识检索" }
   LlmWiki@{ shape: rectangle, label: "LLM Wiki 候选源" }
   BeautyDocumentRegistry@{ shape: rectangle, label: "文档登记簿" }
-  BeautyEvaluationGate@{ shape: rectangle, label: "评测���禁" }
-  Ragflow@{ shape: rectangle, label: "RAGFlow 知识库" }
+  BeautyEvaluationGate@{ shape: rectangle, label: "评测闸门" }
+  Ragflow@{ shape: rectangle, label: "RAGFlow" }
   BeautyStore@{ shape: disk, label: "本地存储" }
   BeautyKnowledgeRoutes -. "\`starts scan\`" .-> BeautyKnowledgeScan
   BeautyKnowledgeScan -. "\`submits candidates\`" .-> BeautyGovernance
@@ -160,7 +160,7 @@ title: "运营台依赖面"
 graph TB
   Operator@{ icon: "fa:user", shape: rounded, label: "运营人员" }
   subgraph Beauty["\`美妆客服服务\`"]
-    Beauty.OperatorUi@{ shape: rounded, label: "运营人员 Console" }
+    Beauty.OperatorUi@{ shape: rounded, label: "运营人员控制台" }
     Beauty.HandoffRoutes@{ shape: rectangle, label: "转人工路由" }
     Beauty.KnowledgeRoutes@{ shape: rectangle, label: "知识库路由" }
     Beauty.IntegrationRoutes@{ shape: rectangle, label: "集成状态路由" }
@@ -179,8 +179,8 @@ graph LR
   BeautyFakeWechat@{ shape: rectangle, label: "模拟微信入口" }
   BeautyAnswerOrchestrator@{ shape: rectangle, label: "应答编排器" }
   BeautyAnswerLoop@{ shape: rectangle, label: "知识应答循环" }
-  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识库 知识检索" }
-  Ragflow@{ shape: rectangle, label: "RAGFlow 知识库" }
+  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识检索" }
+  Ragflow@{ shape: rectangle, label: "RAGFlow" }
   BeautyReplyPolicy@{ shape: rectangle, label: "回复策略" }
   BeautyWechatPlatform@{ shape: rectangle, label: "微信客服平台适配" }
   WechatWork@{ shape: rectangle, label: "企业微信" }
@@ -203,8 +203,8 @@ graph LR
   BeautyWechatPlatform@{ shape: rectangle, label: "微信客服平台适配" }
   BeautyAnswerOrchestrator@{ shape: rectangle, label: "应答编排器" }
   BeautyAnswerLoop@{ shape: rectangle, label: "知识应答循环" }
-  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识库 知识检索" }
-  Ragflow@{ shape: rectangle, label: "RAGFlow 知识库" }
+  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识检索" }
+  Ragflow@{ shape: rectangle, label: "RAGFlow" }
   BeautyReplyPolicy@{ shape: rectangle, label: "回复策略" }
   Customer -. "\`发送问题\`" .-> BeautyWechatCallback
   BeautyWechatCallback -. "\`解密\`" .-> BeautyWechatPlatform
@@ -220,7 +220,7 @@ title: "策略评估读取时序"
 ---
 graph LR
   BeautyAnswerOrchestrator@{ shape: rectangle, label: "应答编排器" }
-  BeautyEvaluationGate@{ shape: rectangle, label: "评测���禁" }
+  BeautyEvaluationGate@{ shape: rectangle, label: "评测闸门" }
   BeautyStore@{ shape: disk, label: "本地存储" }
   BeautyReplyPolicy@{ shape: rectangle, label: "回复策略" }
   BeautyAnswerOrchestrator -. "\`执行评测\`" .-> BeautyEvaluationGate
@@ -236,7 +236,7 @@ graph LR
   BeautyStore@{ shape: disk, label: "本地存储" }
   BeautyWechatPlatform@{ shape: rectangle, label: "微信客服平台适配" }
   Operator@{ icon: "fa:user", shape: rounded, label: "运营人员" }
-  BeautyOperatorUi@{ shape: rounded, label: "运营人员 Console" }
+  BeautyOperatorUi@{ shape: rounded, label: "运营人员控制台" }
   BeautyHandoffRoutes@{ shape: rectangle, label: "转人工路由" }
   BeautyAnswerOrchestrator -. "\`创建工单\`" .-> BeautyHandoffService
   BeautyHandoffService -. "\`持久化工单\`" .-> BeautyStore
@@ -248,14 +248,14 @@ title: "知识晋升与同步"
 ---
 graph LR
   Operator@{ icon: "fa:user", shape: rounded, label: "运营人员" }
-  BeautyOperatorUi@{ shape: rounded, label: "运营人员 Console" }
+  BeautyOperatorUi@{ shape: rounded, label: "运营人员控制台" }
   BeautyKnowledgeRoutes@{ shape: rectangle, label: "知识库路由" }
   BeautyKnowledgeScan@{ shape: rectangle, label: "知识扫描" }
   BeautyGovernance@{ shape: rectangle, label: "知识治理" }
-  BeautyEvaluationGate@{ shape: rectangle, label: "评测���禁" }
+  BeautyEvaluationGate@{ shape: rectangle, label: "评测闸门" }
   BeautyKnowledgeSync@{ shape: rectangle, label: "知识同步" }
   LlmWiki@{ shape: rectangle, label: "LLM Wiki 候选源" }
-  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识库 知识检索" }
+  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识检索" }
   Operator -. "\`触发同步\`" .-> BeautyOperatorUi
   BeautyOperatorUi -. "\`请求同步\`" .-> BeautyKnowledgeRoutes
   BeautyKnowledgeRoutes -. "\`扫描候选项\`" .-> BeautyKnowledgeScan
@@ -269,7 +269,7 @@ title: "配置门控检索"
 ---
 graph LR
   BeautyAnswerOrchestrator@{ shape: rectangle, label: "应答编排器" }
-  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识库 知识检索" }
+  BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识检索" }
   BeautyAnswerOrchestrator -. "\`尝试检索\`" .-> BeautyRagflowKnowledge
   BeautyRagflowKnowledge -. "\`检查配置门控\`" .-> BeautyRagflowKnowledge
 `;default:throw Error(`Unknown viewId: `+e)}};export{e as mmdSource};

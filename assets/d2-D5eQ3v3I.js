@@ -56,7 +56,7 @@ WechatWork: {
   label: "企业微信"
 }
 Ragflow: {
-  label: "RAGFlow 知识库"
+  label: "RAGFlow"
 }
 LlmWiki: {
   label: "LLM Wiki 候选源"
@@ -85,7 +85,7 @@ WechatWork: {
   label: "企业微信"
 }
 Ragflow: {
-  label: "RAGFlow 知识库"
+  label: "RAGFlow"
 }
 LlmWiki: {
   label: "LLM Wiki 候选源"
@@ -106,7 +106,7 @@ Beauty: {
     label: "模拟微信入口"
   }
   OperatorUi: {
-    label: "运营人员 Console"
+    label: "运营人员控制台"
   }
   WechatCallback: {
     label: "微信客服回调入口"
@@ -130,7 +130,7 @@ Beauty: {
     label: "转人工服务"
   }
   RagflowKnowledge: {
-    label: "RAGFlow 知识库 知识检索"
+    label: "RAGFlow 知识检索"
   }
   WechatPlatform: {
     label: "微信客服平台适配"
@@ -141,7 +141,7 @@ Beauty: {
   }
 }
 Ragflow: {
-  label: "RAGFlow 知识库"
+  label: "RAGFlow"
 }
 WechatWork: {
   label: "企业微信"
@@ -190,13 +190,13 @@ BeautyReplyPolicy: {
   label: "回复策略"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow 知识库 知识检索"
+  label: "RAGFlow 知识检索"
 }
 BeautyEvaluationGate: {
-  label: "评测���禁"
+  label: "评测闸门"
 }
 Ragflow: {
-  label: "RAGFlow 知识库"
+  label: "RAGFlow"
 }
 BeautyStore: {
   label: "本地存储"
@@ -241,7 +241,7 @@ BeautyKnowledgeSync: {
   label: "知识同步"
 }
 BeautyRagflowLifecycleProbe: {
-  label: "RAGFlow 知识库 生命周期探针"
+  label: "RAGFlow 生命周期探针"
 }
 BeautyMaterialService: {
   label: "素材服务"
@@ -250,7 +250,7 @@ BeautyGovernance: {
   label: "知识治理"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow 知识库 知识检索"
+  label: "RAGFlow 知识检索"
 }
 LlmWiki: {
   label: "LLM Wiki 候选源"
@@ -259,10 +259,10 @@ BeautyDocumentRegistry: {
   label: "文档登记簿"
 }
 BeautyEvaluationGate: {
-  label: "评测���禁"
+  label: "评测闸门"
 }
 Ragflow: {
-  label: "RAGFlow 知识库"
+  label: "RAGFlow"
 }
 BeautyStore: {
   label: "本地存储"
@@ -294,7 +294,7 @@ Beauty: {
   label: "美妆客服服务"
 
   OperatorUi: {
-    label: "运营人员 Console"
+    label: "运营人员控制台"
   }
   HandoffRoutes: {
     label: "转人工路由"
@@ -333,10 +333,10 @@ BeautyAnswerLoop: {
   label: "知识应答循环"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow 知识库 知识检索"
+  label: "RAGFlow 知识检索"
 }
 Ragflow: {
-  label: "RAGFlow 知识库"
+  label: "RAGFlow"
 }
 BeautyReplyPolicy: {
   label: "回复策略"
@@ -377,10 +377,10 @@ BeautyAnswerLoop: {
   label: "知识应答循环"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow 知识库 知识检索"
+  label: "RAGFlow 知识检索"
 }
 Ragflow: {
-  label: "RAGFlow 知识库"
+  label: "RAGFlow"
 }
 BeautyReplyPolicy: {
   label: "回复策略"
@@ -401,7 +401,7 @@ BeautyAnswerOrchestrator: {
   label: "应答编排器"
 }
 BeautyEvaluationGate: {
-  label: "评测���禁"
+  label: "评测闸门"
 }
 BeautyStore: {
   label: "本地存储"
@@ -435,7 +435,7 @@ Operator: {
   shape: c4-person
 }
 BeautyOperatorUi: {
-  label: "运营人员 Console"
+  label: "运营人员控制台"
 }
 BeautyHandoffRoutes: {
   label: "转人工路由"
@@ -453,7 +453,7 @@ Operator: {
   shape: c4-person
 }
 BeautyOperatorUi: {
-  label: "运营人员 Console"
+  label: "运营人员控制台"
 }
 BeautyKnowledgeRoutes: {
   label: "知识库路由"
@@ -465,7 +465,7 @@ BeautyGovernance: {
   label: "知识治理"
 }
 BeautyEvaluationGate: {
-  label: "评测���禁"
+  label: "评测闸门"
 }
 BeautyKnowledgeSync: {
   label: "知识同步"
@@ -474,7 +474,7 @@ LlmWiki: {
   label: "LLM Wiki 候选源"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow 知识库 知识检索"
+  label: "RAGFlow 知识检索"
 }
 
 Operator -> BeautyOperatorUi: "触发同步"
@@ -491,7 +491,7 @@ BeautyAnswerOrchestrator: {
   label: "应答编排器"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow 知识库 知识检索"
+  label: "RAGFlow 知识检索"
 }
 
 BeautyAnswerOrchestrator -> BeautyRagflowKnowledge: "尝试检索"

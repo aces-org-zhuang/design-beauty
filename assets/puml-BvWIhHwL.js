@@ -57,7 +57,7 @@ rectangle "数据层" <<LocalDataTier>> as LocalDataTier {
     skinparam RectangleFontColor<<LocalDataTierRagflowVm>> #3b82f6
     skinparam RectangleBorderStyle<<LocalDataTierRagflowVm>> dashed
 
-    rectangle "==RAGFlow 知识库\\n<size:10>[HTTP]</size>\\n\\nRAG 与知识库服务" <<LocalDataTierRagflowVmRagflow>> as LocalDataTierRagflowVmRagflow
+    rectangle "==RAGFlow 知识库\\n<size:10>[HTTP]</size>\\n\\nRAG 检索与知识库服务" <<LocalDataTierRagflowVmRagflow>> as LocalDataTierRagflowVmRagflow
   }
   rectangle "本机 19828" <<LocalDataTierWikiVm>> as LocalDataTierWikiVm {
     skinparam RectangleBorderColor<<LocalDataTierWikiVm>> #3b82f6
@@ -137,7 +137,7 @@ person "==客户\\n\\n通过企业微信咨询的终端用户" <<Customer>> as C
 person "==运营人员\\n\\n处理升级工单的人工运营人员" <<Operator>> as Operator
 rectangle "==美妆客服服务\\n\\n基于企业微信的美妆咨询与知识服务" <<Beauty>> as Beauty
 rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as WechatWork
-rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+rectangle "==RAGFlow\\n\\nRAG 检索与知识库服务" <<Ragflow>> as Ragflow
 rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
 
 Customer .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>发送消息（本地开发）
@@ -196,7 +196,7 @@ person "==客户\\n\\n通过企业微信咨询的终端用户" <<Customer>> as C
 person "==运营人员\\n\\n处理升级工单的人工运营人员" <<Operator>> as Operator
 rectangle "==美妆客服服务\\n\\n基于企业微信的美妆咨询与知识服务" <<Beauty>> as Beauty
 rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as WechatWork
-rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+rectangle "==RAGFlow\\n\\nRAG 检索与知识库服务" <<Ragflow>> as Ragflow
 rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
 
 Customer .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>发送消息（本地开发）
@@ -302,7 +302,7 @@ rectangle "美妆客服服务" <<Beauty>> as Beauty {
   skinparam RectangleBorderStyle<<Beauty>> dashed
 
   component "==模拟微信入口\\n\\n保留用于回归验证的本地消息入口；src/services/fake-wechat-platform.js" <<BeautyFakeWechat>> as BeautyFakeWechat
-  rectangle "==运营人员 Console\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
+  rectangle "==运营人员控制台\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
   component "==微信客服回调入口\\n\\n接收加密的企业微信回调；src/routes/wechat-kf-routes.js" <<BeautyWechatCallback>> as BeautyWechatCallback
   component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
   component "==知识库路由\\n\\n知识扫描、同步与生命周期接口；src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
@@ -310,11 +310,11 @@ rectangle "美妆客服服务" <<Beauty>> as Beauty {
   component "==集成状态路由\\n\\n功能概览与集成状态；src/routes/integration-routes.js" <<BeautyIntegrationRoutes>> as BeautyIntegrationRoutes
   component "==知识应答循环\\n\\n检索增强的应答循环；src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
   component "==转人工服务\\n\\n创建并跟踪人工转接工单；src/services/handoff-service.js" <<BeautyHandoffService>> as BeautyHandoffService
-  component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+  component "==RAGFlow 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
   component "==微信客服平台适配\\n\\n企业微信会话操作；src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
   database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
 }
-rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+rectangle "==RAGFlow\\n\\nRAG 检索与知识库服务" <<Ragflow>> as Ragflow
 rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as WechatWork
 rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
 
@@ -415,9 +415,9 @@ rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as Wecha
 component "==知识应答循环\\n\\n检索增强的应答循环；src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
 component "==转人工服务\\n\\n创建并跟踪人工转接工单；src/services/handoff-service.js" <<BeautyHandoffService>> as BeautyHandoffService
 component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
-component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
-component "==评测���禁\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
-rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+component "==RAGFlow 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+component "==评测闸门\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
+rectangle "==RAGFlow\\n\\nRAG 检索与知识库服务" <<Ragflow>> as Ragflow
 database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
 
 BeautyWechatCallback .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>解密并分发
@@ -537,14 +537,14 @@ component "==素材批处理\\n\\n素材批处理；src/services/material-batch-
 component "==知识告警\\n\\n暴露知识新鲜度问题；src/services/knowledge-alert-service.js" <<BeautyKnowledgeAlert>> as BeautyKnowledgeAlert
 component "==知识扫描\\n\\n发现候选知识；src/services/knowledge-scan-service.js" <<BeautyKnowledgeScan>> as BeautyKnowledgeScan
 component "==知识同步\\n\\n把已批准知识推送到 RAGFlow；src/services/knowledge-sync-service.js" <<BeautyKnowledgeSync>> as BeautyKnowledgeSync
-component "==RAGFlow 知识库 生命周期探针\\n\\n校验 RAGFlow 数据集状态；src/services/ragflow-lifecycle-probe-service.js" <<BeautyRagflowLifecycleProbe>> as BeautyRagflowLifecycleProbe
+component "==RAGFlow 生命周期探针\\n\\n校验 RAGFlow 数据集状态；src/services/ragflow-lifecycle-probe-service.js" <<BeautyRagflowLifecycleProbe>> as BeautyRagflowLifecycleProbe
 component "==素材服务\\n\\n素材接入规则；src/services/material-service.js" <<BeautyMaterialService>> as BeautyMaterialService
 component "==知识治理\\n\\n发布决策与治理；src/services/knowledge-governance-service.js" <<BeautyGovernance>> as BeautyGovernance
-component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+component "==RAGFlow 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
 rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
 component "==文档登记簿\\n\\n跟踪素材与文档标识；src/services/knowledge-document-registry.js" <<BeautyDocumentRegistry>> as BeautyDocumentRegistry
-component "==评测���禁\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
-rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+component "==评测闸门\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
+rectangle "==RAGFlow\\n\\nRAG 检索与知识库服务" <<Ragflow>> as Ragflow
 database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
 
 BeautyKnowledgeRoutes .[#8D8D8D,thickness=2].> BeautyKnowledgeScan : <color:#8D8D8D>starts scan
@@ -619,7 +619,7 @@ rectangle "美妆客服服务" <<Beauty>> as Beauty {
   skinparam RectangleFontColor<<Beauty>> #3b82f6
   skinparam RectangleBorderStyle<<Beauty>> dashed
 
-  rectangle "==运营人员 Console\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
+  rectangle "==运营人员控制台\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
   component "==转人工路由\\n\\n人工转接工单接口；src/routes/handoff-routes.js" <<BeautyHandoffRoutes>> as BeautyHandoffRoutes
   component "==知识库路由\\n\\n知识扫描、同步与生命周期接口；src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
   component "==集成状态路由\\n\\n功能概览与集成状态；src/routes/integration-routes.js" <<BeautyIntegrationRoutes>> as BeautyIntegrationRoutes
@@ -696,8 +696,8 @@ person "==客户\\n\\n通过企业微信咨询的终端用户" <<Customer>> as C
 component "==模拟微信入口\\n\\n保留用于回归验证的本地消息入口；src/services/fake-wechat-platform.js" <<BeautyFakeWechat>> as BeautyFakeWechat
 component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
 component "==知识应答循环\\n\\n检索增强的应答循环；src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
-component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
-rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+component "==RAGFlow 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+rectangle "==RAGFlow\\n\\nRAG 检索与知识库服务" <<Ragflow>> as Ragflow
 component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
 component "==微信客服平台适配\\n\\n企业微信会话操作；src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
 rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as WechatWork
@@ -773,8 +773,8 @@ component "==微信客服回调入口\\n\\n接收加密的企业微信回调；s
 component "==微信客服平台适配\\n\\n企业微信会话操作；src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
 component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
 component "==知识应答循环\\n\\n检索增强的应答循环；src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
-component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
-rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+component "==RAGFlow 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+rectangle "==RAGFlow\\n\\nRAG 检索与知识库服务" <<Ragflow>> as Ragflow
 component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
 
 Customer .[#8D8D8D,thickness=2].> BeautyWechatCallback : <color:#8D8D8D>发送问题
@@ -823,7 +823,7 @@ skinparam component<<BeautyReplyPolicy>>{
   BorderColor #2563eb
 }
 component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
-component "==评测���禁\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
+component "==评测闸门\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
 database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
 component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
 
@@ -887,7 +887,7 @@ component "==转人工服务\\n\\n创建并跟踪人工转接工单；src/servic
 database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
 component "==微信客服平台适配\\n\\n企业微信会话操作；src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
 person "==运营人员\\n\\n处理升级工单的人工运营人员" <<Operator>> as Operator
-rectangle "==运营人员 Console\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
+rectangle "==运营人员控制台\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
 component "==转人工路由\\n\\n人工转接工单接口；src/routes/handoff-routes.js" <<BeautyHandoffRoutes>> as BeautyHandoffRoutes
 
 BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyHandoffService : <color:#8D8D8D>创建工单
@@ -957,14 +957,14 @@ skinparam component<<BeautyRagflowKnowledge>>{
   BorderColor #2563eb
 }
 person "==运营人员\\n\\n处理升级工单的人工运营人员" <<Operator>> as Operator
-rectangle "==运营人员 Console\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
+rectangle "==运营人员控制台\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
 component "==知识库路由\\n\\n知识扫描、同步与生命周期接口；src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
 component "==知识扫描\\n\\n发现候选知识；src/services/knowledge-scan-service.js" <<BeautyKnowledgeScan>> as BeautyKnowledgeScan
 component "==知识治理\\n\\n发布决策与治理；src/services/knowledge-governance-service.js" <<BeautyGovernance>> as BeautyGovernance
-component "==评测���禁\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
+component "==评测闸门\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
 component "==知识同步\\n\\n把已批准知识推送到 RAGFlow；src/services/knowledge-sync-service.js" <<BeautyKnowledgeSync>> as BeautyKnowledgeSync
 rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
-component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+component "==RAGFlow 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
 
 Operator .[#8D8D8D,thickness=2].> BeautyOperatorUi : <color:#8D8D8D>触发同步
 BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyKnowledgeRoutes : <color:#8D8D8D>请求同步
@@ -1001,7 +1001,7 @@ skinparam component<<BeautyRagflowKnowledge>>{
   BorderColor #2563eb
 }
 component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
-component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+component "==RAGFlow 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
 
 BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>尝试检索
 BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>检查配置门控
