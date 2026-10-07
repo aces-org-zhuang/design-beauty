@@ -38,7 +38,7 @@ rectangle "Application Tier" <<LocalAppTier>> as LocalAppTier {
   skinparam RectangleFontColor<<LocalAppTier>> #3b82f6
   skinparam RectangleBorderStyle<<LocalAppTier>> dashed
 
-  rectangle "==Beauty Customer Service\\n<size:10>[Node.js >=20]</size>\\n\\nWeChat-based beauty consultation and knowledge service" <<LocalAppTierAppVmService>> as LocalAppTierAppVmService
+  rectangle "==Beauty Customer Service\\n<size:10>[Node.js >=20]</size>\\n\\n基于企业微信的美妆咨询与知识服务" <<LocalAppTierAppVmService>> as LocalAppTierAppVmService
 }
 rectangle "Data Tier" <<LocalDataTier>> as LocalDataTier {
   skinparam RectangleBorderColor<<LocalDataTier>> #3b82f6
@@ -50,21 +50,21 @@ rectangle "Data Tier" <<LocalDataTier>> as LocalDataTier {
     skinparam RectangleFontColor<<LocalDataTierStoreVm>> #3b82f6
     skinparam RectangleBorderStyle<<LocalDataTierStoreVm>> dashed
 
-    database "==Local JSON Store\\n<size:10>[data/local-mvp-store.json]</size>\\n\\nJSON-file backed state; src/domain/store.js" <<LocalDataTierStoreVmStore>> as LocalDataTierStoreVmStore
+    database "==Local JSON Store\\n<size:10>[data/local-mvp-store.json]</size>\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<LocalDataTierStoreVmStore>> as LocalDataTierStoreVmStore
   }
   rectangle "localhost:9380" <<LocalDataTierRagflowVm>> as LocalDataTierRagflowVm {
     skinparam RectangleBorderColor<<LocalDataTierRagflowVm>> #3b82f6
     skinparam RectangleFontColor<<LocalDataTierRagflowVm>> #3b82f6
     skinparam RectangleBorderStyle<<LocalDataTierRagflowVm>> dashed
 
-    rectangle "==RAGFlow\\n<size:10>[HTTP]</size>\\n\\nRAG and knowledge base service" <<LocalDataTierRagflowVmRagflow>> as LocalDataTierRagflowVmRagflow
+    rectangle "==RAGFlow\\n<size:10>[HTTP]</size>\\n\\nRAG 与知识库服务" <<LocalDataTierRagflowVmRagflow>> as LocalDataTierRagflowVmRagflow
   }
   rectangle "localhost:19828" <<LocalDataTierWikiVm>> as LocalDataTierWikiVm {
     skinparam RectangleBorderColor<<LocalDataTierWikiVm>> #3b82f6
     skinparam RectangleFontColor<<LocalDataTierWikiVm>> #3b82f6
     skinparam RectangleBorderStyle<<LocalDataTierWikiVm>> dashed
 
-    rectangle "==LLM Wiki\\n<size:10>[HTTP]</size>\\n\\nLLM-generated wiki candidate source" <<LocalDataTierWikiVmWiki>> as LocalDataTierWikiVmWiki
+    rectangle "==LLM Wiki\\n<size:10>[HTTP]</size>\\n\\nLLM 生成的 wiki 候选来源" <<LocalDataTierWikiVmWiki>> as LocalDataTierWikiVmWiki
   }
 }
 
@@ -133,19 +133,19 @@ skinparam rectangle<<LlmWiki>>{
   FontColor #f8fafc
   BorderColor #475569
 }
-person "==Customer\\n\\nEnd user chatting through WeChat Work customer service" <<Customer>> as Customer
-person "==Operator\\n\\nHuman operator handling escalated tickets" <<Operator>> as Operator
-rectangle "==Beauty Customer Service\\n\\nWeChat-based beauty consultation and knowledge service" <<Beauty>> as Beauty
-rectangle "==WeChat Work\\n\\nWeChat Work customer service platform" <<WechatWork>> as WechatWork
-rectangle "==RAGFlow\\n\\nRAG and knowledge base service" <<Ragflow>> as Ragflow
-rectangle "==LLM Wiki\\n\\nLLM-generated wiki candidate source" <<LlmWiki>> as LlmWiki
+person "==客户\\n\\n通过企业微信咨询的终端用户" <<Customer>> as Customer
+person "==运营人员\\n\\n处理升级工单的人工运营人员" <<Operator>> as Operator
+rectangle "==美妆客服服务\\n\\n基于企业微信的美妆咨询与知识服务" <<Beauty>> as Beauty
+rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as WechatWork
+rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
 
-Customer .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>messages (local dev)
-Operator .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>uses
+Customer .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>发送消息（本地开发）
+Operator .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>使用
 Beauty .[#8D8D8D,thickness=2].> WechatWork : <color:#8D8D8D>calls open API
 Beauty .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>[...]
 Beauty .[#8D8D8D,thickness=2].> LlmWiki : <color:#8D8D8D>reads candidate wiki
-WechatWork .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>posts encrypted callback
+WechatWork .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>回调加密报文
 @enduml
 `;case`context`:return`@startuml
 title "System Context"
@@ -192,17 +192,17 @@ skinparam rectangle<<LlmWiki>>{
   FontColor #f8fafc
   BorderColor #475569
 }
-person "==Customer\\n\\nEnd user chatting through WeChat Work customer service" <<Customer>> as Customer
-person "==Operator\\n\\nHuman operator handling escalated tickets" <<Operator>> as Operator
-rectangle "==Beauty Customer Service\\n\\nWeChat-based beauty consultation and knowledge service" <<Beauty>> as Beauty
-rectangle "==WeChat Work\\n\\nWeChat Work customer service platform" <<WechatWork>> as WechatWork
-rectangle "==RAGFlow\\n\\nRAG and knowledge base service" <<Ragflow>> as Ragflow
-rectangle "==LLM Wiki\\n\\nLLM-generated wiki candidate source" <<LlmWiki>> as LlmWiki
+person "==客户\\n\\n通过企业微信咨询的终端用户" <<Customer>> as Customer
+person "==运营人员\\n\\n处理升级工单的人工运营人员" <<Operator>> as Operator
+rectangle "==美妆客服服务\\n\\n基于企业微信的美妆咨询与知识服务" <<Beauty>> as Beauty
+rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as WechatWork
+rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
 
-Customer .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>messages (local dev)
-Operator .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>uses
+Customer .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>发送消息（本地开发）
+Operator .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>使用
 Beauty .[#8D8D8D,thickness=2].> WechatWork : <color:#8D8D8D>calls open API
-WechatWork .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>posts encrypted callback
+WechatWork .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>回调加密报文
 Beauty .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>[...]
 Beauty .[#8D8D8D,thickness=2].> LlmWiki : <color:#8D8D8D>reads candidate wiki
 @enduml
@@ -296,40 +296,40 @@ skinparam rectangle<<LlmWiki>>{
   FontColor #f8fafc
   BorderColor #475569
 }
-rectangle "Beauty Customer Service" <<Beauty>> as Beauty {
+rectangle "美妆客服服务" <<Beauty>> as Beauty {
   skinparam RectangleBorderColor<<Beauty>> #3b82f6
   skinparam RectangleFontColor<<Beauty>> #3b82f6
   skinparam RectangleBorderStyle<<Beauty>> dashed
 
-  component "==Fake WeChat\\n\\nLocal message ingress kept for regression; src/services/fake-wechat-platform.js" <<BeautyFakeWechat>> as BeautyFakeWechat
-  rectangle "==Operator Console\\n\\nSingle-page console for operators; src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
-  component "==WeChat KF Callback\\n\\nReceives encrypted WeChat Work callbacks; src/routes/wechat-kf-routes.js" <<BeautyWechatCallback>> as BeautyWechatCallback
-  component "==Answer Orchestrator\\n\\nDecides auto-reply vs handoff; src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
-  component "==Knowledge Routes\\n\\nKnowledge scan, sync and lifecycle endpoints; src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
-  component "==Material Routes\\n\\nBeauty material ingestion endpoints; src/routes/material-routes.js" <<BeautyMaterialRoutes>> as BeautyMaterialRoutes
-  component "==Integration Routes\\n\\nFeature overview and integration status; src/routes/integration-routes.js" <<BeautyIntegrationRoutes>> as BeautyIntegrationRoutes
-  component "==Knowledge Answer Loop\\n\\nRetrieval-augmented answer loop; src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
-  component "==Handoff Service\\n\\nCreates and tracks human handoff tickets; src/services/handoff-service.js" <<BeautyHandoffService>> as BeautyHandoffService
-  component "==RAGFlow Knowledge\\n\\nRAGFlow retrieval and dataset access; src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
-  component "==WeChat KF Platform\\n\\nWeChat Work conversation operations; src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
-  database "==Local Store\\n\\nJSON-file backed state; src/domain/store.js" <<BeautyStore>> as BeautyStore
+  component "==模拟微信入口\\n\\n保留用于回归验证的本地消息入口；src/services/fake-wechat-platform.js" <<BeautyFakeWechat>> as BeautyFakeWechat
+  rectangle "==运营人员 Console\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
+  component "==微信客服回调入口\\n\\n接收加密的企业微信回调；src/routes/wechat-kf-routes.js" <<BeautyWechatCallback>> as BeautyWechatCallback
+  component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
+  component "==知识库路由\\n\\n知识扫描、同步与生命周期接口；src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
+  component "==素材路由\\n\\n美妆素材接入接口；src/routes/material-routes.js" <<BeautyMaterialRoutes>> as BeautyMaterialRoutes
+  component "==集成状态路由\\n\\n功能概览与集成状态；src/routes/integration-routes.js" <<BeautyIntegrationRoutes>> as BeautyIntegrationRoutes
+  component "==知识应答循环\\n\\n检索增强的应答循环；src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
+  component "==转人工服务\\n\\n创建并跟踪人工转接工单；src/services/handoff-service.js" <<BeautyHandoffService>> as BeautyHandoffService
+  component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+  component "==微信客服平台适配\\n\\n企业微信会话操作；src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
+  database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
 }
-rectangle "==RAGFlow\\n\\nRAG and knowledge base service" <<Ragflow>> as Ragflow
-rectangle "==WeChat Work\\n\\nWeChat Work customer service platform" <<WechatWork>> as WechatWork
-rectangle "==LLM Wiki\\n\\nLLM-generated wiki candidate source" <<LlmWiki>> as LlmWiki
+rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as WechatWork
+rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
 
-BeautyFakeWechat .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>forwards message
-BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyAnswerLoop : <color:#8D8D8D>asks for answer
-BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyHandoffService : <color:#8D8D8D>escalates when uncertain
-BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyKnowledgeRoutes : <color:#8D8D8D>operates knowledge
-BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyIntegrationRoutes : <color:#8D8D8D>checks status
-BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>retrieves candidates
-BeautyWechatCallback .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>decrypts and dispatches
-BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>notifies customer
-BeautyWechatPlatform .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>passes normalized message
+BeautyFakeWechat .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>转发消息
+BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyAnswerLoop : <color:#8D8D8D>请求应答
+BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyHandoffService : <color:#8D8D8D>不确定时升级人工
+BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyKnowledgeRoutes : <color:#8D8D8D>运营知识库
+BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyIntegrationRoutes : <color:#8D8D8D>查看状态
+BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>检索候选知识
+BeautyWechatCallback .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>解密并分发
+BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>通知客户
+BeautyWechatPlatform .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>传递归一化消息
 BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>persists ticket
 BeautyWechatPlatform .[#8D8D8D,thickness=2].> WechatWork : <color:#8D8D8D>calls open API
-WechatWork .[#8D8D8D,thickness=2].> BeautyWechatCallback : <color:#8D8D8D>posts encrypted callback
+WechatWork .[#8D8D8D,thickness=2].> BeautyWechatCallback : <color:#8D8D8D>回调加密报文
 BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>queries datasets
 @enduml
 `;case`answerPath`:return`@startuml
@@ -407,32 +407,32 @@ skinparam database<<BeautyStore>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-component "==WeChat KF Callback\\n\\nReceives encrypted WeChat Work callbacks; src/routes/wechat-kf-routes.js" <<BeautyWechatCallback>> as BeautyWechatCallback
-component "==Fake WeChat\\n\\nLocal message ingress kept for regression; src/services/fake-wechat-platform.js" <<BeautyFakeWechat>> as BeautyFakeWechat
-component "==WeChat KF Platform\\n\\nWeChat Work conversation operations; src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
-component "==Answer Orchestrator\\n\\nDecides auto-reply vs handoff; src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
-rectangle "==WeChat Work\\n\\nWeChat Work customer service platform" <<WechatWork>> as WechatWork
-component "==Knowledge Answer Loop\\n\\nRetrieval-augmented answer loop; src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
-component "==Handoff Service\\n\\nCreates and tracks human handoff tickets; src/services/handoff-service.js" <<BeautyHandoffService>> as BeautyHandoffService
-component "==Reply Policy\\n\\nConfidence and risk thresholds for auto-reply; src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
-component "==RAGFlow Knowledge\\n\\nRAGFlow retrieval and dataset access; src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
-component "==Evaluation Gate\\n\\nLocal publication policy gate; src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
-rectangle "==RAGFlow\\n\\nRAG and knowledge base service" <<Ragflow>> as Ragflow
-database "==Local Store\\n\\nJSON-file backed state; src/domain/store.js" <<BeautyStore>> as BeautyStore
+component "==微信客服回调入口\\n\\n接收加密的企业微信回调；src/routes/wechat-kf-routes.js" <<BeautyWechatCallback>> as BeautyWechatCallback
+component "==模拟微信入口\\n\\n保留用于回归验证的本地消息入口；src/services/fake-wechat-platform.js" <<BeautyFakeWechat>> as BeautyFakeWechat
+component "==微信客服平台适配\\n\\n企业微信会话操作；src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
+component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
+rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as WechatWork
+component "==知识应答循环\\n\\n检索增强的应答循环；src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
+component "==转人工服务\\n\\n创建并跟踪人工转接工单；src/services/handoff-service.js" <<BeautyHandoffService>> as BeautyHandoffService
+component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
+component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+component "==评测���禁\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
+rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
 
-BeautyWechatCallback .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>decrypts and dispatches
-BeautyFakeWechat .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>forwards message
-BeautyWechatPlatform .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>passes normalized message
-BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyAnswerLoop : <color:#8D8D8D>asks for answer
-BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyReplyPolicy : <color:#8D8D8D>checks thresholds
-BeautyReplyPolicy .[#8D8D8D,thickness=2].> BeautyEvaluationGate : <color:#8D8D8D>gates publication
-BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyHandoffService : <color:#8D8D8D>escalates when uncertain
-BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>notifies customer
-BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>retrieves candidates
+BeautyWechatCallback .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>解密并分发
+BeautyFakeWechat .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>转发消息
+BeautyWechatPlatform .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>传递归一化消息
+BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyAnswerLoop : <color:#8D8D8D>请求应答
+BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyReplyPolicy : <color:#8D8D8D>校验阈值
+BeautyReplyPolicy .[#8D8D8D,thickness=2].> BeautyEvaluationGate : <color:#8D8D8D>把控发布
+BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyHandoffService : <color:#8D8D8D>不确定时升级人工
+BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>通知客户
+BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>检索候选知识
 BeautyEvaluationGate .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>reads feedback candidates
 BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>persists ticket
 BeautyWechatPlatform .[#8D8D8D,thickness=2].> WechatWork : <color:#8D8D8D>calls open API
-WechatWork .[#8D8D8D,thickness=2].> BeautyWechatCallback : <color:#8D8D8D>posts encrypted callback
+WechatWork .[#8D8D8D,thickness=2].> BeautyWechatCallback : <color:#8D8D8D>回调加密报文
 BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>queries datasets
 @enduml
 `;case`knowledgeLifecycle`:return`@startuml
@@ -530,35 +530,35 @@ skinparam database<<BeautyStore>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-component "==Knowledge Routes\\n\\nKnowledge scan, sync and lifecycle endpoints; src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
-component "==Knowledge Lifecycle\\n\\nPromotion and retirement of knowledge; src/services/knowledge-lifecycle-service.js" <<BeautyKnowledgeLifecycle>> as BeautyKnowledgeLifecycle
-component "==Material Routes\\n\\nBeauty material ingestion endpoints; src/routes/material-routes.js" <<BeautyMaterialRoutes>> as BeautyMaterialRoutes
-component "==Material Batch\\n\\nBatch material processing; src/services/material-batch-service.js" <<BeautyMaterialBatch>> as BeautyMaterialBatch
-component "==Knowledge Alert\\n\\nSurfaces knowledge freshness issues; src/services/knowledge-alert-service.js" <<BeautyKnowledgeAlert>> as BeautyKnowledgeAlert
-component "==Knowledge Scan\\n\\nDiscovers candidate knowledge; src/services/knowledge-scan-service.js" <<BeautyKnowledgeScan>> as BeautyKnowledgeScan
-component "==Knowledge Sync\\n\\nPushes approved knowledge to RAGFlow; src/services/knowledge-sync-service.js" <<BeautyKnowledgeSync>> as BeautyKnowledgeSync
-component "==RAGFlow Lifecycle Probe\\n\\nVerifies RAGFlow dataset state; src/services/ragflow-lifecycle-probe-service.js" <<BeautyRagflowLifecycleProbe>> as BeautyRagflowLifecycleProbe
-component "==Material Service\\n\\nMaterial ingestion rules; src/services/material-service.js" <<BeautyMaterialService>> as BeautyMaterialService
-component "==Knowledge Governance\\n\\nPublication decisions and governance; src/services/knowledge-governance-service.js" <<BeautyGovernance>> as BeautyGovernance
-component "==RAGFlow Knowledge\\n\\nRAGFlow retrieval and dataset access; src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
-rectangle "==LLM Wiki\\n\\nLLM-generated wiki candidate source" <<LlmWiki>> as LlmWiki
-component "==Document Registry\\n\\nTracks material and document identity; src/services/knowledge-document-registry.js" <<BeautyDocumentRegistry>> as BeautyDocumentRegistry
-component "==Evaluation Gate\\n\\nLocal publication policy gate; src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
-rectangle "==RAGFlow\\n\\nRAG and knowledge base service" <<Ragflow>> as Ragflow
-database "==Local Store\\n\\nJSON-file backed state; src/domain/store.js" <<BeautyStore>> as BeautyStore
+component "==知识库路由\\n\\n知识扫描、同步与生命周期接口；src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
+component "==知识生命周期视图\\n\\n知识的晋升与下线；src/services/knowledge-lifecycle-service.js" <<BeautyKnowledgeLifecycle>> as BeautyKnowledgeLifecycle
+component "==素材路由\\n\\n美妆素材接入接口；src/routes/material-routes.js" <<BeautyMaterialRoutes>> as BeautyMaterialRoutes
+component "==素材批处理\\n\\n素材批处理；src/services/material-batch-service.js" <<BeautyMaterialBatch>> as BeautyMaterialBatch
+component "==知识告警\\n\\n暴露知识新鲜度问题；src/services/knowledge-alert-service.js" <<BeautyKnowledgeAlert>> as BeautyKnowledgeAlert
+component "==知识扫描\\n\\n发现候选知识；src/services/knowledge-scan-service.js" <<BeautyKnowledgeScan>> as BeautyKnowledgeScan
+component "==知识同步\\n\\n把已批准知识推送到 RAGFlow；src/services/knowledge-sync-service.js" <<BeautyKnowledgeSync>> as BeautyKnowledgeSync
+component "==RAGFlow 知识库 生命周期探针\\n\\n校验 RAGFlow 数据集状态；src/services/ragflow-lifecycle-probe-service.js" <<BeautyRagflowLifecycleProbe>> as BeautyRagflowLifecycleProbe
+component "==素材服务\\n\\n素材接入规则；src/services/material-service.js" <<BeautyMaterialService>> as BeautyMaterialService
+component "==知识治理\\n\\n发布决策与治理；src/services/knowledge-governance-service.js" <<BeautyGovernance>> as BeautyGovernance
+component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
+component "==文档登记簿\\n\\n跟踪素材与文档标识；src/services/knowledge-document-registry.js" <<BeautyDocumentRegistry>> as BeautyDocumentRegistry
+component "==评测���禁\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
+rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
 
 BeautyKnowledgeRoutes .[#8D8D8D,thickness=2].> BeautyKnowledgeScan : <color:#8D8D8D>starts scan
 BeautyKnowledgeScan .[#8D8D8D,thickness=2].> BeautyGovernance : <color:#8D8D8D>submits candidates
-BeautyGovernance .[#8D8D8D,thickness=2].> BeautyEvaluationGate : <color:#8D8D8D>applies decision
-BeautyKnowledgeRoutes .[#8D8D8D,thickness=2].> BeautyKnowledgeSync : <color:#8D8D8D>triggers sync
-BeautyKnowledgeLifecycle .[#8D8D8D,thickness=2].> BeautyDocumentRegistry : <color:#8D8D8D>promotes or retires
-BeautyMaterialRoutes .[#8D8D8D,thickness=2].> BeautyMaterialService : <color:#8D8D8D>accepts material
-BeautyMaterialService .[#8D8D8D,thickness=2].> BeautyDocumentRegistry : <color:#8D8D8D>registers document
-BeautyMaterialBatch .[#8D8D8D,thickness=2].> BeautyMaterialService : <color:#8D8D8D>batch ingests
-BeautyKnowledgeSync .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>pushes dataset
-BeautyKnowledgeLifecycle .[#8D8D8D,thickness=2].> BeautyRagflowLifecycleProbe : <color:#8D8D8D>verifies dataset state
+BeautyGovernance .[#8D8D8D,thickness=2].> BeautyEvaluationGate : <color:#8D8D8D>applies 决策结果
+BeautyKnowledgeRoutes .[#8D8D8D,thickness=2].> BeautyKnowledgeSync : <color:#8D8D8D>触发同步
+BeautyKnowledgeLifecycle .[#8D8D8D,thickness=2].> BeautyDocumentRegistry : <color:#8D8D8D>晋升或下线
+BeautyMaterialRoutes .[#8D8D8D,thickness=2].> BeautyMaterialService : <color:#8D8D8D>接收素材
+BeautyMaterialService .[#8D8D8D,thickness=2].> BeautyDocumentRegistry : <color:#8D8D8D>登记文档
+BeautyMaterialBatch .[#8D8D8D,thickness=2].> BeautyMaterialService : <color:#8D8D8D>批量接入
+BeautyKnowledgeSync .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>推送数据集
+BeautyKnowledgeLifecycle .[#8D8D8D,thickness=2].> BeautyRagflowLifecycleProbe : <color:#8D8D8D>校验数据集状态
 BeautyEvaluationGate .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>reads feedback candidates
-BeautyKnowledgeAlert .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>reports freshness
+BeautyKnowledgeAlert .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>报告新鲜度
 BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>queries datasets
 BeautyRagflowLifecycleProbe .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>inspects datasets
 BeautyKnowledgeSync .[#8D8D8D,thickness=2].> LlmWiki : <color:#8D8D8D>reads candidate wiki
@@ -613,24 +613,24 @@ skinparam component<<BeautyMaterialRoutes>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-person "==Operator\\n\\nHuman operator handling escalated tickets" <<Operator>> as Operator
-rectangle "Beauty Customer Service" <<Beauty>> as Beauty {
+person "==运营人员\\n\\n处理升级工单的人工运营人员" <<Operator>> as Operator
+rectangle "美妆客服服务" <<Beauty>> as Beauty {
   skinparam RectangleBorderColor<<Beauty>> #3b82f6
   skinparam RectangleFontColor<<Beauty>> #3b82f6
   skinparam RectangleBorderStyle<<Beauty>> dashed
 
-  rectangle "==Operator Console\\n\\nSingle-page console for operators; src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
-  component "==Handoff Routes\\n\\nHuman handoff ticket endpoints; src/routes/handoff-routes.js" <<BeautyHandoffRoutes>> as BeautyHandoffRoutes
-  component "==Knowledge Routes\\n\\nKnowledge scan, sync and lifecycle endpoints; src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
-  component "==Integration Routes\\n\\nFeature overview and integration status; src/routes/integration-routes.js" <<BeautyIntegrationRoutes>> as BeautyIntegrationRoutes
-  component "==Handoff Service\\n\\nCreates and tracks human handoff tickets; src/services/handoff-service.js" <<BeautyHandoffService>> as BeautyHandoffService
-  component "==Material Routes\\n\\nBeauty material ingestion endpoints; src/routes/material-routes.js" <<BeautyMaterialRoutes>> as BeautyMaterialRoutes
+  rectangle "==运营人员 Console\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
+  component "==转人工路由\\n\\n人工转接工单接口；src/routes/handoff-routes.js" <<BeautyHandoffRoutes>> as BeautyHandoffRoutes
+  component "==知识库路由\\n\\n知识扫描、同步与生命周期接口；src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
+  component "==集成状态路由\\n\\n功能概览与集成状态；src/routes/integration-routes.js" <<BeautyIntegrationRoutes>> as BeautyIntegrationRoutes
+  component "==转人工服务\\n\\n创建并跟踪人工转接工单；src/services/handoff-service.js" <<BeautyHandoffService>> as BeautyHandoffService
+  component "==素材路由\\n\\n美妆素材接入接口；src/routes/material-routes.js" <<BeautyMaterialRoutes>> as BeautyMaterialRoutes
 }
 
-Operator .[#8D8D8D,thickness=2].> BeautyOperatorUi : <color:#8D8D8D>uses
-BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyHandoffRoutes : <color:#8D8D8D>manages tickets
-BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyKnowledgeRoutes : <color:#8D8D8D>operates knowledge
-BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyIntegrationRoutes : <color:#8D8D8D>checks status
+Operator .[#8D8D8D,thickness=2].> BeautyOperatorUi : <color:#8D8D8D>使用
+BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyHandoffRoutes : <color:#8D8D8D>管理工单
+BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyKnowledgeRoutes : <color:#8D8D8D>运营知识库
+BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyIntegrationRoutes : <color:#8D8D8D>查看状态
 @enduml
 `;case`chatToAnswer`:return`@startuml
 title "Customer Message to Answer"
@@ -692,15 +692,15 @@ skinparam rectangle<<WechatWork>>{
   FontColor #f8fafc
   BorderColor #475569
 }
-person "==Customer\\n\\nEnd user chatting through WeChat Work customer service" <<Customer>> as Customer
-component "==Fake WeChat\\n\\nLocal message ingress kept for regression; src/services/fake-wechat-platform.js" <<BeautyFakeWechat>> as BeautyFakeWechat
-component "==Answer Orchestrator\\n\\nDecides auto-reply vs handoff; src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
-component "==Knowledge Answer Loop\\n\\nRetrieval-augmented answer loop; src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
-component "==RAGFlow Knowledge\\n\\nRAGFlow retrieval and dataset access; src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
-rectangle "==RAGFlow\\n\\nRAG and knowledge base service" <<Ragflow>> as Ragflow
-component "==Reply Policy\\n\\nConfidence and risk thresholds for auto-reply; src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
-component "==WeChat KF Platform\\n\\nWeChat Work conversation operations; src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
-rectangle "==WeChat Work\\n\\nWeChat Work customer service platform" <<WechatWork>> as WechatWork
+person "==客户\\n\\n通过企业微信咨询的终端用户" <<Customer>> as Customer
+component "==模拟微信入口\\n\\n保留用于回归验证的本地消息入口；src/services/fake-wechat-platform.js" <<BeautyFakeWechat>> as BeautyFakeWechat
+component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
+component "==知识应答循环\\n\\n检索增强的应答循环；src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
+component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
+component "==微信客服平台适配\\n\\n企业微信会话操作；src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
+rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as WechatWork
 
 Customer .[#8D8D8D,thickness=2].> BeautyFakeWechat : <color:#8D8D8D>asks a beauty question
 BeautyFakeWechat .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>forwards message
@@ -768,14 +768,14 @@ skinparam component<<BeautyReplyPolicy>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-person "==Customer\\n\\nEnd user chatting through WeChat Work customer service" <<Customer>> as Customer
-component "==WeChat KF Callback\\n\\nReceives encrypted WeChat Work callbacks; src/routes/wechat-kf-routes.js" <<BeautyWechatCallback>> as BeautyWechatCallback
-component "==WeChat KF Platform\\n\\nWeChat Work conversation operations; src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
-component "==Answer Orchestrator\\n\\nDecides auto-reply vs handoff; src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
-component "==Knowledge Answer Loop\\n\\nRetrieval-augmented answer loop; src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
-component "==RAGFlow Knowledge\\n\\nRAGFlow retrieval and dataset access; src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
-rectangle "==RAGFlow\\n\\nRAG and knowledge base service" <<Ragflow>> as Ragflow
-component "==Reply Policy\\n\\nConfidence and risk thresholds for auto-reply; src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
+person "==客户\\n\\n通过企业微信咨询的终端用户" <<Customer>> as Customer
+component "==微信客服回调入口\\n\\n接收加密的企业微信回调；src/routes/wechat-kf-routes.js" <<BeautyWechatCallback>> as BeautyWechatCallback
+component "==微信客服平台适配\\n\\n企业微信会话操作；src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
+component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
+component "==知识应答循环\\n\\n检索增强的应答循环；src/services/knowledge-answer-loop-service.js" <<BeautyAnswerLoop>> as BeautyAnswerLoop
+component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
+component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
 
 Customer .[#8D8D8D,thickness=2].> BeautyWechatCallback : <color:#8D8D8D>sends question
 BeautyWechatCallback .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>decrypts
@@ -822,10 +822,10 @@ skinparam component<<BeautyReplyPolicy>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-component "==Answer Orchestrator\\n\\nDecides auto-reply vs handoff; src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
-component "==Evaluation Gate\\n\\nLocal publication policy gate; src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
-database "==Local Store\\n\\nJSON-file backed state; src/domain/store.js" <<BeautyStore>> as BeautyStore
-component "==Reply Policy\\n\\nConfidence and risk thresholds for auto-reply; src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
+component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
+component "==评测���禁\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
+database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
+component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
 
 BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyEvaluationGate : <color:#8D8D8D>evaluate
 BeautyEvaluationGate .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>read candidates
@@ -882,13 +882,13 @@ skinparam component<<BeautyHandoffRoutes>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-component "==Answer Orchestrator\\n\\nDecides auto-reply vs handoff; src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
-component "==Handoff Service\\n\\nCreates and tracks human handoff tickets; src/services/handoff-service.js" <<BeautyHandoffService>> as BeautyHandoffService
-database "==Local Store\\n\\nJSON-file backed state; src/domain/store.js" <<BeautyStore>> as BeautyStore
-component "==WeChat KF Platform\\n\\nWeChat Work conversation operations; src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
-person "==Operator\\n\\nHuman operator handling escalated tickets" <<Operator>> as Operator
-rectangle "==Operator Console\\n\\nSingle-page console for operators; src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
-component "==Handoff Routes\\n\\nHuman handoff ticket endpoints; src/routes/handoff-routes.js" <<BeautyHandoffRoutes>> as BeautyHandoffRoutes
+component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
+component "==转人工服务\\n\\n创建并跟踪人工转接工单；src/services/handoff-service.js" <<BeautyHandoffService>> as BeautyHandoffService
+database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
+component "==微信客服平台适配\\n\\n企业微信会话操作；src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
+person "==运营人员\\n\\n处理升级工单的人工运营人员" <<Operator>> as Operator
+rectangle "==运营人员 Console\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
+component "==转人工路由\\n\\n人工转接工单接口；src/routes/handoff-routes.js" <<BeautyHandoffRoutes>> as BeautyHandoffRoutes
 
 BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyHandoffService : <color:#8D8D8D>create ticket
 BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>persist ticket
@@ -956,15 +956,15 @@ skinparam component<<BeautyRagflowKnowledge>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-person "==Operator\\n\\nHuman operator handling escalated tickets" <<Operator>> as Operator
-rectangle "==Operator Console\\n\\nSingle-page console for operators; src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
-component "==Knowledge Routes\\n\\nKnowledge scan, sync and lifecycle endpoints; src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
-component "==Knowledge Scan\\n\\nDiscovers candidate knowledge; src/services/knowledge-scan-service.js" <<BeautyKnowledgeScan>> as BeautyKnowledgeScan
-component "==Knowledge Governance\\n\\nPublication decisions and governance; src/services/knowledge-governance-service.js" <<BeautyGovernance>> as BeautyGovernance
-component "==Evaluation Gate\\n\\nLocal publication policy gate; src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
-component "==Knowledge Sync\\n\\nPushes approved knowledge to RAGFlow; src/services/knowledge-sync-service.js" <<BeautyKnowledgeSync>> as BeautyKnowledgeSync
-rectangle "==LLM Wiki\\n\\nLLM-generated wiki candidate source" <<LlmWiki>> as LlmWiki
-component "==RAGFlow Knowledge\\n\\nRAGFlow retrieval and dataset access; src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+person "==运营人员\\n\\n处理升级工单的人工运营人员" <<Operator>> as Operator
+rectangle "==运营人员 Console\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
+component "==知识库路由\\n\\n知识扫描、同步与生命周期接口；src/routes/knowledge-routes.js" <<BeautyKnowledgeRoutes>> as BeautyKnowledgeRoutes
+component "==知识扫描\\n\\n发现候选知识；src/services/knowledge-scan-service.js" <<BeautyKnowledgeScan>> as BeautyKnowledgeScan
+component "==知识治理\\n\\n发布决策与治理；src/services/knowledge-governance-service.js" <<BeautyGovernance>> as BeautyGovernance
+component "==评测���禁\\n\\n本地发布策略门禁；src/services/evaluation-gate.js" <<BeautyEvaluationGate>> as BeautyEvaluationGate
+component "==知识同步\\n\\n把已批准知识推送到 RAGFlow；src/services/knowledge-sync-service.js" <<BeautyKnowledgeSync>> as BeautyKnowledgeSync
+rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
+component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
 
 Operator .[#8D8D8D,thickness=2].> BeautyOperatorUi : <color:#8D8D8D>triggers sync
 BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyKnowledgeRoutes : <color:#8D8D8D>request sync
@@ -1000,8 +1000,8 @@ skinparam component<<BeautyRagflowKnowledge>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-component "==Answer Orchestrator\\n\\nDecides auto-reply vs handoff; src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
-component "==RAGFlow Knowledge\\n\\nRAGFlow retrieval and dataset access; src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
+component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
+component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
 
 BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>attempts retrieval
 BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>checks config gate

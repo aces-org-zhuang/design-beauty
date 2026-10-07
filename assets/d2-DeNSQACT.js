@@ -42,310 +42,310 @@ LocalAppTier.AppVmService -> LocalDataTier.WikiVm.Wiki: "reads candidate wiki"
 `;case`index`:return`direction: down
 
 Customer: {
-  label: "Customer"
+  label: "客户"
   shape: c4-person
 }
 Operator: {
-  label: "Operator"
+  label: "运营人员"
   shape: c4-person
 }
 Beauty: {
-  label: "Beauty Customer Service"
+  label: "美妆客服服务"
 }
 WechatWork: {
-  label: "WeChat Work"
+  label: "企业微信"
 }
 Ragflow: {
-  label: "RAGFlow"
+  label: "RAGFlow 知识库"
 }
 LlmWiki: {
-  label: "LLM Wiki"
+  label: "LLM Wiki 候选源"
 }
 
-Customer -> Beauty: "messages (local dev)"
-Operator -> Beauty: "uses"
+Customer -> Beauty: "发送消息（本地开发）"
+Operator -> Beauty: "使用"
 Beauty -> WechatWork: "calls open API"
 Beauty -> Ragflow: "[...]"
 Beauty -> LlmWiki: "reads candidate wiki"
-WechatWork -> Beauty: "posts encrypted callback"
+WechatWork -> Beauty: "回调加密报文"
 `;case`context`:return`direction: down
 
 Customer: {
-  label: "Customer"
+  label: "客户"
   shape: c4-person
 }
 Operator: {
-  label: "Operator"
+  label: "运营人员"
   shape: c4-person
 }
 Beauty: {
-  label: "Beauty Customer Service"
+  label: "美妆客服服务"
 }
 WechatWork: {
-  label: "WeChat Work"
+  label: "企业微信"
 }
 Ragflow: {
-  label: "RAGFlow"
+  label: "RAGFlow 知识库"
 }
 LlmWiki: {
-  label: "LLM Wiki"
+  label: "LLM Wiki 候选源"
 }
 
-Customer -> Beauty: "messages (local dev)"
-Operator -> Beauty: "uses"
+Customer -> Beauty: "发送消息（本地开发）"
+Operator -> Beauty: "使用"
 Beauty -> WechatWork: "calls open API"
-WechatWork -> Beauty: "posts encrypted callback"
+WechatWork -> Beauty: "回调加密报文"
 Beauty -> Ragflow: "[...]"
 Beauty -> LlmWiki: "reads candidate wiki"
 `;case`container`:return`direction: down
 
 Beauty: {
-  label: "Beauty Customer Service"
+  label: "美妆客服服务"
 
   FakeWechat: {
-    label: "Fake WeChat"
+    label: "模拟微信入口"
   }
   OperatorUi: {
-    label: "Operator Console"
+    label: "运营人员 Console"
   }
   WechatCallback: {
-    label: "WeChat KF Callback"
+    label: "微信客服回调入口"
   }
   AnswerOrchestrator: {
-    label: "Answer Orchestrator"
+    label: "应答编排器"
   }
   KnowledgeRoutes: {
-    label: "Knowledge Routes"
+    label: "知识库路由"
   }
   MaterialRoutes: {
-    label: "Material Routes"
+    label: "素材路由"
   }
   IntegrationRoutes: {
-    label: "Integration Routes"
+    label: "集成状态路由"
   }
   AnswerLoop: {
-    label: "Knowledge Answer Loop"
+    label: "知识应答循环"
   }
   HandoffService: {
-    label: "Handoff Service"
+    label: "转人工服务"
   }
   RagflowKnowledge: {
-    label: "RAGFlow Knowledge"
+    label: "RAGFlow 知识库 知识检索"
   }
   WechatPlatform: {
-    label: "WeChat KF Platform"
+    label: "微信客服平台适配"
   }
   Store: {
-    label: "Local Store"
+    label: "本地存储"
     shape: stored_data
   }
 }
 Ragflow: {
-  label: "RAGFlow"
+  label: "RAGFlow 知识库"
 }
 WechatWork: {
-  label: "WeChat Work"
+  label: "企业微信"
 }
 LlmWiki: {
-  label: "LLM Wiki"
+  label: "LLM Wiki 候选源"
 }
 
-Beauty.FakeWechat -> Beauty.AnswerOrchestrator: "forwards message"
-Beauty.AnswerOrchestrator -> Beauty.AnswerLoop: "asks for answer"
-Beauty.AnswerOrchestrator -> Beauty.HandoffService: "escalates when uncertain"
-Beauty.OperatorUi -> Beauty.KnowledgeRoutes: "operates knowledge"
-Beauty.OperatorUi -> Beauty.IntegrationRoutes: "checks status"
-Beauty.AnswerLoop -> Beauty.RagflowKnowledge: "retrieves candidates"
-Beauty.WechatCallback -> Beauty.WechatPlatform: "decrypts and dispatches"
-Beauty.HandoffService -> Beauty.WechatPlatform: "notifies customer"
-Beauty.WechatPlatform -> Beauty.AnswerOrchestrator: "passes normalized message"
+Beauty.FakeWechat -> Beauty.AnswerOrchestrator: "转发消息"
+Beauty.AnswerOrchestrator -> Beauty.AnswerLoop: "请求应答"
+Beauty.AnswerOrchestrator -> Beauty.HandoffService: "不确定时升级人工"
+Beauty.OperatorUi -> Beauty.KnowledgeRoutes: "运营知识库"
+Beauty.OperatorUi -> Beauty.IntegrationRoutes: "查看状态"
+Beauty.AnswerLoop -> Beauty.RagflowKnowledge: "检索候选知识"
+Beauty.WechatCallback -> Beauty.WechatPlatform: "解密并分发"
+Beauty.HandoffService -> Beauty.WechatPlatform: "通知客户"
+Beauty.WechatPlatform -> Beauty.AnswerOrchestrator: "传递归一化消息"
 Beauty.HandoffService -> Beauty.Store: "persists ticket"
 Beauty.WechatPlatform -> WechatWork: "calls open API"
-WechatWork -> Beauty.WechatCallback: "posts encrypted callback"
+WechatWork -> Beauty.WechatCallback: "回调加密报文"
 Beauty.RagflowKnowledge -> Ragflow: "queries datasets"
 `;case`answerPath`:return`direction: down
 
 BeautyWechatCallback: {
-  label: "WeChat KF Callback"
+  label: "微信客服回调入口"
 }
 BeautyFakeWechat: {
-  label: "Fake WeChat"
+  label: "模拟微信入口"
 }
 BeautyWechatPlatform: {
-  label: "WeChat KF Platform"
+  label: "微信客服平台适配"
 }
 BeautyAnswerOrchestrator: {
-  label: "Answer Orchestrator"
+  label: "应答编排器"
 }
 WechatWork: {
-  label: "WeChat Work"
+  label: "企业微信"
 }
 BeautyAnswerLoop: {
-  label: "Knowledge Answer Loop"
+  label: "知识应答循环"
 }
 BeautyHandoffService: {
-  label: "Handoff Service"
+  label: "转人工服务"
 }
 BeautyReplyPolicy: {
-  label: "Reply Policy"
+  label: "回复策略"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow Knowledge"
+  label: "RAGFlow 知识库 知识检索"
 }
 BeautyEvaluationGate: {
-  label: "Evaluation Gate"
+  label: "评测���禁"
 }
 Ragflow: {
-  label: "RAGFlow"
+  label: "RAGFlow 知识库"
 }
 BeautyStore: {
-  label: "Local Store"
+  label: "本地存储"
   shape: stored_data
 }
 
-BeautyWechatCallback -> BeautyWechatPlatform: "decrypts and dispatches"
-BeautyFakeWechat -> BeautyAnswerOrchestrator: "forwards message"
-BeautyWechatPlatform -> BeautyAnswerOrchestrator: "passes normalized message"
-BeautyAnswerOrchestrator -> BeautyAnswerLoop: "asks for answer"
-BeautyAnswerLoop -> BeautyReplyPolicy: "checks thresholds"
-BeautyReplyPolicy -> BeautyEvaluationGate: "gates publication"
-BeautyAnswerOrchestrator -> BeautyHandoffService: "escalates when uncertain"
-BeautyHandoffService -> BeautyWechatPlatform: "notifies customer"
-BeautyAnswerLoop -> BeautyRagflowKnowledge: "retrieves candidates"
+BeautyWechatCallback -> BeautyWechatPlatform: "解密并分发"
+BeautyFakeWechat -> BeautyAnswerOrchestrator: "转发消息"
+BeautyWechatPlatform -> BeautyAnswerOrchestrator: "传递归一化消息"
+BeautyAnswerOrchestrator -> BeautyAnswerLoop: "请求应答"
+BeautyAnswerLoop -> BeautyReplyPolicy: "校验阈值"
+BeautyReplyPolicy -> BeautyEvaluationGate: "把控发布"
+BeautyAnswerOrchestrator -> BeautyHandoffService: "不确定时升级人工"
+BeautyHandoffService -> BeautyWechatPlatform: "通知客户"
+BeautyAnswerLoop -> BeautyRagflowKnowledge: "检索候选知识"
 BeautyEvaluationGate -> BeautyStore: "reads feedback candidates"
 BeautyHandoffService -> BeautyStore: "persists ticket"
 BeautyWechatPlatform -> WechatWork: "calls open API"
-WechatWork -> BeautyWechatCallback: "posts encrypted callback"
+WechatWork -> BeautyWechatCallback: "回调加密报文"
 BeautyRagflowKnowledge -> Ragflow: "queries datasets"
 `;case`knowledgeLifecycle`:return`direction: down
 
 BeautyKnowledgeRoutes: {
-  label: "Knowledge Routes"
+  label: "知识库路由"
 }
 BeautyKnowledgeLifecycle: {
-  label: "Knowledge Lifecycle"
+  label: "知识生命周期视图"
 }
 BeautyMaterialRoutes: {
-  label: "Material Routes"
+  label: "素材路由"
 }
 BeautyMaterialBatch: {
-  label: "Material Batch"
+  label: "素材批处理"
 }
 BeautyKnowledgeAlert: {
-  label: "Knowledge Alert"
+  label: "知识告警"
 }
 BeautyKnowledgeScan: {
-  label: "Knowledge Scan"
+  label: "知识扫描"
 }
 BeautyKnowledgeSync: {
-  label: "Knowledge Sync"
+  label: "知识同步"
 }
 BeautyRagflowLifecycleProbe: {
-  label: "RAGFlow Lifecycle Probe"
+  label: "RAGFlow 知识库 生命周期探针"
 }
 BeautyMaterialService: {
-  label: "Material Service"
+  label: "素材服务"
 }
 BeautyGovernance: {
-  label: "Knowledge Governance"
+  label: "知识治理"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow Knowledge"
+  label: "RAGFlow 知识库 知识检索"
 }
 LlmWiki: {
-  label: "LLM Wiki"
+  label: "LLM Wiki 候选源"
 }
 BeautyDocumentRegistry: {
-  label: "Document Registry"
+  label: "文档登记簿"
 }
 BeautyEvaluationGate: {
-  label: "Evaluation Gate"
+  label: "评测���禁"
 }
 Ragflow: {
-  label: "RAGFlow"
+  label: "RAGFlow 知识库"
 }
 BeautyStore: {
-  label: "Local Store"
+  label: "本地存储"
   shape: stored_data
 }
 
 BeautyKnowledgeRoutes -> BeautyKnowledgeScan: "starts scan"
 BeautyKnowledgeScan -> BeautyGovernance: "submits candidates"
-BeautyGovernance -> BeautyEvaluationGate: "applies decision"
-BeautyKnowledgeRoutes -> BeautyKnowledgeSync: "triggers sync"
-BeautyKnowledgeLifecycle -> BeautyDocumentRegistry: "promotes or retires"
-BeautyMaterialRoutes -> BeautyMaterialService: "accepts material"
-BeautyMaterialService -> BeautyDocumentRegistry: "registers document"
-BeautyMaterialBatch -> BeautyMaterialService: "batch ingests"
-BeautyKnowledgeSync -> BeautyRagflowKnowledge: "pushes dataset"
-BeautyKnowledgeLifecycle -> BeautyRagflowLifecycleProbe: "verifies dataset state"
+BeautyGovernance -> BeautyEvaluationGate: "applies 决策结果"
+BeautyKnowledgeRoutes -> BeautyKnowledgeSync: "触发同步"
+BeautyKnowledgeLifecycle -> BeautyDocumentRegistry: "晋升或下线"
+BeautyMaterialRoutes -> BeautyMaterialService: "接收素材"
+BeautyMaterialService -> BeautyDocumentRegistry: "登记文档"
+BeautyMaterialBatch -> BeautyMaterialService: "批量接入"
+BeautyKnowledgeSync -> BeautyRagflowKnowledge: "推送数据集"
+BeautyKnowledgeLifecycle -> BeautyRagflowLifecycleProbe: "校验数据集状态"
 BeautyEvaluationGate -> BeautyStore: "reads feedback candidates"
-BeautyKnowledgeAlert -> BeautyStore: "reports freshness"
+BeautyKnowledgeAlert -> BeautyStore: "报告新鲜度"
 BeautyRagflowKnowledge -> Ragflow: "queries datasets"
 BeautyRagflowLifecycleProbe -> Ragflow: "inspects datasets"
 BeautyKnowledgeSync -> LlmWiki: "reads candidate wiki"
 `;case`operatorSurface`:return`direction: down
 
 Operator: {
-  label: "Operator"
+  label: "运营人员"
   shape: c4-person
 }
 Beauty: {
-  label: "Beauty Customer Service"
+  label: "美妆客服服务"
 
   OperatorUi: {
-    label: "Operator Console"
+    label: "运营人员 Console"
   }
   HandoffRoutes: {
-    label: "Handoff Routes"
+    label: "转人工路由"
   }
   KnowledgeRoutes: {
-    label: "Knowledge Routes"
+    label: "知识库路由"
   }
   IntegrationRoutes: {
-    label: "Integration Routes"
+    label: "集成状态路由"
   }
   HandoffService: {
-    label: "Handoff Service"
+    label: "转人工服务"
   }
   MaterialRoutes: {
-    label: "Material Routes"
+    label: "素材路由"
   }
 }
 
-Operator -> Beauty.OperatorUi: "uses"
-Beauty.OperatorUi -> Beauty.HandoffRoutes: "manages tickets"
-Beauty.OperatorUi -> Beauty.KnowledgeRoutes: "operates knowledge"
-Beauty.OperatorUi -> Beauty.IntegrationRoutes: "checks status"
+Operator -> Beauty.OperatorUi: "使用"
+Beauty.OperatorUi -> Beauty.HandoffRoutes: "管理工单"
+Beauty.OperatorUi -> Beauty.KnowledgeRoutes: "运营知识库"
+Beauty.OperatorUi -> Beauty.IntegrationRoutes: "查看状态"
 `;case`chatToAnswer`:return`direction: right
 
 Customer: {
-  label: "Customer"
+  label: "客户"
   shape: c4-person
 }
 BeautyFakeWechat: {
-  label: "Fake WeChat"
+  label: "模拟微信入口"
 }
 BeautyAnswerOrchestrator: {
-  label: "Answer Orchestrator"
+  label: "应答编排器"
 }
 BeautyAnswerLoop: {
-  label: "Knowledge Answer Loop"
+  label: "知识应答循环"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow Knowledge"
+  label: "RAGFlow 知识库 知识检索"
 }
 Ragflow: {
-  label: "RAGFlow"
+  label: "RAGFlow 知识库"
 }
 BeautyReplyPolicy: {
-  label: "Reply Policy"
+  label: "回复策略"
 }
 BeautyWechatPlatform: {
-  label: "WeChat KF Platform"
+  label: "微信客服平台适配"
 }
 WechatWork: {
-  label: "WeChat Work"
+  label: "企业微信"
 }
 
 Customer -> BeautyFakeWechat: "asks a beauty question"
@@ -361,29 +361,29 @@ BeautyWechatPlatform -> WechatWork: "posts message"
 `;case`retrievalSequence`:return`direction: right
 
 Customer: {
-  label: "Customer"
+  label: "客户"
   shape: c4-person
 }
 BeautyWechatCallback: {
-  label: "WeChat KF Callback"
+  label: "微信客服回调入口"
 }
 BeautyWechatPlatform: {
-  label: "WeChat KF Platform"
+  label: "微信客服平台适配"
 }
 BeautyAnswerOrchestrator: {
-  label: "Answer Orchestrator"
+  label: "应答编排器"
 }
 BeautyAnswerLoop: {
-  label: "Knowledge Answer Loop"
+  label: "知识应答循环"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow Knowledge"
+  label: "RAGFlow 知识库 知识检索"
 }
 Ragflow: {
-  label: "RAGFlow"
+  label: "RAGFlow 知识库"
 }
 BeautyReplyPolicy: {
-  label: "Reply Policy"
+  label: "回复策略"
 }
 
 Customer -> BeautyWechatCallback: "sends question"
@@ -398,17 +398,17 @@ BeautyReplyPolicy -> BeautyAnswerOrchestrator: "decision"
 `;case`evaluationSequence`:return`direction: right
 
 BeautyAnswerOrchestrator: {
-  label: "Answer Orchestrator"
+  label: "应答编排器"
 }
 BeautyEvaluationGate: {
-  label: "Evaluation Gate"
+  label: "评测���禁"
 }
 BeautyStore: {
-  label: "Local Store"
+  label: "本地存储"
   shape: stored_data
 }
 BeautyReplyPolicy: {
-  label: "Reply Policy"
+  label: "回复策略"
 }
 
 BeautyAnswerOrchestrator -> BeautyEvaluationGate: "evaluate"
@@ -418,27 +418,27 @@ BeautyEvaluationGate -> BeautyStore: "read policy state"
 `;case`handoffSequence`:return`direction: right
 
 BeautyAnswerOrchestrator: {
-  label: "Answer Orchestrator"
+  label: "应答编排器"
 }
 BeautyHandoffService: {
-  label: "Handoff Service"
+  label: "转人工服务"
 }
 BeautyStore: {
-  label: "Local Store"
+  label: "本地存储"
   shape: stored_data
 }
 BeautyWechatPlatform: {
-  label: "WeChat KF Platform"
+  label: "微信客服平台适配"
 }
 Operator: {
-  label: "Operator"
+  label: "运营人员"
   shape: c4-person
 }
 BeautyOperatorUi: {
-  label: "Operator Console"
+  label: "运营人员 Console"
 }
 BeautyHandoffRoutes: {
-  label: "Handoff Routes"
+  label: "转人工路由"
 }
 
 BeautyAnswerOrchestrator -> BeautyHandoffService: "create ticket"
@@ -449,32 +449,32 @@ BeautyOperatorUi -> BeautyHandoffRoutes: "claim ticket"
 `;case`knowledgeSyncSequence`:return`direction: right
 
 Operator: {
-  label: "Operator"
+  label: "运营人员"
   shape: c4-person
 }
 BeautyOperatorUi: {
-  label: "Operator Console"
+  label: "运营人员 Console"
 }
 BeautyKnowledgeRoutes: {
-  label: "Knowledge Routes"
+  label: "知识库路由"
 }
 BeautyKnowledgeScan: {
-  label: "Knowledge Scan"
+  label: "知识扫描"
 }
 BeautyGovernance: {
-  label: "Knowledge Governance"
+  label: "知识治理"
 }
 BeautyEvaluationGate: {
-  label: "Evaluation Gate"
+  label: "评测���禁"
 }
 BeautyKnowledgeSync: {
-  label: "Knowledge Sync"
+  label: "知识同步"
 }
 LlmWiki: {
-  label: "LLM Wiki"
+  label: "LLM Wiki 候选源"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow Knowledge"
+  label: "RAGFlow 知识库 知识检索"
 }
 
 Operator -> BeautyOperatorUi: "triggers sync"
@@ -488,10 +488,10 @@ BeautyKnowledgeSync -> BeautyRagflowKnowledge: "write dataset"
 `;case`configGatedFlow`:return`direction: right
 
 BeautyAnswerOrchestrator: {
-  label: "Answer Orchestrator"
+  label: "应答编排器"
 }
 BeautyRagflowKnowledge: {
-  label: "RAGFlow Knowledge"
+  label: "RAGFlow 知识库 知识检索"
 }
 
 BeautyAnswerOrchestrator -> BeautyRagflowKnowledge: "attempts retrieval"
