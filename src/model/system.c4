@@ -38,7 +38,7 @@ model {
       description '功能概览与集成状态；src/routes/integration-routes.js'
     }
 
-    operatorUi = ui '运营人员 Console' {
+    operatorUi = ui '运营人员控制台' {
       description '运营人员使用的单页控制台；src/ui/operator.html'
     }
 
@@ -56,7 +56,7 @@ model {
       description '自动回复的置信度与风险阈值；src/services/reply-policy-service.js'
     }
 
-    evaluationGate = service '评测���禁' {
+    evaluationGate = service '评测闸门' {
       description '本地发布策略门禁；src/services/evaluation-gate.js'
     }
 
@@ -100,11 +100,11 @@ model {
 
     // ---- Platform adapters (src/services) ----
 
-    ragflowKnowledge = service 'RAGFlow 知识库 知识检索' {
+    ragflowKnowledge = service 'RAGFlow 知识检索' {
       description 'RAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js'
     }
 
-    ragflowLifecycleProbe = service 'RAGFlow 知识库 生命周期探针' {
+    ragflowLifecycleProbe = service 'RAGFlow 生命周期探针' {
       description '校验 RAGFlow 数据集状态；src/services/ragflow-lifecycle-probe-service.js'
     }
 
@@ -135,8 +135,8 @@ model {
     description '企业微信客服平台'
   }
 
-  ragflow = external 'RAGFlow 知识库' {
-    description 'RAG 与知识库服务'
+  ragflow = external 'RAGFlow' {
+    description 'RAG 检索与知识库服务'
   }
 
   llmWiki = external 'LLM Wiki 候选源' {
