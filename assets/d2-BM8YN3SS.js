@@ -348,16 +348,16 @@ WechatWork: {
   label: "企业微信"
 }
 
-Customer -> BeautyFakeWechat: "asks a beauty question"
-BeautyFakeWechat -> BeautyAnswerOrchestrator: "forwards message"
+Customer -> BeautyFakeWechat: "提出美妆咨询"
+BeautyFakeWechat -> BeautyAnswerOrchestrator: "转发消息"
 BeautyAnswerOrchestrator -> BeautyAnswerLoop: "requests answer"
-BeautyAnswerLoop -> BeautyRagflowKnowledge: "retrieves candidates"
+BeautyAnswerLoop -> BeautyRagflowKnowledge: "检索候选知识"
 BeautyRagflowKnowledge -> Ragflow: "queries dataset"
-Ragflow -> BeautyRagflowKnowledge: "returns passages"
-BeautyAnswerLoop -> BeautyReplyPolicy: "checks confidence"
-BeautyReplyPolicy -> BeautyAnswerOrchestrator: "auto-reply allowed"
-BeautyAnswerOrchestrator -> BeautyWechatPlatform: "sends reply"
-BeautyWechatPlatform -> WechatWork: "posts message"
+Ragflow -> BeautyRagflowKnowledge: "返回知识片段"
+BeautyAnswerLoop -> BeautyReplyPolicy: "评估置信度"
+BeautyReplyPolicy -> BeautyAnswerOrchestrator: "允许自动回复"
+BeautyAnswerOrchestrator -> BeautyWechatPlatform: "发送回复"
+BeautyWechatPlatform -> WechatWork: "发送消息"
 `;case`retrievalSequence`:return`direction: right
 
 Customer: {
@@ -386,15 +386,15 @@ BeautyReplyPolicy: {
   label: "回复策略"
 }
 
-Customer -> BeautyWechatCallback: "sends question"
-BeautyWechatCallback -> BeautyWechatPlatform: "decrypts"
-BeautyWechatPlatform -> BeautyAnswerOrchestrator: "normalized message"
-BeautyAnswerOrchestrator -> BeautyAnswerLoop: "asks for answer"
-BeautyAnswerLoop -> BeautyRagflowKnowledge: "retrieve"
-BeautyRagflowKnowledge -> Ragflow: "query"
-BeautyRagflowKnowledge -> BeautyAnswerLoop: "passages"
-BeautyAnswerLoop -> BeautyReplyPolicy: "confidence"
-BeautyReplyPolicy -> BeautyAnswerOrchestrator: "decision"
+Customer -> BeautyWechatCallback: "发送问题"
+BeautyWechatCallback -> BeautyWechatPlatform: "解密"
+BeautyWechatPlatform -> BeautyAnswerOrchestrator: "归一化消息"
+BeautyAnswerOrchestrator -> BeautyAnswerLoop: "请求应答"
+BeautyAnswerLoop -> BeautyRagflowKnowledge: "发起检索"
+BeautyRagflowKnowledge -> Ragflow: "查询知识库"
+BeautyRagflowKnowledge -> BeautyAnswerLoop: "返回知识片段"
+BeautyAnswerLoop -> BeautyReplyPolicy: "置信度"
+BeautyReplyPolicy -> BeautyAnswerOrchestrator: "决策结果"
 `;case`evaluationSequence`:return`direction: right
 
 BeautyAnswerOrchestrator: {
@@ -411,10 +411,10 @@ BeautyReplyPolicy: {
   label: "回复策略"
 }
 
-BeautyAnswerOrchestrator -> BeautyEvaluationGate: "evaluate"
-BeautyEvaluationGate -> BeautyStore: "read candidates"
-BeautyEvaluationGate -> BeautyReplyPolicy: "check thresholds"
-BeautyEvaluationGate -> BeautyStore: "read policy state"
+BeautyAnswerOrchestrator -> BeautyEvaluationGate: "执行评测"
+BeautyEvaluationGate -> BeautyStore: "读取候选"
+BeautyEvaluationGate -> BeautyReplyPolicy: "校验阈值"
+BeautyEvaluationGate -> BeautyStore: "读取策略状态"
 `;case`handoffSequence`:return`direction: right
 
 BeautyAnswerOrchestrator: {
@@ -441,11 +441,11 @@ BeautyHandoffRoutes: {
   label: "转人工路由"
 }
 
-BeautyAnswerOrchestrator -> BeautyHandoffService: "create ticket"
-BeautyHandoffService -> BeautyStore: "persist ticket"
-BeautyHandoffService -> BeautyWechatPlatform: "notify customer"
-Operator -> BeautyOperatorUi: "opens ticket"
-BeautyOperatorUi -> BeautyHandoffRoutes: "claim ticket"
+BeautyAnswerOrchestrator -> BeautyHandoffService: "创建工单"
+BeautyHandoffService -> BeautyStore: "持久化工单"
+BeautyHandoffService -> BeautyWechatPlatform: "通知客户"
+Operator -> BeautyOperatorUi: "打开工单"
+BeautyOperatorUi -> BeautyHandoffRoutes: "认领工单"
 `;case`knowledgeSyncSequence`:return`direction: right
 
 Operator: {
@@ -477,14 +477,14 @@ BeautyRagflowKnowledge: {
   label: "RAGFlow 知识库 知识检索"
 }
 
-Operator -> BeautyOperatorUi: "triggers sync"
-BeautyOperatorUi -> BeautyKnowledgeRoutes: "request sync"
-BeautyKnowledgeRoutes -> BeautyKnowledgeScan: "scan candidates"
-BeautyKnowledgeScan -> BeautyGovernance: "submit for decision"
-BeautyGovernance -> BeautyEvaluationGate: "apply publication rule"
-BeautyKnowledgeRoutes -> BeautyKnowledgeSync: "push approved"
-BeautyKnowledgeSync -> LlmWiki: "read candidate wiki"
-BeautyKnowledgeSync -> BeautyRagflowKnowledge: "write dataset"
+Operator -> BeautyOperatorUi: "触发同步"
+BeautyOperatorUi -> BeautyKnowledgeRoutes: "请求同步"
+BeautyKnowledgeRoutes -> BeautyKnowledgeScan: "扫描候选项"
+BeautyKnowledgeScan -> BeautyGovernance: "submit for 决策结果"
+BeautyGovernance -> BeautyEvaluationGate: "应用发布规则"
+BeautyKnowledgeRoutes -> BeautyKnowledgeSync: "推送已批准项"
+BeautyKnowledgeSync -> LlmWiki: "读取候选 wiki"
+BeautyKnowledgeSync -> BeautyRagflowKnowledge: "写入数据集"
 `;case`configGatedFlow`:return`direction: right
 
 BeautyAnswerOrchestrator: {
@@ -494,6 +494,6 @@ BeautyRagflowKnowledge: {
   label: "RAGFlow 知识库 知识检索"
 }
 
-BeautyAnswerOrchestrator -> BeautyRagflowKnowledge: "attempts retrieval"
-BeautyRagflowKnowledge -> BeautyRagflowKnowledge: "checks config gate"
+BeautyAnswerOrchestrator -> BeautyRagflowKnowledge: "尝试检索"
+BeautyRagflowKnowledge -> BeautyRagflowKnowledge: "检查配置门控"
 `;default:throw Error(`Unknown viewId: `+e)}};export{e as d2Source};

@@ -1218,12 +1218,12 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   ];
   "customer" -> "fakewechat" [
     likec4_id = "step-01";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">asks a beauty question</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">提出美妆咨询</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "fakewechat" -> "answerorchestrator" [
     likec4_id = "step-02";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">forwards message</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">转发消息</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "answerorchestrator" -> "answerloop" [
@@ -1233,7 +1233,7 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   ];
   "answerloop" -> "ragflowknowledge" [
     likec4_id = "step-04";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">retrieves candidates</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">检索候选知识</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "ragflowknowledge" -> "ragflow" [
@@ -1243,29 +1243,29 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   ];
   "ragflowknowledge" -> "ragflow" [
     likec4_id = "step-06";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>6</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">returns passages</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>6</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">返回知识片段</FONT></TD></TR></TABLE>>;
     arrowtail = "normal";
     dir = "back";
   ];
   "answerloop" -> "replypolicy" [
     likec4_id = "step-07";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>7</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">checks confidence</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>7</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">评估置信度</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "answerorchestrator" -> "replypolicy" [
     likec4_id = "step-08";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>8</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">auto-reply allowed</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>8</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">允许自动回复</FONT></TD></TR></TABLE>>;
     arrowtail = "normal";
     dir = "back";
   ];
   "answerorchestrator" -> "wechatplatform" [
     likec4_id = "step-09";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>9</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">sends reply</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>9</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">发送回复</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "wechatplatform" -> "wechatwork" [
     likec4_id = "step-10";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>10</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">posts message</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>10</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">发送消息</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
 }`;case`retrievalSequence`:return`digraph {
@@ -1373,48 +1373,48 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   ];
   "customer" -> "wechatcallback" [
     likec4_id = "step-01";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">sends question</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">发送问题</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "wechatcallback" -> "wechatplatform" [
     likec4_id = "step-02";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">decrypts</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">解密</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "wechatplatform" -> "answerorchestrator" [
     likec4_id = "step-03";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">normalized message</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">归一化消息</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "answerorchestrator" -> "answerloop" [
     likec4_id = "step-04";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">asks for answer</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">请求应答</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "answerloop" -> "ragflowknowledge" [
     likec4_id = "step-05";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>5</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">retrieve</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>5</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">发起检索</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "ragflowknowledge" -> "ragflow" [
     likec4_id = "step-06";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>6</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">query</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>6</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">查询知识库</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "answerloop" -> "ragflowknowledge" [
     likec4_id = "step-07";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>7</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">passages</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>7</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">返回知识片段</FONT></TD></TR></TABLE>>;
     arrowtail = "normal";
     dir = "back";
   ];
   "answerloop" -> "replypolicy" [
     likec4_id = "step-08";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>8</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">confidence</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>8</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">置信度</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "answerorchestrator" -> "replypolicy" [
     likec4_id = "step-09";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>9</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">decision</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>9</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">决策结果</FONT></TD></TR></TABLE>>;
     arrowtail = "normal";
     dir = "back";
   ];
@@ -1490,22 +1490,22 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   ];
   "answerorchestrator" -> "evaluationgate" [
     likec4_id = "step-01";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">evaluate</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">执行评测</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "evaluationgate" -> "store" [
     likec4_id = "step-02";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">read candidates</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">读取候选</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "evaluationgate" -> "replypolicy" [
     likec4_id = "step-03.1";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3.1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">check thresholds</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3.1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">校验阈值</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "evaluationgate" -> "store" [
     likec4_id = "step-03.2";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3.2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">read policy state</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3.2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">读取策略状态</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
 }`;case`handoffSequence`:return`digraph {
@@ -1604,27 +1604,27 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   ];
   "answerorchestrator" -> "handoffservice" [
     likec4_id = "step-01";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">create ticket</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">创建工单</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "handoffservice" -> "store" [
     likec4_id = "step-02";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">persist ticket</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">持久化工单</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "handoffservice" -> "wechatplatform" [
     likec4_id = "step-03";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">notify customer</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">通知客户</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "operator" -> "operatorui" [
     likec4_id = "step-04";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">opens ticket</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">打开工单</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "operatorui" -> "handoffroutes" [
     likec4_id = "step-05";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>5</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">claim ticket</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>5</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">认领工单</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
 }`;case`knowledgeSyncSequence`:return`digraph {
@@ -1740,42 +1740,42 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   ];
   "operator" -> "operatorui" [
     likec4_id = "step-01";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">triggers sync</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">触发同步</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "operatorui" -> "knowledgeroutes" [
     likec4_id = "step-02";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">request sync</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">请求同步</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "knowledgeroutes" -> "knowledgescan" [
     likec4_id = "step-03";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">scan candidates</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">扫描候选项</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "knowledgescan" -> "governance" [
     likec4_id = "step-04";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">submit for decision</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">submit for 决策结果</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "governance" -> "evaluationgate" [
     likec4_id = "step-05";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>5</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">apply publication rule</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>5</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">应用发布规则</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "knowledgeroutes" -> "knowledgesync" [
     likec4_id = "step-06";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>6</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">push approved</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>6</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">推送已批准项</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "knowledgesync" -> "llmwiki" [
     likec4_id = "step-07";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>7</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">read candidate wiki</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>7</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">读取候选 wiki</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "knowledgesync" -> "ragflowknowledge" [
     likec4_id = "step-08";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>8</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">write dataset</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>8</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">写入数据集</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
 }`;case`configGatedFlow`:return`digraph {
@@ -1832,12 +1832,12 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
   ];
   "answerorchestrator" -> "ragflowknowledge" [
     likec4_id = "step-01";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">attempts retrieval</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">尝试检索</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
   "ragflowknowledge" -> "ragflowknowledge" [
     likec4_id = "step-02";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">checks config gate</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">检查配置门控</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
 }`;default:throw Error(`Unknown viewId: `+e)}},t=e=>{switch(e){case`localDeployment`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -2934,8 +2934,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="4034pt" height="845pt"
- viewBox="0.00 0.00 4034.00 845.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="3827pt" height="845pt"
+ viewBox="0.00 0.00 3827.00 845.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 830.05)">
 <!-- customer -->
 <g id="node1" class="node">
@@ -2947,159 +2947,159 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- fakewechat -->
 <g id="node2" class="node">
 <title>fakewechat</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1140.68,-490 622.25,-490 622.25,-310 1140.68,-310 1140.68,-490"/>
-<text xml:space="preserve" text-anchor="start" x="831.45" y="-403" font-family="Arial" font-size="20.00" fill="#eff6ff">模拟微信入口</text>
-<text xml:space="preserve" text-anchor="start" x="662.25" y="-380" font-family="Arial" font-size="15.00" fill="#bfdbfe">保留用于回归验证的本地消息入口；src/services/fake&#45;wechat&#45;platform.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1067.49,-490 549.05,-490 549.05,-310 1067.49,-310 1067.49,-490"/>
+<text xml:space="preserve" text-anchor="start" x="758.26" y="-403" font-family="Arial" font-size="20.00" fill="#eff6ff">模拟微信入口</text>
+<text xml:space="preserve" text-anchor="start" x="589.05" y="-380" font-family="Arial" font-size="15.00" fill="#bfdbfe">保留用于回归验证的本地消息入口；src/services/fake&#45;wechat&#45;platform.js</text>
 </g>
 <!-- answerorchestrator -->
 <g id="node3" class="node">
 <title>answerorchestrator</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1875.81,-490 1414.06,-490 1414.06,-310 1875.81,-310 1875.81,-490"/>
-<text xml:space="preserve" text-anchor="start" x="1603.26" y="-403" font-family="Arial" font-size="20.00" fill="#eff6ff">应答编排器</text>
-<text xml:space="preserve" text-anchor="start" x="1454.06" y="-380" font-family="Arial" font-size="15.00" fill="#bfdbfe">决定自动回复还是转人工；src/services/answer&#45;orchestrator.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1734.92,-490 1273.16,-490 1273.16,-310 1734.92,-310 1734.92,-490"/>
+<text xml:space="preserve" text-anchor="start" x="1462.37" y="-403" font-family="Arial" font-size="20.00" fill="#eff6ff">应答编排器</text>
+<text xml:space="preserve" text-anchor="start" x="1313.16" y="-380" font-family="Arial" font-size="15.00" fill="#bfdbfe">决定自动回复还是转人工；src/services/answer&#45;orchestrator.js</text>
 </g>
 <!-- answerloop -->
 <g id="node4" class="node">
 <title>answerloop</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2651.83,-729 2137.53,-729 2137.53,-549 2651.83,-549 2651.83,-729"/>
-<text xml:space="preserve" text-anchor="start" x="2344.67" y="-642" font-family="Arial" font-size="20.00" fill="#eff6ff">知识应答循环</text>
-<text xml:space="preserve" text-anchor="start" x="2177.53" y="-619" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索增强的应答循环；src/services/knowledge&#45;answer&#45;loop&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2510.93,-729 1996.63,-729 1996.63,-549 2510.93,-549 2510.93,-729"/>
+<text xml:space="preserve" text-anchor="start" x="2203.77" y="-642" font-family="Arial" font-size="20.00" fill="#eff6ff">知识应答循环</text>
+<text xml:space="preserve" text-anchor="start" x="2036.63" y="-619" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索增强的应答循环；src/services/knowledge&#45;answer&#45;loop&#45;service.js</text>
 </g>
 <!-- ragflowknowledge -->
 <g id="node5" class="node">
 <title>ragflowknowledge</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3411.21,-815 2942.77,-815 2942.77,-635 3411.21,-635 3411.21,-815"/>
-<text xml:space="preserve" text-anchor="start" x="3070.3" y="-737" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
-<text xml:space="preserve" text-anchor="start" x="3144.9" y="-714" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
-<text xml:space="preserve" text-anchor="start" x="2982.77" y="-696" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3215.04,-815 2746.6,-815 2746.6,-635 3215.04,-635 3215.04,-815"/>
+<text xml:space="preserve" text-anchor="start" x="2874.13" y="-737" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="2948.73" y="-714" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="2786.6" y="-696" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>
 <!-- ragflow -->
 <g id="node6" class="node">
 <title>ragflow</title>
-<polygon fill="#64748b" stroke="#475569" stroke-width="0" points="4004.29,-815 3684.25,-815 3684.25,-635 4004.29,-635 4004.29,-815"/>
-<text xml:space="preserve" text-anchor="start" x="3773.7" y="-728" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
-<text xml:space="preserve" text-anchor="start" x="3788.43" y="-705" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
+<polygon fill="#64748b" stroke="#475569" stroke-width="0" points="3796.46,-815 3476.42,-815 3476.42,-635 3796.46,-635 3796.46,-815"/>
+<text xml:space="preserve" text-anchor="start" x="3565.87" y="-728" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
+<text xml:space="preserve" text-anchor="start" x="3580.59" y="-705" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
 </g>
 <!-- replypolicy -->
 <g id="node7" class="node">
 <title>replypolicy</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3417.86,-508 2936.12,-508 2936.12,-328 3417.86,-328 3417.86,-508"/>
-<text xml:space="preserve" text-anchor="start" x="3143.65" y="-421" font-family="Arial" font-size="20.00" fill="#eff6ff">回复策略</text>
-<text xml:space="preserve" text-anchor="start" x="2976.12" y="-398" font-family="Arial" font-size="15.00" fill="#bfdbfe">自动回复的置信度与风险阈值；src/services/reply&#45;policy&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3221.69,-508 2739.94,-508 2739.94,-328 3221.69,-328 3221.69,-508"/>
+<text xml:space="preserve" text-anchor="start" x="2947.48" y="-421" font-family="Arial" font-size="20.00" fill="#eff6ff">回复策略</text>
+<text xml:space="preserve" text-anchor="start" x="2779.94" y="-398" font-family="Arial" font-size="15.00" fill="#bfdbfe">自动回复的置信度与风险阈值；src/services/reply&#45;policy&#45;service.js</text>
 </g>
 <!-- wechatplatform -->
 <g id="node8" class="node">
 <title>wechatplatform</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2601.79,-180 2187.56,-180 2187.56,0 2601.79,0 2601.79,-180"/>
-<text xml:space="preserve" text-anchor="start" x="2328" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">微信客服平台适配</text>
-<text xml:space="preserve" text-anchor="start" x="2227.56" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">企业微信会话操作；src/services/wechat&#45;kf&#45;platform.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2460.9,-180 2046.67,-180 2046.67,0 2460.9,0 2460.9,-180"/>
+<text xml:space="preserve" text-anchor="start" x="2187.1" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">微信客服平台适配</text>
+<text xml:space="preserve" text-anchor="start" x="2086.67" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">企业微信会话操作；src/services/wechat&#45;kf&#45;platform.js</text>
 </g>
 <!-- wechatwork -->
 <g id="node9" class="node">
 <title>wechatwork</title>
-<polygon fill="#64748b" stroke="#475569" stroke-width="0" points="3337.01,-180 3016.97,-180 3016.97,0 3337.01,0 3337.01,-180"/>
-<text xml:space="preserve" text-anchor="start" x="3143.65" y="-93" font-family="Arial" font-size="20.00" fill="#f8fafc">企业微信</text>
-<text xml:space="preserve" text-anchor="start" x="3126.98" y="-70" font-family="Arial" font-size="15.00" fill="#cbd5e1">企业微信客服平台</text>
+<polygon fill="#64748b" stroke="#475569" stroke-width="0" points="3140.84,-180 2820.8,-180 2820.8,0 3140.84,0 3140.84,-180"/>
+<text xml:space="preserve" text-anchor="start" x="2947.48" y="-93" font-family="Arial" font-size="20.00" fill="#f8fafc">企业微信</text>
+<text xml:space="preserve" text-anchor="start" x="2930.81" y="-70" font-family="Arial" font-size="15.00" fill="#cbd5e1">企业微信客服平台</text>
 </g>
 <!-- customer&#45;&gt;fakewechat -->
 <g id="edge1" class="edge">
 <title>customer&#45;&gt;fakewechat</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M319.8,-400C405.52,-400 513.67,-400 612.06,-400"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="611.94,-402.63 619.44,-400 611.94,-397.38 611.94,-402.63"/>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M319.94,-400C385.88,-400 464.26,-400 538.66,-400"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="538.6,-402.63 546.1,-400 538.6,-397.38 538.6,-402.63"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="383.04,-403 383.04,-435.8 407.04,-435.8 407.04,-403 383.04,-403"/>
 <text xml:space="preserve" text-anchor="start" x="391.15" y="-416.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">1</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="410.04,-403 410.04,-435.8 559.25,-435.8 559.25,-403 410.04,-403"/>
-<text xml:space="preserve" text-anchor="start" x="413.04" y="-413.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">asks a beauty question</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="410.04,-403 410.04,-435.8 486.05,-435.8 486.05,-403 410.04,-403"/>
+<text xml:space="preserve" text-anchor="start" x="413.04" y="-413.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">提出美妆咨询</text>
 </g>
 <!-- fakewechat&#45;&gt;answerorchestrator -->
 <g id="edge2" class="edge">
 <title>fakewechat&#45;&gt;answerorchestrator</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1140.53,-400C1225.73,-400 1320.11,-400 1403.91,-400"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1403.81,-402.63 1411.31,-400 1403.81,-397.38 1403.81,-402.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1203.68,-403 1203.68,-435.8 1227.68,-435.8 1227.68,-403 1203.68,-403"/>
-<text xml:space="preserve" text-anchor="start" x="1211.79" y="-416.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1230.68,-403 1230.68,-435.8 1351.06,-435.8 1351.06,-403 1230.68,-403"/>
-<text xml:space="preserve" text-anchor="start" x="1233.68" y="-413.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">forwards message</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1067.11,-400C1131.19,-400 1199.61,-400 1262.81,-400"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1262.79,-402.63 1270.29,-400 1262.79,-397.38 1262.79,-402.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1130.49,-403 1130.49,-435.8 1154.49,-435.8 1154.49,-403 1130.49,-403"/>
+<text xml:space="preserve" text-anchor="start" x="1138.6" y="-416.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1157.49,-403 1157.49,-435.8 1210.16,-435.8 1210.16,-403 1157.49,-403"/>
+<text xml:space="preserve" text-anchor="start" x="1160.49" y="-413.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">转发消息</text>
 </g>
 <!-- answerorchestrator&#45;&gt;answerloop -->
 <g id="edge3" class="edge">
 <title>answerorchestrator&#45;&gt;answerloop</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1875.62,-473.41C1955.33,-498.89 2045.37,-527.67 2127.76,-554.01"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2126.94,-556.5 2134.89,-556.28 2128.54,-551.5 2126.94,-556.5"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1938.81,-536.81 1938.81,-569.61 1962.81,-569.61 1962.81,-536.81 1938.81,-536.81"/>
-<text xml:space="preserve" text-anchor="start" x="1946.92" y="-550.01" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1965.81,-536.81 1965.81,-569.61 2074.53,-569.61 2074.53,-536.81 1965.81,-536.81"/>
-<text xml:space="preserve" text-anchor="start" x="1968.81" y="-547.61" font-family="Arial" font-size="14.00" fill="#c9c9c9">requests answer</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1734.72,-473.41C1814.44,-498.89 1904.48,-527.67 1986.87,-554.01"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1986.05,-556.5 1993.99,-556.28 1987.65,-551.5 1986.05,-556.5"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1797.92,-536.81 1797.92,-569.61 1821.92,-569.61 1821.92,-536.81 1797.92,-536.81"/>
+<text xml:space="preserve" text-anchor="start" x="1806.02" y="-550.01" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1824.92,-536.81 1824.92,-569.61 1933.63,-569.61 1933.63,-536.81 1824.92,-536.81"/>
+<text xml:space="preserve" text-anchor="start" x="1827.92" y="-547.61" font-family="Arial" font-size="14.00" fill="#c9c9c9">requests answer</text>
 </g>
 <!-- answerorchestrator&#45;&gt;replypolicy -->
 <g id="edge8" class="edge">
 <title>answerorchestrator&#45;&gt;replypolicy</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1885.53,-402.82C2172.28,-406.19 2649.57,-411.81 2936.34,-415.18"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1885.97,-400.2 1878.44,-402.74 1885.91,-405.45 1885.97,-400.2"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2321.37,-414.66 2321.37,-447.46 2345.37,-447.46 2345.37,-414.66 2321.37,-414.66"/>
-<text xml:space="preserve" text-anchor="start" x="2329.48" y="-427.86" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">8</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2348.37,-414.66 2348.37,-447.46 2467.99,-447.46 2467.99,-414.66 2348.37,-414.66"/>
-<text xml:space="preserve" text-anchor="start" x="2351.37" y="-425.46" font-family="Arial" font-size="14.00" fill="#c9c9c9">auto&#45;reply allowed</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1745.16,-402.93C2019.51,-406.28 2465.82,-411.73 2740.02,-415.07"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1745.22,-400.31 1737.69,-402.84 1745.16,-405.56 1745.22,-400.31"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2202.28,-415.23 2202.28,-448.03 2226.28,-448.03 2226.28,-415.23 2202.28,-415.23"/>
+<text xml:space="preserve" text-anchor="start" x="2210.38" y="-428.43" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">8</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2229.28,-415.23 2229.28,-448.03 2305.29,-448.03 2305.29,-415.23 2229.28,-415.23"/>
+<text xml:space="preserve" text-anchor="start" x="2232.28" y="-426.03" font-family="Arial" font-size="14.00" fill="#c9c9c9">允许自动回复</text>
 </g>
 <!-- answerorchestrator&#45;&gt;wechatplatform -->
 <g id="edge9" class="edge">
 <title>answerorchestrator&#45;&gt;wechatplatform</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1859.57,-310.01C1885.25,-299.26 1911.11,-288.47 1935.81,-278.2 2014.94,-245.32 2101.87,-209.5 2178.54,-178.03"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2179.09,-180.64 2185.04,-175.36 2177.1,-175.78 2179.09,-180.64"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1954.37,-281.2 1954.37,-314 1978.37,-314 1978.37,-281.2 1954.37,-281.2"/>
-<text xml:space="preserve" text-anchor="start" x="1962.48" y="-294.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">9</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1981.37,-281.2 1981.37,-314 2058.97,-314 2058.97,-281.2 1981.37,-281.2"/>
-<text xml:space="preserve" text-anchor="start" x="1984.37" y="-292" font-family="Arial" font-size="14.00" fill="#c9c9c9">sends reply</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1718.67,-310.01C1744.35,-299.26 1770.22,-288.47 1794.92,-278.2 1874.04,-245.32 1960.98,-209.5 2037.64,-178.03"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2038.2,-180.64 2044.14,-175.36 2036.2,-175.78 2038.2,-180.64"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1825.94,-281.2 1825.94,-314 1849.94,-314 1849.94,-281.2 1825.94,-281.2"/>
+<text xml:space="preserve" text-anchor="start" x="1834.04" y="-294.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">9</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1852.94,-281.2 1852.94,-314 1905.61,-314 1905.61,-281.2 1852.94,-281.2"/>
+<text xml:space="preserve" text-anchor="start" x="1855.94" y="-292" font-family="Arial" font-size="14.00" fill="#c9c9c9">发送回复</text>
 </g>
 <!-- answerloop&#45;&gt;ragflowknowledge -->
 <g id="edge4" class="edge">
 <title>answerloop&#45;&gt;ragflowknowledge</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2651.72,-667.22C2742.1,-677.18 2843.42,-688.35 2932.71,-698.19"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2932.23,-700.78 2939.97,-698.99 2932.81,-695.56 2932.23,-700.78"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2714.83,-692.7 2714.83,-725.5 2738.83,-725.5 2738.83,-692.7 2714.83,-692.7"/>
-<text xml:space="preserve" text-anchor="start" x="2722.93" y="-705.9" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2741.83,-692.7 2741.83,-725.5 2873.12,-725.5 2873.12,-692.7 2741.83,-692.7"/>
-<text xml:space="preserve" text-anchor="start" x="2744.83" y="-703.5" font-family="Arial" font-size="14.00" fill="#c9c9c9">retrieves candidates</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2510.91,-669.38C2584.28,-678.08 2664.03,-687.54 2736.6,-696.15"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2736.02,-698.73 2743.78,-697 2736.64,-693.51 2736.02,-698.73"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2573.93,-690.15 2573.93,-722.95 2597.93,-722.95 2597.93,-690.15 2573.93,-690.15"/>
+<text xml:space="preserve" text-anchor="start" x="2582.04" y="-703.35" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2600.93,-690.15 2600.93,-722.95 2676.94,-722.95 2676.94,-690.15 2600.93,-690.15"/>
+<text xml:space="preserve" text-anchor="start" x="2603.93" y="-700.95" font-family="Arial" font-size="14.00" fill="#c9c9c9">检索候选知识</text>
 </g>
 <!-- answerloop&#45;&gt;replypolicy -->
 <g id="edge7" class="edge">
 <title>answerloop&#45;&gt;replypolicy</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2651.72,-566.48C2739.86,-541.52 2838.39,-513.61 2926.03,-488.79"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2926.7,-491.33 2933.21,-486.76 2925.27,-486.28 2926.7,-491.33"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2719.88,-551.29 2719.88,-584.09 2743.88,-584.09 2743.88,-551.29 2719.88,-551.29"/>
-<text xml:space="preserve" text-anchor="start" x="2727.99" y="-564.49" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">7</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2746.88,-551.29 2746.88,-584.09 2868.06,-584.09 2868.06,-551.29 2746.88,-551.29"/>
-<text xml:space="preserve" text-anchor="start" x="2749.88" y="-562.09" font-family="Arial" font-size="14.00" fill="#c9c9c9">checks confidence</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2510.91,-560.93C2582.14,-539.22 2659.38,-515.67 2730.23,-494.08"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2730.88,-496.62 2737.28,-491.93 2729.35,-491.6 2730.88,-496.62"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2579.77,-544.73 2579.77,-577.53 2603.77,-577.53 2603.77,-544.73 2579.77,-544.73"/>
+<text xml:space="preserve" text-anchor="start" x="2587.87" y="-557.93" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">7</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2606.77,-544.73 2606.77,-577.53 2671.11,-577.53 2671.11,-544.73 2606.77,-544.73"/>
+<text xml:space="preserve" text-anchor="start" x="2609.77" y="-555.53" font-family="Arial" font-size="14.00" fill="#c9c9c9">评估置信度</text>
 </g>
 <!-- ragflowknowledge&#45;&gt;ragflow -->
 <g id="edge5" class="edge">
 <title>ragflowknowledge&#45;&gt;ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M3411.14,-725C3497.79,-725 3594.37,-725 3674.21,-725"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3673.83,-727.63 3681.33,-725 3673.83,-722.38 3673.83,-727.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3486.69,-728 3486.69,-760.8 3510.69,-760.8 3510.69,-728 3486.69,-728"/>
-<text xml:space="preserve" text-anchor="start" x="3494.79" y="-741.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3513.69,-728 3513.69,-760.8 3615.42,-760.8 3615.42,-728 3513.69,-728"/>
-<text xml:space="preserve" text-anchor="start" x="3516.69" y="-738.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">queries dataset</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M3215.02,-725C3298,-725 3389.77,-725 3466.35,-725"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3466.04,-727.63 3473.54,-725 3466.04,-722.38 3466.04,-727.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3284.69,-728 3284.69,-760.8 3308.69,-760.8 3308.69,-728 3284.69,-728"/>
+<text xml:space="preserve" text-anchor="start" x="3292.79" y="-741.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3311.69,-728 3311.69,-760.8 3413.42,-760.8 3413.42,-728 3311.69,-728"/>
+<text xml:space="preserve" text-anchor="start" x="3314.69" y="-738.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">queries dataset</text>
 </g>
 <!-- ragflowknowledge&#45;&gt;ragflow -->
 <g id="edge6" class="edge">
 <title>ragflowknowledge&#45;&gt;ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M3421.14,-663.19C3487.05,-653.52 3558.38,-649.52 3624.25,-659.2 3643.99,-662.1 3664.42,-666.4 3684.5,-671.43"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3421.05,-660.55 3414.03,-664.27 3421.84,-665.74 3421.05,-660.55"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3480.86,-662.2 3480.86,-695 3504.86,-695 3504.86,-662.2 3480.86,-662.2"/>
-<text xml:space="preserve" text-anchor="start" x="3488.96" y="-675.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3507.86,-662.2 3507.86,-695 3621.25,-695 3621.25,-662.2 3507.86,-662.2"/>
-<text xml:space="preserve" text-anchor="start" x="3510.86" y="-673" font-family="Arial" font-size="14.00" fill="#c9c9c9">returns passages</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M3225.28,-662.54C3287.57,-653.59 3354.46,-650.09 3416.42,-659.2 3436.15,-662.1 3456.58,-666.4 3476.67,-671.43"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3224.94,-659.93 3217.91,-663.63 3225.72,-665.12 3224.94,-659.93"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3297.54,-662.2 3297.54,-695 3321.54,-695 3321.54,-662.2 3297.54,-662.2"/>
+<text xml:space="preserve" text-anchor="start" x="3305.65" y="-675.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3324.54,-662.2 3324.54,-695 3400.56,-695 3400.56,-662.2 3324.54,-662.2"/>
+<text xml:space="preserve" text-anchor="start" x="3327.54" y="-673" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回知识片段</text>
 </g>
 <!-- wechatplatform&#45;&gt;wechatwork -->
 <g id="edge10" class="edge">
 <title>wechatplatform&#45;&gt;wechatwork</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2601.72,-90C2728.07,-90 2887.86,-90 3006.79,-90"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3006.55,-92.63 3014.05,-90 3006.55,-87.38 3006.55,-92.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2726.61,-93 2726.61,-125.8 2758.18,-125.8 2758.18,-93 2726.61,-93"/>
-<text xml:space="preserve" text-anchor="start" x="2734.61" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">10</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2761.18,-93 2761.18,-125.8 2861.34,-125.8 2861.34,-93 2761.18,-93"/>
-<text xml:space="preserve" text-anchor="start" x="2764.18" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">posts message</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2460.61,-90C2571.32,-90 2706.17,-90 2810.7,-90"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2810.51,-92.63 2818.01,-90 2810.51,-87.38 2810.51,-92.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2581.81,-93 2581.81,-125.8 2613.39,-125.8 2613.39,-93 2581.81,-93"/>
+<text xml:space="preserve" text-anchor="start" x="2589.81" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">10</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2616.39,-93 2616.39,-125.8 2669.06,-125.8 2669.06,-93 2616.39,-93"/>
+<text xml:space="preserve" text-anchor="start" x="2619.39" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">发送消息</text>
 </g>
 </g>
 </svg>
@@ -3109,8 +3109,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="4399pt" height="526pt"
- viewBox="0.00 0.00 4399.00 526.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="4226pt" height="526pt"
+ viewBox="0.00 0.00 4226.00 526.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 511.05)">
 <!-- customer -->
 <g id="node1" class="node">
@@ -3122,142 +3122,142 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- wechatcallback -->
 <g id="node2" class="node">
 <title>wechatcallback</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="999.14,-180 573.22,-180 573.22,0 999.14,0 999.14,-180"/>
-<text xml:space="preserve" text-anchor="start" x="719.5" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">微信客服回调入口</text>
-<text xml:space="preserve" text-anchor="start" x="613.22" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">接收加密的企业微信回调；src/routes/wechat&#45;kf&#45;routes.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="951.64,-180 525.72,-180 525.72,0 951.64,0 951.64,-180"/>
+<text xml:space="preserve" text-anchor="start" x="672" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">微信客服回调入口</text>
+<text xml:space="preserve" text-anchor="start" x="565.72" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">接收加密的企业微信回调；src/routes/wechat&#45;kf&#45;routes.js</text>
 </g>
 <!-- wechatplatform -->
 <g id="node3" class="node">
 <title>wechatplatform</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1625.29,-180 1211.05,-180 1211.05,0 1625.29,0 1625.29,-180"/>
-<text xml:space="preserve" text-anchor="start" x="1351.49" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">微信客服平台适配</text>
-<text xml:space="preserve" text-anchor="start" x="1251.05" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">企业微信会话操作；src/services/wechat&#45;kf&#45;platform.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1548.21,-180 1133.98,-180 1133.98,0 1548.21,0 1548.21,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1274.41" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">微信客服平台适配</text>
+<text xml:space="preserve" text-anchor="start" x="1173.98" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">企业微信会话操作；src/services/wechat&#45;kf&#45;platform.js</text>
 </g>
 <!-- answerorchestrator -->
 <g id="node4" class="node">
 <title>answerorchestrator</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2375.21,-180 1913.46,-180 1913.46,0 2375.21,0 2375.21,-180"/>
-<text xml:space="preserve" text-anchor="start" x="2102.66" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">应答编排器</text>
-<text xml:space="preserve" text-anchor="start" x="1953.46" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">决定自动回复还是转人工；src/services/answer&#45;orchestrator.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2227.31,-180 1765.55,-180 1765.55,0 2227.31,0 2227.31,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1954.76" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">应答编排器</text>
+<text xml:space="preserve" text-anchor="start" x="1805.55" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">决定自动回复还是转人工；src/services/answer&#45;orchestrator.js</text>
 </g>
 <!-- answerloop -->
 <g id="node5" class="node">
 <title>answerloop</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3146.54,-377 2632.24,-377 2632.24,-197 3146.54,-197 3146.54,-377"/>
-<text xml:space="preserve" text-anchor="start" x="2839.38" y="-290" font-family="Arial" font-size="20.00" fill="#eff6ff">知识应答循环</text>
-<text xml:space="preserve" text-anchor="start" x="2672.24" y="-267" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索增强的应答循环；src/services/knowledge&#45;answer&#45;loop&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2947.28,-377 2432.98,-377 2432.98,-197 2947.28,-197 2947.28,-377"/>
+<text xml:space="preserve" text-anchor="start" x="2640.12" y="-290" font-family="Arial" font-size="20.00" fill="#eff6ff">知识应答循环</text>
+<text xml:space="preserve" text-anchor="start" x="2472.98" y="-267" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索增强的应答循环；src/services/knowledge&#45;answer&#45;loop&#45;service.js</text>
 </g>
 <!-- ragflowknowledge -->
 <g id="node6" class="node">
 <title>ragflowknowledge</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3848.35,-496 3379.91,-496 3379.91,-316 3848.35,-316 3848.35,-496"/>
-<text xml:space="preserve" text-anchor="start" x="3507.44" y="-418" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
-<text xml:space="preserve" text-anchor="start" x="3582.04" y="-395" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
-<text xml:space="preserve" text-anchor="start" x="3419.91" y="-377" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3651.38,-496 3182.94,-496 3182.94,-316 3651.38,-316 3651.38,-496"/>
+<text xml:space="preserve" text-anchor="start" x="3310.48" y="-418" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="3385.08" y="-395" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="3222.94" y="-377" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>
 <!-- ragflow -->
 <g id="node7" class="node">
 <title>ragflow</title>
-<polygon fill="#64748b" stroke="#475569" stroke-width="0" points="4369.06,-496 4049.02,-496 4049.02,-316 4369.06,-316 4369.06,-496"/>
-<text xml:space="preserve" text-anchor="start" x="4138.47" y="-409" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
-<text xml:space="preserve" text-anchor="start" x="4153.2" y="-386" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
+<polygon fill="#64748b" stroke="#475569" stroke-width="0" points="4195.42,-496 3875.38,-496 3875.38,-316 4195.42,-316 4195.42,-496"/>
+<text xml:space="preserve" text-anchor="start" x="3964.83" y="-409" font-family="Arial" font-size="20.00" fill="#f8fafc">RAGFlow 知识库</text>
+<text xml:space="preserve" text-anchor="start" x="3979.56" y="-386" font-family="Arial" font-size="15.00" fill="#cbd5e1">RAG 与知识库服务</text>
 </g>
 <!-- replypolicy -->
 <g id="node8" class="node">
 <title>replypolicy</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3855,-189 3373.26,-189 3373.26,-9 3855,-9 3855,-189"/>
-<text xml:space="preserve" text-anchor="start" x="3580.79" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">回复策略</text>
-<text xml:space="preserve" text-anchor="start" x="3413.26" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">自动回复的置信度与风险阈值；src/services/reply&#45;policy&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3658.03,-189 3176.29,-189 3176.29,-9 3658.03,-9 3658.03,-189"/>
+<text xml:space="preserve" text-anchor="start" x="3383.82" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">回复策略</text>
+<text xml:space="preserve" text-anchor="start" x="3216.29" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">自动回复的置信度与风险阈值；src/services/reply&#45;policy&#45;service.js</text>
 </g>
 <!-- customer&#45;&gt;wechatcallback -->
 <g id="edge1" class="edge">
 <title>customer&#45;&gt;wechatcallback</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M319.73,-90C393.59,-90 482.71,-90 563.11,-90"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="562.84,-92.63 570.34,-90 562.84,-87.38 562.84,-92.63"/>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M319.74,-90C380.18,-90 450.23,-90 515.49,-90"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="515.39,-92.63 522.89,-90 515.39,-87.38 515.39,-92.63"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="383.04,-93 383.04,-125.8 407.04,-125.8 407.04,-93 383.04,-93"/>
 <text xml:space="preserve" text-anchor="start" x="391.15" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">1</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="410.04,-93 410.04,-125.8 510.22,-125.8 510.22,-93 410.04,-93"/>
-<text xml:space="preserve" text-anchor="start" x="413.04" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">sends question</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="410.04,-93 410.04,-125.8 462.72,-125.8 462.72,-93 410.04,-93"/>
+<text xml:space="preserve" text-anchor="start" x="413.04" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">发送问题</text>
 </g>
 <!-- wechatcallback&#45;&gt;wechatplatform -->
 <g id="edge2" class="edge">
 <title>wechatcallback&#45;&gt;wechatplatform</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M998.71,-90C1063.77,-90 1135.46,-90 1200.84,-90"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1200.75,-92.63 1208.25,-90 1200.75,-87.38 1200.75,-92.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1062.14,-93 1062.14,-125.8 1086.14,-125.8 1086.14,-93 1062.14,-93"/>
-<text xml:space="preserve" text-anchor="start" x="1070.25" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1089.14,-93 1089.14,-125.8 1148.05,-125.8 1148.05,-93 1089.14,-93"/>
-<text xml:space="preserve" text-anchor="start" x="1092.14" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">decrypts</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M951.36,-90C1007.22,-90 1067.57,-90 1123.68,-90"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1123.58,-92.63 1131.08,-90 1123.58,-87.38 1123.58,-92.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1014.64,-93 1014.64,-125.8 1038.64,-125.8 1038.64,-93 1014.64,-93"/>
+<text xml:space="preserve" text-anchor="start" x="1022.75" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1041.64,-93 1041.64,-125.8 1070.98,-125.8 1070.98,-93 1041.64,-93"/>
+<text xml:space="preserve" text-anchor="start" x="1044.64" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">解密</text>
 </g>
 <!-- wechatplatform&#45;&gt;answerorchestrator -->
 <g id="edge3" class="edge">
 <title>wechatplatform&#45;&gt;answerorchestrator</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1625.23,-90C1711.89,-90 1813.29,-90 1903.29,-90"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1903.12,-92.63 1910.62,-90 1903.12,-87.38 1903.12,-92.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1688.29,-93 1688.29,-125.8 1712.29,-125.8 1712.29,-93 1688.29,-93"/>
-<text xml:space="preserve" text-anchor="start" x="1696.39" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1715.29,-93 1715.29,-125.8 1850.46,-125.8 1850.46,-93 1715.29,-93"/>
-<text xml:space="preserve" text-anchor="start" x="1718.29" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">normalized message</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1547.92,-90C1613.73,-90 1687.17,-90 1755.22,-90"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1755.12,-92.63 1762.62,-90 1755.12,-87.38 1755.12,-92.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1611.21,-93 1611.21,-125.8 1635.21,-125.8 1635.21,-93 1611.21,-93"/>
+<text xml:space="preserve" text-anchor="start" x="1619.32" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1638.21,-93 1638.21,-125.8 1702.55,-125.8 1702.55,-93 1638.21,-93"/>
+<text xml:space="preserve" text-anchor="start" x="1641.21" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">归一化消息</text>
 </g>
 <!-- answerorchestrator&#45;&gt;answerloop -->
 <g id="edge4" class="edge">
 <title>answerorchestrator&#45;&gt;answerloop</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2375.1,-150.92C2453.44,-171.69 2541.67,-195.08 2622.61,-216.53"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2621.59,-218.98 2629.51,-218.37 2622.94,-213.91 2621.59,-218.98"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2438.21,-203.29 2438.21,-236.09 2462.21,-236.09 2462.21,-203.29 2438.21,-203.29"/>
-<text xml:space="preserve" text-anchor="start" x="2446.32" y="-216.49" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2465.21,-203.29 2465.21,-236.09 2569.24,-236.09 2569.24,-203.29 2465.21,-203.29"/>
-<text xml:space="preserve" text-anchor="start" x="2468.21" y="-214.09" font-family="Arial" font-size="14.00" fill="#c9c9c9">asks for answer</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2227.28,-155.46C2290.1,-173.35 2358.69,-192.89 2423.34,-211.3"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2422.42,-213.77 2430.35,-213.3 2423.86,-208.72 2422.42,-213.77"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2290.31,-197.41 2290.31,-230.21 2314.31,-230.21 2314.31,-197.41 2290.31,-197.41"/>
+<text xml:space="preserve" text-anchor="start" x="2298.41" y="-210.61" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2317.31,-197.41 2317.31,-230.21 2369.98,-230.21 2369.98,-197.41 2317.31,-197.41"/>
+<text xml:space="preserve" text-anchor="start" x="2320.31" y="-208.21" font-family="Arial" font-size="14.00" fill="#c9c9c9">请求应答</text>
 </g>
 <!-- answerorchestrator&#45;&gt;replypolicy -->
 <g id="edge9" class="edge">
 <title>answerorchestrator&#45;&gt;replypolicy</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2385.52,-91.47C2658.29,-93.15 3100.75,-95.86 3373.36,-97.53"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2385.62,-88.85 2378.11,-91.43 2385.59,-94.1 2385.62,-88.85"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2847.21,-99.12 2847.21,-131.92 2871.21,-131.92 2871.21,-99.12 2847.21,-99.12"/>
-<text xml:space="preserve" text-anchor="start" x="2855.32" y="-112.32" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">9</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2874.21,-99.12 2874.21,-131.92 2931.58,-131.92 2931.58,-99.12 2874.21,-99.12"/>
-<text xml:space="preserve" text-anchor="start" x="2877.21" y="-109.92" font-family="Arial" font-size="14.00" fill="#c9c9c9">decision</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2237.35,-91.52C2498.85,-93.18 2914.82,-95.82 3176.3,-97.48"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2237.5,-88.9 2229.98,-91.48 2237.46,-94.15 2237.5,-88.9"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2650.29,-98.98 2650.29,-131.78 2674.29,-131.78 2674.29,-98.98 2650.29,-98.98"/>
+<text xml:space="preserve" text-anchor="start" x="2658.4" y="-112.18" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">9</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2677.29,-98.98 2677.29,-131.78 2729.97,-131.78 2729.97,-98.98 2677.29,-98.98"/>
+<text xml:space="preserve" text-anchor="start" x="2680.29" y="-109.78" font-family="Arial" font-size="14.00" fill="#c9c9c9">决策结果</text>
 </g>
 <!-- answerloop&#45;&gt;ragflowknowledge -->
 <g id="edge5" class="edge">
 <title>answerloop&#45;&gt;ragflowknowledge</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M3146.25,-358.05C3166.56,-362.5 3186.83,-366.57 3206.54,-370 3259.01,-379.14 3315.71,-386.02 3369.64,-391.17"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3369.31,-393.78 3377.02,-391.87 3369.8,-388.55 3369.31,-393.78"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3220.06,-387.39 3220.06,-420.19 3244.06,-420.19 3244.06,-387.39 3220.06,-387.39"/>
-<text xml:space="preserve" text-anchor="start" x="3228.16" y="-400.59" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3247.06,-387.39 3247.06,-420.19 3299.74,-420.19 3299.74,-387.39 3247.06,-387.39"/>
-<text xml:space="preserve" text-anchor="start" x="3250.06" y="-398.19" font-family="Arial" font-size="14.00" fill="#c9c9c9">retrieve</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2946.99,-358.06C2967.3,-362.51 2987.57,-366.57 3007.28,-370 3060.57,-379.27 3118.2,-386.21 3172.92,-391.38"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3172.37,-393.97 3180.08,-392.05 3172.86,-388.74 3172.37,-393.97"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3021.95,-387.43 3021.95,-420.23 3045.95,-420.23 3045.95,-387.43 3021.95,-387.43"/>
+<text xml:space="preserve" text-anchor="start" x="3030.06" y="-400.63" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3048.95,-387.43 3048.95,-420.23 3101.62,-420.23 3101.62,-387.43 3048.95,-387.43"/>
+<text xml:space="preserve" text-anchor="start" x="3051.95" y="-398.23" font-family="Arial" font-size="14.00" fill="#c9c9c9">发起检索</text>
 </g>
 <!-- answerloop&#45;&gt;ragflowknowledge -->
 <g id="edge7" class="edge">
 <title>answerloop&#45;&gt;ragflowknowledge</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M3156.76,-286.21C3208.96,-289.32 3263.06,-294.86 3313.26,-304.2 3335.15,-308.27 3357.62,-313.61 3379.94,-319.7"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3157.01,-283.6 3149.37,-285.79 3156.71,-288.84 3157.01,-283.6"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3213.43,-307.2 3213.43,-340 3237.43,-340 3237.43,-307.2 3213.43,-307.2"/>
-<text xml:space="preserve" text-anchor="start" x="3221.54" y="-320.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">7</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3240.43,-307.2 3240.43,-340 3306.36,-340 3306.36,-307.2 3240.43,-307.2"/>
-<text xml:space="preserve" text-anchor="start" x="3243.43" y="-318" font-family="Arial" font-size="14.00" fill="#c9c9c9">passages</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2957.29,-286.04C3010.28,-289.14 3065.29,-294.72 3116.29,-304.2 3138.19,-308.27 3160.66,-313.6 3182.97,-319.69"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2957.73,-283.44 2950.1,-285.64 2957.44,-288.68 2957.73,-283.44"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3010.28,-307.2 3010.28,-340 3034.28,-340 3034.28,-307.2 3010.28,-307.2"/>
+<text xml:space="preserve" text-anchor="start" x="3018.39" y="-320.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">7</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3037.28,-307.2 3037.28,-340 3113.29,-340 3113.29,-307.2 3037.28,-307.2"/>
+<text xml:space="preserve" text-anchor="start" x="3040.28" y="-318" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回知识片段</text>
 </g>
 <!-- answerloop&#45;&gt;replypolicy -->
 <g id="edge8" class="edge">
 <title>answerloop&#45;&gt;replypolicy</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M3146.47,-220.39C3217.04,-202.03 3293.48,-182.15 3363.67,-163.89"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3364.01,-166.51 3370.61,-162.09 3362.69,-161.43 3364.01,-166.51"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3209.54,-207.26 3209.54,-240.06 3233.54,-240.06 3233.54,-207.26 3209.54,-207.26"/>
-<text xml:space="preserve" text-anchor="start" x="3217.65" y="-220.46" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">8</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3236.54,-207.26 3236.54,-240.06 3310.26,-240.06 3310.26,-207.26 3236.54,-207.26"/>
-<text xml:space="preserve" text-anchor="start" x="3239.54" y="-218.06" font-family="Arial" font-size="14.00" fill="#c9c9c9">confidence</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2947.26,-220.59C3018.49,-202.12 3095.73,-182.09 3166.58,-163.72"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3167,-166.32 3173.6,-161.9 3165.68,-161.24 3167,-166.32"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3027.78,-207.26 3027.78,-240.06 3051.78,-240.06 3051.78,-207.26 3027.78,-207.26"/>
+<text xml:space="preserve" text-anchor="start" x="3035.89" y="-220.46" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">8</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3054.78,-207.26 3054.78,-240.06 3095.79,-240.06 3095.79,-207.26 3054.78,-207.26"/>
+<text xml:space="preserve" text-anchor="start" x="3057.78" y="-218.06" font-family="Arial" font-size="14.00" fill="#c9c9c9">置信度</text>
 </g>
 <!-- ragflowknowledge&#45;&gt;ragflow -->
 <g id="edge6" class="edge">
 <title>ragflowknowledge&#45;&gt;ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M3848.19,-406C3911.94,-406 3979.8,-406 4039.21,-406"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="4038.9,-408.63 4046.4,-406 4038.9,-403.38 4038.9,-408.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3918,-409 3918,-441.8 3942,-441.8 3942,-409 3918,-409"/>
-<text xml:space="preserve" text-anchor="start" x="3926.11" y="-422.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3945,-409 3945,-441.8 3986.02,-441.8 3986.02,-409 3945,-409"/>
-<text xml:space="preserve" text-anchor="start" x="3948" y="-419.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">query</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M3651.14,-406C3722.31,-406 3799.19,-406 3865.27,-406"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3865.25,-408.63 3872.75,-406 3865.25,-403.38 3865.25,-408.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3721.03,-409 3721.03,-441.8 3745.03,-441.8 3745.03,-409 3721.03,-409"/>
+<text xml:space="preserve" text-anchor="start" x="3729.14" y="-422.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3748.03,-409 3748.03,-441.8 3812.38,-441.8 3812.38,-409 3748.03,-409"/>
+<text xml:space="preserve" text-anchor="start" x="3751.03" y="-419.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">查询知识库</text>
 </g>
 </g>
 </svg>
@@ -3267,8 +3267,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="1854pt" height="509pt"
- viewBox="0.00 0.00 1854.00 509.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1813pt" height="509pt"
+ viewBox="0.00 0.00 1813.00 509.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 494.05)">
 <!-- answerorchestrator -->
 <g id="node1" class="node">
@@ -3280,64 +3280,64 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- evaluationgate -->
 <g id="node2" class="node">
 <title>evaluationgate</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1067.12,-334 673.68,-334 673.68,-154 1067.12,-154 1067.12,-334"/>
-<text xml:space="preserve" text-anchor="start" x="820.39" y="-247" font-family="Arial" font-size="20.00" fill="#eff6ff">评测���禁</text>
-<text xml:space="preserve" text-anchor="start" x="713.68" y="-224" font-family="Arial" font-size="15.00" fill="#bfdbfe">本地发布策略门禁；src/services/evaluation&#45;gate.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1060.87,-334 667.43,-334 667.43,-154 1060.87,-154 1060.87,-334"/>
+<text xml:space="preserve" text-anchor="start" x="814.14" y="-247" font-family="Arial" font-size="20.00" fill="#eff6ff">评测���禁</text>
+<text xml:space="preserve" text-anchor="start" x="707.43" y="-224" font-family="Arial" font-size="15.00" fill="#bfdbfe">本地发布策略门禁；src/services/evaluation&#45;gate.js</text>
 </g>
 <!-- store -->
 <g id="node3" class="node">
 <title>store</title>
-<path fill="#3b82f6" stroke="#2563eb" stroke-width="2" d="M1743.53,-462.64C1743.53,-471.67 1671.81,-479 1583.51,-479 1495.21,-479 1423.49,-471.67 1423.49,-462.64 1423.49,-462.64 1423.49,-315.36 1423.49,-315.36 1423.49,-306.33 1495.21,-299 1583.51,-299 1671.81,-299 1743.53,-306.33 1743.53,-315.36 1743.53,-315.36 1743.53,-462.64 1743.53,-462.64"/>
-<path fill="none" stroke="#2563eb" stroke-width="2" d="M1743.53,-462.64C1743.53,-453.61 1671.81,-446.27 1583.51,-446.27 1495.21,-446.27 1423.49,-453.61 1423.49,-462.64"/>
-<text xml:space="preserve" text-anchor="start" x="1550.17" y="-392" font-family="Arial" font-size="20.00" fill="#eff6ff">本地存储</text>
-<text xml:space="preserve" text-anchor="start" x="1446.39" y="-369" font-family="Arial" font-size="15.00" fill="#bfdbfe">以 JSON 文件承载状态；src/domain/store.js</text>
+<path fill="#3b82f6" stroke="#2563eb" stroke-width="2" d="M1702.23,-462.64C1702.23,-471.67 1630.51,-479 1542.21,-479 1453.92,-479 1382.19,-471.67 1382.19,-462.64 1382.19,-462.64 1382.19,-315.36 1382.19,-315.36 1382.19,-306.33 1453.92,-299 1542.21,-299 1630.51,-299 1702.23,-306.33 1702.23,-315.36 1702.23,-315.36 1702.23,-462.64 1702.23,-462.64"/>
+<path fill="none" stroke="#2563eb" stroke-width="2" d="M1702.23,-462.64C1702.23,-453.61 1630.51,-446.27 1542.21,-446.27 1453.92,-446.27 1382.19,-453.61 1382.19,-462.64"/>
+<text xml:space="preserve" text-anchor="start" x="1508.87" y="-392" font-family="Arial" font-size="20.00" fill="#eff6ff">本地存储</text>
+<text xml:space="preserve" text-anchor="start" x="1405.1" y="-369" font-family="Arial" font-size="15.00" fill="#bfdbfe">以 JSON 文件承载状态；src/domain/store.js</text>
 </g>
 <!-- replypolicy -->
 <g id="node4" class="node">
 <title>replypolicy</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1824.38,-180 1342.64,-180 1342.64,0 1824.38,0 1824.38,-180"/>
-<text xml:space="preserve" text-anchor="start" x="1550.17" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">回复策略</text>
-<text xml:space="preserve" text-anchor="start" x="1382.64" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">自动回复的置信度与风险阈值；src/services/reply&#45;policy&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1783.08,-180 1301.34,-180 1301.34,0 1783.08,0 1783.08,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1508.87" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">回复策略</text>
+<text xml:space="preserve" text-anchor="start" x="1341.34" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">自动回复的置信度与风险阈值；src/services/reply&#45;policy&#45;service.js</text>
 </g>
 <!-- answerorchestrator&#45;&gt;evaluationgate -->
 <g id="edge1" class="edge">
 <title>answerorchestrator&#45;&gt;evaluationgate</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M461.59,-244C527.55,-244 599.04,-244 663.48,-244"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="663.23,-246.63 670.73,-244 663.23,-241.38 663.23,-246.63"/>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M461.57,-244C525.52,-244 594.56,-244 657.06,-244"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="656.91,-246.63 664.41,-244 656.91,-241.38 656.91,-246.63"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="524.75,-247 524.75,-279.8 548.75,-279.8 548.75,-247 524.75,-247"/>
 <text xml:space="preserve" text-anchor="start" x="532.86" y="-260.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">1</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="551.75,-247 551.75,-279.8 610.68,-279.8 610.68,-247 551.75,-247"/>
-<text xml:space="preserve" text-anchor="start" x="554.75" y="-257.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">evaluate</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="551.75,-247 551.75,-279.8 604.43,-279.8 604.43,-247 551.75,-247"/>
+<text xml:space="preserve" text-anchor="start" x="554.75" y="-257.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">执行评测</text>
 </g>
 <!-- evaluationgate&#45;&gt;store -->
 <g id="edge2" class="edge">
 <title>evaluationgate&#45;&gt;store</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1066.66,-283.81C1174.99,-305.9 1308.43,-333.11 1412.45,-354.32"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1411.9,-356.89 1419.78,-355.82 1412.95,-351.75 1411.9,-356.89"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1138.57,-328.18 1138.57,-360.98 1162.57,-360.98 1162.57,-328.18 1138.57,-328.18"/>
-<text xml:space="preserve" text-anchor="start" x="1146.68" y="-341.38" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1165.57,-328.18 1165.57,-360.98 1271.2,-360.98 1271.2,-328.18 1165.57,-328.18"/>
-<text xml:space="preserve" text-anchor="start" x="1168.57" y="-338.98" font-family="Arial" font-size="14.00" fill="#c9c9c9">read candidates</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1060.69,-285.94C1158.9,-307 1276.75,-332.28 1371.15,-352.53"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1370.53,-355.08 1378.42,-354.08 1371.64,-349.94 1370.53,-355.08"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1141.27,-323.85 1141.27,-356.65 1165.27,-356.65 1165.27,-323.85 1141.27,-323.85"/>
+<text xml:space="preserve" text-anchor="start" x="1149.38" y="-337.05" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1168.27,-323.85 1168.27,-356.65 1220.94,-356.65 1220.94,-323.85 1168.27,-323.85"/>
+<text xml:space="preserve" text-anchor="start" x="1171.27" y="-334.65" font-family="Arial" font-size="14.00" fill="#c9c9c9">读取候选</text>
 </g>
 <!-- evaluationgate&#45;&gt;store -->
 <g id="edge4" class="edge">
 <title>evaluationgate&#45;&gt;store</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1066.9,-217.93C1135.92,-214.21 1213.52,-216.32 1282.64,-233.2 1337.1,-246.5 1392.68,-271.58 1440.96,-297.79"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1439.4,-299.93 1447.23,-301.24 1441.93,-295.33 1439.4,-299.93"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1131.68,-236.2 1131.68,-269 1167.14,-269 1167.14,-236.2 1131.68,-236.2"/>
-<text xml:space="preserve" text-anchor="start" x="1139.68" y="-249.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3.2</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1170.14,-236.2 1170.14,-269 1278.08,-269 1278.08,-236.2 1170.14,-236.2"/>
-<text xml:space="preserve" text-anchor="start" x="1173.14" y="-247" font-family="Arial" font-size="14.00" fill="#c9c9c9">read policy state</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1060.55,-218.74C1119.35,-216.38 1183.58,-219.09 1241.34,-233.2 1295.8,-246.5 1351.38,-271.58 1399.66,-297.79"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1398.1,-299.93 1405.94,-301.24 1400.63,-295.33 1398.1,-299.93"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1123.87,-236.2 1123.87,-269 1159.33,-269 1159.33,-236.2 1123.87,-236.2"/>
+<text xml:space="preserve" text-anchor="start" x="1131.87" y="-249.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3.2</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1162.33,-236.2 1162.33,-269 1238.34,-269 1238.34,-236.2 1162.33,-236.2"/>
+<text xml:space="preserve" text-anchor="start" x="1165.33" y="-247" font-family="Arial" font-size="14.00" fill="#c9c9c9">读取策略状态</text>
 </g>
 <!-- evaluationgate&#45;&gt;replypolicy -->
 <g id="edge3" class="edge">
 <title>evaluationgate&#45;&gt;replypolicy</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1066.9,-167.35C1087.05,-160.94 1107.38,-155.06 1127.12,-150.2 1192.95,-133.99 1265.28,-121.9 1332.52,-112.99"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1332.74,-115.61 1339.84,-112.04 1332.06,-110.41 1332.74,-115.61"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1130.12,-153.2 1130.12,-186 1165.59,-186 1165.59,-153.2 1130.12,-153.2"/>
-<text xml:space="preserve" text-anchor="start" x="1138.12" y="-166.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3.1</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1168.59,-153.2 1168.59,-186 1279.64,-186 1279.64,-153.2 1168.59,-153.2"/>
-<text xml:space="preserve" text-anchor="start" x="1171.59" y="-164" font-family="Arial" font-size="14.00" fill="#c9c9c9">check thresholds</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1060.83,-170.24C1080.95,-163.95 1101.22,-158.12 1120.87,-153.2 1175.49,-139.53 1234.88,-128.4 1291.36,-119.5"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1291.5,-122.13 1298.51,-118.39 1290.7,-116.95 1291.5,-122.13"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1135.54,-156.2 1135.54,-189 1171,-189 1171,-156.2 1135.54,-156.2"/>
+<text xml:space="preserve" text-anchor="start" x="1143.54" y="-169.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3.1</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1174,-156.2 1174,-189 1226.68,-189 1226.68,-156.2 1174,-156.2"/>
+<text xml:space="preserve" text-anchor="start" x="1177" y="-167" font-family="Arial" font-size="14.00" fill="#c9c9c9">校验阈值</text>
 </g>
 </g>
 </svg>
@@ -3347,8 +3347,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="1825pt" height="790pt"
- viewBox="0.00 0.00 1825.00 790.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1760pt" height="790pt"
+ viewBox="0.00 0.00 1760.00 790.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 775.05)">
 <!-- answerorchestrator -->
 <g id="node1" class="node">
@@ -3360,24 +3360,24 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- handoffservice -->
 <g id="node2" class="node">
 <title>handoffservice</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1127.15,-325 696.23,-325 696.23,-145 1127.15,-145 1127.15,-325"/>
-<text xml:space="preserve" text-anchor="start" x="870.02" y="-238" font-family="Arial" font-size="20.00" fill="#eff6ff">转人工服务</text>
-<text xml:space="preserve" text-anchor="start" x="736.23" y="-215" font-family="Arial" font-size="15.00" fill="#bfdbfe">创建并跟踪人工转接工单；src/services/handoff&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1098.35,-325 667.43,-325 667.43,-145 1098.35,-145 1098.35,-325"/>
+<text xml:space="preserve" text-anchor="start" x="841.22" y="-238" font-family="Arial" font-size="20.00" fill="#eff6ff">转人工服务</text>
+<text xml:space="preserve" text-anchor="start" x="707.43" y="-215" font-family="Arial" font-size="15.00" fill="#bfdbfe">创建并跟踪人工转接工单；src/services/handoff&#45;service.js</text>
 </g>
 <!-- store -->
 <g id="node3" class="node">
 <title>store</title>
-<path fill="#3b82f6" stroke="#2563eb" stroke-width="2" d="M1748.21,-453.64C1748.21,-462.67 1676.49,-470 1588.19,-470 1499.9,-470 1428.17,-462.67 1428.17,-453.64 1428.17,-453.64 1428.17,-306.36 1428.17,-306.36 1428.17,-297.33 1499.9,-290 1588.19,-290 1676.49,-290 1748.21,-297.33 1748.21,-306.36 1748.21,-306.36 1748.21,-453.64 1748.21,-453.64"/>
-<path fill="none" stroke="#2563eb" stroke-width="2" d="M1748.21,-453.64C1748.21,-444.61 1676.49,-437.27 1588.19,-437.27 1499.9,-437.27 1428.17,-444.61 1428.17,-453.64"/>
-<text xml:space="preserve" text-anchor="start" x="1554.85" y="-383" font-family="Arial" font-size="20.00" fill="#eff6ff">本地存储</text>
-<text xml:space="preserve" text-anchor="start" x="1451.08" y="-360" font-family="Arial" font-size="15.00" fill="#bfdbfe">以 JSON 文件承载状态；src/domain/store.js</text>
+<path fill="#3b82f6" stroke="#2563eb" stroke-width="2" d="M1682.84,-453.64C1682.84,-462.67 1611.11,-470 1522.82,-470 1434.52,-470 1362.8,-462.67 1362.8,-453.64 1362.8,-453.64 1362.8,-306.36 1362.8,-306.36 1362.8,-297.33 1434.52,-290 1522.82,-290 1611.11,-290 1682.84,-297.33 1682.84,-306.36 1682.84,-306.36 1682.84,-453.64 1682.84,-453.64"/>
+<path fill="none" stroke="#2563eb" stroke-width="2" d="M1682.84,-453.64C1682.84,-444.61 1611.11,-437.27 1522.82,-437.27 1434.52,-437.27 1362.8,-444.61 1362.8,-453.64"/>
+<text xml:space="preserve" text-anchor="start" x="1489.48" y="-383" font-family="Arial" font-size="20.00" fill="#eff6ff">本地存储</text>
+<text xml:space="preserve" text-anchor="start" x="1385.7" y="-360" font-family="Arial" font-size="15.00" fill="#bfdbfe">以 JSON 文件承载状态；src/domain/store.js</text>
 </g>
 <!-- wechatplatform -->
 <g id="node4" class="node">
 <title>wechatplatform</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1795.31,-180 1381.08,-180 1381.08,0 1795.31,0 1795.31,-180"/>
-<text xml:space="preserve" text-anchor="start" x="1521.51" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">微信客服平台适配</text>
-<text xml:space="preserve" text-anchor="start" x="1421.08" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">企业微信会话操作；src/services/wechat&#45;kf&#45;platform.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1729.93,-180 1315.7,-180 1315.7,0 1729.93,0 1729.93,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1456.14" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">微信客服平台适配</text>
+<text xml:space="preserve" text-anchor="start" x="1355.7" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">企业微信会话操作；src/services/wechat&#45;kf&#45;platform.js</text>
 </g>
 <!-- operator -->
 <g id="node5" class="node">
@@ -3389,66 +3389,66 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- operatorui -->
 <g id="node6" class="node">
 <title>operatorui</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1081.16,-760 742.22,-760 742.22,-580 1081.16,-580 1081.16,-760"/>
-<text xml:space="preserve" text-anchor="start" x="838.88" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员 Console</text>
-<text xml:space="preserve" text-anchor="start" x="766.24" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1052.36,-760 713.42,-760 713.42,-580 1052.36,-580 1052.36,-760"/>
+<text xml:space="preserve" text-anchor="start" x="810.08" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员 Console</text>
+<text xml:space="preserve" text-anchor="start" x="737.44" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</text>
 </g>
 <!-- handoffroutes -->
 <g id="node7" class="node">
 <title>handoffroutes</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1775.33,-760 1401.06,-760 1401.06,-580 1775.33,-580 1775.33,-760"/>
-<text xml:space="preserve" text-anchor="start" x="1546.52" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">转人工路由</text>
-<text xml:space="preserve" text-anchor="start" x="1441.06" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">人工转接工单接口；src/routes/handoff&#45;routes.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1709.95,-760 1335.68,-760 1335.68,-580 1709.95,-580 1709.95,-760"/>
+<text xml:space="preserve" text-anchor="start" x="1481.14" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">转人工路由</text>
+<text xml:space="preserve" text-anchor="start" x="1375.68" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">人工转接工单接口；src/routes/handoff&#45;routes.js</text>
 </g>
 <!-- answerorchestrator&#45;&gt;handoffservice -->
 <g id="edge1" class="edge">
 <title>answerorchestrator&#45;&gt;handoffservice</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M461.69,-235C534.15,-235 614.08,-235 686.16,-235"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="685.75,-237.63 693.25,-235 685.75,-232.38 685.75,-237.63"/>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M461.5,-235C525.01,-235 593.85,-235 657.08,-235"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="657.06,-237.63 664.56,-235 657.06,-232.38 657.06,-237.63"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="524.75,-238 524.75,-270.8 548.75,-270.8 548.75,-238 524.75,-238"/>
 <text xml:space="preserve" text-anchor="start" x="532.86" y="-251.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">1</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="551.75,-238 551.75,-270.8 633.23,-270.8 633.23,-238 551.75,-238"/>
-<text xml:space="preserve" text-anchor="start" x="554.75" y="-248.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">create ticket</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="551.75,-238 551.75,-270.8 604.43,-270.8 604.43,-238 551.75,-238"/>
+<text xml:space="preserve" text-anchor="start" x="554.75" y="-248.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">创建工单</text>
 </g>
 <!-- handoffservice&#45;&gt;store -->
 <g id="edge2" class="edge">
 <title>handoffservice&#45;&gt;store</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1127.03,-281.08C1220.73,-301.22 1329.09,-324.51 1417.11,-343.44"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1416.35,-345.96 1424.23,-344.97 1417.45,-340.82 1416.35,-345.96"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1198.72,-323.49 1198.72,-356.29 1222.72,-356.29 1222.72,-323.49 1198.72,-323.49"/>
-<text xml:space="preserve" text-anchor="start" x="1206.82" y="-336.69" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1225.72,-323.49 1225.72,-356.29 1309.52,-356.29 1309.52,-323.49 1225.72,-323.49"/>
-<text xml:space="preserve" text-anchor="start" x="1228.72" y="-334.29" font-family="Arial" font-size="14.00" fill="#c9c9c9">persist ticket</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1098.09,-283.69C1180.79,-302.48 1274.06,-323.68 1351.99,-341.4"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1351.06,-343.88 1358.96,-342.98 1352.23,-338.76 1351.06,-343.88"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1161.35,-319.18 1161.35,-351.98 1185.35,-351.98 1185.35,-319.18 1161.35,-319.18"/>
+<text xml:space="preserve" text-anchor="start" x="1169.46" y="-332.38" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1188.35,-319.18 1188.35,-351.98 1252.7,-351.98 1252.7,-319.18 1188.35,-319.18"/>
+<text xml:space="preserve" text-anchor="start" x="1191.35" y="-329.98" font-family="Arial" font-size="14.00" fill="#c9c9c9">持久化工单</text>
 </g>
 <!-- handoffservice&#45;&gt;wechatplatform -->
 <g id="edge3" class="edge">
 <title>handoffservice&#45;&gt;wechatplatform</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1127.03,-188.92C1205,-172.16 1293.11,-153.22 1371.21,-136.43"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1371.44,-139.07 1378.22,-134.92 1370.34,-133.93 1371.44,-139.07"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1190.15,-178.49 1190.15,-211.29 1214.15,-211.29 1214.15,-178.49 1190.15,-178.49"/>
-<text xml:space="preserve" text-anchor="start" x="1198.26" y="-191.69" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1217.15,-178.49 1217.15,-211.29 1318.08,-211.29 1318.08,-178.49 1217.15,-178.49"/>
-<text xml:space="preserve" text-anchor="start" x="1220.15" y="-189.29" font-family="Arial" font-size="14.00" fill="#c9c9c9">notify customer</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1098.09,-186.31C1164.88,-171.13 1238.56,-154.38 1305.5,-139.17"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1306.07,-141.73 1312.8,-137.51 1304.91,-136.61 1306.07,-141.73"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1167.19,-174.18 1167.19,-206.98 1191.19,-206.98 1191.19,-174.18 1167.19,-174.18"/>
+<text xml:space="preserve" text-anchor="start" x="1175.3" y="-187.38" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1194.19,-174.18 1194.19,-206.98 1246.86,-206.98 1246.86,-174.18 1194.19,-174.18"/>
+<text xml:space="preserve" text-anchor="start" x="1197.19" y="-184.98" font-family="Arial" font-size="14.00" fill="#c9c9c9">通知客户</text>
 </g>
 <!-- operator&#45;&gt;operatorui -->
 <g id="edge4" class="edge">
 <title>operator&#45;&gt;operatorui</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M390.6,-670C492.79,-670 625.83,-670 731.77,-670"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="731.73,-672.63 739.23,-670 731.73,-667.38 731.73,-672.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="525.14,-673 525.14,-705.8 549.14,-705.8 549.14,-673 525.14,-673"/>
-<text xml:space="preserve" text-anchor="start" x="533.24" y="-686.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="552.14,-673 552.14,-705.8 632.85,-705.8 632.85,-673 552.14,-673"/>
-<text xml:space="preserve" text-anchor="start" x="555.14" y="-683.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">opens ticket</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M390.89,-670C485.36,-670 605.41,-670 703.16,-670"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="702.92,-672.63 710.42,-670 702.92,-667.38 702.92,-672.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="524.75,-673 524.75,-705.8 548.75,-705.8 548.75,-673 524.75,-673"/>
+<text xml:space="preserve" text-anchor="start" x="532.86" y="-686.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="551.75,-673 551.75,-705.8 604.43,-705.8 604.43,-673 551.75,-673"/>
+<text xml:space="preserve" text-anchor="start" x="554.75" y="-683.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">打开工单</text>
 </g>
 <!-- operatorui&#45;&gt;handoffroutes -->
 <g id="edge5" class="edge">
 <title>operatorui&#45;&gt;handoffroutes</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1081.16,-670C1175.18,-670 1292.8,-670 1390.97,-670"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1390.79,-672.63 1398.29,-670 1390.79,-667.38 1390.79,-672.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1203,-673 1203,-705.8 1227,-705.8 1227,-673 1203,-673"/>
-<text xml:space="preserve" text-anchor="start" x="1211.11" y="-686.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1230,-673 1230,-705.8 1305.23,-705.8 1305.23,-673 1230,-673"/>
-<text xml:space="preserve" text-anchor="start" x="1233" y="-683.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">claim ticket</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1052.33,-670C1136.22,-670 1238.13,-670 1325.54,-670"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1325.32,-672.63 1332.82,-670 1325.32,-667.38 1325.32,-672.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1167.19,-673 1167.19,-705.8 1191.19,-705.8 1191.19,-673 1167.19,-673"/>
+<text xml:space="preserve" text-anchor="start" x="1175.3" y="-686.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1194.19,-673 1194.19,-705.8 1246.86,-705.8 1246.86,-673 1194.19,-673"/>
+<text xml:space="preserve" text-anchor="start" x="1197.19" y="-683.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">认领工单</text>
 </g>
 </g>
 </svg>
@@ -3458,8 +3458,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="3773pt" height="790pt"
- viewBox="0.00 0.00 3773.00 790.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="3607pt" height="790pt"
+ viewBox="0.00 0.00 3607.00 790.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 775.05)">
 <!-- operator -->
 <g id="node1" class="node">
@@ -3471,140 +3471,140 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- operatorui -->
 <g id="node2" class="node">
 <title>operatorui</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="897.34,-615 558.4,-615 558.4,-435 897.34,-435 897.34,-615"/>
-<text xml:space="preserve" text-anchor="start" x="655.06" y="-528" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员 Console</text>
-<text xml:space="preserve" text-anchor="start" x="582.41" y="-505" font-family="Arial" font-size="15.00" fill="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="864.66,-615 525.72,-615 525.72,-435 864.66,-435 864.66,-615"/>
+<text xml:space="preserve" text-anchor="start" x="622.38" y="-528" font-family="Arial" font-size="20.00" fill="#eff6ff">运营人员 Console</text>
+<text xml:space="preserve" text-anchor="start" x="549.73" y="-505" font-family="Arial" font-size="15.00" fill="#bfdbfe">运营人员使用的单页控制台；src/ui/operator.html</text>
 </g>
 <!-- knowledgeroutes -->
 <g id="node3" class="node">
 <title>knowledgeroutes</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1606.67,-615 1135.71,-615 1135.71,-435 1606.67,-435 1606.67,-615"/>
-<text xml:space="preserve" text-anchor="start" x="1329.52" y="-528" font-family="Arial" font-size="20.00" fill="#eff6ff">知识库路由</text>
-<text xml:space="preserve" text-anchor="start" x="1175.71" y="-505" font-family="Arial" font-size="15.00" fill="#bfdbfe">知识扫描、同步与生命周期接口；src/routes/knowledge&#45;routes.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1541.29,-615 1070.33,-615 1070.33,-435 1541.29,-435 1541.29,-615"/>
+<text xml:space="preserve" text-anchor="start" x="1264.14" y="-528" font-family="Arial" font-size="20.00" fill="#eff6ff">知识库路由</text>
+<text xml:space="preserve" text-anchor="start" x="1110.33" y="-505" font-family="Arial" font-size="15.00" fill="#bfdbfe">知识扫描、同步与生命周期接口；src/routes/knowledge&#45;routes.js</text>
 </g>
 <!-- knowledgescan -->
 <g id="node4" class="node">
 <title>knowledgescan</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2293.62,-760 1866.85,-760 1866.85,-580 2293.62,-580 2293.62,-760"/>
-<text xml:space="preserve" text-anchor="start" x="2046.89" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">知识扫描</text>
-<text xml:space="preserve" text-anchor="start" x="1906.85" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">发现候选知识；src/services/knowledge&#45;scan&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2197.07,-760 1770.31,-760 1770.31,-580 2197.07,-580 2197.07,-760"/>
+<text xml:space="preserve" text-anchor="start" x="1950.35" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">知识扫描</text>
+<text xml:space="preserve" text-anchor="start" x="1810.31" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">发现候选知识；src/services/knowledge&#45;scan&#45;service.js</text>
 </g>
 <!-- governance -->
 <g id="node5" class="node">
 <title>governance</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3058.44,-760 2572.46,-760 2572.46,-580 3058.44,-580 3058.44,-760"/>
-<text xml:space="preserve" text-anchor="start" x="2782.11" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">知识治理</text>
-<text xml:space="preserve" text-anchor="start" x="2612.46" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">发布决策与治理；src/services/knowledge&#45;governance&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2954.07,-760 2468.1,-760 2468.1,-580 2954.07,-580 2954.07,-760"/>
+<text xml:space="preserve" text-anchor="start" x="2677.75" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">知识治理</text>
+<text xml:space="preserve" text-anchor="start" x="2508.1" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">发布决策与治理；src/services/knowledge&#45;governance&#45;service.js</text>
 </g>
 <!-- evaluationgate -->
 <g id="node6" class="node">
 <title>evaluationgate</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3742.41,-760 3348.97,-760 3348.97,-580 3742.41,-580 3742.41,-760"/>
-<text xml:space="preserve" text-anchor="start" x="3495.68" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">评测���禁</text>
-<text xml:space="preserve" text-anchor="start" x="3388.97" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">本地发布策略门禁；src/services/evaluation&#45;gate.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3576.53,-760 3183.09,-760 3183.09,-580 3576.53,-580 3576.53,-760"/>
+<text xml:space="preserve" text-anchor="start" x="3329.8" y="-673" font-family="Arial" font-size="20.00" fill="#eff6ff">评测���禁</text>
+<text xml:space="preserve" text-anchor="start" x="3223.09" y="-650" font-family="Arial" font-size="15.00" fill="#bfdbfe">本地发布策略门禁；src/services/evaluation&#45;gate.js</text>
 </g>
 <!-- knowledgesync -->
 <g id="node7" class="node">
 <title>knowledgesync</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2287.78,-470 1872.69,-470 1872.69,-290 2287.78,-290 2287.78,-470"/>
-<text xml:space="preserve" text-anchor="start" x="2046.89" y="-392" font-family="Arial" font-size="20.00" fill="#eff6ff">知识同步</text>
-<text xml:space="preserve" text-anchor="start" x="2023.97" y="-369" font-family="Arial" font-size="15.00" fill="#bfdbfe">把已批准知识推送到</text>
-<text xml:space="preserve" text-anchor="start" x="1912.69" y="-351" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow；src/services/knowledge&#45;sync&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2191.23,-470 1776.15,-470 1776.15,-290 2191.23,-290 2191.23,-470"/>
+<text xml:space="preserve" text-anchor="start" x="1950.35" y="-392" font-family="Arial" font-size="20.00" fill="#eff6ff">知识同步</text>
+<text xml:space="preserve" text-anchor="start" x="1927.43" y="-369" font-family="Arial" font-size="15.00" fill="#bfdbfe">把已批准知识推送到</text>
+<text xml:space="preserve" text-anchor="start" x="1816.15" y="-351" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow；src/services/knowledge&#45;sync&#45;service.js</text>
 </g>
 <!-- llmwiki -->
 <g id="node8" class="node">
 <title>llmwiki</title>
-<polygon fill="#64748b" stroke="#475569" stroke-width="0" points="2975.47,-470 2655.43,-470 2655.43,-290 2975.47,-290 2975.47,-470"/>
-<text xml:space="preserve" text-anchor="start" x="2746.55" y="-383" font-family="Arial" font-size="20.00" fill="#f8fafc">LLM Wiki 候选源</text>
-<text xml:space="preserve" text-anchor="start" x="2738.35" y="-360" font-family="Arial" font-size="15.00" fill="#cbd5e1">LLM 生成的 wiki 候选来源</text>
+<polygon fill="#64748b" stroke="#475569" stroke-width="0" points="2871.11,-470 2551.07,-470 2551.07,-290 2871.11,-290 2871.11,-470"/>
+<text xml:space="preserve" text-anchor="start" x="2642.19" y="-383" font-family="Arial" font-size="20.00" fill="#f8fafc">LLM Wiki 候选源</text>
+<text xml:space="preserve" text-anchor="start" x="2633.99" y="-360" font-family="Arial" font-size="15.00" fill="#cbd5e1">LLM 生成的 wiki 候选来源</text>
 </g>
 <!-- ragflowknowledge -->
 <g id="node9" class="node">
 <title>ragflowknowledge</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3049.67,-180 2581.23,-180 2581.23,0 3049.67,0 3049.67,-180"/>
-<text xml:space="preserve" text-anchor="start" x="2708.77" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
-<text xml:space="preserve" text-anchor="start" x="2783.36" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
-<text xml:space="preserve" text-anchor="start" x="2621.23" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2945.31,-180 2476.87,-180 2476.87,0 2945.31,0 2945.31,-180"/>
+<text xml:space="preserve" text-anchor="start" x="2604.4" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="2679" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="2516.87" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>
 <!-- operator&#45;&gt;operatorui -->
 <g id="edge1" class="edge">
 <title>operator&#45;&gt;operatorui</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M319.77,-525C390.96,-525 475.23,-525 548.58,-525"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="548.33,-527.63 555.83,-525 548.33,-522.38 548.33,-527.63"/>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M319.9,-525C381.39,-525 452.07,-525 515.33,-525"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="515.29,-527.63 522.79,-525 515.29,-522.38 515.29,-527.63"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="383.04,-528 383.04,-560.8 407.04,-560.8 407.04,-528 383.04,-528"/>
 <text xml:space="preserve" text-anchor="start" x="391.15" y="-541.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">1</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="410.04,-528 410.04,-560.8 495.4,-560.8 495.4,-528 410.04,-528"/>
-<text xml:space="preserve" text-anchor="start" x="413.04" y="-538.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">triggers sync</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="410.04,-528 410.04,-560.8 462.72,-560.8 462.72,-528 410.04,-528"/>
+<text xml:space="preserve" text-anchor="start" x="413.04" y="-538.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">触发同步</text>
 </g>
 <!-- operatorui&#45;&gt;knowledgeroutes -->
 <g id="edge2" class="edge">
 <title>operatorui&#45;&gt;knowledgeroutes</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M896.95,-525C966.83,-525 1049.32,-525 1125.69,-525"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1125.41,-527.63 1132.91,-525 1125.41,-522.38 1125.41,-527.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="960.34,-528 960.34,-560.8 984.34,-560.8 984.34,-528 960.34,-528"/>
-<text xml:space="preserve" text-anchor="start" x="968.45" y="-541.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="987.34,-528 987.34,-560.8 1072.71,-560.8 1072.71,-528 987.34,-528"/>
-<text xml:space="preserve" text-anchor="start" x="990.34" y="-538.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">request sync</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M864.51,-525C924.96,-525 994.42,-525 1060.03,-525"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1060,-527.63 1067.5,-525 1060,-522.38 1060,-527.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="927.66,-528 927.66,-560.8 951.66,-560.8 951.66,-528 927.66,-528"/>
+<text xml:space="preserve" text-anchor="start" x="935.77" y="-541.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="954.66,-528 954.66,-560.8 1007.33,-560.8 1007.33,-528 954.66,-528"/>
+<text xml:space="preserve" text-anchor="start" x="957.66" y="-538.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">请求同步</text>
 </g>
 <!-- knowledgeroutes&#45;&gt;knowledgescan -->
 <g id="edge3" class="edge">
 <title>knowledgeroutes&#45;&gt;knowledgescan</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1606.65,-573.08C1687.21,-589.6 1777.12,-608.04 1856.71,-624.37"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1856.03,-626.9 1863.9,-625.84 1857.08,-621.76 1856.03,-626.9"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1669.67,-613.49 1669.67,-646.29 1693.67,-646.29 1693.67,-613.49 1669.67,-613.49"/>
-<text xml:space="preserve" text-anchor="start" x="1677.78" y="-626.69" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1696.67,-613.49 1696.67,-646.29 1803.85,-646.29 1803.85,-613.49 1696.67,-613.49"/>
-<text xml:space="preserve" text-anchor="start" x="1699.67" y="-624.29" font-family="Arial" font-size="14.00" fill="#c9c9c9">scan candidates</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1540.83,-575.21C1612.05,-590.48 1690.09,-607.23 1760.5,-622.33"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1759.54,-624.81 1767.42,-623.82 1760.64,-619.68 1759.54,-624.81"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1610.13,-613.49 1610.13,-646.29 1634.13,-646.29 1634.13,-613.49 1610.13,-613.49"/>
+<text xml:space="preserve" text-anchor="start" x="1618.24" y="-626.69" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1637.13,-613.49 1637.13,-646.29 1701.47,-646.29 1701.47,-613.49 1637.13,-613.49"/>
+<text xml:space="preserve" text-anchor="start" x="1640.13" y="-624.29" font-family="Arial" font-size="14.00" fill="#c9c9c9">扫描候选项</text>
 </g>
 <!-- knowledgeroutes&#45;&gt;knowledgesync -->
 <g id="edge6" class="edge">
 <title>knowledgeroutes&#45;&gt;knowledgesync</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1606.65,-476.92C1689.31,-459.97 1781.81,-441 1862.9,-424.37"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1862.95,-427.04 1869.77,-422.96 1861.89,-421.89 1862.95,-427.04"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1673.95,-464.18 1673.95,-496.98 1697.95,-496.98 1697.95,-464.18 1673.95,-464.18"/>
-<text xml:space="preserve" text-anchor="start" x="1682.06" y="-477.38" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1700.95,-464.18 1700.95,-496.98 1799.58,-496.98 1799.58,-464.18 1700.95,-464.18"/>
-<text xml:space="preserve" text-anchor="start" x="1703.95" y="-474.98" font-family="Arial" font-size="14.00" fill="#c9c9c9">push approved</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1540.83,-474.79C1613.96,-459.11 1694.28,-441.87 1766.16,-426.45"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1766.5,-429.07 1773.28,-424.93 1765.4,-423.93 1766.5,-429.07"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1604.29,-464.18 1604.29,-496.98 1628.29,-496.98 1628.29,-464.18 1604.29,-464.18"/>
+<text xml:space="preserve" text-anchor="start" x="1612.4" y="-477.38" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1631.29,-464.18 1631.29,-496.98 1707.31,-496.98 1707.31,-464.18 1631.29,-464.18"/>
+<text xml:space="preserve" text-anchor="start" x="1634.29" y="-474.98" font-family="Arial" font-size="14.00" fill="#c9c9c9">推送已批准项</text>
 </g>
 <!-- knowledgescan&#45;&gt;governance -->
 <g id="edge4" class="edge">
 <title>knowledgescan&#45;&gt;governance</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2293.31,-670C2377.32,-670 2474.59,-670 2562.17,-670"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2562,-672.63 2569.5,-670 2562,-667.38 2562,-672.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2358.18,-673 2358.18,-705.8 2382.18,-705.8 2382.18,-673 2358.18,-673"/>
-<text xml:space="preserve" text-anchor="start" x="2366.29" y="-686.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2385.18,-673 2385.18,-705.8 2507.9,-705.8 2507.9,-673 2385.18,-673"/>
-<text xml:space="preserve" text-anchor="start" x="2388.18" y="-683.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">submit for decision</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2196.94,-670C2278.71,-670 2372.87,-670 2458.03,-670"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2457.84,-672.63 2465.34,-670 2457.84,-667.38 2457.84,-672.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2260.07,-673 2260.07,-705.8 2284.07,-705.8 2284.07,-673 2260.07,-673"/>
+<text xml:space="preserve" text-anchor="start" x="2268.18" y="-686.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2287.07,-673 2287.07,-705.8 2405.1,-705.8 2405.1,-673 2287.07,-673"/>
+<text xml:space="preserve" text-anchor="start" x="2290.07" y="-683.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">submit for 决策结果</text>
 </g>
 <!-- governance&#45;&gt;evaluationgate -->
 <g id="edge5" class="edge">
 <title>governance&#45;&gt;evaluationgate</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M3058.44,-670C3149.31,-670 3251.66,-670 3338.94,-670"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3338.71,-672.63 3346.21,-670 3338.71,-667.38 3338.71,-672.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3121.44,-673 3121.44,-705.8 3145.44,-705.8 3145.44,-673 3121.44,-673"/>
-<text xml:space="preserve" text-anchor="start" x="3129.55" y="-686.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3148.44,-673 3148.44,-705.8 3285.97,-705.8 3285.97,-673 3148.44,-673"/>
-<text xml:space="preserve" text-anchor="start" x="3151.44" y="-683.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">apply publication rule</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2953.73,-670C3025.66,-670 3103.76,-670 3173.17,-670"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="3172.81,-672.63 3180.31,-670 3172.81,-667.38 3172.81,-672.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3017.07,-673 3017.07,-705.8 3041.07,-705.8 3041.07,-673 3017.07,-673"/>
+<text xml:space="preserve" text-anchor="start" x="3025.18" y="-686.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3044.07,-673 3044.07,-705.8 3120.09,-705.8 3120.09,-673 3044.07,-673"/>
+<text xml:space="preserve" text-anchor="start" x="3047.07" y="-683.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">应用发布规则</text>
 </g>
 <!-- knowledgesync&#45;&gt;llmwiki -->
 <g id="edge7" class="edge">
 <title>knowledgesync&#45;&gt;llmwiki</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2287.43,-380C2400.47,-380 2538.87,-380 2645.47,-380"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2645.16,-382.63 2652.66,-380 2645.16,-377.38 2645.16,-382.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2356.62,-383 2356.62,-415.8 2380.62,-415.8 2380.62,-383 2356.62,-383"/>
-<text xml:space="preserve" text-anchor="start" x="2364.72" y="-396.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">7</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2383.62,-383 2383.62,-415.8 2509.46,-415.8 2509.46,-383 2383.62,-383"/>
-<text xml:space="preserve" text-anchor="start" x="2386.62" y="-393.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">read candidate wiki</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2191.1,-380C2301.76,-380 2436.4,-380 2540.82,-380"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2540.62,-382.63 2548.12,-380 2540.62,-377.38 2540.62,-382.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2279.14,-383 2279.14,-415.8 2303.14,-415.8 2303.14,-383 2279.14,-383"/>
+<text xml:space="preserve" text-anchor="start" x="2287.24" y="-396.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">7</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2306.14,-383 2306.14,-415.8 2386.03,-415.8 2386.03,-383 2306.14,-383"/>
+<text xml:space="preserve" text-anchor="start" x="2309.14" y="-393.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">读取候选 wiki</text>
 </g>
 <!-- knowledgesync&#45;&gt;ragflowknowledge -->
 <g id="edge8" class="edge">
 <title>knowledgesync&#45;&gt;ragflowknowledge</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2287.43,-298.45C2377.62,-262.77 2483.95,-220.72 2577.39,-183.76"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2578.15,-186.28 2584.16,-181.08 2576.22,-181.4 2578.15,-186.28"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2376.85,-272.5 2376.85,-305.3 2400.85,-305.3 2400.85,-272.5 2376.85,-272.5"/>
-<text xml:space="preserve" text-anchor="start" x="2384.96" y="-285.7" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">8</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2403.85,-272.5 2403.85,-305.3 2489.23,-305.3 2489.23,-272.5 2403.85,-272.5"/>
-<text xml:space="preserve" text-anchor="start" x="2406.85" y="-283.3" font-family="Arial" font-size="14.00" fill="#c9c9c9">write dataset</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2191.1,-297.48C2279.79,-262.02 2383.89,-220.41 2475.49,-183.79"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2476.36,-186.27 2482.35,-181.04 2474.41,-181.39 2476.36,-186.27"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2286.91,-272.5 2286.91,-305.3 2310.91,-305.3 2310.91,-272.5 2286.91,-272.5"/>
+<text xml:space="preserve" text-anchor="start" x="2295.02" y="-285.7" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">8</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2313.91,-272.5 2313.91,-305.3 2378.26,-305.3 2378.26,-272.5 2313.91,-272.5"/>
+<text xml:space="preserve" text-anchor="start" x="2316.91" y="-283.3" font-family="Arial" font-size="14.00" fill="#c9c9c9">写入数据集</text>
 </g>
 </g>
 </svg>
@@ -3614,8 +3614,8 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="1227pt" height="359pt"
- viewBox="0.00 0.00 1227.00 359.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1166pt" height="359pt"
+ viewBox="0.00 0.00 1166.00 359.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 343.85)">
 <!-- answerorchestrator -->
 <g id="node1" class="node">
@@ -3627,30 +3627,30 @@ var e=e=>{switch(e){case`localDeployment`:return`digraph {
 <!-- ragflowknowledge -->
 <g id="node2" class="node">
 <title>ragflowknowledge</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1196.56,-180 728.12,-180 728.12,0 1196.56,0 1196.56,-180"/>
-<text xml:space="preserve" text-anchor="start" x="855.66" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
-<text xml:space="preserve" text-anchor="start" x="930.26" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
-<text xml:space="preserve" text-anchor="start" x="768.12" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1135.87,-180 667.43,-180 667.43,0 1135.87,0 1135.87,-180"/>
+<text xml:space="preserve" text-anchor="start" x="794.96" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow 知识库 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="869.56" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="707.43" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问；src/services/ragflow&#45;knowledge&#45;service.js</text>
 </g>
 <!-- answerorchestrator&#45;&gt;ragflowknowledge -->
 <g id="edge1" class="edge">
 <title>answerorchestrator&#45;&gt;ragflowknowledge</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M461.68,-90C543.27,-90 635.33,-90 718.01,-90"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="717.78,-92.63 725.28,-90 717.78,-87.38 717.78,-92.63"/>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M461.56,-90C524.71,-90 593.39,-90 657.28,-90"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="656.97,-92.63 664.47,-90 656.97,-87.38 656.97,-92.63"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="524.75,-93 524.75,-125.8 548.75,-125.8 548.75,-93 524.75,-93"/>
 <text xml:space="preserve" text-anchor="start" x="532.86" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">1</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="551.75,-93 551.75,-125.8 665.12,-125.8 665.12,-93 551.75,-93"/>
-<text xml:space="preserve" text-anchor="start" x="554.75" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">attempts retrieval</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="551.75,-93 551.75,-125.8 604.43,-125.8 604.43,-93 551.75,-93"/>
+<text xml:space="preserve" text-anchor="start" x="554.75" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">尝试检索</text>
 </g>
 <!-- ragflowknowledge&#45;&gt;ragflowknowledge -->
 <g id="edge2" class="edge">
 <title>ragflowknowledge&#45;&gt;ragflowknowledge</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M898.46,-179.98C882.75,-236.28 904.04,-290 962.34,-290 1017.12,-290 1039.23,-242.58 1028.68,-190.17"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1031.24,-189.6 1026.94,-182.93 1026.14,-190.83 1031.24,-189.6"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="887.87,-293 887.87,-325.8 911.87,-325.8 911.87,-293 887.87,-293"/>
-<text xml:space="preserve" text-anchor="start" x="895.97" y="-306.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="914.87,-293 914.87,-325.8 1036.82,-325.8 1036.82,-293 914.87,-293"/>
-<text xml:space="preserve" text-anchor="start" x="917.87" y="-303.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">checks config gate</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M843.04,-179.98C828.62,-236.28 848.16,-290 901.65,-290 951.9,-290 972.18,-242.58 962.5,-190.17"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="965.09,-189.7 960.91,-182.94 959.96,-190.83 965.09,-189.7"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="850.14,-293 850.14,-325.8 874.14,-325.8 874.14,-293 850.14,-293"/>
+<text xml:space="preserve" text-anchor="start" x="858.25" y="-306.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="877.14,-293 877.14,-325.8 953.16,-325.8 953.16,-293 877.14,-293"/>
+<text xml:space="preserve" text-anchor="start" x="880.14" y="-303.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">检查配置门控</text>
 </g>
 </g>
 </svg>

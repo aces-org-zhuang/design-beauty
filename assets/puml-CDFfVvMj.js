@@ -89,7 +89,7 @@ skinparam {
 
 @enduml
 `;case`index`:return`@startuml
-title "Beauty Customer Service — Overview"
+title "美妆客服服务 · 总览"
 top to bottom direction
 
 hide stereotype
@@ -148,7 +148,7 @@ Beauty .[#8D8D8D,thickness=2].> LlmWiki : <color:#8D8D8D>reads candidate wiki
 WechatWork .[#8D8D8D,thickness=2].> Beauty : <color:#8D8D8D>回调加密报文
 @enduml
 `;case`context`:return`@startuml
-title "System Context"
+title "系统上下文"
 top to bottom direction
 
 hide stereotype
@@ -207,7 +207,7 @@ Beauty .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>[...]
 Beauty .[#8D8D8D,thickness=2].> LlmWiki : <color:#8D8D8D>reads candidate wiki
 @enduml
 `;case`container`:return`@startuml
-title "Containers and Integrations"
+title "容器与集成"
 top to bottom direction
 
 hide stereotype
@@ -333,7 +333,7 @@ WechatWork .[#8D8D8D,thickness=2].> BeautyWechatCallback : <color:#8D8D8D>回调
 BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>queries datasets
 @enduml
 `;case`answerPath`:return`@startuml
-title "Answer Path"
+title "应答链路"
 top to bottom direction
 
 hide stereotype
@@ -436,7 +436,7 @@ WechatWork .[#8D8D8D,thickness=2].> BeautyWechatCallback : <color:#8D8D8D>回调
 BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>queries datasets
 @enduml
 `;case`knowledgeLifecycle`:return`@startuml
-title "Knowledge Lifecycle"
+title "知识生命周期视图"
 top to bottom direction
 
 hide stereotype
@@ -564,7 +564,7 @@ BeautyRagflowLifecycleProbe .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>in
 BeautyKnowledgeSync .[#8D8D8D,thickness=2].> LlmWiki : <color:#8D8D8D>reads candidate wiki
 @enduml
 `;case`operatorSurface`:return`@startuml
-title "Operator Surface"
+title "运营台依赖面"
 top to bottom direction
 
 hide stereotype
@@ -633,7 +633,7 @@ BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyKnowledgeRoutes : <color:#8D8D8D
 BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyIntegrationRoutes : <color:#8D8D8D>查看状态
 @enduml
 `;case`chatToAnswer`:return`@startuml
-title "Customer Message to Answer"
+title "客户提问到应答"
 left to right direction
 
 hide stereotype
@@ -702,19 +702,19 @@ component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/ser
 component "==微信客服平台适配\\n\\n企业微信会话操作；src/services/wechat-kf-platform.js" <<BeautyWechatPlatform>> as BeautyWechatPlatform
 rectangle "==企业微信\\n\\n企业微信客服平台" <<WechatWork>> as WechatWork
 
-Customer .[#8D8D8D,thickness=2].> BeautyFakeWechat : <color:#8D8D8D>asks a beauty question
-BeautyFakeWechat .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>forwards message
+Customer .[#8D8D8D,thickness=2].> BeautyFakeWechat : <color:#8D8D8D>提出美妆咨询
+BeautyFakeWechat .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>转发消息
 BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyAnswerLoop : <color:#8D8D8D>requests answer
-BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>retrieves candidates
+BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>检索候选知识
 BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>queries dataset
-Ragflow .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>returns passages
-BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyReplyPolicy : <color:#8D8D8D>checks confidence
-BeautyReplyPolicy .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>auto-reply allowed
-BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>sends reply
-BeautyWechatPlatform .[#8D8D8D,thickness=2].> WechatWork : <color:#8D8D8D>posts message
+Ragflow .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>返回知识片段
+BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyReplyPolicy : <color:#8D8D8D>评估置信度
+BeautyReplyPolicy .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>允许自动回复
+BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>发送回复
+BeautyWechatPlatform .[#8D8D8D,thickness=2].> WechatWork : <color:#8D8D8D>发送消息
 @enduml
 `;case`retrievalSequence`:return`@startuml
-title "Answer Retrieval Sequence"
+title "应答检索时序"
 left to right direction
 
 hide stereotype
@@ -777,18 +777,18 @@ component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访�
 rectangle "==RAGFlow 知识库\\n\\nRAG 与知识库服务" <<Ragflow>> as Ragflow
 component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
 
-Customer .[#8D8D8D,thickness=2].> BeautyWechatCallback : <color:#8D8D8D>sends question
-BeautyWechatCallback .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>decrypts
-BeautyWechatPlatform .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>normalized message
-BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyAnswerLoop : <color:#8D8D8D>asks for answer
-BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>retrieve
-BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>query
-BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> BeautyAnswerLoop : <color:#8D8D8D>passages
-BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyReplyPolicy : <color:#8D8D8D>confidence
-BeautyReplyPolicy .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>decision
+Customer .[#8D8D8D,thickness=2].> BeautyWechatCallback : <color:#8D8D8D>发送问题
+BeautyWechatCallback .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>解密
+BeautyWechatPlatform .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>归一化消息
+BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyAnswerLoop : <color:#8D8D8D>请求应答
+BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>发起检索
+BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> Ragflow : <color:#8D8D8D>查询知识库
+BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> BeautyAnswerLoop : <color:#8D8D8D>返回知识片段
+BeautyAnswerLoop .[#8D8D8D,thickness=2].> BeautyReplyPolicy : <color:#8D8D8D>置信度
+BeautyReplyPolicy .[#8D8D8D,thickness=2].> BeautyAnswerOrchestrator : <color:#8D8D8D>决策结果
 @enduml
 `;case`evaluationSequence`:return`@startuml
-title "Policy Evaluation Reads"
+title "策略评估读取时序"
 left to right direction
 
 hide stereotype
@@ -827,13 +827,13 @@ component "==评测���禁\\n\\n本地发布策略门禁；src/services/eva
 database "==本地存储\\n\\n以 JSON 文件承载状态；src/domain/store.js" <<BeautyStore>> as BeautyStore
 component "==回复策略\\n\\n自动回复的置信度与风险阈值；src/services/reply-policy-service.js" <<BeautyReplyPolicy>> as BeautyReplyPolicy
 
-BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyEvaluationGate : <color:#8D8D8D>evaluate
-BeautyEvaluationGate .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>read candidates
-BeautyEvaluationGate .[#8D8D8D,thickness=2].> BeautyReplyPolicy : <color:#8D8D8D>check thresholds
-BeautyEvaluationGate .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>read policy state
+BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyEvaluationGate : <color:#8D8D8D>执行评测
+BeautyEvaluationGate .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>读取候选
+BeautyEvaluationGate .[#8D8D8D,thickness=2].> BeautyReplyPolicy : <color:#8D8D8D>校验阈值
+BeautyEvaluationGate .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>读取策略状态
 @enduml
 `;case`handoffSequence`:return`@startuml
-title "Escalation to Human Operator"
+title "升级到人工运营"
 left to right direction
 
 hide stereotype
@@ -890,14 +890,14 @@ person "==运营人员\\n\\n处理升级工单的人工运营人员" <<Operator>
 rectangle "==运营人员 Console\\n\\n运营人员使用的单页控制台；src/ui/operator.html" <<BeautyOperatorUi>> as BeautyOperatorUi
 component "==转人工路由\\n\\n人工转接工单接口；src/routes/handoff-routes.js" <<BeautyHandoffRoutes>> as BeautyHandoffRoutes
 
-BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyHandoffService : <color:#8D8D8D>create ticket
-BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>persist ticket
-BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>notify customer
-Operator .[#8D8D8D,thickness=2].> BeautyOperatorUi : <color:#8D8D8D>opens ticket
-BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyHandoffRoutes : <color:#8D8D8D>claim ticket
+BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyHandoffService : <color:#8D8D8D>创建工单
+BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyStore : <color:#8D8D8D>持久化工单
+BeautyHandoffService .[#8D8D8D,thickness=2].> BeautyWechatPlatform : <color:#8D8D8D>通知客户
+Operator .[#8D8D8D,thickness=2].> BeautyOperatorUi : <color:#8D8D8D>打开工单
+BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyHandoffRoutes : <color:#8D8D8D>认领工单
 @enduml
 `;case`knowledgeSyncSequence`:return`@startuml
-title "Knowledge Promotion and Sync"
+title "知识晋升与同步"
 left to right direction
 
 hide stereotype
@@ -966,17 +966,17 @@ component "==知识同步\\n\\n把已批准知识推送到 RAGFlow；src/service
 rectangle "==LLM Wiki 候选源\\n\\nLLM 生成的 wiki 候选来源" <<LlmWiki>> as LlmWiki
 component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
 
-Operator .[#8D8D8D,thickness=2].> BeautyOperatorUi : <color:#8D8D8D>triggers sync
-BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyKnowledgeRoutes : <color:#8D8D8D>request sync
-BeautyKnowledgeRoutes .[#8D8D8D,thickness=2].> BeautyKnowledgeScan : <color:#8D8D8D>scan candidates
-BeautyKnowledgeScan .[#8D8D8D,thickness=2].> BeautyGovernance : <color:#8D8D8D>submit for decision
-BeautyGovernance .[#8D8D8D,thickness=2].> BeautyEvaluationGate : <color:#8D8D8D>apply publication rule
-BeautyKnowledgeRoutes .[#8D8D8D,thickness=2].> BeautyKnowledgeSync : <color:#8D8D8D>push approved
-BeautyKnowledgeSync .[#8D8D8D,thickness=2].> LlmWiki : <color:#8D8D8D>read candidate wiki
-BeautyKnowledgeSync .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>write dataset
+Operator .[#8D8D8D,thickness=2].> BeautyOperatorUi : <color:#8D8D8D>触发同步
+BeautyOperatorUi .[#8D8D8D,thickness=2].> BeautyKnowledgeRoutes : <color:#8D8D8D>请求同步
+BeautyKnowledgeRoutes .[#8D8D8D,thickness=2].> BeautyKnowledgeScan : <color:#8D8D8D>扫描候选项
+BeautyKnowledgeScan .[#8D8D8D,thickness=2].> BeautyGovernance : <color:#8D8D8D>submit for 决策结果
+BeautyGovernance .[#8D8D8D,thickness=2].> BeautyEvaluationGate : <color:#8D8D8D>应用发布规则
+BeautyKnowledgeRoutes .[#8D8D8D,thickness=2].> BeautyKnowledgeSync : <color:#8D8D8D>推送已批准项
+BeautyKnowledgeSync .[#8D8D8D,thickness=2].> LlmWiki : <color:#8D8D8D>读取候选 wiki
+BeautyKnowledgeSync .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>写入数据集
 @enduml
 `;case`configGatedFlow`:return`@startuml
-title "Configuration-Gated Retrieval"
+title "配置门控检索"
 left to right direction
 
 hide stereotype
@@ -1003,7 +1003,7 @@ skinparam component<<BeautyRagflowKnowledge>>{
 component "==应答编排器\\n\\n决定自动回复还是转人工；src/services/answer-orchestrator.js" <<BeautyAnswerOrchestrator>> as BeautyAnswerOrchestrator
 component "==RAGFlow 知识库 知识检索\\n\\nRAGFlow 检索与数据集访问；src/services/ragflow-knowledge-service.js" <<BeautyRagflowKnowledge>> as BeautyRagflowKnowledge
 
-BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>attempts retrieval
-BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>checks config gate
+BeautyAnswerOrchestrator .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>尝试检索
+BeautyRagflowKnowledge .[#8D8D8D,thickness=2].> BeautyRagflowKnowledge : <color:#8D8D8D>检查配置门控
 @enduml
 `;default:throw Error(`Unknown viewId: `+e)}};export{e as pumlSource};

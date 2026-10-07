@@ -24,7 +24,7 @@ title: "WeChat Work Cloud Boundary"
 ---
 graph TB
 `;case`index`:return`---
-title: "Beauty Customer Service — Overview"
+title: "美妆客服服务 · 总览"
 ---
 graph TB
   Customer@{ icon: "fa:user", shape: rounded, label: "客户" }
@@ -40,7 +40,7 @@ graph TB
   Beauty -. "\`reads candidate wiki\`" .-> LlmWiki
   WechatWork -. "\`回调加密报文\`" .-> Beauty
 `;case`context`:return`---
-title: "System Context"
+title: "系统上下文"
 ---
 graph TB
   Customer@{ icon: "fa:user", shape: rounded, label: "客户" }
@@ -56,7 +56,7 @@ graph TB
   Beauty -. "\`[...]\`" .-> Ragflow
   Beauty -. "\`reads candidate wiki\`" .-> LlmWiki
 `;case`container`:return`---
-title: "Containers and Integrations"
+title: "容器与集成"
 ---
 graph TB
   subgraph Beauty["\`美妆客服服务\`"]
@@ -90,7 +90,7 @@ graph TB
   WechatWork -. "\`回调加密报文\`" .-> Beauty.WechatCallback
   Beauty.RagflowKnowledge -. "\`queries datasets\`" .-> Ragflow
 `;case`answerPath`:return`---
-title: "Answer Path"
+title: "应答链路"
 ---
 graph TB
   BeautyWechatCallback@{ shape: rectangle, label: "微信客服回调入口" }
@@ -120,7 +120,7 @@ graph TB
   WechatWork -. "\`回调加密报文\`" .-> BeautyWechatCallback
   BeautyRagflowKnowledge -. "\`queries datasets\`" .-> Ragflow
 `;case`knowledgeLifecycle`:return`---
-title: "Knowledge Lifecycle"
+title: "知识生命周期视图"
 ---
 graph TB
   BeautyKnowledgeRoutes@{ shape: rectangle, label: "知识库路由" }
@@ -155,7 +155,7 @@ graph TB
   BeautyRagflowLifecycleProbe -. "\`inspects datasets\`" .-> Ragflow
   BeautyKnowledgeSync -. "\`reads candidate wiki\`" .-> LlmWiki
 `;case`operatorSurface`:return`---
-title: "Operator Surface"
+title: "运营台依赖面"
 ---
 graph TB
   Operator@{ icon: "fa:user", shape: rounded, label: "运营人员" }
@@ -172,7 +172,7 @@ graph TB
   Beauty.OperatorUi -. "\`运营知识库\`" .-> Beauty.KnowledgeRoutes
   Beauty.OperatorUi -. "\`查看状态\`" .-> Beauty.IntegrationRoutes
 `;case`chatToAnswer`:return`---
-title: "Customer Message to Answer"
+title: "客户提问到应答"
 ---
 graph LR
   Customer@{ icon: "fa:user", shape: rounded, label: "客户" }
@@ -184,18 +184,18 @@ graph LR
   BeautyReplyPolicy@{ shape: rectangle, label: "回复策略" }
   BeautyWechatPlatform@{ shape: rectangle, label: "微信客服平台适配" }
   WechatWork@{ shape: rectangle, label: "企业微信" }
-  Customer -. "\`asks a beauty question\`" .-> BeautyFakeWechat
-  BeautyFakeWechat -. "\`forwards message\`" .-> BeautyAnswerOrchestrator
+  Customer -. "\`提出美妆咨询\`" .-> BeautyFakeWechat
+  BeautyFakeWechat -. "\`转发消息\`" .-> BeautyAnswerOrchestrator
   BeautyAnswerOrchestrator -. "\`requests answer\`" .-> BeautyAnswerLoop
-  BeautyAnswerLoop -. "\`retrieves candidates\`" .-> BeautyRagflowKnowledge
+  BeautyAnswerLoop -. "\`检索候选知识\`" .-> BeautyRagflowKnowledge
   BeautyRagflowKnowledge -. "\`queries dataset\`" .-> Ragflow
-  Ragflow -. "\`returns passages\`" .-> BeautyRagflowKnowledge
-  BeautyAnswerLoop -. "\`checks confidence\`" .-> BeautyReplyPolicy
-  BeautyReplyPolicy -. "\`auto-reply allowed\`" .-> BeautyAnswerOrchestrator
-  BeautyAnswerOrchestrator -. "\`sends reply\`" .-> BeautyWechatPlatform
-  BeautyWechatPlatform -. "\`posts message\`" .-> WechatWork
+  Ragflow -. "\`返回知识片段\`" .-> BeautyRagflowKnowledge
+  BeautyAnswerLoop -. "\`评估置信度\`" .-> BeautyReplyPolicy
+  BeautyReplyPolicy -. "\`允许自动回复\`" .-> BeautyAnswerOrchestrator
+  BeautyAnswerOrchestrator -. "\`发送回复\`" .-> BeautyWechatPlatform
+  BeautyWechatPlatform -. "\`发送消息\`" .-> WechatWork
 `;case`retrievalSequence`:return`---
-title: "Answer Retrieval Sequence"
+title: "应答检索时序"
 ---
 graph LR
   Customer@{ icon: "fa:user", shape: rounded, label: "客户" }
@@ -206,29 +206,29 @@ graph LR
   BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识库 知识检索" }
   Ragflow@{ shape: rectangle, label: "RAGFlow 知识库" }
   BeautyReplyPolicy@{ shape: rectangle, label: "回复策略" }
-  Customer -. "\`sends question\`" .-> BeautyWechatCallback
-  BeautyWechatCallback -. "\`decrypts\`" .-> BeautyWechatPlatform
-  BeautyWechatPlatform -. "\`normalized message\`" .-> BeautyAnswerOrchestrator
-  BeautyAnswerOrchestrator -. "\`asks for answer\`" .-> BeautyAnswerLoop
-  BeautyAnswerLoop -. "\`retrieve\`" .-> BeautyRagflowKnowledge
-  BeautyRagflowKnowledge -. "\`query\`" .-> Ragflow
-  BeautyRagflowKnowledge -. "\`passages\`" .-> BeautyAnswerLoop
-  BeautyAnswerLoop -. "\`confidence\`" .-> BeautyReplyPolicy
-  BeautyReplyPolicy -. "\`decision\`" .-> BeautyAnswerOrchestrator
+  Customer -. "\`发送问题\`" .-> BeautyWechatCallback
+  BeautyWechatCallback -. "\`解密\`" .-> BeautyWechatPlatform
+  BeautyWechatPlatform -. "\`归一化消息\`" .-> BeautyAnswerOrchestrator
+  BeautyAnswerOrchestrator -. "\`请求应答\`" .-> BeautyAnswerLoop
+  BeautyAnswerLoop -. "\`发起检索\`" .-> BeautyRagflowKnowledge
+  BeautyRagflowKnowledge -. "\`查询知识库\`" .-> Ragflow
+  BeautyRagflowKnowledge -. "\`返回知识片段\`" .-> BeautyAnswerLoop
+  BeautyAnswerLoop -. "\`置信度\`" .-> BeautyReplyPolicy
+  BeautyReplyPolicy -. "\`决策结果\`" .-> BeautyAnswerOrchestrator
 `;case`evaluationSequence`:return`---
-title: "Policy Evaluation Reads"
+title: "策略评估读取时序"
 ---
 graph LR
   BeautyAnswerOrchestrator@{ shape: rectangle, label: "应答编排器" }
   BeautyEvaluationGate@{ shape: rectangle, label: "评测���禁" }
   BeautyStore@{ shape: disk, label: "本地存储" }
   BeautyReplyPolicy@{ shape: rectangle, label: "回复策略" }
-  BeautyAnswerOrchestrator -. "\`evaluate\`" .-> BeautyEvaluationGate
-  BeautyEvaluationGate -. "\`read candidates\`" .-> BeautyStore
-  BeautyEvaluationGate -. "\`check thresholds\`" .-> BeautyReplyPolicy
-  BeautyEvaluationGate -. "\`read policy state\`" .-> BeautyStore
+  BeautyAnswerOrchestrator -. "\`执行评测\`" .-> BeautyEvaluationGate
+  BeautyEvaluationGate -. "\`读取候选\`" .-> BeautyStore
+  BeautyEvaluationGate -. "\`校验阈值\`" .-> BeautyReplyPolicy
+  BeautyEvaluationGate -. "\`读取策略状态\`" .-> BeautyStore
 `;case`handoffSequence`:return`---
-title: "Escalation to Human Operator"
+title: "升级到人工运营"
 ---
 graph LR
   BeautyAnswerOrchestrator@{ shape: rectangle, label: "应答编排器" }
@@ -238,13 +238,13 @@ graph LR
   Operator@{ icon: "fa:user", shape: rounded, label: "运营人员" }
   BeautyOperatorUi@{ shape: rounded, label: "运营人员 Console" }
   BeautyHandoffRoutes@{ shape: rectangle, label: "转人工路由" }
-  BeautyAnswerOrchestrator -. "\`create ticket\`" .-> BeautyHandoffService
-  BeautyHandoffService -. "\`persist ticket\`" .-> BeautyStore
-  BeautyHandoffService -. "\`notify customer\`" .-> BeautyWechatPlatform
-  Operator -. "\`opens ticket\`" .-> BeautyOperatorUi
-  BeautyOperatorUi -. "\`claim ticket\`" .-> BeautyHandoffRoutes
+  BeautyAnswerOrchestrator -. "\`创建工单\`" .-> BeautyHandoffService
+  BeautyHandoffService -. "\`持久化工单\`" .-> BeautyStore
+  BeautyHandoffService -. "\`通知客户\`" .-> BeautyWechatPlatform
+  Operator -. "\`打开工单\`" .-> BeautyOperatorUi
+  BeautyOperatorUi -. "\`认领工单\`" .-> BeautyHandoffRoutes
 `;case`knowledgeSyncSequence`:return`---
-title: "Knowledge Promotion and Sync"
+title: "知识晋升与同步"
 ---
 graph LR
   Operator@{ icon: "fa:user", shape: rounded, label: "运营人员" }
@@ -256,20 +256,20 @@ graph LR
   BeautyKnowledgeSync@{ shape: rectangle, label: "知识同步" }
   LlmWiki@{ shape: rectangle, label: "LLM Wiki 候选源" }
   BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识库 知识检索" }
-  Operator -. "\`triggers sync\`" .-> BeautyOperatorUi
-  BeautyOperatorUi -. "\`request sync\`" .-> BeautyKnowledgeRoutes
-  BeautyKnowledgeRoutes -. "\`scan candidates\`" .-> BeautyKnowledgeScan
-  BeautyKnowledgeScan -. "\`submit for decision\`" .-> BeautyGovernance
-  BeautyGovernance -. "\`apply publication rule\`" .-> BeautyEvaluationGate
-  BeautyKnowledgeRoutes -. "\`push approved\`" .-> BeautyKnowledgeSync
-  BeautyKnowledgeSync -. "\`read candidate wiki\`" .-> LlmWiki
-  BeautyKnowledgeSync -. "\`write dataset\`" .-> BeautyRagflowKnowledge
+  Operator -. "\`触发同步\`" .-> BeautyOperatorUi
+  BeautyOperatorUi -. "\`请求同步\`" .-> BeautyKnowledgeRoutes
+  BeautyKnowledgeRoutes -. "\`扫描候选项\`" .-> BeautyKnowledgeScan
+  BeautyKnowledgeScan -. "\`submit for 决策结果\`" .-> BeautyGovernance
+  BeautyGovernance -. "\`应用发布规则\`" .-> BeautyEvaluationGate
+  BeautyKnowledgeRoutes -. "\`推送已批准项\`" .-> BeautyKnowledgeSync
+  BeautyKnowledgeSync -. "\`读取候选 wiki\`" .-> LlmWiki
+  BeautyKnowledgeSync -. "\`写入数据集\`" .-> BeautyRagflowKnowledge
 `;case`configGatedFlow`:return`---
-title: "Configuration-Gated Retrieval"
+title: "配置门控检索"
 ---
 graph LR
   BeautyAnswerOrchestrator@{ shape: rectangle, label: "应答编排器" }
   BeautyRagflowKnowledge@{ shape: rectangle, label: "RAGFlow 知识库 知识检索" }
-  BeautyAnswerOrchestrator -. "\`attempts retrieval\`" .-> BeautyRagflowKnowledge
-  BeautyRagflowKnowledge -. "\`checks config gate\`" .-> BeautyRagflowKnowledge
+  BeautyAnswerOrchestrator -. "\`尝试检索\`" .-> BeautyRagflowKnowledge
+  BeautyRagflowKnowledge -. "\`检查配置门控\`" .-> BeautyRagflowKnowledge
 `;default:throw Error(`Unknown viewId: `+e)}};export{e as mmdSource};
