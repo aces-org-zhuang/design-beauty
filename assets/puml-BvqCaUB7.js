@@ -183,17 +183,7 @@ skinparam {
   shadowing false
 }
 
-skinparam rectangle<<Feat_answer_fI_goal>>{
-  BackgroundColor #3b82f6
-  FontColor #eff6ff
-  BorderColor #2563eb
-}
-skinparam rectangle<<Feat_answer_fI_step>>{
-  BackgroundColor #3b82f6
-  FontColor #eff6ff
-  BorderColor #2563eb
-}
-skinparam rectangle<<Feat_knowledge_fI_step>>{
+skinparam rectangle<<Feat_answer_fUs_ask>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
@@ -203,30 +193,53 @@ skinparam rectangle<<Feat_knowledge_fI_goal>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
+skinparam rectangle<<Feat_knowledge_fUs_scan>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fUs_lowConfidence>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_degrade_nfUs_kbEmpty>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fI_goal>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
 skinparam rectangle<<Feat_degrade_nfI_goal>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_degrade_nfI_step>>{
-  BackgroundColor #3b82f6
-  FontColor #eff6ff
-  BorderColor #2563eb
-}
-rectangle "==I-001 业务目标\\n\\n客户提问后得到有据可依的答复，或明确被转人工。" <<Feat_answer_fI_goal>> as Feat_answer_fI_goal
-rectangle "==I-003 业务步骤\\n\\n主干步骤：接收消息 → 检索候选知识 → 置信度校验 → 生成答复。" <<Feat_answer_fI_step>> as Feat_answer_fI_step
-rectangle "Feature-002-F 知识运营能力" <<Feat_knowledge_f>> as Feat_knowledge_f {
-  skinparam RectangleBorderColor<<Feat_knowledge_f>> #3b82f6
-  skinparam RectangleFontColor<<Feat_knowledge_f>> #3b82f6
-  skinparam RectangleBorderStyle<<Feat_knowledge_f>> dashed
+rectangle "Feature-001-F 知识应答能力" <<Feat_answer_f>> as Feat_answer_f {
+  skinparam RectangleBorderColor<<Feat_answer_f>> #3b82f6
+  skinparam RectangleFontColor<<Feat_answer_f>> #3b82f6
+  skinparam RectangleBorderStyle<<Feat_answer_f>> dashed
 
-  rectangle "==I-202 业务步骤\\n\\n主干步骤：登记素材 → 扫描候选知识 → 治理决策 → 同步至知识库 → 巡检新鲜度。" <<Feat_knowledge_fI_step>> as Feat_knowledge_fI_step
-  rectangle "==I-201 业务目标\\n\\n素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。" <<Feat_knowledge_fI_goal>> as Feat_knowledge_fI_goal
+  rectangle "==US-001 客户提问获得专业答复\\n\\n作为客户，我在企业微信提问美妆问题，以便拿到有依据的答复而不是广告。验收：答复内容来自知识库检索结果且不含未验证成分。" <<Feat_answer_fUs_ask>> as Feat_answer_fUs_ask
+  rectangle "==US-002 答不准时转人工而非硬答\\n\\n作为客户，当知识库没有覆盖我的问题时，以便被转给人工而不是收到编造答案。验收：置信度不足时生成人工工单并告知我等待。" <<Feat_answer_fUs_lowConfidence>> as Feat_answer_fUs_lowConfidence
+  rectangle "==I-101 业务目标\\n\\n客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。" <<Feat_answer_fI_goal>> as Feat_answer_fI_goal
 }
-rectangle "==I-101 业务目标\\n\\n三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。" <<Feat_degrade_nfI_goal>> as Feat_degrade_nfI_goal
-rectangle "==I-102 场景判定逻辑\\n\\n主干步骤：判定知识库条目数 → 判定 RAG 响应耗时 → 判定 LLM 调用结果 → 分发对应提示或工单。" <<Feat_degrade_nfI_step>> as Feat_degrade_nfI_step
+rectangle "==I-201 业务目标\\n\\n素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。" <<Feat_knowledge_fI_goal>> as Feat_knowledge_fI_goal
+rectangle "==US-201 素材入库后自动进入候选知识\\n\\n作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。" <<Feat_knowledge_fUs_scan>> as Feat_knowledge_fUs_scan
+rectangle "Feature-001-NF 极端场景保障" <<Feat_degrade_nf>> as Feat_degrade_nf {
+  skinparam RectangleBorderColor<<Feat_degrade_nf>> #3b82f6
+  skinparam RectangleFontColor<<Feat_degrade_nf>> #3b82f6
+  skinparam RectangleBorderStyle<<Feat_degrade_nf>> dashed
 
-Feat_knowledge_fI_step .[#0ea5e9,thickness=2].> Feat_knowledge_fI_goal : <color:#0ea5e9>推进治理目标
+  rectangle "==US-101 知识库为空时运营人员能看见\\n\\n作为运营人员，新知识还没入库时，我能看见知识库为空的状态，以便知道要先补素材而不是以为系统坏了。验收：控制台显式提示当前知识条目为 0 条。" <<Feat_degrade_nfUs_kbEmpty>> as Feat_degrade_nfUs_kbEmpty
+  rectangle "==I-141 业务目标\\n\\n三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。" <<Feat_degrade_nfI_goal>> as Feat_degrade_nfI_goal
+}
+
+Feat_answer_fUs_lowConfidence .[#0ea5e9,thickness=2].> Feat_answer_fI_goal : <color:#0ea5e9>落为业务目标
+Feat_degrade_nfUs_kbEmpty .[#0ea5e9,thickness=2].> Feat_degrade_nfI_goal : <color:#0ea5e9>落为业务目标
 @enduml
 `;case`pano-i-state`:return`@startuml
 title "I 环 · 业务状态全景"
@@ -243,42 +256,42 @@ skinparam {
   shadowing false
 }
 
-skinparam rectangle<<St_received>>{
+skinparam rectangle<<Feat_answer_fSt_received>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<St_retrieving>>{
+skinparam rectangle<<Feat_answer_fSt_retrieving>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<St_answering>>{
+skinparam rectangle<<Feat_answer_fSt_answering>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<St_waitingHuman>>{
+skinparam rectangle<<Feat_answer_fSt_waitingHuman>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<St_answered>>{
+skinparam rectangle<<Feat_answer_fSt_answered>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==已接收" <<St_received>> as St_received
-rectangle "==检索中" <<St_retrieving>> as St_retrieving
-rectangle "==应答中" <<St_answering>> as St_answering
-rectangle "==待人工" <<St_waitingHuman>> as St_waitingHuman
-rectangle "==已答复" <<St_answered>> as St_answered
+rectangle "==已接收" <<Feat_answer_fSt_received>> as Feat_answer_fSt_received
+rectangle "==检索中" <<Feat_answer_fSt_retrieving>> as Feat_answer_fSt_retrieving
+rectangle "==应答中" <<Feat_answer_fSt_answering>> as Feat_answer_fSt_answering
+rectangle "==待人工" <<Feat_answer_fSt_waitingHuman>> as Feat_answer_fSt_waitingHuman
+rectangle "==已答复" <<Feat_answer_fSt_answered>> as Feat_answer_fSt_answered
 
-St_received .[#8D8D8D,thickness=2].> St_retrieving : <color:#8D8D8D>发起检索
-St_retrieving .[#8D8D8D,thickness=2].> St_answering : <color:#8D8D8D>置信度达标
-St_answering .[#8D8D8D,thickness=2].> St_answered : <color:#8D8D8D>答复已下发
-St_retrieving .[#8D8D8D,thickness=2].> St_waitingHuman : <color:#8D8D8D>置信度不足
-St_waitingHuman .[#8D8D8D,thickness=2].> St_answered : <color:#8D8D8D>人工已接管
+Feat_answer_fSt_received .[#8D8D8D,thickness=2].> Feat_answer_fSt_retrieving : <color:#8D8D8D>发起检索
+Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_answering : <color:#8D8D8D>置信度达标
+Feat_answer_fSt_answering .[#8D8D8D,thickness=2].> Feat_answer_fSt_answered : <color:#8D8D8D>答复已下发
+Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_waitingHuman : <color:#8D8D8D>置信度不足
+Feat_answer_fSt_waitingHuman .[#8D8D8D,thickness=2].> Feat_answer_fSt_answered : <color:#8D8D8D>人工已接管
 @enduml
 `;case`pano-ui`:return`@startuml
 title "UI 全景 · 全部 Feature 的界面面"
@@ -1027,34 +1040,34 @@ skinparam {
   shadowing false
 }
 
-skinparam rectangle<<St_received>>{
+skinparam rectangle<<Feat_answer_fSt_received>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<St_retrieving>>{
+skinparam rectangle<<Feat_answer_fSt_retrieving>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<St_answering>>{
+skinparam rectangle<<Feat_answer_fSt_answering>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<St_answered>>{
+skinparam rectangle<<Feat_answer_fSt_answered>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==已接收" <<St_received>> as St_received
-rectangle "==检索中" <<St_retrieving>> as St_retrieving
-rectangle "==应答中" <<St_answering>> as St_answering
-rectangle "==已答复" <<St_answered>> as St_answered
+rectangle "==已接收" <<Feat_answer_fSt_received>> as Feat_answer_fSt_received
+rectangle "==检索中" <<Feat_answer_fSt_retrieving>> as Feat_answer_fSt_retrieving
+rectangle "==应答中" <<Feat_answer_fSt_answering>> as Feat_answer_fSt_answering
+rectangle "==已答复" <<Feat_answer_fSt_answered>> as Feat_answer_fSt_answered
 
-St_received .[#8D8D8D,thickness=2].> St_retrieving : <color:#8D8D8D>发起检索
-St_retrieving .[#8D8D8D,thickness=2].> St_answering : <color:#8D8D8D>置信度达标
-St_answering .[#8D8D8D,thickness=2].> St_answered : <color:#8D8D8D>答复已下发
+Feat_answer_fSt_received .[#8D8D8D,thickness=2].> Feat_answer_fSt_retrieving : <color:#8D8D8D>发起检索
+Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_answering : <color:#8D8D8D>置信度达标
+Feat_answer_fSt_answering .[#8D8D8D,thickness=2].> Feat_answer_fSt_answered : <color:#8D8D8D>答复已下发
 @enduml
 `;case`stateBranchHuman`:return`@startuml
 title "I 环 · 业务状态分支 · 转人工"
@@ -1071,20 +1084,20 @@ skinparam {
   shadowing false
 }
 
-skinparam rectangle<<St_retrieving>>{
+skinparam rectangle<<Feat_answer_fSt_retrieving>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<St_waitingHuman>>{
+skinparam rectangle<<Feat_answer_fSt_waitingHuman>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==检索中" <<St_retrieving>> as St_retrieving
-rectangle "==待人工" <<St_waitingHuman>> as St_waitingHuman
+rectangle "==检索中" <<Feat_answer_fSt_retrieving>> as Feat_answer_fSt_retrieving
+rectangle "==待人工" <<Feat_answer_fSt_waitingHuman>> as Feat_answer_fSt_waitingHuman
 
-St_retrieving .[#8D8D8D,thickness=2].> St_waitingHuman : <color:#8D8D8D>置信度不足
+Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_waitingHuman : <color:#8D8D8D>置信度不足
 @enduml
 `;case`index`:return`@startuml
 title "美妆客服服务 · 全部 Feature 导航"
@@ -1301,7 +1314,7 @@ skinparam rectangle<<Feat_answer_fI_goal>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==I-001 业务目标\\n\\n客户提问后得到有据可依的答复，或明确被转人工。" <<Feat_answer_fI_goal>> as Feat_answer_fI_goal
+rectangle "==I-101 业务目标\\n\\n客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。" <<Feat_answer_fI_goal>> as Feat_answer_fI_goal
 @enduml
 `;case`chain001F-i-step`:return`@startuml
 title "I 环 · 业务步骤 · Feature-001-F"
@@ -1318,12 +1331,18 @@ skinparam {
   shadowing false
 }
 
-skinparam rectangle<<Feat_answer_fI_step>>{
+skinparam rectangle<<Feat_answer_fUs_ask>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==I-003 业务步骤\\n\\n主干步骤：接收消息 → 检索候选知识 → 置信度校验 → 生成答复。" <<Feat_answer_fI_step>> as Feat_answer_fI_step
+skinparam rectangle<<Feat_answer_fUs_lowConfidence>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+rectangle "==US-001 客户提问获得专业答复\\n\\n作为客户，我在企业微信提问美妆问题，以便拿到有依据的答复而不是广告。验收：答复内容来自知识库检索结果且不含未验证成分。" <<Feat_answer_fUs_ask>> as Feat_answer_fUs_ask
+rectangle "==US-002 答不准时转人工而非硬答\\n\\n作为客户，当知识库没有覆盖我的问题时，以便被转给人工而不是收到编造答案。验收：置信度不足时生成人工工单并告知我等待。" <<Feat_answer_fUs_lowConfidence>> as Feat_answer_fUs_lowConfidence
 @enduml
 `;case`chain001NF-i-goal`:return`@startuml
 title "I 环 · 业务目标 · Feature-001-NF"
@@ -1345,7 +1364,7 @@ skinparam rectangle<<Feat_degrade_nfI_goal>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==I-101 业务目标\\n\\n三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。" <<Feat_degrade_nfI_goal>> as Feat_degrade_nfI_goal
+rectangle "==I-141 业务目标\\n\\n三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。" <<Feat_degrade_nfI_goal>> as Feat_degrade_nfI_goal
 @enduml
 `;case`chain001NF-i-step`:return`@startuml
 title "I 环 · 场景判定步骤 · Feature-001-NF"
@@ -1362,12 +1381,12 @@ skinparam {
   shadowing false
 }
 
-skinparam rectangle<<Feat_degrade_nfI_step>>{
+skinparam rectangle<<Feat_degrade_nfUs_kbEmpty>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==I-102 场景判定逻辑\\n\\n主干步骤：判定知识库条目数 → 判定 RAG 响应耗时 → 判定 LLM 调用结果 → 分发对应提示或工单。" <<Feat_degrade_nfI_step>> as Feat_degrade_nfI_step
+rectangle "==US-101 知识库为空时运营人员能看见\\n\\n作为运营人员，新知识还没入库时，我能看见知识库为空的状态，以便知道要先补素材而不是以为系统坏了。验收：控制台显式提示当前知识条目为 0 条。" <<Feat_degrade_nfUs_kbEmpty>> as Feat_degrade_nfUs_kbEmpty
 @enduml
 `;case`chain001F-ui`:return`@startuml
 title "UI 环 · Feature-001-F"
@@ -1546,12 +1565,12 @@ skinparam {
   shadowing false
 }
 
-skinparam rectangle<<Feat_knowledge_fI_step>>{
+skinparam rectangle<<Feat_knowledge_fUs_scan>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==I-202 业务步骤\\n\\n主干步骤：登记素材 → 扫描候选知识 → 治理决策 → 同步至知识库 → 巡检新鲜度。" <<Feat_knowledge_fI_step>> as Feat_knowledge_fI_step
+rectangle "==US-201 素材入库后自动进入候选知识\\n\\n作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。" <<Feat_knowledge_fUs_scan>> as Feat_knowledge_fUs_scan
 @enduml
 `;case`chain002F-ui`:return`@startuml
 title "UI 环 · Feature-002-F"
@@ -1828,7 +1847,7 @@ skinparam component<<Feat_answer_fSrc_handoffService>>{
 }
 person "==客户" <<Feat_answer_fLane_clientActor_customer>> as Feat_answer_fLane_clientActor_customer
 rectangle "==API-001 POST /wechat/callback 微信客服回调\\n\\nsrc/routes/wechat-kf-routes.js:12 — 接收企业微信加密回调。" <<Feat_answer_fLane_edgeApi_chatCallback>> as Feat_answer_fLane_edgeApi_chatCallback
-rectangle "==I-003 业务步骤（应答泳道）\\n\\n编排、检索、校验、生成答复的领域环节。" <<Feat_answer_fLane_coreStep_answerLane>> as Feat_answer_fLane_coreStep_answerLane
+rectangle "==I-201 应答编排（泳道引用）\\n\\n泳道中的编排环节，具体步骤见 US-001 容器下的 I-001~I-006。" <<Feat_answer_fLane_coreStep_answerLane>> as Feat_answer_fLane_coreStep_answerLane
 rectangle "==RAGFlow\\n\\n检索与知识库服务。" <<Feat_answer_fLane_extExt_ragflow>> as Feat_answer_fLane_extExt_ragflow
 component "==SRC-002 应答编排器\\n\\nsrc/services/answer-orchestrator.js — 决定自动应答或转人工。" <<Feat_answer_fSrc_answerOrchestrator>> as Feat_answer_fSrc_answerOrchestrator
 component "==SRC-004 回复策略\\n\\nsrc/services/reply-policy-service.js — 置信度与风险阈值判定。" <<Feat_answer_fSrc_replyPolicy>> as Feat_answer_fSrc_replyPolicy
@@ -1844,8 +1863,8 @@ Feat_answer_fLane_coreStep_answerLane .[#8D8D8D,thickness=2].> Feat_answer_fSrc_
 Feat_answer_fSrc_replyPolicy .[#8D8D8D,thickness=2].> Feat_answer_fLane_coreStep_answerLane : <color:#8D8D8D>达标放行
 Feat_answer_fLane_coreStep_answerLane .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>返回答复
 @enduml
-`;case`seq001F-branch-low-confidence`:return`@startuml
-title "Feature-001-F 分支 · 置信度不足转人工"
+`;case`seq001F-branch-low-confidence-src`:return`@startuml
+title "SRC · 分支时序 · Feature-001-F · 置信度不足转人工"
 left to right direction
 
 hide stereotype
@@ -1879,21 +1898,14 @@ skinparam component<<Feat_answer_fSrc_store>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam person<<Feat_answer_fLane_clientActor_customer>>{
-  BackgroundColor #3b82f6
-  FontColor #eff6ff
-  BorderColor #2563eb
-}
 component "==SRC-004 回复策略\\n\\nsrc/services/reply-policy-service.js — 置信度与风险阈值判定。" <<Feat_answer_fSrc_replyPolicy>> as Feat_answer_fSrc_replyPolicy
 component "==SRC-002 应答编排器\\n\\nsrc/services/answer-orchestrator.js — 决定自动应答或转人工。" <<Feat_answer_fSrc_answerOrchestrator>> as Feat_answer_fSrc_answerOrchestrator
 component "==SRC-006 转人工服务\\n\\nsrc/services/handoff-service.js — 创建并跟踪人工工单。" <<Feat_answer_fSrc_handoffService>> as Feat_answer_fSrc_handoffService
 component "==SRC-007 本地存储\\n\\nsrc/domain/store.js — 以 JSON 文件承载工单与反馈状态。" <<Feat_answer_fSrc_store>> as Feat_answer_fSrc_store
-person "==客户" <<Feat_answer_fLane_clientActor_customer>> as Feat_answer_fLane_clientActor_customer
 
 Feat_answer_fSrc_replyPolicy .[#8D8D8D,thickness=2].> Feat_answer_fSrc_answerOrchestrator : <color:#8D8D8D>置信度不足
 Feat_answer_fSrc_answerOrchestrator .[#15803d,thickness=2].> Feat_answer_fSrc_handoffService : <color:#15803d>转人工
 Feat_answer_fSrc_handoffService .[#15803d,thickness=2].> Feat_answer_fSrc_store : <color:#15803d>持久化工单
-Feat_answer_fSrc_store .[#8D8D8D,thickness=2].> Feat_answer_fLane_clientActor_customer : <color:#8D8D8D>告知等待人工
 @enduml
 `;case`dfd001F-answer`:return`@startuml
 title "DFD 全景 · Feature-001-F 应答数据流"
@@ -2007,7 +2019,7 @@ skinparam rectangle<<Feat_degrade_nfUi_notice>>{
 }
 person "==运营人员" <<Feat_degrade_nfLane_operatorActor_ops>> as Feat_degrade_nfLane_operatorActor_ops
 rectangle "==API-101 GET /integration/status 集成状态\\n\\nsrc/routes/integration-routes.js:7 — 查询集成状态与知识条目数。" <<Feat_degrade_nfLane_edgeApi_status>> as Feat_degrade_nfLane_edgeApi_status
-rectangle "==I-102 场景判定逻辑（判定泳道）\\n\\n知识条目、响应耗时、模型可用性的判定环节。" <<Feat_degrade_nfLane_coreStep_probeLane>> as Feat_degrade_nfLane_coreStep_probeLane
+rectangle "==I-151 场景判定（泳道引用）\\n\\n泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。" <<Feat_degrade_nfLane_coreStep_probeLane>> as Feat_degrade_nfLane_coreStep_probeLane
 rectangle "==RAGFlow\\n\\n检索与知识库服务，超时或不可用即触发本链场景。" <<Feat_degrade_nfLane_extExt_ragflow>> as Feat_degrade_nfLane_extExt_ragflow
 component "==SRC-102 评测闸门\\n\\nsrc/services/evaluation-gate.js — 本地发布策略门禁，判定是否阻断应答。" <<Feat_degrade_nfSrc_evaluationGate>> as Feat_degrade_nfSrc_evaluationGate
 rectangle "==UI-102 极端场景提示\\n\\n会话内提示层：说明原因并给出下一步（等待或转人工）。覆盖加载态（判定中）与错误态（判定失败）。" <<Feat_degrade_nfUi_notice>> as Feat_degrade_nfUi_notice
@@ -2109,34 +2121,113 @@ skinparam rectangle<<Feat_answer_fLane_edgeApi_chatCallback>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_answer_fLane_coreStep_answerLane>>{
+skinparam rectangle<<Feat_answer_fUs_askI_ask_normalize>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_answer_fLane_coreI_stepLaneStep>>{
+skinparam rectangle<<Feat_answer_fUs_askI_ask_retrieve>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_answer_fLane_coreI_stepLaneSearch>>{
+skinparam rectangle<<Feat_answer_fUs_askI_ask_rank>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fUs_askI_ask_verify>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fUs_askI_ask_compose>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fUs_askI_ask_deliver>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fLane_extExt_ragflow>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
 person "==客户" <<Feat_answer_fLane_clientActor_customer>> as Feat_answer_fLane_clientActor_customer
 rectangle "==API-001 POST /wechat/callback 微信客服回调\\n\\nsrc/routes/wechat-kf-routes.js:12 — 接收企业微信加密回调。" <<Feat_answer_fLane_edgeApi_chatCallback>> as Feat_answer_fLane_edgeApi_chatCallback
-rectangle "==I-003 业务步骤（应答泳道）\\n\\n编排、检索、校验、生成答复的领域环节。" <<Feat_answer_fLane_coreStep_answerLane>> as Feat_answer_fLane_coreStep_answerLane
-rectangle "==I-005 校验与生成环节\\n\\n按置信度与风险阈值判定放行或转人工，并生成答复正文。" <<Feat_answer_fLane_coreI_stepLaneStep>> as Feat_answer_fLane_coreI_stepLaneStep
-rectangle "==I-004 检索环节\\n\\n向 RAGFlow 发起检索并接收候选知识。" <<Feat_answer_fLane_coreI_stepLaneSearch>> as Feat_answer_fLane_coreI_stepLaneSearch
+rectangle "==I-001 归一化提问\\n\\n把企业微信加密报文解密并归一化为标准提问，识别客户与问题边界。" <<Feat_answer_fUs_askI_ask_normalize>> as Feat_answer_fUs_askI_ask_normalize
+rectangle "==I-002 检索候选知识\\n\\n按归一化后的查询向 RAGFlow 发起检索，取得候选知识条目与相似度。" <<Feat_answer_fUs_askI_ask_retrieve>> as Feat_answer_fUs_askI_ask_retrieve
+rectangle "==I-003 候选排序与择优\\n\\n按相似度与知识新鲜度对候选条目排序，取置信度最高的一条进入校验。" <<Feat_answer_fUs_askI_ask_rank>> as Feat_answer_fUs_askI_ask_rank
+rectangle "==I-004 置信度校验\\n\\n用回复策略的置信度与风险阈值判定是否达标；不达标则转 US-002 的路径。" <<Feat_answer_fUs_askI_ask_verify>> as Feat_answer_fUs_askI_ask_verify
+rectangle "==I-005 生成答复\\n\\n按候选知识组织答复正文，附来源条目，不加入未验证内容。" <<Feat_answer_fUs_askI_ask_compose>> as Feat_answer_fUs_askI_ask_compose
+rectangle "==I-006 下发答复\\n\\n把答复通过企业微信会话回传给客户，完成本次闭环。" <<Feat_answer_fUs_askI_ask_deliver>> as Feat_answer_fUs_askI_ask_deliver
+rectangle "==RAGFlow\\n\\n检索与知识库服务。" <<Feat_answer_fLane_extExt_ragflow>> as Feat_answer_fLane_extExt_ragflow
 
 Feat_answer_fLane_clientActor_customer .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>①提出问题
-Feat_answer_fLane_edgeApi_chatCallback .[#8D8D8D,thickness=2].> Feat_answer_fLane_coreStep_answerLane : <color:#8D8D8D>②归一化并派发
-Feat_answer_fLane_coreStep_answerLane .[#8D8D8D,thickness=2].> Feat_answer_fLane_coreI_stepLaneSearch : <color:#8D8D8D>③检索候选知识
-Feat_answer_fLane_coreI_stepLaneSearch .[#8D8D8D,thickness=2].> Feat_answer_fLane_coreStep_answerLane : <color:#8D8D8D>④候选返回
-Feat_answer_fLane_coreStep_answerLane .[#8D8D8D,thickness=2].> Feat_answer_fLane_coreI_stepLaneStep : <color:#8D8D8D>⑤置信度校验
-Feat_answer_fLane_coreI_stepLaneStep .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>⑥生成答复
-Feat_answer_fLane_edgeApi_chatCallback .[#8D8D8D,thickness=2].> Feat_answer_fLane_clientActor_customer : <color:#8D8D8D>⑦答复送达
+Feat_answer_fLane_edgeApi_chatCallback .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_normalize : <color:#8D8D8D>②归一化提问
+Feat_answer_fUs_askI_ask_normalize .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_retrieve : <color:#8D8D8D>③发起检索
+Feat_answer_fUs_askI_ask_retrieve .[#8D8D8D,thickness=2].> Feat_answer_fLane_extExt_ragflow : <color:#8D8D8D>④请求RAGFlow
+Feat_answer_fLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_retrieve : <color:#8D8D8D>⑤返回候选知识
+Feat_answer_fUs_askI_ask_retrieve .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_rank : <color:#8D8D8D>⑥候选排序
+Feat_answer_fUs_askI_ask_rank .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_verify : <color:#8D8D8D>⑦置信度校验
+Feat_answer_fUs_askI_ask_verify .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_compose : <color:#8D8D8D>⑧生成答复
+Feat_answer_fUs_askI_ask_compose .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_deliver : <color:#8D8D8D>⑨下发答复
+Feat_answer_fUs_askI_ask_deliver .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>⑩回复会话
+Feat_answer_fLane_edgeApi_chatCallback .[#8D8D8D,thickness=2].> Feat_answer_fLane_clientActor_customer : <color:#8D8D8D>⑪答复送达
+@enduml
+`;case`seq001F-branch-low-confidence`:return`@startuml
+title "I 环 · 分支泳道流程 · Feature-001-F · 置信度不足"
+left to right direction
+
+hide stereotype
+skinparam ranksep 60
+skinparam nodesep 30
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+  shadowing false
+}
+
+skinparam rectangle<<Feat_answer_fUs_askI_ask_verify>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fUs_lowConfidenceI_lowEscalate>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fUs_lowConfidenceI_lowTicket>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fUs_lowConfidenceI_lowNotify>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fLane_edgeApi_chatCallback>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+rectangle "==I-004 置信度校验\\n\\n用回复策略的置信度与风险阈值判定是否达标；不达标则转 US-002 的路径。" <<Feat_answer_fUs_askI_ask_verify>> as Feat_answer_fUs_askI_ask_verify
+rectangle "==I-011 判定转人工\\n\\n置信度低于阈值或无候选时，判定进入人工路径。" <<Feat_answer_fUs_lowConfidenceI_lowEscalate>> as Feat_answer_fUs_lowConfidenceI_lowEscalate
+rectangle "==I-012 创建人工工单\\n\\n把提问内容、候选摘要与置信度写入工单，供人工接手。" <<Feat_answer_fUs_lowConfidenceI_lowTicket>> as Feat_answer_fUs_lowConfidenceI_lowTicket
+rectangle "==I-013 告知客户等待\\n\\n在会话中告知客户已转人工并给出预计等待，不做内容性答复。" <<Feat_answer_fUs_lowConfidenceI_lowNotify>> as Feat_answer_fUs_lowConfidenceI_lowNotify
+rectangle "==API-001 POST /wechat/callback 微信客服回调\\n\\nsrc/routes/wechat-kf-routes.js:12 — 接收企业微信加密回调。" <<Feat_answer_fLane_edgeApi_chatCallback>> as Feat_answer_fLane_edgeApi_chatCallback
+
+Feat_answer_fUs_askI_ask_verify .[#8D8D8D,thickness=2].> Feat_answer_fUs_lowConfidenceI_lowEscalate : <color:#8D8D8D>置信度不足
+Feat_answer_fUs_lowConfidenceI_lowEscalate .[#8D8D8D,thickness=2].> Feat_answer_fUs_lowConfidenceI_lowTicket : <color:#8D8D8D>创建工单
+Feat_answer_fUs_lowConfidenceI_lowTicket .[#8D8D8D,thickness=2].> Feat_answer_fUs_lowConfidenceI_lowNotify : <color:#8D8D8D>告知等待
+Feat_answer_fUs_lowConfidenceI_lowNotify .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>回复会话
 @enduml
 `;case`seq001NF-i-step-lanes`:return`@startuml
 title "I 环 · 场景判定泳道流程 · Feature-001-NF"
@@ -2168,34 +2259,34 @@ skinparam rectangle<<Feat_degrade_nfLane_coreStep_probeLane>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_degrade_nfLane_coreI_stepLaneKbCheck>>{
+skinparam rectangle<<Feat_degrade_nfUs_kbEmptyI_kb_judge>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck>>{
+skinparam rectangle<<Feat_degrade_nfUs_ragTimeoutI_to_check>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_degrade_nfLane_coreI_stepLaneLlmCheck>>{
+skinparam rectangle<<Feat_degrade_nfUs_llmDownI_ll_detect>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
 person "==运营人员" <<Feat_degrade_nfLane_operatorActor_ops>> as Feat_degrade_nfLane_operatorActor_ops
 rectangle "==API-101 GET /integration/status 集成状态\\n\\nsrc/routes/integration-routes.js:7 — 查询集成状态与知识条目数。" <<Feat_degrade_nfLane_edgeApi_status>> as Feat_degrade_nfLane_edgeApi_status
-rectangle "==I-102 场景判定逻辑（判定泳道）\\n\\n知识条目、响应耗时、模型可用性的判定环节。" <<Feat_degrade_nfLane_coreStep_probeLane>> as Feat_degrade_nfLane_coreStep_probeLane
-rectangle "==I-103 条目数判定\\n\\n判定知识库当前条目数，为零时标记空库场景。" <<Feat_degrade_nfLane_coreI_stepLaneKbCheck>> as Feat_degrade_nfLane_coreI_stepLaneKbCheck
-rectangle "==I-104 响应耗时判定\\n\\n判定 RAGFlow 响应是否超过 8 秒阈值。" <<Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck>> as Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck
-rectangle "==I-105 模型可用性判定\\n\\n判定模型服务调用结果，失败时标记转人工场景。" <<Feat_degrade_nfLane_coreI_stepLaneLlmCheck>> as Feat_degrade_nfLane_coreI_stepLaneLlmCheck
+rectangle "==I-151 场景判定（泳道引用）\\n\\n泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。" <<Feat_degrade_nfLane_coreStep_probeLane>> as Feat_degrade_nfLane_coreStep_probeLane
+rectangle "==I-112 判定零条场景\\n\\n条目数为 0 时判定为空库场景，标记需先补素材。" <<Feat_degrade_nfUs_kbEmptyI_kb_judge>> as Feat_degrade_nfUs_kbEmptyI_kb_judge
+rectangle "==I-122 判定超时\\n\\n计时到期仍未返回候选知识时判定超时场景。" <<Feat_degrade_nfUs_ragTimeoutI_to_check>> as Feat_degrade_nfUs_ragTimeoutI_to_check
+rectangle "==I-131 判定调用结果\\n\\n识别模型服务调用失败或返回异常。" <<Feat_degrade_nfUs_llmDownI_ll_detect>> as Feat_degrade_nfUs_llmDownI_ll_detect
 
 Feat_degrade_nfLane_operatorActor_ops .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_edgeApi_status : <color:#8D8D8D>①查询状态
 Feat_degrade_nfLane_edgeApi_status .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_coreStep_probeLane : <color:#8D8D8D>②发起探测
-Feat_degrade_nfLane_coreStep_probeLane .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_coreI_stepLaneKbCheck : <color:#8D8D8D>③判定条目数
-Feat_degrade_nfLane_coreI_stepLaneKbCheck .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck : <color:#8D8D8D>④判定响应耗时
-Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_coreI_stepLaneLlmCheck : <color:#8D8D8D>⑤判定模型可用性
-Feat_degrade_nfLane_coreI_stepLaneLlmCheck .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_operatorActor_ops : <color:#8D8D8D>⑥下发提示或转人工
+Feat_degrade_nfLane_coreStep_probeLane .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_judge : <color:#8D8D8D>③判定条目数
+Feat_degrade_nfUs_kbEmptyI_kb_judge .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_ragTimeoutI_to_check : <color:#8D8D8D>④判定响应耗时
+Feat_degrade_nfUs_ragTimeoutI_to_check .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_llmDownI_ll_detect : <color:#8D8D8D>⑤判定模型可用性
+Feat_degrade_nfUs_llmDownI_ll_detect .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_operatorActor_ops : <color:#8D8D8D>⑥下发提示或转人工
 @enduml
 `;case`seq001F-api-chat`:return`@startuml
 title "API 泳道时序 · Feature-001-F 提交提问"
@@ -2234,7 +2325,7 @@ skinparam rectangle<<Feat_answer_fLane_extExt_ragflow>>{
 }
 person "==客户" <<Feat_answer_fLane_clientActor_customer>> as Feat_answer_fLane_clientActor_customer
 rectangle "==API-001 POST /wechat/callback 微信客服回调\\n\\nsrc/routes/wechat-kf-routes.js:12 — 接收企业微信加密回调。" <<Feat_answer_fLane_edgeApi_chatCallback>> as Feat_answer_fLane_edgeApi_chatCallback
-rectangle "==I-003 业务步骤（应答泳道）\\n\\n编排、检索、校验、生成答复的领域环节。" <<Feat_answer_fLane_coreStep_answerLane>> as Feat_answer_fLane_coreStep_answerLane
+rectangle "==I-201 应答编排（泳道引用）\\n\\n泳道中的编排环节，具体步骤见 US-001 容器下的 I-001~I-006。" <<Feat_answer_fLane_coreStep_answerLane>> as Feat_answer_fLane_coreStep_answerLane
 rectangle "==RAGFlow\\n\\n检索与知识库服务。" <<Feat_answer_fLane_extExt_ragflow>> as Feat_answer_fLane_extExt_ragflow
 
 Feat_answer_fLane_clientActor_customer .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>POST /wechat/callback
@@ -2280,7 +2371,7 @@ skinparam rectangle<<Feat_degrade_nfLane_extExt_ragflow>>{
 }
 person "==运营人员" <<Feat_degrade_nfLane_operatorActor_ops>> as Feat_degrade_nfLane_operatorActor_ops
 rectangle "==API-101 GET /integration/status 集成状态\\n\\nsrc/routes/integration-routes.js:7 — 查询集成状态与知识条目数。" <<Feat_degrade_nfLane_edgeApi_status>> as Feat_degrade_nfLane_edgeApi_status
-rectangle "==I-102 场景判定逻辑（判定泳道）\\n\\n知识条目、响应耗时、模型可用性的判定环节。" <<Feat_degrade_nfLane_coreStep_probeLane>> as Feat_degrade_nfLane_coreStep_probeLane
+rectangle "==I-151 场景判定（泳道引用）\\n\\n泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。" <<Feat_degrade_nfLane_coreStep_probeLane>> as Feat_degrade_nfLane_coreStep_probeLane
 rectangle "==RAGFlow\\n\\n检索与知识库服务，超时或不可用即触发本链场景。" <<Feat_degrade_nfLane_extExt_ragflow>> as Feat_degrade_nfLane_extExt_ragflow
 
 Feat_degrade_nfLane_operatorActor_ops .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_edgeApi_status : <color:#8D8D8D>GET /integration/status

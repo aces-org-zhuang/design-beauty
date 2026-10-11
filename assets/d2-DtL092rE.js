@@ -63,53 +63,65 @@ Feat_degrade_nfNf_llmDown: {
 }
 `;case`pano-i`:return`direction: down
 
-Feat_answer_fI_goal: {
-  label: "I-001 业务目标"
-}
-Feat_answer_fI_step: {
-  label: "I-003 业务步骤"
-}
-Feat_knowledge_f: {
-  label: "Feature-002-F 知识运营能力"
+Feat_answer_f: {
+  label: "Feature-001-F 知识应答能力"
 
-  I_step: {
-    label: "I-202 业务步骤"
+  Us_ask: {
+    label: "US-001 客户提问获得专业答复"
+    shape: document
+  }
+  Us_lowConfidence: {
+    label: "US-002 答不准时转人工而非硬答"
+    shape: document
   }
   I_goal: {
-    label: "I-201 业务目标"
+    label: "I-101 业务目标"
   }
 }
-Feat_degrade_nfI_goal: {
-  label: "I-101 业务目标"
+Feat_knowledge_fI_goal: {
+  label: "I-201 业务目标"
 }
-Feat_degrade_nfI_step: {
-  label: "I-102 场景判定逻辑"
+Feat_knowledge_fUs_scan: {
+  label: "US-201 素材入库后自动进入候选知识"
+  shape: document
+}
+Feat_degrade_nf: {
+  label: "Feature-001-NF 极端场景保障"
+
+  Us_kbEmpty: {
+    label: "US-101 知识库为空时运营人员能看见"
+    shape: document
+  }
+  I_goal: {
+    label: "I-141 业务目标"
+  }
 }
 
-Feat_knowledge_f.I_step -> Feat_knowledge_f.I_goal: "推进治理目标"
+Feat_answer_f.Us_lowConfidence -> Feat_answer_f.I_goal: "落为业务目标"
+Feat_degrade_nf.Us_kbEmpty -> Feat_degrade_nf.I_goal: "落为业务目标"
 `;case`pano-i-state`:return`direction: down
 
-St_received: {
+Feat_answer_fSt_received: {
   label: "已接收"
 }
-St_retrieving: {
+Feat_answer_fSt_retrieving: {
   label: "检索中"
 }
-St_answering: {
+Feat_answer_fSt_answering: {
   label: "应答中"
 }
-St_waitingHuman: {
+Feat_answer_fSt_waitingHuman: {
   label: "待人工"
 }
-St_answered: {
+Feat_answer_fSt_answered: {
   label: "已答复"
 }
 
-St_received -> St_retrieving: "发起检索"
-St_retrieving -> St_answering: "置信度达标"
-St_answering -> St_answered: "答复已下发"
-St_retrieving -> St_waitingHuman: "置信度不足"
-St_waitingHuman -> St_answered: "人工已接管"
+Feat_answer_fSt_received -> Feat_answer_fSt_retrieving: "发起检索"
+Feat_answer_fSt_retrieving -> Feat_answer_fSt_answering: "置信度达标"
+Feat_answer_fSt_answering -> Feat_answer_fSt_answered: "答复已下发"
+Feat_answer_fSt_retrieving -> Feat_answer_fSt_waitingHuman: "置信度不足"
+Feat_answer_fSt_waitingHuman -> Feat_answer_fSt_answered: "人工已接管"
 `;case`pano-ui`:return`direction: down
 
 Feat_answer_fUi_interaction: {
@@ -465,32 +477,32 @@ Feat_degrade_nfDao_alert: {
 Feat_degrade_nfPod_alert -> Feat_degrade_nfDao_alert: "写入告警"
 `;case`stateMain`:return`direction: down
 
-St_received: {
+Feat_answer_fSt_received: {
   label: "已接收"
 }
-St_retrieving: {
+Feat_answer_fSt_retrieving: {
   label: "检索中"
 }
-St_answering: {
+Feat_answer_fSt_answering: {
   label: "应答中"
 }
-St_answered: {
+Feat_answer_fSt_answered: {
   label: "已答复"
 }
 
-St_received -> St_retrieving: "发起检索"
-St_retrieving -> St_answering: "置信度达标"
-St_answering -> St_answered: "答复已下发"
+Feat_answer_fSt_received -> Feat_answer_fSt_retrieving: "发起检索"
+Feat_answer_fSt_retrieving -> Feat_answer_fSt_answering: "置信度达标"
+Feat_answer_fSt_answering -> Feat_answer_fSt_answered: "答复已下发"
 `;case`stateBranchHuman`:return`direction: down
 
-St_retrieving: {
+Feat_answer_fSt_retrieving: {
   label: "检索中"
 }
-St_waitingHuman: {
+Feat_answer_fSt_waitingHuman: {
   label: "待人工"
 }
 
-St_retrieving -> St_waitingHuman: "置信度不足"
+Feat_answer_fSt_retrieving -> Feat_answer_fSt_waitingHuman: "置信度不足"
 `;case`index`:return`direction: down
 
 Feat_answer_f: {
@@ -575,22 +587,28 @@ Feat_degrade_nfUs_llmDown -> Feat_degrade_nfNf_llmDown: "要求"
 `;case`chain001F-i-goal`:return`direction: down
 
 Feat_answer_fI_goal: {
-  label: "I-001 业务目标"
+  label: "I-101 业务目标"
 }
 `;case`chain001F-i-step`:return`direction: down
 
-Feat_answer_fI_step: {
-  label: "I-003 业务步骤"
+Feat_answer_fUs_ask: {
+  label: "US-001 客户提问获得专业答复"
+  shape: document
+}
+Feat_answer_fUs_lowConfidence: {
+  label: "US-002 答不准时转人工而非硬答"
+  shape: document
 }
 `;case`chain001NF-i-goal`:return`direction: down
 
 Feat_degrade_nfI_goal: {
-  label: "I-101 业务目标"
+  label: "I-141 业务目标"
 }
 `;case`chain001NF-i-step`:return`direction: down
 
-Feat_degrade_nfI_step: {
-  label: "I-102 场景判定逻辑"
+Feat_degrade_nfUs_kbEmpty: {
+  label: "US-101 知识库为空时运营人员能看见"
+  shape: document
 }
 `;case`chain001F-ui`:return`direction: down
 
@@ -653,8 +671,9 @@ Feat_knowledge_fI_goal: {
 }
 `;case`chain002F-i-step`:return`direction: down
 
-Feat_knowledge_fI_step: {
-  label: "I-202 业务步骤"
+Feat_knowledge_fUs_scan: {
+  label: "US-201 素材入库后自动进入候选知识"
+  shape: document
 }
 `;case`chain002F-ui`:return`direction: down
 
@@ -756,7 +775,7 @@ Feat_answer_fLane_edgeApi_chatCallback: {
   label: "API-001 POST /wechat/callback 微信客服回调"
 }
 Feat_answer_fLane_coreStep_answerLane: {
-  label: "I-003 业务步骤（应答泳道）"
+  label: "I-201 应答编排（泳道引用）"
 }
 Feat_answer_fLane_extExt_ragflow: {
   label: "RAGFlow"
@@ -782,7 +801,7 @@ Feat_answer_fLane_extExt_ragflow -> Feat_answer_fLane_coreStep_answerLane: "返�
 Feat_answer_fLane_coreStep_answerLane -> Feat_answer_fSrc_replyPolicy: "校验置信度"
 Feat_answer_fSrc_replyPolicy -> Feat_answer_fLane_coreStep_answerLane: "达标放行"
 Feat_answer_fLane_coreStep_answerLane -> Feat_answer_fLane_edgeApi_chatCallback: "返回答复"
-`;case`seq001F-branch-low-confidence`:return`direction: right
+`;case`seq001F-branch-low-confidence-src`:return`direction: right
 
 Feat_answer_fSrc_replyPolicy: {
   label: "SRC-004 回复策略"
@@ -796,15 +815,10 @@ Feat_answer_fSrc_handoffService: {
 Feat_answer_fSrc_store: {
   label: "SRC-007 本地存储"
 }
-Feat_answer_fLane_clientActor_customer: {
-  label: "客户"
-  shape: c4-person
-}
 
 Feat_answer_fSrc_replyPolicy -> Feat_answer_fSrc_answerOrchestrator: "置信度不足"
 Feat_answer_fSrc_answerOrchestrator -> Feat_answer_fSrc_handoffService: "转人工"
 Feat_answer_fSrc_handoffService -> Feat_answer_fSrc_store: "持久化工单"
-Feat_answer_fSrc_store -> Feat_answer_fLane_clientActor_customer: "告知等待人工"
 `;case`dfd001F-answer`:return`direction: right
 
 Feat_answer_fUi_interaction: {
@@ -846,7 +860,7 @@ Feat_degrade_nfLane_edgeApi_status: {
   label: "API-101 GET /integration/status 集成状态"
 }
 Feat_degrade_nfLane_coreStep_probeLane: {
-  label: "I-102 场景判定逻辑（判定泳道）"
+  label: "I-151 场景判定（泳道引用）"
 }
 Feat_degrade_nfLane_extExt_ragflow: {
   label: "RAGFlow"
@@ -905,23 +919,61 @@ Feat_answer_fLane_clientActor_customer: {
 Feat_answer_fLane_edgeApi_chatCallback: {
   label: "API-001 POST /wechat/callback 微信客服回调"
 }
-Feat_answer_fLane_coreStep_answerLane: {
-  label: "I-003 业务步骤（应答泳道）"
+Feat_answer_fUs_askI_ask_normalize: {
+  label: "I-001 归一化提问"
 }
-Feat_answer_fLane_coreI_stepLaneStep: {
-  label: "I-005 校验与生成环节"
+Feat_answer_fUs_askI_ask_retrieve: {
+  label: "I-002 检索候选知识"
 }
-Feat_answer_fLane_coreI_stepLaneSearch: {
-  label: "I-004 检索环节"
+Feat_answer_fUs_askI_ask_rank: {
+  label: "I-003 候选排序与择优"
+}
+Feat_answer_fUs_askI_ask_verify: {
+  label: "I-004 置信度校验"
+}
+Feat_answer_fUs_askI_ask_compose: {
+  label: "I-005 生成答复"
+}
+Feat_answer_fUs_askI_ask_deliver: {
+  label: "I-006 下发答复"
+}
+Feat_answer_fLane_extExt_ragflow: {
+  label: "RAGFlow"
 }
 
 Feat_answer_fLane_clientActor_customer -> Feat_answer_fLane_edgeApi_chatCallback: "①提出问题"
-Feat_answer_fLane_edgeApi_chatCallback -> Feat_answer_fLane_coreStep_answerLane: "②归一化并派发"
-Feat_answer_fLane_coreStep_answerLane -> Feat_answer_fLane_coreI_stepLaneSearch: "③检索候选知识"
-Feat_answer_fLane_coreI_stepLaneSearch -> Feat_answer_fLane_coreStep_answerLane: "④候选返回"
-Feat_answer_fLane_coreStep_answerLane -> Feat_answer_fLane_coreI_stepLaneStep: "⑤置信度校验"
-Feat_answer_fLane_coreI_stepLaneStep -> Feat_answer_fLane_edgeApi_chatCallback: "⑥生成答复"
-Feat_answer_fLane_edgeApi_chatCallback -> Feat_answer_fLane_clientActor_customer: "⑦答复送达"
+Feat_answer_fLane_edgeApi_chatCallback -> Feat_answer_fUs_askI_ask_normalize: "②归一化提问"
+Feat_answer_fUs_askI_ask_normalize -> Feat_answer_fUs_askI_ask_retrieve: "③发起检索"
+Feat_answer_fUs_askI_ask_retrieve -> Feat_answer_fLane_extExt_ragflow: "④请求RAGFlow"
+Feat_answer_fLane_extExt_ragflow -> Feat_answer_fUs_askI_ask_retrieve: "⑤返回候选知识"
+Feat_answer_fUs_askI_ask_retrieve -> Feat_answer_fUs_askI_ask_rank: "⑥候选排序"
+Feat_answer_fUs_askI_ask_rank -> Feat_answer_fUs_askI_ask_verify: "⑦置信度校验"
+Feat_answer_fUs_askI_ask_verify -> Feat_answer_fUs_askI_ask_compose: "⑧生成答复"
+Feat_answer_fUs_askI_ask_compose -> Feat_answer_fUs_askI_ask_deliver: "⑨下发答复"
+Feat_answer_fUs_askI_ask_deliver -> Feat_answer_fLane_edgeApi_chatCallback: "⑩回复会话"
+Feat_answer_fLane_edgeApi_chatCallback -> Feat_answer_fLane_clientActor_customer: "⑪答复送达"
+`;case`seq001F-branch-low-confidence`:return`direction: right
+
+Feat_answer_fUs_askI_ask_verify: {
+  label: "I-004 置信度校验"
+}
+Feat_answer_fUs_lowConfidenceI_lowEscalate: {
+  label: "I-011 判定转人工"
+}
+Feat_answer_fUs_lowConfidenceI_lowTicket: {
+  label: "I-012 创建人工工单"
+}
+Feat_answer_fUs_lowConfidenceI_lowNotify: {
+  label: "I-013 告知客户等待"
+}
+Feat_answer_fLane_edgeApi_chatCallback: {
+  label: "API-001 POST /wechat/callback 微信客服回调"
+}
+
+Feat_answer_fUs_askI_ask_verify -> Feat_answer_fUs_lowConfidenceI_lowEscalate: "置信度不足"
+Feat_answer_fUs_lowConfidenceI_lowEscalate -> Feat_answer_fUs_lowConfidenceI_lowTicket: "创建工单"
+Feat_answer_fUs_lowConfidenceI_lowTicket -> Feat_answer_fUs_lowConfidenceI_lowNotify: "告知等待"
+Feat_answer_fUs_lowConfidenceI_lowNotify -> Feat_answer_fLane_edgeApi_chatCallback: "回复会话"
 `;case`seq001NF-i-step-lanes`:return`direction: right
 
 Feat_degrade_nfLane_operatorActor_ops: {
@@ -932,24 +984,24 @@ Feat_degrade_nfLane_edgeApi_status: {
   label: "API-101 GET /integration/status 集成状态"
 }
 Feat_degrade_nfLane_coreStep_probeLane: {
-  label: "I-102 场景判定逻辑（判定泳道）"
+  label: "I-151 场景判定（泳道引用）"
 }
-Feat_degrade_nfLane_coreI_stepLaneKbCheck: {
-  label: "I-103 条目数判定"
+Feat_degrade_nfUs_kbEmptyI_kb_judge: {
+  label: "I-112 判定零条场景"
 }
-Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck: {
-  label: "I-104 响应耗时判定"
+Feat_degrade_nfUs_ragTimeoutI_to_check: {
+  label: "I-122 判定超时"
 }
-Feat_degrade_nfLane_coreI_stepLaneLlmCheck: {
-  label: "I-105 模型可用性判定"
+Feat_degrade_nfUs_llmDownI_ll_detect: {
+  label: "I-131 判定调用结果"
 }
 
 Feat_degrade_nfLane_operatorActor_ops -> Feat_degrade_nfLane_edgeApi_status: "①查询状态"
 Feat_degrade_nfLane_edgeApi_status -> Feat_degrade_nfLane_coreStep_probeLane: "②发起探测"
-Feat_degrade_nfLane_coreStep_probeLane -> Feat_degrade_nfLane_coreI_stepLaneKbCheck: "③判定条目数"
-Feat_degrade_nfLane_coreI_stepLaneKbCheck -> Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck: "④判定响应耗时"
-Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck -> Feat_degrade_nfLane_coreI_stepLaneLlmCheck: "⑤判定模型可用性"
-Feat_degrade_nfLane_coreI_stepLaneLlmCheck -> Feat_degrade_nfLane_operatorActor_ops: "⑥下发提示或转人工"
+Feat_degrade_nfLane_coreStep_probeLane -> Feat_degrade_nfUs_kbEmptyI_kb_judge: "③判定条目数"
+Feat_degrade_nfUs_kbEmptyI_kb_judge -> Feat_degrade_nfUs_ragTimeoutI_to_check: "④判定响应耗时"
+Feat_degrade_nfUs_ragTimeoutI_to_check -> Feat_degrade_nfUs_llmDownI_ll_detect: "⑤判定模型可用性"
+Feat_degrade_nfUs_llmDownI_ll_detect -> Feat_degrade_nfLane_operatorActor_ops: "⑥下发提示或转人工"
 `;case`seq001F-api-chat`:return`direction: right
 
 Feat_answer_fLane_clientActor_customer: {
@@ -960,7 +1012,7 @@ Feat_answer_fLane_edgeApi_chatCallback: {
   label: "API-001 POST /wechat/callback 微信客服回调"
 }
 Feat_answer_fLane_coreStep_answerLane: {
-  label: "I-003 业务步骤（应答泳道）"
+  label: "I-201 应答编排（泳道引用）"
 }
 Feat_answer_fLane_extExt_ragflow: {
   label: "RAGFlow"
@@ -981,7 +1033,7 @@ Feat_degrade_nfLane_edgeApi_status: {
   label: "API-101 GET /integration/status 集成状态"
 }
 Feat_degrade_nfLane_coreStep_probeLane: {
-  label: "I-102 场景判定逻辑（判定泳道）"
+  label: "I-151 场景判定（泳道引用）"
 }
 Feat_degrade_nfLane_extExt_ragflow: {
   label: "RAGFlow"

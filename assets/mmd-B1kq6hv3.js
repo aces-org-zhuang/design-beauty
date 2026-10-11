@@ -37,29 +37,33 @@ graph TB
 title: "I 全景 · 全部 Feature 的业务逻辑"
 ---
 graph TB
-  Feat_answer_fI_goal@{ shape: rectangle, label: "I-001 业务目标" }
-  Feat_answer_fI_step@{ shape: rectangle, label: "I-003 业务步骤" }
-  subgraph Feat_knowledge_f["\`Feature-002-F 知识运营能力\`"]
-    Feat_knowledge_f.I_step@{ shape: rectangle, label: "I-202 业务步骤" }
-    Feat_knowledge_f.I_goal@{ shape: rectangle, label: "I-201 业务目标" }
+  subgraph Feat_answer_f["\`Feature-001-F 知识应答能力\`"]
+    Feat_answer_f.Us_ask@{ shape: doc, label: "US-001 客户提问获得专业答复" }
+    Feat_answer_f.Us_lowConfidence@{ shape: doc, label: "US-002 答不准时转人工而非硬答" }
+    Feat_answer_f.I_goal@{ shape: rectangle, label: "I-101 业务目标" }
   end
-  Feat_degrade_nfI_goal@{ shape: rectangle, label: "I-101 业务目标" }
-  Feat_degrade_nfI_step@{ shape: rectangle, label: "I-102 场景判定逻辑" }
-  Feat_knowledge_f.I_step -. "\`推进治理目标\`" .-> Feat_knowledge_f.I_goal
+  Feat_knowledge_fI_goal@{ shape: rectangle, label: "I-201 业务目标" }
+  Feat_knowledge_fUs_scan@{ shape: doc, label: "US-201 素材入库后自动进入候选知识" }
+  subgraph Feat_degrade_nf["\`Feature-001-NF 极端场景保障\`"]
+    Feat_degrade_nf.Us_kbEmpty@{ shape: doc, label: "US-101 知识库为空时运营人员能看见" }
+    Feat_degrade_nf.I_goal@{ shape: rectangle, label: "I-141 业务目标" }
+  end
+  Feat_answer_f.Us_lowConfidence -. "\`落为业务目标\`" .-> Feat_answer_f.I_goal
+  Feat_degrade_nf.Us_kbEmpty -. "\`落为业务目标\`" .-> Feat_degrade_nf.I_goal
 `;case`pano-i-state`:return`---
 title: "I 环 · 业务状态全景"
 ---
 graph TB
-  St_received@{ shape: rectangle, label: "已接收" }
-  St_retrieving@{ shape: rectangle, label: "检索中" }
-  St_answering@{ shape: rectangle, label: "应答中" }
-  St_waitingHuman@{ shape: rectangle, label: "待人工" }
-  St_answered@{ shape: rectangle, label: "已答复" }
-  St_received -. "\`发起检索\`" .-> St_retrieving
-  St_retrieving -. "\`置信度达标\`" .-> St_answering
-  St_answering -. "\`答复已下发\`" .-> St_answered
-  St_retrieving -. "\`置信度不足\`" .-> St_waitingHuman
-  St_waitingHuman -. "\`人工已接管\`" .-> St_answered
+  Feat_answer_fSt_received@{ shape: rectangle, label: "已接收" }
+  Feat_answer_fSt_retrieving@{ shape: rectangle, label: "检索中" }
+  Feat_answer_fSt_answering@{ shape: rectangle, label: "应答中" }
+  Feat_answer_fSt_waitingHuman@{ shape: rectangle, label: "待人工" }
+  Feat_answer_fSt_answered@{ shape: rectangle, label: "已答复" }
+  Feat_answer_fSt_received -. "\`发起检索\`" .-> Feat_answer_fSt_retrieving
+  Feat_answer_fSt_retrieving -. "\`置信度达标\`" .-> Feat_answer_fSt_answering
+  Feat_answer_fSt_answering -. "\`答复已下发\`" .-> Feat_answer_fSt_answered
+  Feat_answer_fSt_retrieving -. "\`置信度不足\`" .-> Feat_answer_fSt_waitingHuman
+  Feat_answer_fSt_waitingHuman -. "\`人工已接管\`" .-> Feat_answer_fSt_answered
 `;case`pano-ui`:return`---
 title: "UI 全景 · 全部 Feature 的界面面"
 ---
@@ -254,20 +258,20 @@ graph TB
 title: "I 环 · 业务状态主干"
 ---
 graph TB
-  St_received@{ shape: rectangle, label: "已接收" }
-  St_retrieving@{ shape: rectangle, label: "检索中" }
-  St_answering@{ shape: rectangle, label: "应答中" }
-  St_answered@{ shape: rectangle, label: "已答复" }
-  St_received -. "\`发起检索\`" .-> St_retrieving
-  St_retrieving -. "\`置信度达标\`" .-> St_answering
-  St_answering -. "\`答复已下发\`" .-> St_answered
+  Feat_answer_fSt_received@{ shape: rectangle, label: "已接收" }
+  Feat_answer_fSt_retrieving@{ shape: rectangle, label: "检索中" }
+  Feat_answer_fSt_answering@{ shape: rectangle, label: "应答中" }
+  Feat_answer_fSt_answered@{ shape: rectangle, label: "已答复" }
+  Feat_answer_fSt_received -. "\`发起检索\`" .-> Feat_answer_fSt_retrieving
+  Feat_answer_fSt_retrieving -. "\`置信度达标\`" .-> Feat_answer_fSt_answering
+  Feat_answer_fSt_answering -. "\`答复已下发\`" .-> Feat_answer_fSt_answered
 `;case`stateBranchHuman`:return`---
 title: "I 环 · 业务状态分支 · 转人工"
 ---
 graph TB
-  St_retrieving@{ shape: rectangle, label: "检索中" }
-  St_waitingHuman@{ shape: rectangle, label: "待人工" }
-  St_retrieving -. "\`置信度不足\`" .-> St_waitingHuman
+  Feat_answer_fSt_retrieving@{ shape: rectangle, label: "检索中" }
+  Feat_answer_fSt_waitingHuman@{ shape: rectangle, label: "待人工" }
+  Feat_answer_fSt_retrieving -. "\`置信度不足\`" .-> Feat_answer_fSt_waitingHuman
 `;case`index`:return`---
 title: "美妆客服服务 · 全部 Feature 导航"
 ---
@@ -315,22 +319,23 @@ graph TB
 title: "I 环 · 业务目标 · Feature-001-F"
 ---
 graph TB
-  Feat_answer_fI_goal@{ shape: rectangle, label: "I-001 业务目标" }
+  Feat_answer_fI_goal@{ shape: rectangle, label: "I-101 业务目标" }
 `;case`chain001F-i-step`:return`---
 title: "I 环 · 业务步骤 · Feature-001-F"
 ---
 graph TB
-  Feat_answer_fI_step@{ shape: rectangle, label: "I-003 业务步骤" }
+  Feat_answer_fUs_ask@{ shape: doc, label: "US-001 客户提问获得专业答复" }
+  Feat_answer_fUs_lowConfidence@{ shape: doc, label: "US-002 答不准时转人工而非硬答" }
 `;case`chain001NF-i-goal`:return`---
 title: "I 环 · 业务目标 · Feature-001-NF"
 ---
 graph TB
-  Feat_degrade_nfI_goal@{ shape: rectangle, label: "I-101 业务目标" }
+  Feat_degrade_nfI_goal@{ shape: rectangle, label: "I-141 业务目标" }
 `;case`chain001NF-i-step`:return`---
 title: "I 环 · 场景判定步骤 · Feature-001-NF"
 ---
 graph TB
-  Feat_degrade_nfI_step@{ shape: rectangle, label: "I-102 场景判定逻辑" }
+  Feat_degrade_nfUs_kbEmpty@{ shape: doc, label: "US-101 知识库为空时运营人员能看见" }
 `;case`chain001F-ui`:return`---
 title: "UI 环 · Feature-001-F"
 ---
@@ -371,7 +376,7 @@ graph TB
 title: "I 环 · 业务步骤 · Feature-002-F"
 ---
 graph TB
-  Feat_knowledge_fI_step@{ shape: rectangle, label: "I-202 业务步骤" }
+  Feat_knowledge_fUs_scan@{ shape: doc, label: "US-201 素材入库后自动进入候选知识" }
 `;case`chain002F-ui`:return`---
 title: "UI 环 · Feature-002-F"
 ---
@@ -433,7 +438,7 @@ title: "Feature-001-F 主干时序 · 客户提问到答复"
 graph LR
   Feat_answer_fLane_clientActor_customer@{ icon: "fa:user", shape: rounded, label: "客户" }
   Feat_answer_fLane_edgeApi_chatCallback@{ shape: rectangle, label: "API-001 POST /wechat/callback 微信客服回调" }
-  Feat_answer_fLane_coreStep_answerLane@{ shape: rectangle, label: "I-003 业务步骤（应答泳道）" }
+  Feat_answer_fLane_coreStep_answerLane@{ shape: rectangle, label: "I-201 应答编排（泳道引用）" }
   Feat_answer_fLane_extExt_ragflow@{ shape: rectangle, label: "RAGFlow" }
   Feat_answer_fSrc_answerOrchestrator@{ shape: rectangle, label: "SRC-002 应答编排器" }
   Feat_answer_fSrc_replyPolicy@{ shape: rectangle, label: "SRC-004 回复策略" }
@@ -447,19 +452,17 @@ graph LR
   Feat_answer_fLane_coreStep_answerLane -. "\`校验置信度\`" .-> Feat_answer_fSrc_replyPolicy
   Feat_answer_fSrc_replyPolicy -. "\`达标放行\`" .-> Feat_answer_fLane_coreStep_answerLane
   Feat_answer_fLane_coreStep_answerLane -. "\`返回答复\`" .-> Feat_answer_fLane_edgeApi_chatCallback
-`;case`seq001F-branch-low-confidence`:return`---
-title: "Feature-001-F 分支 · 置信度不足转人工"
+`;case`seq001F-branch-low-confidence-src`:return`---
+title: "SRC · 分支时序 · Feature-001-F · 置信度不足转人工"
 ---
 graph LR
   Feat_answer_fSrc_replyPolicy@{ shape: rectangle, label: "SRC-004 回复策略" }
   Feat_answer_fSrc_answerOrchestrator@{ shape: rectangle, label: "SRC-002 应答编排器" }
   Feat_answer_fSrc_handoffService@{ shape: rectangle, label: "SRC-006 转人工服务" }
   Feat_answer_fSrc_store@{ shape: rectangle, label: "SRC-007 本地存储" }
-  Feat_answer_fLane_clientActor_customer@{ icon: "fa:user", shape: rounded, label: "客户" }
   Feat_answer_fSrc_replyPolicy -. "\`置信度不足\`" .-> Feat_answer_fSrc_answerOrchestrator
   Feat_answer_fSrc_answerOrchestrator -. "\`转人工\`" .-> Feat_answer_fSrc_handoffService
   Feat_answer_fSrc_handoffService -. "\`持久化工单\`" .-> Feat_answer_fSrc_store
-  Feat_answer_fSrc_store -. "\`告知等待人工\`" .-> Feat_answer_fLane_clientActor_customer
 `;case`dfd001F-answer`:return`---
 title: "DFD 全景 · Feature-001-F 应答数据流"
 ---
@@ -483,7 +486,7 @@ title: "Feature-001-NF 主干时序 · 场景判定与提示"
 graph LR
   Feat_degrade_nfLane_operatorActor_ops@{ icon: "fa:user", shape: rounded, label: "运营人员" }
   Feat_degrade_nfLane_edgeApi_status@{ shape: rectangle, label: "API-101 GET /integration/status 集成状态" }
-  Feat_degrade_nfLane_coreStep_probeLane@{ shape: rectangle, label: "I-102 场景判定逻辑（判定泳道）" }
+  Feat_degrade_nfLane_coreStep_probeLane@{ shape: rectangle, label: "I-151 场景判定（泳道引用）" }
   Feat_degrade_nfLane_extExt_ragflow@{ shape: rectangle, label: "RAGFlow" }
   Feat_degrade_nfSrc_evaluationGate@{ shape: rectangle, label: "SRC-102 评测闸门" }
   Feat_degrade_nfUi_notice@{ shape: rounded, label: "UI-102 极端场景提示" }
@@ -516,39 +519,60 @@ title: "I 环 · 业务步骤泳道流程 · Feature-001-F"
 graph LR
   Feat_answer_fLane_clientActor_customer@{ icon: "fa:user", shape: rounded, label: "客户" }
   Feat_answer_fLane_edgeApi_chatCallback@{ shape: rectangle, label: "API-001 POST /wechat/callback 微信客服回调" }
-  Feat_answer_fLane_coreStep_answerLane@{ shape: rectangle, label: "I-003 业务步骤（应答泳道）" }
-  Feat_answer_fLane_coreI_stepLaneStep@{ shape: rectangle, label: "I-005 校验与生成环节" }
-  Feat_answer_fLane_coreI_stepLaneSearch@{ shape: rectangle, label: "I-004 检索环节" }
+  Feat_answer_fUs_askI_ask_normalize@{ shape: rectangle, label: "I-001 归一化提问" }
+  Feat_answer_fUs_askI_ask_retrieve@{ shape: rectangle, label: "I-002 检索候选知识" }
+  Feat_answer_fUs_askI_ask_rank@{ shape: rectangle, label: "I-003 候选排序与择优" }
+  Feat_answer_fUs_askI_ask_verify@{ shape: rectangle, label: "I-004 置信度校验" }
+  Feat_answer_fUs_askI_ask_compose@{ shape: rectangle, label: "I-005 生成答复" }
+  Feat_answer_fUs_askI_ask_deliver@{ shape: rectangle, label: "I-006 下发答复" }
+  Feat_answer_fLane_extExt_ragflow@{ shape: rectangle, label: "RAGFlow" }
   Feat_answer_fLane_clientActor_customer -. "\`①提出问题\`" .-> Feat_answer_fLane_edgeApi_chatCallback
-  Feat_answer_fLane_edgeApi_chatCallback -. "\`②归一化并派发\`" .-> Feat_answer_fLane_coreStep_answerLane
-  Feat_answer_fLane_coreStep_answerLane -. "\`③检索候选知识\`" .-> Feat_answer_fLane_coreI_stepLaneSearch
-  Feat_answer_fLane_coreI_stepLaneSearch -. "\`④候选返回\`" .-> Feat_answer_fLane_coreStep_answerLane
-  Feat_answer_fLane_coreStep_answerLane -. "\`⑤置信度校验\`" .-> Feat_answer_fLane_coreI_stepLaneStep
-  Feat_answer_fLane_coreI_stepLaneStep -. "\`⑥生成答复\`" .-> Feat_answer_fLane_edgeApi_chatCallback
-  Feat_answer_fLane_edgeApi_chatCallback -. "\`⑦答复送达\`" .-> Feat_answer_fLane_clientActor_customer
+  Feat_answer_fLane_edgeApi_chatCallback -. "\`②归一化提问\`" .-> Feat_answer_fUs_askI_ask_normalize
+  Feat_answer_fUs_askI_ask_normalize -. "\`③发起检索\`" .-> Feat_answer_fUs_askI_ask_retrieve
+  Feat_answer_fUs_askI_ask_retrieve -. "\`④请求RAGFlow\`" .-> Feat_answer_fLane_extExt_ragflow
+  Feat_answer_fLane_extExt_ragflow -. "\`⑤返回候选知识\`" .-> Feat_answer_fUs_askI_ask_retrieve
+  Feat_answer_fUs_askI_ask_retrieve -. "\`⑥候选排序\`" .-> Feat_answer_fUs_askI_ask_rank
+  Feat_answer_fUs_askI_ask_rank -. "\`⑦置信度校验\`" .-> Feat_answer_fUs_askI_ask_verify
+  Feat_answer_fUs_askI_ask_verify -. "\`⑧生成答复\`" .-> Feat_answer_fUs_askI_ask_compose
+  Feat_answer_fUs_askI_ask_compose -. "\`⑨下发答复\`" .-> Feat_answer_fUs_askI_ask_deliver
+  Feat_answer_fUs_askI_ask_deliver -. "\`⑩回复会话\`" .-> Feat_answer_fLane_edgeApi_chatCallback
+  Feat_answer_fLane_edgeApi_chatCallback -. "\`⑪答复送达\`" .-> Feat_answer_fLane_clientActor_customer
+`;case`seq001F-branch-low-confidence`:return`---
+title: "I 环 · 分支泳道流程 · Feature-001-F · 置信度不足"
+---
+graph LR
+  Feat_answer_fUs_askI_ask_verify@{ shape: rectangle, label: "I-004 置信度校验" }
+  Feat_answer_fUs_lowConfidenceI_lowEscalate@{ shape: rectangle, label: "I-011 判定转人工" }
+  Feat_answer_fUs_lowConfidenceI_lowTicket@{ shape: rectangle, label: "I-012 创建人工工单" }
+  Feat_answer_fUs_lowConfidenceI_lowNotify@{ shape: rectangle, label: "I-013 告知客户等待" }
+  Feat_answer_fLane_edgeApi_chatCallback@{ shape: rectangle, label: "API-001 POST /wechat/callback 微信客服回调" }
+  Feat_answer_fUs_askI_ask_verify -. "\`置信度不足\`" .-> Feat_answer_fUs_lowConfidenceI_lowEscalate
+  Feat_answer_fUs_lowConfidenceI_lowEscalate -. "\`创建工单\`" .-> Feat_answer_fUs_lowConfidenceI_lowTicket
+  Feat_answer_fUs_lowConfidenceI_lowTicket -. "\`告知等待\`" .-> Feat_answer_fUs_lowConfidenceI_lowNotify
+  Feat_answer_fUs_lowConfidenceI_lowNotify -. "\`回复会话\`" .-> Feat_answer_fLane_edgeApi_chatCallback
 `;case`seq001NF-i-step-lanes`:return`---
 title: "I 环 · 场景判定泳道流程 · Feature-001-NF"
 ---
 graph LR
   Feat_degrade_nfLane_operatorActor_ops@{ icon: "fa:user", shape: rounded, label: "运营人员" }
   Feat_degrade_nfLane_edgeApi_status@{ shape: rectangle, label: "API-101 GET /integration/status 集成状态" }
-  Feat_degrade_nfLane_coreStep_probeLane@{ shape: rectangle, label: "I-102 场景判定逻辑（判定泳道）" }
-  Feat_degrade_nfLane_coreI_stepLaneKbCheck@{ shape: rectangle, label: "I-103 条目数判定" }
-  Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck@{ shape: rectangle, label: "I-104 响应耗时判定" }
-  Feat_degrade_nfLane_coreI_stepLaneLlmCheck@{ shape: rectangle, label: "I-105 模型可用性判定" }
+  Feat_degrade_nfLane_coreStep_probeLane@{ shape: rectangle, label: "I-151 场景判定（泳道引用）" }
+  Feat_degrade_nfUs_kbEmptyI_kb_judge@{ shape: rectangle, label: "I-112 判定零条场景" }
+  Feat_degrade_nfUs_ragTimeoutI_to_check@{ shape: rectangle, label: "I-122 判定超时" }
+  Feat_degrade_nfUs_llmDownI_ll_detect@{ shape: rectangle, label: "I-131 判定调用结果" }
   Feat_degrade_nfLane_operatorActor_ops -. "\`①查询状态\`" .-> Feat_degrade_nfLane_edgeApi_status
   Feat_degrade_nfLane_edgeApi_status -. "\`②发起探测\`" .-> Feat_degrade_nfLane_coreStep_probeLane
-  Feat_degrade_nfLane_coreStep_probeLane -. "\`③判定条目数\`" .-> Feat_degrade_nfLane_coreI_stepLaneKbCheck
-  Feat_degrade_nfLane_coreI_stepLaneKbCheck -. "\`④判定响应耗时\`" .-> Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck
-  Feat_degrade_nfLane_coreI_stepLaneTimeoutCheck -. "\`⑤判定模型可用性\`" .-> Feat_degrade_nfLane_coreI_stepLaneLlmCheck
-  Feat_degrade_nfLane_coreI_stepLaneLlmCheck -. "\`⑥下发提示或转人工\`" .-> Feat_degrade_nfLane_operatorActor_ops
+  Feat_degrade_nfLane_coreStep_probeLane -. "\`③判定条目数\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_judge
+  Feat_degrade_nfUs_kbEmptyI_kb_judge -. "\`④判定响应耗时\`" .-> Feat_degrade_nfUs_ragTimeoutI_to_check
+  Feat_degrade_nfUs_ragTimeoutI_to_check -. "\`⑤判定模型可用性\`" .-> Feat_degrade_nfUs_llmDownI_ll_detect
+  Feat_degrade_nfUs_llmDownI_ll_detect -. "\`⑥下发提示或转人工\`" .-> Feat_degrade_nfLane_operatorActor_ops
 `;case`seq001F-api-chat`:return`---
 title: "API 泳道时序 · Feature-001-F 提交提问"
 ---
 graph LR
   Feat_answer_fLane_clientActor_customer@{ icon: "fa:user", shape: rounded, label: "客户" }
   Feat_answer_fLane_edgeApi_chatCallback@{ shape: rectangle, label: "API-001 POST /wechat/callback 微信客服回调" }
-  Feat_answer_fLane_coreStep_answerLane@{ shape: rectangle, label: "I-003 业务步骤（应答泳道）" }
+  Feat_answer_fLane_coreStep_answerLane@{ shape: rectangle, label: "I-201 应答编排（泳道引用）" }
   Feat_answer_fLane_extExt_ragflow@{ shape: rectangle, label: "RAGFlow" }
   Feat_answer_fLane_clientActor_customer -. "\`POST /wechat/callback\`" .-> Feat_answer_fLane_edgeApi_chatCallback
   Feat_answer_fLane_edgeApi_chatCallback -. "\`触发应答\`" .-> Feat_answer_fLane_coreStep_answerLane
@@ -561,7 +585,7 @@ title: "API 泳道时序 · Feature-001-NF 查询集成状态"
 graph LR
   Feat_degrade_nfLane_operatorActor_ops@{ icon: "fa:user", shape: rounded, label: "运营人员" }
   Feat_degrade_nfLane_edgeApi_status@{ shape: rectangle, label: "API-101 GET /integration/status 集成状态" }
-  Feat_degrade_nfLane_coreStep_probeLane@{ shape: rectangle, label: "I-102 场景判定逻辑（判定泳道）" }
+  Feat_degrade_nfLane_coreStep_probeLane@{ shape: rectangle, label: "I-151 场景判定（泳道引用）" }
   Feat_degrade_nfLane_extExt_ragflow@{ shape: rectangle, label: "RAGFlow" }
   Feat_degrade_nfLane_operatorActor_ops -. "\`GET /integration/status\`" .-> Feat_degrade_nfLane_edgeApi_status
   Feat_degrade_nfLane_edgeApi_status -. "\`发起探测\`" .-> Feat_degrade_nfLane_coreStep_probeLane
