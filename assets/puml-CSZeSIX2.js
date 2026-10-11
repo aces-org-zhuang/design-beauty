@@ -241,10 +241,10 @@ rectangle "Feature-001-F 知识应答能力" <<Feat_answer_f>> as Feat_answer_f 
   skinparam RectangleBorderStyle<<Feat_answer_f>> dashed
 
   rectangle "==US-002 答不准时转人工而非硬答\\n\\n作为客户，当知识库没有覆盖我的问题时，以便被转给人工而不是收到编造答案。验收：置信度不足时生成人工工单并告知我等待。" <<Feat_answer_fUs_lowConfidence>> as Feat_answer_fUs_lowConfidence
-  rectangle "==I-101 业务目标\\n\\n客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。" <<Feat_answer_fI_goal>> as Feat_answer_fI_goal
+  rectangle "==I-G0 业务目标\\n\\n客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。" <<Feat_answer_fI_goal>> as Feat_answer_fI_goal
   rectangle "==US-001 客户提问获得专业答复\\n\\n作为客户，我在企业微信提问美妆问题，以便拿到有依据的答复而不是广告。验收：答复内容来自知识库检索结果且不含未验证成分。" <<Feat_answer_fUs_ask>> as Feat_answer_fUs_ask
 }
-rectangle "==I-201 业务目标\\n\\n素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。" <<Feat_knowledge_fI_goal>> as Feat_knowledge_fI_goal
+rectangle "==I-G0 业务目标\\n\\n素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。" <<Feat_knowledge_fI_goal>> as Feat_knowledge_fI_goal
 rectangle "==US-201 素材入库后自动进入候选知识\\n\\n作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。" <<Feat_knowledge_fUs_scan>> as Feat_knowledge_fUs_scan
 rectangle "Feature-001-NF 极端场景保障" <<Feat_degrade_nf>> as Feat_degrade_nf {
   skinparam RectangleBorderColor<<Feat_degrade_nf>> #3b82f6
@@ -252,7 +252,7 @@ rectangle "Feature-001-NF 极端场景保障" <<Feat_degrade_nf>> as Feat_degrad
   skinparam RectangleBorderStyle<<Feat_degrade_nf>> dashed
 
   rectangle "==US-101 知识库为空时运营人员能看见\\n\\n作为运营人员，新知识还没入库时，我能看见知识库为空的状态，以便知道要先补素材而不是以为系统坏了。验收：控制台显式提示当前知识条目为 0 条。" <<Feat_degrade_nfUs_kbEmpty>> as Feat_degrade_nfUs_kbEmpty
-  rectangle "==I-141 业务目标\\n\\n三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。" <<Feat_degrade_nfI_goal>> as Feat_degrade_nfI_goal
+  rectangle "==I-G0 业务目标\\n\\n三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。" <<Feat_degrade_nfI_goal>> as Feat_degrade_nfI_goal
 }
 
 Feat_answer_fI_goal .[#0ea5e9,thickness=2].> Feat_answer_fUs_ask : <color:#0ea5e9>支撑下发环节
@@ -279,7 +279,27 @@ skinparam rectangle<<Feat_answer_fSt_received>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
+skinparam rectangle<<Feat_degrade_nfSt_unprobed>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fSt_intake>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
 skinparam rectangle<<Feat_answer_fSt_retrieving>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_degrade_nfSt_probing>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fSt_scanning>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
@@ -294,22 +314,91 @@ skinparam rectangle<<Feat_answer_fSt_waitingHuman>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
+skinparam rectangle<<Feat_degrade_nfSt_healthy>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_degrade_nfSt_scenarioHit>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fSt_pendingReview>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
 skinparam rectangle<<Feat_answer_fSt_answered>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==已接收" <<Feat_answer_fSt_received>> as Feat_answer_fSt_received
-rectangle "==检索中" <<Feat_answer_fSt_retrieving>> as Feat_answer_fSt_retrieving
-rectangle "==应答中" <<Feat_answer_fSt_answering>> as Feat_answer_fSt_answering
-rectangle "==待人工" <<Feat_answer_fSt_waitingHuman>> as Feat_answer_fSt_waitingHuman
-rectangle "==已答复" <<Feat_answer_fSt_answered>> as Feat_answer_fSt_answered
+skinparam rectangle<<Feat_degrade_nfSt_notified>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fSt_published>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fSt_stale>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+rectangle "Feature-001-F 知识应答能力" <<Feat_answer_f>> as Feat_answer_f {
+  skinparam RectangleBorderColor<<Feat_answer_f>> #3b82f6
+  skinparam RectangleFontColor<<Feat_answer_f>> #3b82f6
+  skinparam RectangleBorderStyle<<Feat_answer_f>> dashed
+
+  rectangle "==S-000 已接收" <<Feat_answer_fSt_received>> as Feat_answer_fSt_received
+  rectangle "==S-001 检索中" <<Feat_answer_fSt_retrieving>> as Feat_answer_fSt_retrieving
+  rectangle "==S-002 应答中" <<Feat_answer_fSt_answering>> as Feat_answer_fSt_answering
+  rectangle "==S-004 待人工" <<Feat_answer_fSt_waitingHuman>> as Feat_answer_fSt_waitingHuman
+  rectangle "==S-003 已答复" <<Feat_answer_fSt_answered>> as Feat_answer_fSt_answered
+}
+rectangle "Feature-001-NF 极端场景保障" <<Feat_degrade_nf>> as Feat_degrade_nf {
+  skinparam RectangleBorderColor<<Feat_degrade_nf>> #3b82f6
+  skinparam RectangleFontColor<<Feat_degrade_nf>> #3b82f6
+  skinparam RectangleBorderStyle<<Feat_degrade_nf>> dashed
+
+  rectangle "==S-100 未探测" <<Feat_degrade_nfSt_unprobed>> as Feat_degrade_nfSt_unprobed
+  rectangle "==S-101 探测中" <<Feat_degrade_nfSt_probing>> as Feat_degrade_nfSt_probing
+  rectangle "==S-102 正常" <<Feat_degrade_nfSt_healthy>> as Feat_degrade_nfSt_healthy
+  rectangle "==S-103 命中极端场景" <<Feat_degrade_nfSt_scenarioHit>> as Feat_degrade_nfSt_scenarioHit
+  rectangle "==S-104 已下发提示" <<Feat_degrade_nfSt_notified>> as Feat_degrade_nfSt_notified
+}
+rectangle "Feature-002-F 知识运营能力" <<Feat_knowledge_f>> as Feat_knowledge_f {
+  skinparam RectangleBorderColor<<Feat_knowledge_f>> #3b82f6
+  skinparam RectangleFontColor<<Feat_knowledge_f>> #3b82f6
+  skinparam RectangleBorderStyle<<Feat_knowledge_f>> dashed
+
+  rectangle "==S-200 待接入" <<Feat_knowledge_fSt_intake>> as Feat_knowledge_fSt_intake
+  rectangle "==S-201 扫描中" <<Feat_knowledge_fSt_scanning>> as Feat_knowledge_fSt_scanning
+  rectangle "==S-202 待人工审阅" <<Feat_knowledge_fSt_pendingReview>> as Feat_knowledge_fSt_pendingReview
+  rectangle "==S-203 已发布可检索" <<Feat_knowledge_fSt_published>> as Feat_knowledge_fSt_published
+  rectangle "==S-204 新鲜度异常" <<Feat_knowledge_fSt_stale>> as Feat_knowledge_fSt_stale
+}
 
 Feat_answer_fSt_received .[#8D8D8D,thickness=2].> Feat_answer_fSt_retrieving : <color:#8D8D8D>发起检索
 Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_answering : <color:#8D8D8D>置信度达标
 Feat_answer_fSt_answering .[#8D8D8D,thickness=2].> Feat_answer_fSt_answered : <color:#8D8D8D>答复已下发
 Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_waitingHuman : <color:#8D8D8D>置信度不足
 Feat_answer_fSt_waitingHuman .[#8D8D8D,thickness=2].> Feat_answer_fSt_answered : <color:#8D8D8D>人工已接管
+Feat_degrade_nfSt_unprobed .[#8D8D8D,thickness=2].> Feat_degrade_nfSt_probing : <color:#8D8D8D>发起探测
+Feat_degrade_nfSt_probing .[#8D8D8D,thickness=2].> Feat_degrade_nfSt_healthy : <color:#8D8D8D>探测通过
+Feat_degrade_nfSt_probing .[#8D8D8D,thickness=2].> Feat_degrade_nfSt_scenarioHit : <color:#8D8D8D>探测命中异常
+Feat_degrade_nfSt_scenarioHit .[#8D8D8D,thickness=2].> Feat_degrade_nfSt_notified : <color:#8D8D8D>下发提示
+Feat_degrade_nfSt_notified .[#8D8D8D,thickness=2].> Feat_degrade_nfSt_probing : <color:#8D8D8D>继续巡检
+Feat_knowledge_fSt_intake .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_scanning : <color:#8D8D8D>抽取候选知识
+Feat_knowledge_fSt_scanning .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_pendingReview : <color:#8D8D8D>提交候选
+Feat_knowledge_fSt_pendingReview .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_intake : <color:#8D8D8D>驳回退回
+Feat_knowledge_fSt_pendingReview .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_published : <color:#8D8D8D>批准晋升
+Feat_knowledge_fSt_published .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_stale : <color:#8D8D8D>超出新鲜度阈值
+Feat_knowledge_fSt_stale .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_scanning : <color:#8D8D8D>重新扫描
 @enduml
 `;case`pano-ui`:return`@startuml
 title "UI 环 · 全部 Feature · 交互面与信息设计"
@@ -1215,14 +1304,66 @@ skinparam rectangle<<Feat_answer_fSt_answered>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==已接收" <<Feat_answer_fSt_received>> as Feat_answer_fSt_received
-rectangle "==检索中" <<Feat_answer_fSt_retrieving>> as Feat_answer_fSt_retrieving
-rectangle "==应答中" <<Feat_answer_fSt_answering>> as Feat_answer_fSt_answering
-rectangle "==已答复" <<Feat_answer_fSt_answered>> as Feat_answer_fSt_answered
+rectangle "==S-000 已接收" <<Feat_answer_fSt_received>> as Feat_answer_fSt_received
+rectangle "==S-001 检索中" <<Feat_answer_fSt_retrieving>> as Feat_answer_fSt_retrieving
+rectangle "==S-002 应答中" <<Feat_answer_fSt_answering>> as Feat_answer_fSt_answering
+rectangle "==S-003 已答复" <<Feat_answer_fSt_answered>> as Feat_answer_fSt_answered
 
 Feat_answer_fSt_received .[#8D8D8D,thickness=2].> Feat_answer_fSt_retrieving : <color:#8D8D8D>发起检索
 Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_answering : <color:#8D8D8D>置信度达标
 Feat_answer_fSt_answering .[#8D8D8D,thickness=2].> Feat_answer_fSt_answered : <color:#8D8D8D>答复已下发
+@enduml
+`;case`chain001F-i-state`:return`@startuml
+title "I 环 · Feature-001-F · 业务状态"
+top to bottom direction
+
+hide stereotype
+skinparam ranksep 60
+skinparam nodesep 30
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+  shadowing false
+}
+
+skinparam rectangle<<Feat_answer_fSt_received>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fSt_retrieving>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fSt_answering>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fSt_waitingHuman>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_answer_fSt_answered>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+rectangle "==S-000 已接收" <<Feat_answer_fSt_received>> as Feat_answer_fSt_received
+rectangle "==S-001 检索中" <<Feat_answer_fSt_retrieving>> as Feat_answer_fSt_retrieving
+rectangle "==S-002 应答中" <<Feat_answer_fSt_answering>> as Feat_answer_fSt_answering
+rectangle "==S-004 待人工" <<Feat_answer_fSt_waitingHuman>> as Feat_answer_fSt_waitingHuman
+rectangle "==S-003 已答复" <<Feat_answer_fSt_answered>> as Feat_answer_fSt_answered
+
+Feat_answer_fSt_received .[#8D8D8D,thickness=2].> Feat_answer_fSt_retrieving : <color:#8D8D8D>发起检索
+Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_answering : <color:#8D8D8D>置信度达标
+Feat_answer_fSt_answering .[#8D8D8D,thickness=2].> Feat_answer_fSt_answered : <color:#8D8D8D>答复已下发
+Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_waitingHuman : <color:#8D8D8D>置信度不足
+Feat_answer_fSt_waitingHuman .[#8D8D8D,thickness=2].> Feat_answer_fSt_answered : <color:#8D8D8D>人工已接管
 @enduml
 `;case`chain001F-i-state-branch-human`:return`@startuml
 title "I 环 · Feature-001-F · 业务状态 · 分支转人工"
@@ -1249,8 +1390,8 @@ skinparam rectangle<<Feat_answer_fSt_waitingHuman>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==检索中" <<Feat_answer_fSt_retrieving>> as Feat_answer_fSt_retrieving
-rectangle "==待人工" <<Feat_answer_fSt_waitingHuman>> as Feat_answer_fSt_waitingHuman
+rectangle "==S-001 检索中" <<Feat_answer_fSt_retrieving>> as Feat_answer_fSt_retrieving
+rectangle "==S-004 待人工" <<Feat_answer_fSt_waitingHuman>> as Feat_answer_fSt_waitingHuman
 
 Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_waitingHuman : <color:#8D8D8D>置信度不足
 @enduml
@@ -1498,7 +1639,7 @@ skinparam rectangle<<Feat_answer_fI_goal>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==I-101 业务目标\\n\\n客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。" <<Feat_answer_fI_goal>> as Feat_answer_fI_goal
+rectangle "==I-G0 业务目标\\n\\n客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。" <<Feat_answer_fI_goal>> as Feat_answer_fI_goal
 @enduml
 `;case`chain001F-i-step`:return`@startuml
 title "I 环 · Feature-001-F · 业务步骤"
@@ -1602,7 +1743,59 @@ skinparam rectangle<<Feat_degrade_nfI_goal>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==I-141 业务目标\\n\\n三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。" <<Feat_degrade_nfI_goal>> as Feat_degrade_nfI_goal
+rectangle "==I-G0 业务目标\\n\\n三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。" <<Feat_degrade_nfI_goal>> as Feat_degrade_nfI_goal
+@enduml
+`;case`chain001NF-i-state`:return`@startuml
+title "I 环 · Feature-001-NF · 业务状态"
+top to bottom direction
+
+hide stereotype
+skinparam ranksep 60
+skinparam nodesep 30
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+  shadowing false
+}
+
+skinparam rectangle<<Feat_degrade_nfSt_unprobed>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_degrade_nfSt_probing>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_degrade_nfSt_healthy>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_degrade_nfSt_scenarioHit>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_degrade_nfSt_notified>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+rectangle "==S-100 未探测" <<Feat_degrade_nfSt_unprobed>> as Feat_degrade_nfSt_unprobed
+rectangle "==S-101 探测中" <<Feat_degrade_nfSt_probing>> as Feat_degrade_nfSt_probing
+rectangle "==S-102 正常" <<Feat_degrade_nfSt_healthy>> as Feat_degrade_nfSt_healthy
+rectangle "==S-103 命中极端场景" <<Feat_degrade_nfSt_scenarioHit>> as Feat_degrade_nfSt_scenarioHit
+rectangle "==S-104 已下发提示" <<Feat_degrade_nfSt_notified>> as Feat_degrade_nfSt_notified
+
+Feat_degrade_nfSt_unprobed .[#8D8D8D,thickness=2].> Feat_degrade_nfSt_probing : <color:#8D8D8D>发起探测
+Feat_degrade_nfSt_probing .[#8D8D8D,thickness=2].> Feat_degrade_nfSt_healthy : <color:#8D8D8D>探测通过
+Feat_degrade_nfSt_probing .[#8D8D8D,thickness=2].> Feat_degrade_nfSt_scenarioHit : <color:#8D8D8D>探测命中异常
+Feat_degrade_nfSt_scenarioHit .[#8D8D8D,thickness=2].> Feat_degrade_nfSt_notified : <color:#8D8D8D>下发提示
+Feat_degrade_nfSt_notified .[#8D8D8D,thickness=2].> Feat_degrade_nfSt_probing : <color:#8D8D8D>继续巡检
 @enduml
 `;case`chain001NF-i-step`:return`@startuml
 title "I 环 · Feature-001-NF · 场景判定步骤"
@@ -1908,7 +2101,60 @@ skinparam rectangle<<Feat_knowledge_fI_goal>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==I-201 业务目标\\n\\n素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。" <<Feat_knowledge_fI_goal>> as Feat_knowledge_fI_goal
+rectangle "==I-G0 业务目标\\n\\n素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。" <<Feat_knowledge_fI_goal>> as Feat_knowledge_fI_goal
+@enduml
+`;case`chain002F-i-state`:return`@startuml
+title "I 环 · Feature-002-F · 业务状态"
+top to bottom direction
+
+hide stereotype
+skinparam ranksep 60
+skinparam nodesep 30
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+  shadowing false
+}
+
+skinparam rectangle<<Feat_knowledge_fSt_intake>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fSt_scanning>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fSt_pendingReview>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fSt_published>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fSt_stale>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+rectangle "==S-200 待接入" <<Feat_knowledge_fSt_intake>> as Feat_knowledge_fSt_intake
+rectangle "==S-201 扫描中" <<Feat_knowledge_fSt_scanning>> as Feat_knowledge_fSt_scanning
+rectangle "==S-202 待人工审阅" <<Feat_knowledge_fSt_pendingReview>> as Feat_knowledge_fSt_pendingReview
+rectangle "==S-203 已发布可检索" <<Feat_knowledge_fSt_published>> as Feat_knowledge_fSt_published
+rectangle "==S-204 新鲜度异常" <<Feat_knowledge_fSt_stale>> as Feat_knowledge_fSt_stale
+
+Feat_knowledge_fSt_intake .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_scanning : <color:#8D8D8D>抽取候选知识
+Feat_knowledge_fSt_scanning .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_pendingReview : <color:#8D8D8D>提交候选
+Feat_knowledge_fSt_pendingReview .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_intake : <color:#8D8D8D>驳回退回
+Feat_knowledge_fSt_pendingReview .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_published : <color:#8D8D8D>批准晋升
+Feat_knowledge_fSt_published .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_stale : <color:#8D8D8D>超出新鲜度阈值
+Feat_knowledge_fSt_stale .[#8D8D8D,thickness=2].> Feat_knowledge_fSt_scanning : <color:#8D8D8D>重新扫描
 @enduml
 `;case`chain002F-i-step`:return`@startuml
 title "I 环 · Feature-002-F · 业务步骤"

@@ -84,7 +84,7 @@ Feat_answer_f: {
     shape: document
   }
   I_goal: {
-    label: "I-101 业务目标"
+    label: "I-G0 业务目标"
   }
   Us_ask: {
     label: "US-001 客户提问获得专业答复"
@@ -92,7 +92,7 @@ Feat_answer_f: {
   }
 }
 Feat_knowledge_fI_goal: {
-  label: "I-201 业务目标"
+  label: "I-G0 业务目标"
 }
 Feat_knowledge_fUs_scan: {
   label: "US-201 素材入库后自动进入候选知识"
@@ -106,7 +106,7 @@ Feat_degrade_nf: {
     shape: document
   }
   I_goal: {
-    label: "I-141 业务目标"
+    label: "I-G0 业务目标"
   }
 }
 
@@ -115,27 +115,80 @@ Feat_answer_f.Us_lowConfidence -> Feat_answer_f.I_goal: "落为业务目标"
 Feat_degrade_nf.Us_kbEmpty -> Feat_degrade_nf.I_goal: "落为业务目标"
 `;case`pano-i-state`:return`direction: down
 
-Feat_answer_fSt_received: {
-  label: "已接收"
+Feat_answer_f: {
+  label: "Feature-001-F 知识应答能力"
+
+  St_received: {
+    label: "S-000 已接收"
+  }
+  St_retrieving: {
+    label: "S-001 检索中"
+  }
+  St_answering: {
+    label: "S-002 应答中"
+  }
+  St_waitingHuman: {
+    label: "S-004 待人工"
+  }
+  St_answered: {
+    label: "S-003 已答复"
+  }
 }
-Feat_answer_fSt_retrieving: {
-  label: "检索中"
+Feat_degrade_nf: {
+  label: "Feature-001-NF 极端场景保障"
+
+  St_unprobed: {
+    label: "S-100 未探测"
+  }
+  St_probing: {
+    label: "S-101 探测中"
+  }
+  St_healthy: {
+    label: "S-102 正常"
+  }
+  St_scenarioHit: {
+    label: "S-103 命中极端场景"
+  }
+  St_notified: {
+    label: "S-104 已下发提示"
+  }
 }
-Feat_answer_fSt_answering: {
-  label: "应答中"
-}
-Feat_answer_fSt_waitingHuman: {
-  label: "待人工"
-}
-Feat_answer_fSt_answered: {
-  label: "已答复"
+Feat_knowledge_f: {
+  label: "Feature-002-F 知识运营能力"
+
+  St_intake: {
+    label: "S-200 待接入"
+  }
+  St_scanning: {
+    label: "S-201 扫描中"
+  }
+  St_pendingReview: {
+    label: "S-202 待人工审阅"
+  }
+  St_published: {
+    label: "S-203 已发布可检索"
+  }
+  St_stale: {
+    label: "S-204 新鲜度异常"
+  }
 }
 
-Feat_answer_fSt_received -> Feat_answer_fSt_retrieving: "发起检索"
-Feat_answer_fSt_retrieving -> Feat_answer_fSt_answering: "置信度达标"
-Feat_answer_fSt_answering -> Feat_answer_fSt_answered: "答复已下发"
-Feat_answer_fSt_retrieving -> Feat_answer_fSt_waitingHuman: "置信度不足"
-Feat_answer_fSt_waitingHuman -> Feat_answer_fSt_answered: "人工已接管"
+Feat_answer_f.St_received -> Feat_answer_f.St_retrieving: "发起检索"
+Feat_answer_f.St_retrieving -> Feat_answer_f.St_answering: "置信度达标"
+Feat_answer_f.St_answering -> Feat_answer_f.St_answered: "答复已下发"
+Feat_answer_f.St_retrieving -> Feat_answer_f.St_waitingHuman: "置信度不足"
+Feat_answer_f.St_waitingHuman -> Feat_answer_f.St_answered: "人工已接管"
+Feat_degrade_nf.St_unprobed -> Feat_degrade_nf.St_probing: "发起探测"
+Feat_degrade_nf.St_probing -> Feat_degrade_nf.St_healthy: "探测通过"
+Feat_degrade_nf.St_probing -> Feat_degrade_nf.St_scenarioHit: "探测命中异常"
+Feat_degrade_nf.St_scenarioHit -> Feat_degrade_nf.St_notified: "下发提示"
+Feat_degrade_nf.St_notified -> Feat_degrade_nf.St_probing: "继续巡检"
+Feat_knowledge_f.St_intake -> Feat_knowledge_f.St_scanning: "抽取候选知识"
+Feat_knowledge_f.St_scanning -> Feat_knowledge_f.St_pendingReview: "提交候选"
+Feat_knowledge_f.St_pendingReview -> Feat_knowledge_f.St_intake: "驳回退回"
+Feat_knowledge_f.St_pendingReview -> Feat_knowledge_f.St_published: "批准晋升"
+Feat_knowledge_f.St_published -> Feat_knowledge_f.St_stale: "超出新鲜度阈值"
+Feat_knowledge_f.St_stale -> Feat_knowledge_f.St_scanning: "重新扫描"
 `;case`pano-ui`:return`direction: down
 
 Feat_answer_fUs_askI_ask_deliver: {
@@ -553,28 +606,51 @@ Feat_degrade_nfPod_alert -> Feat_degrade_nfDao_alert: "写入告警"
 `;case`chain001F-i-state-main`:return`direction: down
 
 Feat_answer_fSt_received: {
-  label: "已接收"
+  label: "S-000 已接收"
 }
 Feat_answer_fSt_retrieving: {
-  label: "检索中"
+  label: "S-001 检索中"
 }
 Feat_answer_fSt_answering: {
-  label: "应答中"
+  label: "S-002 应答中"
 }
 Feat_answer_fSt_answered: {
-  label: "已答复"
+  label: "S-003 已答复"
 }
 
 Feat_answer_fSt_received -> Feat_answer_fSt_retrieving: "发起检索"
 Feat_answer_fSt_retrieving -> Feat_answer_fSt_answering: "置信度达标"
 Feat_answer_fSt_answering -> Feat_answer_fSt_answered: "答复已下发"
+`;case`chain001F-i-state`:return`direction: down
+
+Feat_answer_fSt_received: {
+  label: "S-000 已接收"
+}
+Feat_answer_fSt_retrieving: {
+  label: "S-001 检索中"
+}
+Feat_answer_fSt_answering: {
+  label: "S-002 应答中"
+}
+Feat_answer_fSt_waitingHuman: {
+  label: "S-004 待人工"
+}
+Feat_answer_fSt_answered: {
+  label: "S-003 已答复"
+}
+
+Feat_answer_fSt_received -> Feat_answer_fSt_retrieving: "发起检索"
+Feat_answer_fSt_retrieving -> Feat_answer_fSt_answering: "置信度达标"
+Feat_answer_fSt_answering -> Feat_answer_fSt_answered: "答复已下发"
+Feat_answer_fSt_retrieving -> Feat_answer_fSt_waitingHuman: "置信度不足"
+Feat_answer_fSt_waitingHuman -> Feat_answer_fSt_answered: "人工已接管"
 `;case`chain001F-i-state-branch-human`:return`direction: down
 
 Feat_answer_fSt_retrieving: {
-  label: "检索中"
+  label: "S-001 检索中"
 }
 Feat_answer_fSt_waitingHuman: {
-  label: "待人工"
+  label: "S-004 待人工"
 }
 
 Feat_answer_fSt_retrieving -> Feat_answer_fSt_waitingHuman: "置信度不足"
@@ -683,7 +759,7 @@ Feat_degrade_nf.Us_llmDown -> Feat_degrade_nf.Nf_llmDown: "要求"
 `;case`chain001F-i-goal`:return`direction: down
 
 Feat_answer_fI_goal: {
-  label: "I-101 业务目标"
+  label: "I-G0 业务目标"
 }
 `;case`chain001F-i-step`:return`direction: down
 
@@ -727,8 +803,31 @@ Feat_answer_fUs_lowConfidence: {
 `;case`chain001NF-i-goal`:return`direction: down
 
 Feat_degrade_nfI_goal: {
-  label: "I-141 业务目标"
+  label: "I-G0 业务目标"
 }
+`;case`chain001NF-i-state`:return`direction: down
+
+Feat_degrade_nfSt_unprobed: {
+  label: "S-100 未探测"
+}
+Feat_degrade_nfSt_probing: {
+  label: "S-101 探测中"
+}
+Feat_degrade_nfSt_healthy: {
+  label: "S-102 正常"
+}
+Feat_degrade_nfSt_scenarioHit: {
+  label: "S-103 命中极端场景"
+}
+Feat_degrade_nfSt_notified: {
+  label: "S-104 已下发提示"
+}
+
+Feat_degrade_nfSt_unprobed -> Feat_degrade_nfSt_probing: "发起探测"
+Feat_degrade_nfSt_probing -> Feat_degrade_nfSt_healthy: "探测通过"
+Feat_degrade_nfSt_probing -> Feat_degrade_nfSt_scenarioHit: "探测命中异常"
+Feat_degrade_nfSt_scenarioHit -> Feat_degrade_nfSt_notified: "下发提示"
+Feat_degrade_nfSt_notified -> Feat_degrade_nfSt_probing: "继续巡检"
 `;case`chain001NF-i-step`:return`direction: down
 
 Feat_degrade_nfUs_kbEmpty: {
@@ -862,8 +961,32 @@ Feat_knowledge_f.Us_alert -> Feat_knowledge_f.F_govern: "要求"
 `;case`chain002F-i-goal`:return`direction: down
 
 Feat_knowledge_fI_goal: {
-  label: "I-201 业务目标"
+  label: "I-G0 业务目标"
 }
+`;case`chain002F-i-state`:return`direction: down
+
+Feat_knowledge_fSt_intake: {
+  label: "S-200 待接入"
+}
+Feat_knowledge_fSt_scanning: {
+  label: "S-201 扫描中"
+}
+Feat_knowledge_fSt_pendingReview: {
+  label: "S-202 待人工审阅"
+}
+Feat_knowledge_fSt_published: {
+  label: "S-203 已发布可检索"
+}
+Feat_knowledge_fSt_stale: {
+  label: "S-204 新鲜度异常"
+}
+
+Feat_knowledge_fSt_intake -> Feat_knowledge_fSt_scanning: "抽取候选知识"
+Feat_knowledge_fSt_scanning -> Feat_knowledge_fSt_pendingReview: "提交候选"
+Feat_knowledge_fSt_pendingReview -> Feat_knowledge_fSt_intake: "驳回退回"
+Feat_knowledge_fSt_pendingReview -> Feat_knowledge_fSt_published: "批准晋升"
+Feat_knowledge_fSt_published -> Feat_knowledge_fSt_stale: "超出新鲜度阈值"
+Feat_knowledge_fSt_stale -> Feat_knowledge_fSt_scanning: "重新扫描"
 `;case`chain002F-i-step`:return`direction: down
 
 Feat_knowledge_fUs_scan: {

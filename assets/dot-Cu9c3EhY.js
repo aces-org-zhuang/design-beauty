@@ -382,7 +382,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
             width=4.445];
         i_goal_1 [group=feat_answer_f,
             height=2.5,
-            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-101 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。</FONT></TD></TR></TABLE>>,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-G0 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。</FONT></TD></TR></TABLE>>,
             likec4_id="feat_answer_f.i_goal",
             likec4_level=1,
             margin="0.223,0.223",
@@ -412,14 +412,14 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
             margin="0.223,0.223",
             width=4.445];
         i_goal_2 [height=2.5,
-            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-141 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。</FONT></TD></TR></TABLE>>,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-G0 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。</FONT></TD></TR></TABLE>>,
             likec4_id="feat_degrade_nf.i_goal",
             likec4_level=1,
             margin="0.223,0.223",
             width=4.445];
     }
     i_goal [height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-201 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-G0 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。</FONT></TD></TR></TABLE>>,
         likec4_id="feat_knowledge_f.i_goal",
         likec4_level=0,
         margin="0.223,0.223",
@@ -474,6 +474,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -486,49 +487,179 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         penwidth=2,
         style=""
     ];
-    st_received [height=2.5,
-        label=<<FONT POINT-SIZE="20">已接收</FONT>>,
-        likec4_id="feat_answer_f.st_received",
-        likec4_level=0,
-        margin="0.223,0.223",
-        width=4.445];
-    st_retrieving [height=2.5,
-        label=<<FONT POINT-SIZE="20">检索中</FONT>>,
-        likec4_id="feat_answer_f.st_retrieving",
-        likec4_level=0,
-        margin="0.223,0.223",
-        width=4.445];
+    subgraph cluster_feat_answer_f {
+        graph [color="#1b3d88",
+            fillcolor="#194b9e",
+            label=<<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>FEATURE-001-F 知识应答能力</B></FONT>>,
+            likec4_depth=1,
+            likec4_id=feat_answer_f,
+            likec4_level=0,
+            margin=40,
+            style=filled
+        ];
+        st_received [group=feat_answer_f,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-000 已接收</FONT>>,
+            likec4_id="feat_answer_f.st_received",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_retrieving [group=feat_answer_f,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-001 检索中</FONT>>,
+            likec4_id="feat_answer_f.st_retrieving",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_answering [group=feat_answer_f,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-002 应答中</FONT>>,
+            likec4_id="feat_answer_f.st_answering",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_waitinghuman [group=feat_answer_f,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-004 待人工</FONT>>,
+            likec4_id="feat_answer_f.st_waitingHuman",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_answered [group=feat_answer_f,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-003 已答复</FONT>>,
+            likec4_id="feat_answer_f.st_answered",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+    }
+    subgraph cluster_feat_degrade_nf {
+        graph [color="#1b3d88",
+            fillcolor="#194b9e",
+            label=<<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>FEATURE-001-NF 极端场景保障</B></FONT>>,
+            likec4_depth=1,
+            likec4_id=feat_degrade_nf,
+            likec4_level=0,
+            margin=40,
+            style=filled
+        ];
+        st_unprobed [group=feat_degrade_nf,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-100 未探测</FONT>>,
+            likec4_id="feat_degrade_nf.st_unprobed",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_probing [group=feat_degrade_nf,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-101 探测中</FONT>>,
+            likec4_id="feat_degrade_nf.st_probing",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_healthy [group=feat_degrade_nf,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-102 正常</FONT>>,
+            likec4_id="feat_degrade_nf.st_healthy",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_scenariohit [group=feat_degrade_nf,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-103 命中极端场景</FONT>>,
+            likec4_id="feat_degrade_nf.st_scenarioHit",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_notified [group=feat_degrade_nf,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-104 已下发提示</FONT>>,
+            likec4_id="feat_degrade_nf.st_notified",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+    }
+    subgraph cluster_feat_knowledge_f {
+        graph [color="#1b3d88",
+            fillcolor="#194b9e",
+            label=<<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>FEATURE-002-F 知识运营能力</B></FONT>>,
+            likec4_depth=1,
+            likec4_id=feat_knowledge_f,
+            likec4_level=0,
+            margin=40,
+            style=filled
+        ];
+        st_intake [group=feat_knowledge_f,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-200 待接入</FONT>>,
+            likec4_id="feat_knowledge_f.st_intake",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_scanning [group=feat_knowledge_f,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-201 扫描中</FONT>>,
+            likec4_id="feat_knowledge_f.st_scanning",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_pendingreview [group=feat_knowledge_f,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-202 待人工审阅</FONT>>,
+            likec4_id="feat_knowledge_f.st_pendingReview",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_published [group=feat_knowledge_f,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-203 已发布可检索</FONT>>,
+            likec4_id="feat_knowledge_f.st_published",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        st_stale [group=feat_knowledge_f,
+            height=2.5,
+            label=<<FONT POINT-SIZE="20">S-204 新鲜度异常</FONT>>,
+            likec4_id="feat_knowledge_f.st_stale",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+    }
     st_received -> st_retrieving [arrowhead=normal,
         label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">发起检索</FONT></TD></TR></TABLE>>,
         likec4_id="4gx766",
         minlen=1,
         style=dashed];
-    st_answering [height=2.5,
-        label=<<FONT POINT-SIZE="20">应答中</FONT>>,
-        likec4_id="feat_answer_f.st_answering",
-        likec4_level=0,
-        margin="0.223,0.223",
-        width=4.445];
+    st_unprobed -> st_probing [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">发起探测</FONT></TD></TR></TABLE>>,
+        likec4_id="1aja0og",
+        minlen=1,
+        style=dashed];
+    st_intake -> st_scanning [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">抽取候选知识</FONT></TD></TR></TABLE>>,
+        likec4_id=k63dqf,
+        style=dashed];
     st_retrieving -> st_answering [arrowhead=normal,
         label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">置信度达标</FONT></TD></TR></TABLE>>,
         likec4_id=oqfnq5,
         style=dashed];
-    st_waitinghuman [height=2.5,
-        label=<<FONT POINT-SIZE="20">待人工</FONT>>,
-        likec4_id="feat_answer_f.st_waitingHuman",
-        likec4_level=0,
-        margin="0.223,0.223",
-        width=4.445];
     st_retrieving -> st_waitinghuman [arrowhead=normal,
         label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">置信度不足</FONT></TD></TR></TABLE>>,
         likec4_id=b13es5,
         style=dashed];
-    st_answered [height=2.5,
-        label=<<FONT POINT-SIZE="20">已答复</FONT>>,
-        likec4_id="feat_answer_f.st_answered",
-        likec4_level=0,
-        margin="0.223,0.223",
-        width=4.445];
+    st_probing -> st_healthy [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">探测通过</FONT></TD></TR></TABLE>>,
+        likec4_id="10b33cw",
+        minlen=1,
+        style=dashed];
+    st_probing -> st_scenariohit [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">探测命中异常</FONT></TD></TR></TABLE>>,
+        likec4_id=ur6wla,
+        style=dashed];
+    st_scanning -> st_pendingreview [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">提交候选</FONT></TD></TR></TABLE>>,
+        likec4_id="1014rvi",
+        style=dashed];
     st_answering -> st_answered [arrowhead=normal,
         label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">答复已下发</FONT></TD></TR></TABLE>>,
         likec4_id=kw840b,
@@ -536,6 +667,30 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
     st_waitinghuman -> st_answered [arrowhead=normal,
         label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">人工已接管</FONT></TD></TR></TABLE>>,
         likec4_id="16n538j",
+        style=dashed];
+    st_scenariohit -> st_notified [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">下发提示</FONT></TD></TR></TABLE>>,
+        likec4_id=itlc3n,
+        style=dashed];
+    st_pendingreview -> st_intake [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">驳回退回</FONT></TD></TR></TABLE>>,
+        likec4_id="1okcx6b",
+        style=dashed];
+    st_pendingreview -> st_published [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">批准晋升</FONT></TD></TR></TABLE>>,
+        likec4_id=fwthuf,
+        style=dashed];
+    st_notified -> st_probing [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">继续巡检</FONT></TD></TR></TABLE>>,
+        likec4_id="1d6ac0n",
+        style=dashed];
+    st_published -> st_stale [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">超出新鲜度阈值</FONT></TD></TR></TABLE>>,
+        likec4_id="17unjlp",
+        style=dashed];
+    st_stale -> st_scanning [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">重新扫描</FONT></TD></TR></TABLE>>,
+        likec4_id=yyj53o,
         style=dashed];
 }
 `;case`pano-ui`:return`digraph {
@@ -559,6 +714,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -703,6 +859,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -848,6 +1005,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -934,6 +1092,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -997,6 +1156,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -1171,6 +1331,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -1483,6 +1644,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -1537,6 +1699,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -1682,6 +1845,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -1768,6 +1932,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -1831,6 +1996,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -1939,6 +2105,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -2050,6 +2217,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -2171,13 +2339,13 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         style=""
     ];
     st_received [height=2.5,
-        label=<<FONT POINT-SIZE="20">已接收</FONT>>,
+        label=<<FONT POINT-SIZE="20">S-000 已接收</FONT>>,
         likec4_id="feat_answer_f.st_received",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
     st_retrieving [height=2.5,
-        label=<<FONT POINT-SIZE="20">检索中</FONT>>,
+        label=<<FONT POINT-SIZE="20">S-001 检索中</FONT>>,
         likec4_id="feat_answer_f.st_retrieving",
         likec4_level=0,
         margin="0.223,0.223",
@@ -2188,7 +2356,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         minlen=1,
         style=dashed];
     st_answering [height=2.5,
-        label=<<FONT POINT-SIZE="20">应答中</FONT>>,
+        label=<<FONT POINT-SIZE="20">S-002 应答中</FONT>>,
         likec4_id="feat_answer_f.st_answering",
         likec4_level=0,
         margin="0.223,0.223",
@@ -2198,7 +2366,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         likec4_id=oqfnq5,
         style=dashed];
     st_answered [height=2.5,
-        label=<<FONT POINT-SIZE="20">已答复</FONT>>,
+        label=<<FONT POINT-SIZE="20">S-003 已答复</FONT>>,
         likec4_id="feat_answer_f.st_answered",
         likec4_level=0,
         margin="0.223,0.223",
@@ -2207,6 +2375,91 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">答复已下发</FONT></TD></TR></TABLE>>,
         likec4_id=kw840b,
         minlen=1,
+        style=dashed];
+}
+`;case`chain001F-i-state`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId="chain001F-i-state",
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    st_received [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-000 已接收</FONT>>,
+        likec4_id="feat_answer_f.st_received",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_retrieving [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-001 检索中</FONT>>,
+        likec4_id="feat_answer_f.st_retrieving",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_received -> st_retrieving [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">发起检索</FONT></TD></TR></TABLE>>,
+        likec4_id="4gx766",
+        minlen=1,
+        style=dashed];
+    st_answering [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-002 应答中</FONT>>,
+        likec4_id="feat_answer_f.st_answering",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_retrieving -> st_answering [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">置信度达标</FONT></TD></TR></TABLE>>,
+        likec4_id=oqfnq5,
+        style=dashed];
+    st_waitinghuman [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-004 待人工</FONT>>,
+        likec4_id="feat_answer_f.st_waitingHuman",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_retrieving -> st_waitinghuman [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">置信度不足</FONT></TD></TR></TABLE>>,
+        likec4_id=b13es5,
+        style=dashed];
+    st_answered [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-003 已答复</FONT>>,
+        likec4_id="feat_answer_f.st_answered",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_answering -> st_answered [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">答复已下发</FONT></TD></TR></TABLE>>,
+        likec4_id=kw840b,
+        style=dashed];
+    st_waitinghuman -> st_answered [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">人工已接管</FONT></TD></TR></TABLE>>,
+        likec4_id="16n538j",
         style=dashed];
 }
 `;case`chain001F-i-state-branch-human`:return`digraph {
@@ -2243,13 +2496,13 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         style=""
     ];
     st_retrieving [height=2.5,
-        label=<<FONT POINT-SIZE="20">检索中</FONT>>,
+        label=<<FONT POINT-SIZE="20">S-001 检索中</FONT>>,
         likec4_id="feat_answer_f.st_retrieving",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
     st_waitinghuman [height=2.5,
-        label=<<FONT POINT-SIZE="20">待人工</FONT>>,
+        label=<<FONT POINT-SIZE="20">S-004 待人工</FONT>>,
         likec4_id="feat_answer_f.st_waitingHuman",
         likec4_level=0,
         margin="0.223,0.223",
@@ -2690,7 +2943,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         style=""
     ];
     i_goal [height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-101 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-G0 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。</FONT></TD></TR></TABLE>>,
         likec4_id="feat_answer_f.i_goal",
         likec4_level=0,
         margin="0.223,0.223",
@@ -2854,11 +3107,97 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         style=""
     ];
     i_goal [height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-141 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-G0 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。</FONT></TD></TR></TABLE>>,
         likec4_id="feat_degrade_nf.i_goal",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
+}
+`;case`chain001NF-i-state`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId="chain001NF-i-state",
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    st_unprobed [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-100 未探测</FONT>>,
+        likec4_id="feat_degrade_nf.st_unprobed",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_probing [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-101 探测中</FONT>>,
+        likec4_id="feat_degrade_nf.st_probing",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_unprobed -> st_probing [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">发起探测</FONT></TD></TR></TABLE>>,
+        likec4_id="1aja0og",
+        minlen=1,
+        style=dashed];
+    st_healthy [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-102 正常</FONT>>,
+        likec4_id="feat_degrade_nf.st_healthy",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_probing -> st_healthy [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">探测通过</FONT></TD></TR></TABLE>>,
+        likec4_id="10b33cw",
+        minlen=1,
+        style=dashed];
+    st_scenariohit [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-103 命中极端场景</FONT>>,
+        likec4_id="feat_degrade_nf.st_scenarioHit",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_probing -> st_scenariohit [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">探测命中异常</FONT></TD></TR></TABLE>>,
+        likec4_id=ur6wla,
+        style=dashed];
+    st_notified [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-104 已下发提示</FONT>>,
+        likec4_id="feat_degrade_nf.st_notified",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_scenariohit -> st_notified [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">下发提示</FONT></TD></TR></TABLE>>,
+        likec4_id=itlc3n,
+        style=dashed];
+    st_notified -> st_probing [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">继续巡检</FONT></TD></TR></TABLE>>,
+        likec4_id="1d6ac0n",
+        style=dashed];
 }
 `;case`chain001NF-i-step`:return`digraph {
     graph [TBbalance=min,
@@ -3394,11 +3733,99 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         style=""
     ];
     i_goal [height=2.5,
-        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-201 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。</FONT></TD></TR></TABLE>>,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-G0 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。</FONT></TD></TR></TABLE>>,
         likec4_id="feat_knowledge_f.i_goal",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
+}
+`;case`chain002F-i-state`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId="chain002F-i-state",
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    st_intake [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-200 待接入</FONT>>,
+        likec4_id="feat_knowledge_f.st_intake",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_scanning [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-201 扫描中</FONT>>,
+        likec4_id="feat_knowledge_f.st_scanning",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_intake -> st_scanning [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">抽取候选知识</FONT></TD></TR></TABLE>>,
+        likec4_id=k63dqf,
+        style=dashed];
+    st_pendingreview [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-202 待人工审阅</FONT>>,
+        likec4_id="feat_knowledge_f.st_pendingReview",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_scanning -> st_pendingreview [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">提交候选</FONT></TD></TR></TABLE>>,
+        likec4_id="1014rvi",
+        style=dashed];
+    st_pendingreview -> st_intake [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">驳回退回</FONT></TD></TR></TABLE>>,
+        likec4_id="1okcx6b",
+        style=dashed];
+    st_published [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-203 已发布可检索</FONT>>,
+        likec4_id="feat_knowledge_f.st_published",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_pendingreview -> st_published [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">批准晋升</FONT></TD></TR></TABLE>>,
+        likec4_id=fwthuf,
+        style=dashed];
+    st_stale [height=2.5,
+        label=<<FONT POINT-SIZE="20">S-204 新鲜度异常</FONT>>,
+        likec4_id="feat_knowledge_f.st_stale",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    st_published -> st_stale [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">超出新鲜度阈值</FONT></TD></TR></TABLE>>,
+        likec4_id="17unjlp",
+        style=dashed];
+    st_stale -> st_scanning [arrowhead=normal,
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">重新扫描</FONT></TD></TR></TABLE>>,
+        likec4_id=yyj53o,
+        style=dashed];
 }
 `;case`chain002F-i-step`:return`digraph {
     graph [TBbalance=min,
@@ -5387,7 +5814,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 <g id="node2" class="node">
 <title>i_goal_1</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="682.1,-550.8 191.9,-550.8 191.9,-370.8 682.1,-370.8 682.1,-550.8"/>
-<text xml:space="preserve" text-anchor="start" x="378.09" y="-463.8" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;101 业务目标</text>
+<text xml:space="preserve" text-anchor="start" x="381.43" y="-463.8" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;G0 业务目标</text>
 <text xml:space="preserve" text-anchor="start" x="211.96" y="-440.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。</text>
 </g>
 <!-- us_ask -->
@@ -5409,14 +5836,14 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 <g id="node5" class="node">
 <title>i_goal_2</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2382.59,-873.6 1967.41,-873.6 1967.41,-693.6 2382.59,-693.6 2382.59,-873.6"/>
-<text xml:space="preserve" text-anchor="start" x="2116.09" y="-786.6" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;141 业务目标</text>
+<text xml:space="preserve" text-anchor="start" x="2119.43" y="-786.6" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;G0 业务目标</text>
 <text xml:space="preserve" text-anchor="start" x="1987.46" y="-763.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。</text>
 </g>
 <!-- i_goal -->
 <g id="node6" class="node">
 <title>i_goal</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2907.59,-873.6 2492.41,-873.6 2492.41,-693.6 2907.59,-693.6 2907.59,-873.6"/>
-<text xml:space="preserve" text-anchor="start" x="2641.09" y="-786.6" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;201 业务目标</text>
+<text xml:space="preserve" text-anchor="start" x="2644.43" y="-786.6" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;G0 业务目标</text>
 <text xml:space="preserve" text-anchor="start" x="2512.46" y="-763.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。</text>
 </g>
 <!-- us_scan -->
@@ -5459,78 +5886,241 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="780pt" height="1178pt"
- viewBox="0.00 0.00 780.00 1178.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1163.45)">
+<svg width="2690pt" height="1618pt"
+ viewBox="0.00 0.00 2690.00 1618.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1603.45)">
+<g id="clust1" class="cluster">
+<title>cluster_feat_answer_f</title>
+<polygon fill="#194b9e" stroke="#1b3d88" points="8,-330.8 8,-1580.4 838,-1580.4 838,-330.8 8,-330.8"/>
+<text xml:space="preserve" text-anchor="start" x="16" y="-1567.5" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;001&#45;F 知识应答能力</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_feat_degrade_nf</title>
+<polygon fill="#194b9e" stroke="#1b3d88" points="868,-330.8 868,-1580.4 1971,-1580.4 1971,-330.8 868,-330.8"/>
+<text xml:space="preserve" text-anchor="start" x="876" y="-1567.5" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;001&#45;NF 极端场景保障</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_feat_knowledge_f</title>
+<polygon fill="#194b9e" stroke="#1b3d88" points="1979,-8 1979,-1580.4 2652,-1580.4 2652,-8 1979,-8"/>
+<text xml:space="preserve" text-anchor="start" x="1987" y="-1567.5" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;002&#45;F 知识运营能力</text>
+</g>
 <!-- st_received -->
 <g id="node1" class="node">
 <title>st_received</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="535.04,-1148.4 215,-1148.4 215,-968.4 535.04,-968.4 535.04,-1148.4"/>
-<text xml:space="preserve" text-anchor="start" x="350.02" y="-1050.4" font-family="Arial" font-size="20.00" fill="#eff6ff">已接收</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="457.02,-1519.2 136.98,-1519.2 136.98,-1339.2 457.02,-1339.2 457.02,-1519.2"/>
+<text xml:space="preserve" text-anchor="start" x="242.53" y="-1421.2" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;000 已接收</text>
 </g>
 <!-- st_retrieving -->
 <g id="node2" class="node">
 <title>st_retrieving</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="535.04,-825.6 215,-825.6 215,-645.6 535.04,-645.6 535.04,-825.6"/>
-<text xml:space="preserve" text-anchor="start" x="350.02" y="-727.6" font-family="Arial" font-size="20.00" fill="#eff6ff">检索中</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="457.02,-1196.4 136.98,-1196.4 136.98,-1016.4 457.02,-1016.4 457.02,-1196.4"/>
+<text xml:space="preserve" text-anchor="start" x="242.53" y="-1098.4" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;001 检索中</text>
 </g>
 <!-- st_answering -->
 <g id="node3" class="node">
 <title>st_answering</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-502.8 0,-502.8 0,-322.8 320.04,-322.8 320.04,-502.8"/>
-<text xml:space="preserve" text-anchor="start" x="135.02" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">应答中</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="368.02,-873.6 47.98,-873.6 47.98,-693.6 368.02,-693.6 368.02,-873.6"/>
+<text xml:space="preserve" text-anchor="start" x="153.53" y="-775.6" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;002 应答中</text>
 </g>
 <!-- st_waitinghuman -->
 <g id="node4" class="node">
 <title>st_waitinghuman</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="750.04,-502.8 430,-502.8 430,-322.8 750.04,-322.8 750.04,-502.8"/>
-<text xml:space="preserve" text-anchor="start" x="565.02" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">待人工</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="798.02,-873.6 477.98,-873.6 477.98,-693.6 798.02,-693.6 798.02,-873.6"/>
+<text xml:space="preserve" text-anchor="start" x="583.53" y="-775.6" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;004 待人工</text>
 </g>
 <!-- st_answered -->
 <g id="node5" class="node">
 <title>st_answered</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="534.04,-180 214,-180 214,0 534.04,0 534.04,-180"/>
-<text xml:space="preserve" text-anchor="start" x="349.02" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">已答复</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="520.02,-550.8 199.98,-550.8 199.98,-370.8 520.02,-370.8 520.02,-550.8"/>
+<text xml:space="preserve" text-anchor="start" x="305.53" y="-452.8" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;003 已答复</text>
+</g>
+<!-- st_unprobed -->
+<g id="node6" class="node">
+<title>st_unprobed</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1658.02,-1519.2 1337.98,-1519.2 1337.98,-1339.2 1658.02,-1339.2 1658.02,-1519.2"/>
+<text xml:space="preserve" text-anchor="start" x="1443.53" y="-1421.2" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;100 未探测</text>
+</g>
+<!-- st_probing -->
+<g id="node7" class="node">
+<title>st_probing</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1658.02,-1196.4 1337.98,-1196.4 1337.98,-1016.4 1658.02,-1016.4 1658.02,-1196.4"/>
+<text xml:space="preserve" text-anchor="start" x="1443.53" y="-1098.4" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;101 探测中</text>
+</g>
+<!-- st_healthy -->
+<g id="node8" class="node">
+<title>st_healthy</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1228.02,-873.6 907.98,-873.6 907.98,-693.6 1228.02,-693.6 1228.02,-873.6"/>
+<text xml:space="preserve" text-anchor="start" x="1021.87" y="-775.6" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;102 正常</text>
+</g>
+<!-- st_scenariohit -->
+<g id="node9" class="node">
+<title>st_scenariohit</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1658.02,-873.6 1337.98,-873.6 1337.98,-693.6 1658.02,-693.6 1658.02,-873.6"/>
+<text xml:space="preserve" text-anchor="start" x="1418.53" y="-775.6" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;103 命中极端场景</text>
+</g>
+<!-- st_notified -->
+<g id="node10" class="node">
+<title>st_notified</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1862.02,-550.8 1541.98,-550.8 1541.98,-370.8 1862.02,-370.8 1862.02,-550.8"/>
+<text xml:space="preserve" text-anchor="start" x="1630.86" y="-452.8" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;104 已下发提示</text>
+</g>
+<!-- st_intake -->
+<g id="node11" class="node">
+<title>st_intake</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2543.02,-1519.2 2222.98,-1519.2 2222.98,-1339.2 2543.02,-1339.2 2543.02,-1519.2"/>
+<text xml:space="preserve" text-anchor="start" x="2328.53" y="-1421.2" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;200 待接入</text>
+</g>
+<!-- st_scanning -->
+<g id="node12" class="node">
+<title>st_scanning</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2339.02,-1196.4 2018.98,-1196.4 2018.98,-1016.4 2339.02,-1016.4 2339.02,-1196.4"/>
+<text xml:space="preserve" text-anchor="start" x="2124.53" y="-1098.4" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;201 扫描中</text>
+</g>
+<!-- st_pendingreview -->
+<g id="node13" class="node">
+<title>st_pendingreview</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2610.02,-873.6 2289.98,-873.6 2289.98,-693.6 2610.02,-693.6 2610.02,-873.6"/>
+<text xml:space="preserve" text-anchor="start" x="2378.86" y="-775.6" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;202 待人工审阅</text>
+</g>
+<!-- st_published -->
+<g id="node14" class="node">
+<title>st_published</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2610.02,-550.8 2289.98,-550.8 2289.98,-370.8 2610.02,-370.8 2610.02,-550.8"/>
+<text xml:space="preserve" text-anchor="start" x="2370.53" y="-452.8" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;203 已发布可检索</text>
+</g>
+<!-- st_stale -->
+<g id="node15" class="node">
+<title>st_stale</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2436.02,-228 2115.98,-228 2115.98,-48 2436.02,-48 2436.02,-228"/>
+<text xml:space="preserve" text-anchor="start" x="2204.86" y="-130" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;204 新鲜度异常</text>
 </g>
 <!-- st_received&#45;&gt;st_retrieving -->
 <g id="edge1" class="edge">
 <title>st_received&#45;&gt;st_retrieving</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M375.02,-968.47C375.02,-927.27 375.02,-878.16 375.02,-835.77"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="377.65,-835.96 375.02,-828.46 372.4,-835.96 377.65,-835.96"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="375.02,-885.6 375.02,-908.4 427.7,-908.4 427.7,-885.6 375.02,-885.6"/>
-<text xml:space="preserve" text-anchor="start" x="378.02" y="-891.4" font-family="Arial" font-size="14.00" fill="#c9c9c9">发起检索</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M297,-1339.27C297,-1298.07 297,-1248.96 297,-1206.57"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="299.63,-1206.76 297,-1199.26 294.38,-1206.76 299.63,-1206.76"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="297,-1256.4 297,-1279.2 349.68,-1279.2 349.68,-1256.4 297,-1256.4"/>
+<text xml:space="preserve" text-anchor="start" x="300" y="-1262.2" font-family="Arial" font-size="14.00" fill="#c9c9c9">发起检索</text>
 </g>
 <!-- st_retrieving&#45;&gt;st_answering -->
-<g id="edge2" class="edge">
+<g id="edge4" class="edge">
 <title>st_retrieving&#45;&gt;st_answering</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M315.42,-645.67C287.45,-603.94 254.06,-554.11 225.4,-511.36"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="227.59,-509.91 221.24,-505.14 223.23,-512.84 227.59,-509.91"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="273.97,-562.8 273.97,-585.6 338.31,-585.6 338.31,-562.8 273.97,-562.8"/>
-<text xml:space="preserve" text-anchor="start" x="276.97" y="-568.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">置信度达标</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M272.33,-1016.47C260.87,-975.18 247.22,-925.95 235.44,-883.5"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="237.99,-882.87 233.45,-876.35 232.93,-884.28 237.99,-882.87"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="255.17,-933.6 255.17,-956.4 319.51,-956.4 319.51,-933.6 255.17,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="258.17" y="-939.4" font-family="Arial" font-size="14.00" fill="#c9c9c9">置信度达标</text>
 </g>
 <!-- st_retrieving&#45;&gt;st_waitinghuman -->
-<g id="edge3" class="edge">
+<g id="edge5" class="edge">
 <title>st_retrieving&#45;&gt;st_waitinghuman</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M434.62,-645.67C462.59,-603.94 495.98,-554.11 524.64,-511.36"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="526.81,-512.84 528.8,-505.14 522.45,-509.91 526.81,-512.84"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="488.97,-562.8 488.97,-585.6 553.31,-585.6 553.31,-562.8 488.97,-562.8"/>
-<text xml:space="preserve" text-anchor="start" x="491.97" y="-568.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">置信度不足</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M391.53,-1016.47C436.44,-974.22 490.18,-923.67 536,-880.56"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="537.71,-882.55 541.37,-875.5 534.11,-878.73 537.71,-882.55"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="477.72,-933.6 477.72,-956.4 542.07,-956.4 542.07,-933.6 477.72,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="480.72" y="-939.4" font-family="Arial" font-size="14.00" fill="#c9c9c9">置信度不足</text>
 </g>
 <!-- st_answering&#45;&gt;st_answered -->
-<g id="edge4" class="edge">
+<g id="edge9" class="edge">
 <title>st_answering&#45;&gt;st_answered</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M219.35,-322.87C247.18,-281.14 280.42,-231.31 308.94,-188.56"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="311.11,-190.04 313.08,-182.35 306.74,-187.13 311.11,-190.04"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="273.44,-240 273.44,-262.8 337.78,-262.8 337.78,-240 273.44,-240"/>
-<text xml:space="preserve" text-anchor="start" x="276.44" y="-245.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">答复已下发</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M250.14,-693.67C269.82,-652.12 293.32,-602.53 313.52,-559.9"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="315.78,-561.27 316.62,-553.37 311.03,-559.02 315.78,-561.27"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="288.56,-610.8 288.56,-633.6 352.9,-633.6 352.9,-610.8 288.56,-610.8"/>
+<text xml:space="preserve" text-anchor="start" x="291.56" y="-616.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">答复已下发</text>
 </g>
 <!-- st_waitinghuman&#45;&gt;st_answered -->
-<g id="edge5" class="edge">
+<g id="edge10" class="edge">
 <title>st_waitinghuman&#45;&gt;st_answered</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M530.14,-322.87C502.05,-281.14 468.5,-231.31 439.71,-188.56"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="441.89,-187.1 435.52,-182.34 437.53,-190.03 441.89,-187.1"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="488.5,-240 488.5,-262.8 552.84,-262.8 552.84,-240 488.5,-240"/>
-<text xml:space="preserve" text-anchor="start" x="491.5" y="-245.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">人工已接管</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M560.93,-693.67C524.55,-651.68 481.05,-601.49 443.85,-558.56"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="445.86,-556.87 438.96,-552.92 441.89,-560.3 445.86,-556.87"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="507.34,-610.8 507.34,-633.6 571.68,-633.6 571.68,-610.8 507.34,-610.8"/>
+<text xml:space="preserve" text-anchor="start" x="510.34" y="-616.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">人工已接管</text>
+</g>
+<!-- st_unprobed&#45;&gt;st_probing -->
+<g id="edge2" class="edge">
+<title>st_unprobed&#45;&gt;st_probing</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1498,-1339.27C1498,-1298.07 1498,-1248.96 1498,-1206.57"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1500.63,-1206.76 1498,-1199.26 1495.38,-1206.76 1500.63,-1206.76"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1498,-1256.4 1498,-1279.2 1550.68,-1279.2 1550.68,-1256.4 1498,-1256.4"/>
+<text xml:space="preserve" text-anchor="start" x="1501" y="-1262.2" font-family="Arial" font-size="14.00" fill="#c9c9c9">发起探测</text>
+</g>
+<!-- st_probing&#45;&gt;st_healthy -->
+<g id="edge6" class="edge">
+<title>st_probing&#45;&gt;st_healthy</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1378.79,-1016.47C1321.7,-973.87 1253.28,-922.83 1195.19,-879.49"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1197.07,-877.62 1189.49,-875.24 1193.93,-881.83 1197.07,-877.62"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1295.89,-933.6 1295.89,-956.4 1348.57,-956.4 1348.57,-933.6 1295.89,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="1298.89" y="-939.4" font-family="Arial" font-size="14.00" fill="#c9c9c9">探测通过</text>
+</g>
+<!-- st_probing&#45;&gt;st_scenariohit -->
+<g id="edge7" class="edge">
+<title>st_probing&#45;&gt;st_scenariohit</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1498,-1016.47C1498,-975.27 1498,-926.16 1498,-883.77"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1500.63,-883.96 1498,-876.46 1495.38,-883.96 1500.63,-883.96"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1498,-933.6 1498,-956.4 1574.01,-956.4 1574.01,-933.6 1498,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="1501" y="-939.4" font-family="Arial" font-size="14.00" fill="#c9c9c9">探测命中异常</text>
+</g>
+<!-- st_scenariohit&#45;&gt;st_notified -->
+<g id="edge11" class="edge">
+<title>st_scenariohit&#45;&gt;st_notified</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1554.55,-693.67C1581.09,-651.94 1612.77,-602.11 1639.96,-559.36"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1642.08,-560.92 1643.89,-553.18 1637.65,-558.1 1642.08,-560.92"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1606.12,-610.8 1606.12,-633.6 1658.79,-633.6 1658.79,-610.8 1606.12,-610.8"/>
+<text xml:space="preserve" text-anchor="start" x="1609.12" y="-616.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">下发提示</text>
+</g>
+<!-- st_notified&#45;&gt;st_probing -->
+<g id="edge14" class="edge">
+<title>st_notified&#45;&gt;st_probing</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1723.75,-550.39C1740.41,-636.2 1754.27,-768.41 1713,-873.6 1692.85,-924.95 1655.39,-971.7 1617.31,-1009.56"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1615.89,-1007.28 1612.36,-1014.41 1619.56,-1011.03 1615.89,-1007.28"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1740.12,-772.2 1740.12,-795 1792.79,-795 1792.79,-772.2 1740.12,-772.2"/>
+<text xml:space="preserve" text-anchor="start" x="1743.12" y="-778" font-family="Arial" font-size="14.00" fill="#c9c9c9">继续巡检</text>
+</g>
+<!-- st_intake&#45;&gt;st_scanning -->
+<g id="edge3" class="edge">
+<title>st_intake&#45;&gt;st_scanning</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2326.45,-1339.27C2299.91,-1297.54 2268.23,-1247.71 2241.04,-1204.96"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2243.35,-1203.7 2237.11,-1198.78 2238.92,-1206.52 2243.35,-1203.7"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2287.12,-1256.4 2287.12,-1279.2 2363.13,-1279.2 2363.13,-1256.4 2287.12,-1256.4"/>
+<text xml:space="preserve" text-anchor="start" x="2290.12" y="-1262.2" font-family="Arial" font-size="14.00" fill="#c9c9c9">抽取候选知识</text>
+</g>
+<!-- st_scanning&#45;&gt;st_pendingreview -->
+<g id="edge8" class="edge">
+<title>st_scanning&#45;&gt;st_pendingreview</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2254.13,-1016.47C2289.59,-974.48 2331.99,-924.29 2368.26,-881.36"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2370.17,-883.17 2373.01,-875.74 2366.16,-879.78 2370.17,-883.17"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2322.63,-933.6 2322.63,-956.4 2375.3,-956.4 2375.3,-933.6 2322.63,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="2325.63" y="-939.4" font-family="Arial" font-size="14.00" fill="#c9c9c9">提交候选</text>
+</g>
+<!-- st_pendingreview&#45;&gt;st_intake -->
+<g id="edge12" class="edge">
+<title>st_pendingreview&#45;&gt;st_intake</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2440.74,-873.54C2428.3,-993 2406.27,-1204.65 2393.32,-1329.1"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2390.72,-1328.64 2392.56,-1336.38 2395.95,-1329.19 2390.72,-1328.64"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2425.34,-1095 2425.34,-1117.8 2478.02,-1117.8 2478.02,-1095 2425.34,-1095"/>
+<text xml:space="preserve" text-anchor="start" x="2428.34" y="-1100.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">驳回退回</text>
+</g>
+<!-- st_pendingreview&#45;&gt;st_published -->
+<g id="edge13" class="edge">
+<title>st_pendingreview&#45;&gt;st_published</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2450,-693.67C2450,-652.47 2450,-603.36 2450,-560.97"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2452.63,-561.16 2450,-553.66 2447.38,-561.16 2452.63,-561.16"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2450,-610.8 2450,-633.6 2502.68,-633.6 2502.68,-610.8 2450,-610.8"/>
+<text xml:space="preserve" text-anchor="start" x="2453" y="-616.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">批准晋升</text>
+</g>
+<!-- st_published&#45;&gt;st_stale -->
+<g id="edge15" class="edge">
+<title>st_published&#45;&gt;st_stale</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2401.76,-370.87C2379.18,-329.23 2352.22,-279.52 2329.06,-236.83"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2331.51,-235.83 2325.62,-230.49 2326.89,-238.33 2331.51,-235.83"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2368.22,-288 2368.22,-310.8 2455.9,-310.8 2455.9,-288 2368.22,-288"/>
+<text xml:space="preserve" text-anchor="start" x="2371.22" y="-293.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">超出新鲜度阈值</text>
+</g>
+<!-- st_stale&#45;&gt;st_scanning -->
+<g id="edge16" class="edge">
+<title>st_stale&#45;&gt;st_scanning</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2254.33,-227.83C2247.18,-260.08 2239.82,-296.92 2235,-330.8 2200.68,-571.96 2186.91,-858.52 2181.78,-1006.29"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2179.16,-1006.08 2181.53,-1013.66 2184.4,-1006.26 2179.16,-1006.08"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2204.03,-610.8 2204.03,-633.6 2256.71,-633.6 2256.71,-610.8 2204.03,-610.8"/>
+<text xml:space="preserve" text-anchor="start" x="2207.03" y="-616.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">重新扫描</text>
 </g>
 </g>
 </svg>
@@ -6883,25 +7473,25 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 <g id="node1" class="node">
 <title>st_received</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-1148.4 0,-1148.4 0,-968.4 320.04,-968.4 320.04,-1148.4"/>
-<text xml:space="preserve" text-anchor="start" x="135.02" y="-1050.4" font-family="Arial" font-size="20.00" fill="#eff6ff">已接收</text>
+<text xml:space="preserve" text-anchor="start" x="105.55" y="-1050.4" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;000 已接收</text>
 </g>
 <!-- st_retrieving -->
 <g id="node2" class="node">
 <title>st_retrieving</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-825.6 0,-825.6 0,-645.6 320.04,-645.6 320.04,-825.6"/>
-<text xml:space="preserve" text-anchor="start" x="135.02" y="-727.6" font-family="Arial" font-size="20.00" fill="#eff6ff">检索中</text>
+<text xml:space="preserve" text-anchor="start" x="105.55" y="-727.6" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;001 检索中</text>
 </g>
 <!-- st_answering -->
 <g id="node3" class="node">
 <title>st_answering</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-502.8 0,-502.8 0,-322.8 320.04,-322.8 320.04,-502.8"/>
-<text xml:space="preserve" text-anchor="start" x="135.02" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">应答中</text>
+<text xml:space="preserve" text-anchor="start" x="105.55" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;002 应答中</text>
 </g>
 <!-- st_answered -->
 <g id="node4" class="node">
 <title>st_answered</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-180 0,-180 0,0 320.04,0 320.04,-180"/>
-<text xml:space="preserve" text-anchor="start" x="135.02" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">已答复</text>
+<text xml:space="preserve" text-anchor="start" x="105.55" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;003 已答复</text>
 </g>
 <!-- st_received&#45;&gt;st_retrieving -->
 <g id="edge1" class="edge">
@@ -6929,6 +7519,87 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 </g>
 </g>
 </svg>
+`;case`chain001F-i-state`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="780pt" height="1178pt"
+ viewBox="0.00 0.00 780.00 1178.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1163.45)">
+<!-- st_received -->
+<g id="node1" class="node">
+<title>st_received</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="535.04,-1148.4 215,-1148.4 215,-968.4 535.04,-968.4 535.04,-1148.4"/>
+<text xml:space="preserve" text-anchor="start" x="320.55" y="-1050.4" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;000 已接收</text>
+</g>
+<!-- st_retrieving -->
+<g id="node2" class="node">
+<title>st_retrieving</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="535.04,-825.6 215,-825.6 215,-645.6 535.04,-645.6 535.04,-825.6"/>
+<text xml:space="preserve" text-anchor="start" x="320.55" y="-727.6" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;001 检索中</text>
+</g>
+<!-- st_answering -->
+<g id="node3" class="node">
+<title>st_answering</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-502.8 0,-502.8 0,-322.8 320.04,-322.8 320.04,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="105.55" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;002 应答中</text>
+</g>
+<!-- st_waitinghuman -->
+<g id="node4" class="node">
+<title>st_waitinghuman</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="750.04,-502.8 430,-502.8 430,-322.8 750.04,-322.8 750.04,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="535.55" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;004 待人工</text>
+</g>
+<!-- st_answered -->
+<g id="node5" class="node">
+<title>st_answered</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="534.04,-180 214,-180 214,0 534.04,0 534.04,-180"/>
+<text xml:space="preserve" text-anchor="start" x="319.55" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;003 已答复</text>
+</g>
+<!-- st_received&#45;&gt;st_retrieving -->
+<g id="edge1" class="edge">
+<title>st_received&#45;&gt;st_retrieving</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M375.02,-968.47C375.02,-927.27 375.02,-878.16 375.02,-835.77"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="377.65,-835.96 375.02,-828.46 372.4,-835.96 377.65,-835.96"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="375.02,-885.6 375.02,-908.4 427.7,-908.4 427.7,-885.6 375.02,-885.6"/>
+<text xml:space="preserve" text-anchor="start" x="378.02" y="-891.4" font-family="Arial" font-size="14.00" fill="#c9c9c9">发起检索</text>
+</g>
+<!-- st_retrieving&#45;&gt;st_answering -->
+<g id="edge2" class="edge">
+<title>st_retrieving&#45;&gt;st_answering</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M315.42,-645.67C287.45,-603.94 254.06,-554.11 225.4,-511.36"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="227.59,-509.91 221.24,-505.14 223.23,-512.84 227.59,-509.91"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="273.97,-562.8 273.97,-585.6 338.31,-585.6 338.31,-562.8 273.97,-562.8"/>
+<text xml:space="preserve" text-anchor="start" x="276.97" y="-568.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">置信度达标</text>
+</g>
+<!-- st_retrieving&#45;&gt;st_waitinghuman -->
+<g id="edge3" class="edge">
+<title>st_retrieving&#45;&gt;st_waitinghuman</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M434.62,-645.67C462.59,-603.94 495.98,-554.11 524.64,-511.36"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="526.81,-512.84 528.8,-505.14 522.45,-509.91 526.81,-512.84"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="488.97,-562.8 488.97,-585.6 553.31,-585.6 553.31,-562.8 488.97,-562.8"/>
+<text xml:space="preserve" text-anchor="start" x="491.97" y="-568.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">置信度不足</text>
+</g>
+<!-- st_answering&#45;&gt;st_answered -->
+<g id="edge4" class="edge">
+<title>st_answering&#45;&gt;st_answered</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M219.35,-322.87C247.18,-281.14 280.42,-231.31 308.94,-188.56"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="311.11,-190.04 313.08,-182.35 306.74,-187.13 311.11,-190.04"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="273.44,-240 273.44,-262.8 337.78,-262.8 337.78,-240 273.44,-240"/>
+<text xml:space="preserve" text-anchor="start" x="276.44" y="-245.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">答复已下发</text>
+</g>
+<!-- st_waitinghuman&#45;&gt;st_answered -->
+<g id="edge5" class="edge">
+<title>st_waitinghuman&#45;&gt;st_answered</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M530.14,-322.87C502.05,-281.14 468.5,-231.31 439.71,-188.56"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="441.89,-187.1 435.52,-182.34 437.53,-190.03 441.89,-187.1"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="488.5,-240 488.5,-262.8 552.84,-262.8 552.84,-240 488.5,-240"/>
+<text xml:space="preserve" text-anchor="start" x="491.5" y="-245.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">人工已接管</text>
+</g>
+</g>
+</svg>
 `;case`chain001F-i-state-branch-human`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -6942,13 +7613,13 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 <g id="node1" class="node">
 <title>st_retrieving</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-502.8 0,-502.8 0,-322.8 320.04,-322.8 320.04,-502.8"/>
-<text xml:space="preserve" text-anchor="start" x="135.02" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">检索中</text>
+<text xml:space="preserve" text-anchor="start" x="105.55" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;001 检索中</text>
 </g>
 <!-- st_waitinghuman -->
 <g id="node2" class="node">
 <title>st_waitinghuman</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-180 0,-180 0,0 320.04,0 320.04,-180"/>
-<text xml:space="preserve" text-anchor="start" x="135.02" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">待人工</text>
+<text xml:space="preserve" text-anchor="start" x="105.55" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;004 待人工</text>
 </g>
 <!-- st_retrieving&#45;&gt;st_waitinghuman -->
 <g id="edge1" class="edge">
@@ -7255,7 +7926,7 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 <g id="node1" class="node">
 <title>i_goal</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="490.2,-180 0,-180 0,0 490.2,0 490.2,-180"/>
-<text xml:space="preserve" text-anchor="start" x="186.19" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;101 业务目标</text>
+<text xml:space="preserve" text-anchor="start" x="189.53" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;G0 业务目标</text>
 <text xml:space="preserve" text-anchor="start" x="20.06" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。</text>
 </g>
 </g>
@@ -7362,8 +8033,89 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 <g id="node1" class="node">
 <title>i_goal</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="415.19,-180 0,-180 0,0 415.19,0 415.19,-180"/>
-<text xml:space="preserve" text-anchor="start" x="148.68" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;141 业务目标</text>
+<text xml:space="preserve" text-anchor="start" x="152.03" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;G0 业务目标</text>
 <text xml:space="preserve" text-anchor="start" x="20.06" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。</text>
+</g>
+</g>
+</svg>
+`;case`chain001NF-i-state`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="970pt" height="1178pt"
+ viewBox="0.00 0.00 970.00 1178.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1163.45)">
+<!-- st_unprobed -->
+<g id="node1" class="node">
+<title>st_unprobed</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="750.04,-1148.4 430,-1148.4 430,-968.4 750.04,-968.4 750.04,-1148.4"/>
+<text xml:space="preserve" text-anchor="start" x="535.55" y="-1050.4" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;100 未探测</text>
+</g>
+<!-- st_probing -->
+<g id="node2" class="node">
+<title>st_probing</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="750.04,-825.6 430,-825.6 430,-645.6 750.04,-645.6 750.04,-825.6"/>
+<text xml:space="preserve" text-anchor="start" x="535.55" y="-727.6" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;101 探测中</text>
+</g>
+<!-- st_healthy -->
+<g id="node3" class="node">
+<title>st_healthy</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-502.8 0,-502.8 0,-322.8 320.04,-322.8 320.04,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="113.89" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;102 正常</text>
+</g>
+<!-- st_scenariohit -->
+<g id="node4" class="node">
+<title>st_scenariohit</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="750.04,-502.8 430,-502.8 430,-322.8 750.04,-322.8 750.04,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="510.55" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;103 命中极端场景</text>
+</g>
+<!-- st_notified -->
+<g id="node5" class="node">
+<title>st_notified</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="940.04,-180 620,-180 620,0 940.04,0 940.04,-180"/>
+<text xml:space="preserve" text-anchor="start" x="708.88" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;104 已下发提示</text>
+</g>
+<!-- st_unprobed&#45;&gt;st_probing -->
+<g id="edge1" class="edge">
+<title>st_unprobed&#45;&gt;st_probing</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M590.02,-968.47C590.02,-927.27 590.02,-878.16 590.02,-835.77"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="592.65,-835.96 590.02,-828.46 587.4,-835.96 592.65,-835.96"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="590.02,-885.6 590.02,-908.4 642.7,-908.4 642.7,-885.6 590.02,-885.6"/>
+<text xml:space="preserve" text-anchor="start" x="593.02" y="-891.4" font-family="Arial" font-size="14.00" fill="#c9c9c9">发起探测</text>
+</g>
+<!-- st_probing&#45;&gt;st_healthy -->
+<g id="edge2" class="edge">
+<title>st_probing&#45;&gt;st_healthy</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M470.81,-645.67C413.72,-603.07 345.3,-552.03 287.21,-508.69"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="289.09,-506.82 281.51,-504.44 285.95,-511.03 289.09,-506.82"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="387.91,-562.8 387.91,-585.6 440.59,-585.6 440.59,-562.8 387.91,-562.8"/>
+<text xml:space="preserve" text-anchor="start" x="390.91" y="-568.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">探测通过</text>
+</g>
+<!-- st_probing&#45;&gt;st_scenariohit -->
+<g id="edge3" class="edge">
+<title>st_probing&#45;&gt;st_scenariohit</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M590.02,-645.67C590.02,-604.47 590.02,-555.36 590.02,-512.97"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="592.65,-513.16 590.02,-505.66 587.4,-513.16 592.65,-513.16"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="590.02,-562.8 590.02,-585.6 666.03,-585.6 666.03,-562.8 590.02,-562.8"/>
+<text xml:space="preserve" text-anchor="start" x="593.02" y="-568.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">探测命中异常</text>
+</g>
+<!-- st_scenariohit&#45;&gt;st_notified -->
+<g id="edge4" class="edge">
+<title>st_scenariohit&#45;&gt;st_notified</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M642.69,-322.87C667.35,-281.23 696.79,-231.52 722.08,-188.83"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="724.3,-190.22 725.87,-182.43 719.79,-187.55 724.3,-190.22"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="690.72,-240 690.72,-262.8 743.39,-262.8 743.39,-240 690.72,-240"/>
+<text xml:space="preserve" text-anchor="start" x="693.72" y="-245.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">下发提示</text>
+</g>
+<!-- st_notified&#45;&gt;st_probing -->
+<g id="edge5" class="edge">
+<title>st_notified&#45;&gt;st_probing</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M806.48,-179.93C827.2,-265.7 846.29,-397.62 805.02,-502.8 784.87,-554.15 747.41,-600.9 709.33,-638.76"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="707.91,-636.48 704.38,-643.61 711.58,-640.23 707.91,-636.48"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="829.45,-401.4 829.45,-424.2 882.12,-424.2 882.12,-401.4 829.45,-401.4"/>
+<text xml:space="preserve" text-anchor="start" x="832.45" y="-407.2" font-family="Arial" font-size="14.00" fill="#c9c9c9">继续巡检</text>
 </g>
 </g>
 </svg>
@@ -7717,8 +8469,97 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 <g id="node1" class="node">
 <title>i_goal</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="415.19,-180 0,-180 0,0 415.19,0 415.19,-180"/>
-<text xml:space="preserve" text-anchor="start" x="148.68" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;201 业务目标</text>
+<text xml:space="preserve" text-anchor="start" x="152.03" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;G0 业务目标</text>
 <text xml:space="preserve" text-anchor="start" x="20.06" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。</text>
+</g>
+</g>
+</svg>
+`;case`chain002F-i-state`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="676pt" height="1501pt"
+ viewBox="0.00 0.00 676.00 1501.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1486.25)">
+<!-- st_intake -->
+<g id="node1" class="node">
+<title>st_intake</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="510.04,-1471.2 190,-1471.2 190,-1291.2 510.04,-1291.2 510.04,-1471.2"/>
+<text xml:space="preserve" text-anchor="start" x="295.55" y="-1373.2" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;200 待接入</text>
+</g>
+<!-- st_scanning -->
+<g id="node2" class="node">
+<title>st_scanning</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-1148.4 0,-1148.4 0,-968.4 320.04,-968.4 320.04,-1148.4"/>
+<text xml:space="preserve" text-anchor="start" x="105.55" y="-1050.4" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;201 扫描中</text>
+</g>
+<!-- st_pendingreview -->
+<g id="node3" class="node">
+<title>st_pendingreview</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="646.04,-825.6 326,-825.6 326,-645.6 646.04,-645.6 646.04,-825.6"/>
+<text xml:space="preserve" text-anchor="start" x="414.88" y="-727.6" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;202 待人工审阅</text>
+</g>
+<!-- st_published -->
+<g id="node4" class="node">
+<title>st_published</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="646.04,-502.8 326,-502.8 326,-322.8 646.04,-322.8 646.04,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="406.55" y="-404.8" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;203 已发布可检索</text>
+</g>
+<!-- st_stale -->
+<g id="node5" class="node">
+<title>st_stale</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="405.04,-180 85,-180 85,0 405.04,0 405.04,-180"/>
+<text xml:space="preserve" text-anchor="start" x="173.88" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">S&#45;204 新鲜度异常</text>
+</g>
+<!-- st_intake&#45;&gt;st_scanning -->
+<g id="edge1" class="edge">
+<title>st_intake&#45;&gt;st_scanning</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M297.35,-1291.27C272.69,-1249.63 243.25,-1199.92 217.96,-1157.23"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="220.25,-1155.95 214.17,-1150.83 215.74,-1158.62 220.25,-1155.95"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="260.72,-1208.4 260.72,-1231.2 336.73,-1231.2 336.73,-1208.4 260.72,-1208.4"/>
+<text xml:space="preserve" text-anchor="start" x="263.72" y="-1214.2" font-family="Arial" font-size="14.00" fill="#c9c9c9">抽取候选知识</text>
+</g>
+<!-- st_scanning&#45;&gt;st_pendingreview -->
+<g id="edge2" class="edge">
+<title>st_scanning&#45;&gt;st_pendingreview</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M250.4,-968.47C293.32,-926.22 344.7,-875.67 388.51,-832.56"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="390.09,-834.68 393.59,-827.55 386.41,-830.94 390.09,-834.68"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="332.79,-885.6 332.79,-908.4 385.47,-908.4 385.47,-885.6 332.79,-885.6"/>
+<text xml:space="preserve" text-anchor="start" x="335.79" y="-891.4" font-family="Arial" font-size="14.00" fill="#c9c9c9">提交候选</text>
+</g>
+<!-- st_pendingreview&#45;&gt;st_intake -->
+<g id="edge3" class="edge">
+<title>st_pendingreview&#45;&gt;st_intake</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M467.23,-825.54C441.98,-945 397.26,-1156.65 370.96,-1281.1"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="368.4,-1280.54 369.41,-1288.42 373.53,-1281.63 368.4,-1280.54"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="435.96,-1047 435.96,-1069.8 488.64,-1069.8 488.64,-1047 435.96,-1047"/>
+<text xml:space="preserve" text-anchor="start" x="438.96" y="-1052.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">驳回退回</text>
+</g>
+<!-- st_pendingreview&#45;&gt;st_published -->
+<g id="edge4" class="edge">
+<title>st_pendingreview&#45;&gt;st_published</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M486.02,-645.67C486.02,-604.47 486.02,-555.36 486.02,-512.97"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="488.65,-513.16 486.02,-505.66 483.4,-513.16 488.65,-513.16"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="486.02,-562.8 486.02,-585.6 538.7,-585.6 538.7,-562.8 486.02,-562.8"/>
+<text xml:space="preserve" text-anchor="start" x="489.02" y="-568.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">批准晋升</text>
+</g>
+<!-- st_published&#45;&gt;st_stale -->
+<g id="edge5" class="edge">
+<title>st_published&#45;&gt;st_stale</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M419.21,-322.87C387.73,-280.97 350.12,-230.9 317.91,-188.03"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="320.17,-186.67 313.57,-182.25 315.98,-189.82 320.17,-186.67"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="372.75,-240 372.75,-262.8 460.43,-262.8 460.43,-240 372.75,-240"/>
+<text xml:space="preserve" text-anchor="start" x="375.75" y="-245.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">超出新鲜度阈值</text>
+</g>
+<!-- st_stale&#45;&gt;st_scanning -->
+<g id="edge6" class="edge">
+<title>st_stale&#45;&gt;st_scanning</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M237.22,-179.72C221.34,-360.24 185.37,-769.14 168.75,-958.16"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="166.13,-957.93 168.09,-965.63 171.36,-958.39 166.13,-957.93"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="203.5,-562.8 203.5,-585.6 256.18,-585.6 256.18,-562.8 203.5,-562.8"/>
+<text xml:space="preserve" text-anchor="start" x="206.5" y="-568.6" font-family="Arial" font-size="14.00" fill="#c9c9c9">重新扫描</text>
 </g>
 </g>
 </svg>

@@ -47,14 +47,14 @@ title: "I 环 · 全部 Feature · 业务目标与步骤"
 graph TB
   subgraph Feat_answer_f["\`Feature-001-F 知识应答能力\`"]
     Feat_answer_f.Us_lowConfidence@{ shape: doc, label: "US-002 答不准时转人工而非硬答" }
-    Feat_answer_f.I_goal@{ shape: rectangle, label: "I-101 业务目标" }
+    Feat_answer_f.I_goal@{ shape: rectangle, label: "I-G0 业务目标" }
     Feat_answer_f.Us_ask@{ shape: doc, label: "US-001 客户提问获得专业答复" }
   end
-  Feat_knowledge_fI_goal@{ shape: rectangle, label: "I-201 业务目标" }
+  Feat_knowledge_fI_goal@{ shape: rectangle, label: "I-G0 业务目标" }
   Feat_knowledge_fUs_scan@{ shape: doc, label: "US-201 素材入库后自动进入候选知识" }
   subgraph Feat_degrade_nf["\`Feature-001-NF 极端场景保障\`"]
     Feat_degrade_nf.Us_kbEmpty@{ shape: doc, label: "US-101 知识库为空时运营人员能看见" }
-    Feat_degrade_nf.I_goal@{ shape: rectangle, label: "I-141 业务目标" }
+    Feat_degrade_nf.I_goal@{ shape: rectangle, label: "I-G0 业务目标" }
   end
   Feat_answer_f.I_goal -. "\`支撑下发环节\`" .-> Feat_answer_f.Us_ask
   Feat_answer_f.Us_lowConfidence -. "\`落为业务目标\`" .-> Feat_answer_f.I_goal
@@ -63,16 +63,43 @@ graph TB
 title: "I 环 · 全部 Feature · 业务状态"
 ---
 graph TB
-  Feat_answer_fSt_received@{ shape: rectangle, label: "已接收" }
-  Feat_answer_fSt_retrieving@{ shape: rectangle, label: "检索中" }
-  Feat_answer_fSt_answering@{ shape: rectangle, label: "应答中" }
-  Feat_answer_fSt_waitingHuman@{ shape: rectangle, label: "待人工" }
-  Feat_answer_fSt_answered@{ shape: rectangle, label: "已答复" }
-  Feat_answer_fSt_received -. "\`发起检索\`" .-> Feat_answer_fSt_retrieving
-  Feat_answer_fSt_retrieving -. "\`置信度达标\`" .-> Feat_answer_fSt_answering
-  Feat_answer_fSt_answering -. "\`答复已下发\`" .-> Feat_answer_fSt_answered
-  Feat_answer_fSt_retrieving -. "\`置信度不足\`" .-> Feat_answer_fSt_waitingHuman
-  Feat_answer_fSt_waitingHuman -. "\`人工已接管\`" .-> Feat_answer_fSt_answered
+  subgraph Feat_answer_f["\`Feature-001-F 知识应答能力\`"]
+    Feat_answer_f.St_received@{ shape: rectangle, label: "S-000 已接收" }
+    Feat_answer_f.St_retrieving@{ shape: rectangle, label: "S-001 检索中" }
+    Feat_answer_f.St_answering@{ shape: rectangle, label: "S-002 应答中" }
+    Feat_answer_f.St_waitingHuman@{ shape: rectangle, label: "S-004 待人工" }
+    Feat_answer_f.St_answered@{ shape: rectangle, label: "S-003 已答复" }
+  end
+  subgraph Feat_degrade_nf["\`Feature-001-NF 极端场景保障\`"]
+    Feat_degrade_nf.St_unprobed@{ shape: rectangle, label: "S-100 未探测" }
+    Feat_degrade_nf.St_probing@{ shape: rectangle, label: "S-101 探测中" }
+    Feat_degrade_nf.St_healthy@{ shape: rectangle, label: "S-102 正常" }
+    Feat_degrade_nf.St_scenarioHit@{ shape: rectangle, label: "S-103 命中极端场景" }
+    Feat_degrade_nf.St_notified@{ shape: rectangle, label: "S-104 已下发提示" }
+  end
+  subgraph Feat_knowledge_f["\`Feature-002-F 知识运营能力\`"]
+    Feat_knowledge_f.St_intake@{ shape: rectangle, label: "S-200 待接入" }
+    Feat_knowledge_f.St_scanning@{ shape: rectangle, label: "S-201 扫描中" }
+    Feat_knowledge_f.St_pendingReview@{ shape: rectangle, label: "S-202 待人工审阅" }
+    Feat_knowledge_f.St_published@{ shape: rectangle, label: "S-203 已发布可检索" }
+    Feat_knowledge_f.St_stale@{ shape: rectangle, label: "S-204 新鲜度异常" }
+  end
+  Feat_answer_f.St_received -. "\`发起检索\`" .-> Feat_answer_f.St_retrieving
+  Feat_answer_f.St_retrieving -. "\`置信度达标\`" .-> Feat_answer_f.St_answering
+  Feat_answer_f.St_answering -. "\`答复已下发\`" .-> Feat_answer_f.St_answered
+  Feat_answer_f.St_retrieving -. "\`置信度不足\`" .-> Feat_answer_f.St_waitingHuman
+  Feat_answer_f.St_waitingHuman -. "\`人工已接管\`" .-> Feat_answer_f.St_answered
+  Feat_degrade_nf.St_unprobed -. "\`发起探测\`" .-> Feat_degrade_nf.St_probing
+  Feat_degrade_nf.St_probing -. "\`探测通过\`" .-> Feat_degrade_nf.St_healthy
+  Feat_degrade_nf.St_probing -. "\`探测命中异常\`" .-> Feat_degrade_nf.St_scenarioHit
+  Feat_degrade_nf.St_scenarioHit -. "\`下发提示\`" .-> Feat_degrade_nf.St_notified
+  Feat_degrade_nf.St_notified -. "\`继续巡检\`" .-> Feat_degrade_nf.St_probing
+  Feat_knowledge_f.St_intake -. "\`抽取候选知识\`" .-> Feat_knowledge_f.St_scanning
+  Feat_knowledge_f.St_scanning -. "\`提交候选\`" .-> Feat_knowledge_f.St_pendingReview
+  Feat_knowledge_f.St_pendingReview -. "\`驳回退回\`" .-> Feat_knowledge_f.St_intake
+  Feat_knowledge_f.St_pendingReview -. "\`批准晋升\`" .-> Feat_knowledge_f.St_published
+  Feat_knowledge_f.St_published -. "\`超出新鲜度阈值\`" .-> Feat_knowledge_f.St_stale
+  Feat_knowledge_f.St_stale -. "\`重新扫描\`" .-> Feat_knowledge_f.St_scanning
 `;case`pano-ui`:return`---
 title: "UI 环 · 全部 Feature · 交互面与信息设计"
 ---
@@ -307,19 +334,33 @@ graph TB
 title: "I 环 · Feature-001-F · 业务状态 · 主干"
 ---
 graph TB
-  Feat_answer_fSt_received@{ shape: rectangle, label: "已接收" }
-  Feat_answer_fSt_retrieving@{ shape: rectangle, label: "检索中" }
-  Feat_answer_fSt_answering@{ shape: rectangle, label: "应答中" }
-  Feat_answer_fSt_answered@{ shape: rectangle, label: "已答复" }
+  Feat_answer_fSt_received@{ shape: rectangle, label: "S-000 已接收" }
+  Feat_answer_fSt_retrieving@{ shape: rectangle, label: "S-001 检索中" }
+  Feat_answer_fSt_answering@{ shape: rectangle, label: "S-002 应答中" }
+  Feat_answer_fSt_answered@{ shape: rectangle, label: "S-003 已答复" }
   Feat_answer_fSt_received -. "\`发起检索\`" .-> Feat_answer_fSt_retrieving
   Feat_answer_fSt_retrieving -. "\`置信度达标\`" .-> Feat_answer_fSt_answering
   Feat_answer_fSt_answering -. "\`答复已下发\`" .-> Feat_answer_fSt_answered
+`;case`chain001F-i-state`:return`---
+title: "I 环 · Feature-001-F · 业务状态"
+---
+graph TB
+  Feat_answer_fSt_received@{ shape: rectangle, label: "S-000 已接收" }
+  Feat_answer_fSt_retrieving@{ shape: rectangle, label: "S-001 检索中" }
+  Feat_answer_fSt_answering@{ shape: rectangle, label: "S-002 应答中" }
+  Feat_answer_fSt_waitingHuman@{ shape: rectangle, label: "S-004 待人工" }
+  Feat_answer_fSt_answered@{ shape: rectangle, label: "S-003 已答复" }
+  Feat_answer_fSt_received -. "\`发起检索\`" .-> Feat_answer_fSt_retrieving
+  Feat_answer_fSt_retrieving -. "\`置信度达标\`" .-> Feat_answer_fSt_answering
+  Feat_answer_fSt_answering -. "\`答复已下发\`" .-> Feat_answer_fSt_answered
+  Feat_answer_fSt_retrieving -. "\`置信度不足\`" .-> Feat_answer_fSt_waitingHuman
+  Feat_answer_fSt_waitingHuman -. "\`人工已接管\`" .-> Feat_answer_fSt_answered
 `;case`chain001F-i-state-branch-human`:return`---
 title: "I 环 · Feature-001-F · 业务状态 · 分支转人工"
 ---
 graph TB
-  Feat_answer_fSt_retrieving@{ shape: rectangle, label: "检索中" }
-  Feat_answer_fSt_waitingHuman@{ shape: rectangle, label: "待人工" }
+  Feat_answer_fSt_retrieving@{ shape: rectangle, label: "S-001 检索中" }
+  Feat_answer_fSt_waitingHuman@{ shape: rectangle, label: "S-004 待人工" }
   Feat_answer_fSt_retrieving -. "\`置信度不足\`" .-> Feat_answer_fSt_waitingHuman
 `;case`index`:return`---
 title: "美妆客服服务 · 全部 Feature 导航"
@@ -380,7 +421,7 @@ graph TB
 title: "I 环 · Feature-001-F · 业务目标"
 ---
 graph TB
-  Feat_answer_fI_goal@{ shape: rectangle, label: "I-101 业务目标" }
+  Feat_answer_fI_goal@{ shape: rectangle, label: "I-G0 业务目标" }
 `;case`chain001F-i-step`:return`---
 title: "I 环 · Feature-001-F · 业务步骤"
 ---
@@ -402,7 +443,21 @@ graph TB
 title: "I 环 · Feature-001-NF · 业务目标"
 ---
 graph TB
-  Feat_degrade_nfI_goal@{ shape: rectangle, label: "I-141 业务目标" }
+  Feat_degrade_nfI_goal@{ shape: rectangle, label: "I-G0 业务目标" }
+`;case`chain001NF-i-state`:return`---
+title: "I 环 · Feature-001-NF · 业务状态"
+---
+graph TB
+  Feat_degrade_nfSt_unprobed@{ shape: rectangle, label: "S-100 未探测" }
+  Feat_degrade_nfSt_probing@{ shape: rectangle, label: "S-101 探测中" }
+  Feat_degrade_nfSt_healthy@{ shape: rectangle, label: "S-102 正常" }
+  Feat_degrade_nfSt_scenarioHit@{ shape: rectangle, label: "S-103 命中极端场景" }
+  Feat_degrade_nfSt_notified@{ shape: rectangle, label: "S-104 已下发提示" }
+  Feat_degrade_nfSt_unprobed -. "\`发起探测\`" .-> Feat_degrade_nfSt_probing
+  Feat_degrade_nfSt_probing -. "\`探测通过\`" .-> Feat_degrade_nfSt_healthy
+  Feat_degrade_nfSt_probing -. "\`探测命中异常\`" .-> Feat_degrade_nfSt_scenarioHit
+  Feat_degrade_nfSt_scenarioHit -. "\`下发提示\`" .-> Feat_degrade_nfSt_notified
+  Feat_degrade_nfSt_notified -. "\`继续巡检\`" .-> Feat_degrade_nfSt_probing
 `;case`chain001NF-i-step`:return`---
 title: "I 环 · Feature-001-NF · 场景判定步骤"
 ---
@@ -478,7 +533,22 @@ graph TB
 title: "I 环 · Feature-002-F · 业务目标"
 ---
 graph TB
-  Feat_knowledge_fI_goal@{ shape: rectangle, label: "I-201 业务目标" }
+  Feat_knowledge_fI_goal@{ shape: rectangle, label: "I-G0 业务目标" }
+`;case`chain002F-i-state`:return`---
+title: "I 环 · Feature-002-F · 业务状态"
+---
+graph TB
+  Feat_knowledge_fSt_intake@{ shape: rectangle, label: "S-200 待接入" }
+  Feat_knowledge_fSt_scanning@{ shape: rectangle, label: "S-201 扫描中" }
+  Feat_knowledge_fSt_pendingReview@{ shape: rectangle, label: "S-202 待人工审阅" }
+  Feat_knowledge_fSt_published@{ shape: rectangle, label: "S-203 已发布可检索" }
+  Feat_knowledge_fSt_stale@{ shape: rectangle, label: "S-204 新鲜度异常" }
+  Feat_knowledge_fSt_intake -. "\`抽取候选知识\`" .-> Feat_knowledge_fSt_scanning
+  Feat_knowledge_fSt_scanning -. "\`提交候选\`" .-> Feat_knowledge_fSt_pendingReview
+  Feat_knowledge_fSt_pendingReview -. "\`驳回退回\`" .-> Feat_knowledge_fSt_intake
+  Feat_knowledge_fSt_pendingReview -. "\`批准晋升\`" .-> Feat_knowledge_fSt_published
+  Feat_knowledge_fSt_published -. "\`超出新鲜度阈值\`" .-> Feat_knowledge_fSt_stale
+  Feat_knowledge_fSt_stale -. "\`重新扫描\`" .-> Feat_knowledge_fSt_scanning
 `;case`chain002F-i-step`:return`---
 title: "I 环 · Feature-002-F · 业务步骤"
 ---
