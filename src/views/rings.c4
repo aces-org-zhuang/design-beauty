@@ -1,0 +1,83 @@
+// 分环视图：每条链的每一环各自一张图，聚焦该环自己的表达。
+//
+// 核心原则：一张图只回答一个问题，且只承载同一类的内容。
+//   US 环  → 这个角色要达成什么（意图与验收）
+//   能力清单 → 这条链交付了哪些单元，与谁对应
+//   I 环   → 业务目标 / 状态流转 / 业务步骤，三者分开成图
+//   UI 环  → 交互面与信息设计
+//   SRC 环 → 代码结构（见 srcdir 视图）
+//
+// **禁止 `include *` 这类写法**：它会把六个环全部塞进一张图，
+// 让「F 层视图里出现 US」这类问题无法避免。
+//
+// 命名规范：
+//   chain<链>-<环>          分环视图，如 chain001F-us
+//   chain<链>-i-<子类>      I 环按内容子类拆分，如 chain001F-i-state
+//   pano-<环>               同类聚合的全景，如 pano-f
+
+views {
+  view chain001F-us of feat_answer_f {
+    title 'US 视图 · Feature-001-F'
+    description '只承载本链的用户故事：这个角色在什么场景下要达成什么、怎样算完成。不含能力单元、I 环与源码。'
+    include feat_answer_f.us_ask, feat_answer_f.us_lowConfidence
+  }
+
+  view chain001NF-us of feat_degrade_nf {
+    title 'US 视图 · Feature-001-NF'
+    description '只承载极端场景链的用户故事。每条都绑定一个具体场景，不是质量角度。'
+    include feat_degrade_nf.us_kbEmpty
+    include feat_degrade_nf.us_ragTimeout, feat_degrade_nf.us_llmDown
+  }
+
+  view chain001F-f of feat_answer_f {
+    title '能力清单 · Feature-001-F'
+    description '本链交付的业务能力单元，以及每个单元由哪条 US 要求。清单与 US 并列，不是下钻路径的一步——这里同时出现 US 是为了展示对应关系，不是把 US 当成能力单元。'
+    include feat_answer_f.us_ask, feat_answer_f.us_lowConfidence
+    include feat_answer_f.f_answer, feat_answer_f.f_retrieval
+  }
+
+  view chain001NF-nf of feat_degrade_nf {
+    title '场景清单 · Feature-001-NF'
+    description '本链交付的极端场景单元，以及每项由哪条 US 要求。每一项都答出谁、什么场景、因此得到什么。US 在此仅用于展示对应关系。'
+    include feat_degrade_nf.us_kbEmpty
+    include feat_degrade_nf.us_ragTimeout, feat_degrade_nf.us_llmDown
+    include feat_degrade_nf.nf_kbEmpty
+    include feat_degrade_nf.nf_ragTimeout, feat_degrade_nf.nf_llmDown
+  }
+
+  view chain001F-i-goal of feat_answer_f {
+    title 'I 环 · 业务目标 · Feature-001-F'
+    description '只承载业务目标。状态流转与业务步骤各自成图，不混在这张里。'
+    include feat_answer_f.i_goal
+  }
+
+  view chain001F-i-step of feat_answer_f {
+    title 'I 环 · 业务步骤 · Feature-001-F'
+    description '只承载主干业务步骤的静态结构。步骤的具体时序见 seq 视图。'
+    include feat_answer_f.i_step
+  }
+
+  view chain001NF-i-goal of feat_degrade_nf {
+    title 'I 环 · 业务目标 · Feature-001-NF'
+    description '极端场景链的业务目标。'
+    include feat_degrade_nf.i_goal
+  }
+
+  view chain001NF-i-step of feat_degrade_nf {
+    title 'I 环 · 场景判定步骤 · Feature-001-NF'
+    description '三类极端场景的判定步骤静态结构。'
+    include feat_degrade_nf.i_step
+  }
+
+  view chain001F-ui of feat_answer_f {
+    title 'UI 环 · Feature-001-F'
+    description '只承载交互面与信息设计。不含源码与数据载体。'
+    include feat_answer_f.ui_interaction, feat_answer_f.ui_information
+  }
+
+  view chain001NF-ui of feat_degrade_nf {
+    title 'UI 环 · Feature-001-NF'
+    description '极端场景链的交互面与信息设计。'
+    include feat_degrade_nf.ui_status, feat_degrade_nf.ui_notice
+  }
+}

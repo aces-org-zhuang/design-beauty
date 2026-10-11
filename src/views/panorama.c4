@@ -1,109 +1,69 @@
-// SRC 环四个维度的视图：代码结构、数据流、对外接口、运行时。
-// 全景视图：每环一张，聚合发生在全景层而非链视图层。
+// 全景视图：同类聚合，跨全部链。
+//
+// 核心原则：**全景必须同类聚合**。
+//   pano-f     只放所有链的 F 单元，不放任何 US / I / SRC
+//   pano-nf    只放所有链的 NF 单元
+//   pano-us    只放所有链的 US
+//   pano-i     只放所有链的 I 环元素
+//   pano-ui    只放所有链的 UI 元素
+//   pano-src   只放所有链的 SRC 单元
+//
+// **全景不是链视图的放大版**。链视图按环聚焦，全景按同类横向聚合。
+// 把 F 单元和它服务的 US 放进同一张「全景」，会让「F 全景」这个词失去含义。
+//
+// 命名规范（强制，便于识别与检索）：
+//   pano-<环>       同类全景，如 pano-f / pano-nf / pano-us / pano-i / pano-ui / pano-src
+//   chain<链>-<环>  分环视图，见 rings.c4
+//   dfd<链> / carrier<链> / erm<链> / api<链> / srcdir<链>   SRC 各维度视图
+//   proc<环境>      运行时视图
+//   seq<链>-<场景>  时序视图
 
 views {
-  view srcdir001F of feat_answer_f {
-    title 'SRC 目录视图 · Feature-001-F'
-    description '本链源码单元与真实文件路径的对应，含嵌套子单元。SRC 是唯一带真实磁盘资产的环。'
-    include feat_answer_f.src_wechatCallback
-    include feat_answer_f.src_answerOrchestrator
-    include feat_answer_f.src_answerLoop
-    include feat_answer_f.src_replyPolicy
-    include feat_answer_f.src_ragflowKnowledge
-    include feat_answer_f.src_handoffService
-    include feat_answer_f.src_store
-  }
-
-  view srcdir001NF of feat_degrade_nf {
-    title 'SRC 目录视图 · Feature-001-NF'
-    description '极端场景链的源码单元与真实文件路径对应。'
-    include feat_degrade_nf.src_integrationRoutes
-    include feat_degrade_nf.src_evaluationGate
-    include feat_degrade_nf.src_knowledgeAlert
-    include feat_degrade_nf.src_ragflowProbe
-    include feat_degrade_nf.src_operatorUi
-    include feat_degrade_nf.src_storeAlert
-  }
-
-  view carrier001F of feat_answer_f {
-    title '数据载体全景 · Feature-001-F 应答链'
-    description '按角色分类的数据载体与转换关系。角色为 IN/BIZ/POD/OUT/DAO/CVT，不用 PO/VO/BO/DTO 术语。'
-    include feat_answer_f.in_chatMessage, feat_answer_f.biz_query
-    include feat_answer_f.pod_ticket, feat_answer_f.out_answer
-    include feat_answer_f.dao_store, feat_answer_f.cvt_normalize
-  }
-
-  view carrier001NF of feat_degrade_nf {
-    title '数据载体全景 · Feature-001-NF 探测链'
-    description '极端场景链的数据载体。编号段与 F 链分开。'
-    include feat_degrade_nf.in_probeQuery, feat_degrade_nf.biz_probeResult
-    include feat_degrade_nf.pod_alert, feat_degrade_nf.out_status
-    include feat_degrade_nf.dao_alert, feat_degrade_nf.cvt_probe
-  }
-
-  view api001F of feat_answer_f.lane_edge {
-    title 'API 清单 · Feature-001-F'
-    description '本链对外接口，含方法、路径与路由位置。接口是独立元素，不是 SRC 单元的别名。'
-    include feat_answer_f.lane_edge.api_chatCallback
-    include feat_answer_f.lane_edge.api_handoffList
-  }
-
-  view api001NF of feat_degrade_nf.lane_edge {
-    title 'API 清单 · Feature-001-NF'
-    description '极端场景链的对外接口。'
-    include feat_degrade_nf.lane_edge.api_status
-  }
-
-  view erm001F of feat_answer_f {
-    title '数据模型全景 · Feature-001-F 工单结构'
-    description '持久化实体与关系。字段清单写在 description，图上不承载字段定义。'
-    include feat_answer_f.pod_ticket, feat_answer_f.dao_store
-  }
-
-  view erm001NF of feat_degrade_nf {
-    title '数据模型全景 · Feature-001-NF 告警结构'
-    description '极端场景链的持久化实体与关系。'
-    include feat_degrade_nf.pod_alert, feat_degrade_nf.dao_alert
-  }
-
-  view usPanorama {
-    title 'US 全景 · 谁要什么'
-    description '两条链的 US，按交付主题分组。两链的 US 分别识别，不是共享的。'
+  view pano-us {
+    title 'US 全景 · 全部链'
+    description '所有链的用户故事，按链分组。两条链的 US 分别识别，不是共享的。不含任何其他环的元素。'
     include feat_answer_f.us_ask, feat_answer_f.us_lowConfidence
     include feat_degrade_nf.us_kbEmpty, feat_degrade_nf.us_ragTimeout
     include feat_degrade_nf.us_llmDown
   }
 
-  view fPanorama {
-    title 'F 全景 · 系统对外能力'
-    description '全部 F 链的业务能力单元。一次性呈现，不在各链视图里重复。'
+  view pano-f {
+    title 'F 全景 · 全部链的业务能力单元'
+    description '所有链的 F 单元，只含业务能力。刻意不含 US——单元的归属见各链的能力清单视图。'
     include feat_answer_f.f_answer, feat_answer_f.f_retrieval
   }
 
-  view nfPanorama {
-    title 'NF 全景 · 极端场景下的系统表现'
-    description '全部 NF 链的场景单元。每项都能答出谁、什么场景、因此得到什么。不是质量角度清单。'
+  view pano-nf {
+    title 'NF 全景 · 全部链的极端场景单元'
+    description '所有链的 NF 单元，只含场景化表现。刻意不含 US——每项的「谁 / 什么场景 / 得到什么」写在 description 里。'
     include feat_degrade_nf.nf_kbEmpty
     include feat_degrade_nf.nf_ragTimeout, feat_degrade_nf.nf_llmDown
   }
 
-  view iPanorama {
-    title 'I 全景 · 业务流转'
-    description '两条链的业务逻辑。编号段区分：F 链 I-0xx，NF 链 I-1xx。'
-    include feat_answer_f.i_goal, feat_answer_f.i_state, feat_answer_f.i_step
+  view pano-i {
+    title 'I 全景 · 全部链的业务逻辑'
+    description '所有链的 I 环元素，按编号段区分：F 链 I-0xx，NF 链 I-1xx。'
+    include feat_answer_f.i_goal, feat_answer_f.i_step
     include feat_degrade_nf.i_goal, feat_degrade_nf.i_step
   }
 
-  view uiPanorama {
-    title 'UI 全景 · 用户能看到什么'
-    description '两条链的交互面与信息设计。'
+  view pano-i-state {
+    title 'I 环 · 业务状态全景'
+    description '全部业务状态。状态即元素、迁移即关系；主干与分支在 stateMain / stateBranchHuman 各自成图。'
+    include st_received, st_retrieving, st_answering, st_answered
+    include st_waitingHuman
+  }
+
+  view pano-ui {
+    title 'UI 全景 · 全部链的界面面'
+    description '所有链的 UI 元素。'
     include feat_answer_f.ui_interaction, feat_answer_f.ui_information
     include feat_degrade_nf.ui_status, feat_degrade_nf.ui_notice
   }
 
-  view srcPanorama {
-    title 'SRC 全景 · 源码单元全貌'
-    description '跨全部链的源码单元。文件路径详见各链的 SRC 目录视图。'
+  view pano-src {
+    title 'SRC 全景 · 全部链的源码单元'
+    description '所有链的 SRC 单元，只含代码结构单元。文件路径见各链的 srcdir 视图。'
     include feat_answer_f.src_wechatCallback
     include feat_answer_f.src_answerOrchestrator, feat_answer_f.src_answerLoop
     include feat_answer_f.src_replyPolicy, feat_answer_f.src_ragflowKnowledge
@@ -113,15 +73,79 @@ views {
     include feat_degrade_nf.src_operatorUi, feat_degrade_nf.src_storeAlert
   }
 
+  view pano-carrier {
+    title '数据载体全景 · 全部链'
+    description '所有链的数据载体，按角色分列：入参 / 业务 / 持久化 / 出参 / 数据访问 / 转换。这是 SRC 维度，不是某一环的内容。'
+    include feat_answer_f.in_chatMessage, feat_answer_f.biz_query
+    include feat_answer_f.pod_ticket, feat_answer_f.out_answer
+    include feat_answer_f.dao_store, feat_answer_f.cvt_normalize
+    include feat_degrade_nf.in_probeQuery, feat_degrade_nf.biz_probeResult
+    include feat_degrade_nf.pod_alert, feat_degrade_nf.out_status
+    include feat_degrade_nf.dao_alert, feat_degrade_nf.cvt_probe
+  }
+
+  view pano-api {
+    title 'API 全景 · 全部链的对外接口'
+    description '所有链的对外接口，只含接口元素。这是 SRC 维度，不含任何内部单元。'
+    include feat_answer_f.lane_edge
+    include feat_degrade_nf.lane_edge
+  }
+
+  view srcdir001F of feat_answer_f {
+    title 'SRC 目录视图 · Feature-001-F'
+    description '本链源码单元与真实文件路径的对应，含嵌套子单元。SRC 是唯一带真实磁盘资产的环。'
+    include feat_answer_f.src_wechatCallback
+    include feat_answer_f.src_answerOrchestrator, feat_answer_f.src_answerLoop
+    include feat_answer_f.src_replyPolicy, feat_answer_f.src_ragflowKnowledge
+    include feat_answer_f.src_handoffService, feat_answer_f.src_store
+  }
+
+  view srcdir001NF of feat_degrade_nf {
+    title 'SRC 目录视图 · Feature-001-NF'
+    description '极端场景链的源码单元与真实文件路径对应。'
+    include feat_degrade_nf.src_integrationRoutes
+    include feat_degrade_nf.src_evaluationGate, feat_degrade_nf.src_knowledgeAlert
+    include feat_degrade_nf.src_ragflowProbe, feat_degrade_nf.src_operatorUi
+    include feat_degrade_nf.src_storeAlert
+  }
+
+  view carrier001F of feat_answer_f {
+    title '数据载体全景 · Feature-001-F'
+    description '本链的数据载体与转换关系。角色为 IN / BIZ / POD / OUT / DAO / CVT。'
+    include feat_answer_f.in_chatMessage, feat_answer_f.biz_query
+    include feat_answer_f.pod_ticket, feat_answer_f.out_answer
+    include feat_answer_f.dao_store, feat_answer_f.cvt_normalize
+  }
+
+  view carrier001NF of feat_degrade_nf {
+    title '数据载体全景 · Feature-001-NF'
+    description '极端场景链的数据载体。编号段与 F 链分开。'
+    include feat_degrade_nf.in_probeQuery, feat_degrade_nf.biz_probeResult
+    include feat_degrade_nf.pod_alert, feat_degrade_nf.out_status
+    include feat_degrade_nf.dao_alert, feat_degrade_nf.cvt_probe
+  }
+
+  view erm001F of feat_answer_f {
+    title '数据模型全景 · Feature-001-F 工单结构'
+    description '本链的持久化实体与数据访问单元。字段清单写在 description，图上不承载字段定义。'
+    include feat_answer_f.pod_ticket, feat_answer_f.dao_store
+  }
+
+  view erm001NF of feat_degrade_nf {
+    title '数据模型全景 · Feature-001-NF 告警结构'
+    description '极端场景链的持久化实体与数据访问单元。'
+    include feat_degrade_nf.pod_alert, feat_degrade_nf.dao_alert
+  }
+
   view stateMain {
-    title '问答主干状态'
-    description '必经状态链路，不含异常态与转人工态。'
+    title 'I 环 · 业务状态主干'
+    description '必经状态链路，不含转人工分支。'
     include st_received, st_retrieving, st_answering, st_answered
   }
 
   view stateBranchHuman {
-    title '问答分支 · 转人工'
-    description '自检索中节点岔出，合流至已答复。分支独立成图。'
+    title 'I 环 · 业务状态分支 · 转人工'
+    description '自检索中节点岔出，合流至已答复。分支独立成图，不重复主干状态。'
     include st_retrieving, st_waitingHuman
   }
 

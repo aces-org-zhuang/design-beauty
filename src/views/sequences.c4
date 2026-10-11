@@ -1,12 +1,15 @@
 // 时序视图与 DFD：dynamic view variant sequence。
 //
+// 命名规范：seq<链>-<场景>，如 seq001F-answer / seq001F-branch-low-confidence。
+//
 // 实测约束：
 //   - dynamic view 不支持 of <容器>，归属靠 description 表达
 //   - 只能有消息，否则 validate 通过但 build 布局失败（actors array must not be empty）
 //   - dynamic view 不能与 element view 混在同一 views 块
+//   - 视图名可用连字符，如 pano-f、seq001F-answer
 
 views {
-  dynamic view seq001FAnswer {
+  dynamic view seq001F-answer {
     variant sequence
     title 'Feature-001-F 主干时序 · 客户提问到答复'
     description '归属 Feature-001-F。客户提问经回调、编排、检索、校验后得到答复。dynamic view 不支持 of，归属写在此处。'
@@ -28,7 +31,7 @@ views {
     feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_edge.api_chatCallback '返回答复'
   }
 
-  dynamic view seq001FBranchLowConfidence {
+  dynamic view seq001F-branch-low-confidence {
     variant sequence
     title 'Feature-001-F 分支 · 置信度不足转人工'
     description '归属 Feature-001-F。自校验节点岔出，合流至工单与告知。分支独立成图，不重复主干步骤。'
@@ -44,7 +47,7 @@ views {
     feat_answer_f.src_store -> feat_answer_f.lane_client.actor_customer '告知等待人工'
   }
 
-  dynamic view dfd001F {
+  dynamic view dfd001F-answer {
     variant sequence
     title 'DFD 全景 · Feature-001-F 应答数据流'
     description '归属 Feature-001-F。业务数据从提问入参到落库再回显的完整链路，含转换点。'
@@ -62,7 +65,7 @@ views {
     feat_answer_f.out_answer -> feat_answer_f.ui_information '渲染答复'
   }
 
-  dynamic view seq001NFDegrade {
+  dynamic view seq001NF-degrade {
     variant sequence
     title 'Feature-001-NF 主干时序 · 场景判定与提示'
     description '归属 Feature-001-NF。运营查询状态后依次判定三类极端场景并给出提示。'
@@ -82,7 +85,7 @@ views {
     feat_degrade_nf.src_evaluationGate -> feat_degrade_nf.ui_notice '下发场景提示'
   }
 
-  dynamic view dfd001NF {
+  dynamic view dfd001NF-probe {
     variant sequence
     title 'DFD 全景 · Feature-001-NF 探测数据流'
     description '归属 Feature-001-NF。探测入参到状态出参与告警落库的完整链路。'
@@ -100,7 +103,47 @@ views {
     feat_degrade_nf.pod_alert -> feat_degrade_nf.dao_alert '写入告警'
   }
 
-  dynamic view seq001APIChat {
+  dynamic view seq001F-i-step-lanes {
+    variant sequence
+    title 'I 环 · 业务步骤泳道流程 · Feature-001-F'
+    description '归属 Feature-001-F。用泳道表达主干步骤的责任划分：角色发起、领域层编排、领域层检索、接入层返回。同一环节的内容不进这张图。'
+
+    include feat_answer_f.lane_client.actor_customer
+    include feat_answer_f.lane_edge.api_chatCallback
+    include feat_answer_f.lane_core.step_answerLane
+    include feat_answer_f.lane_core.i_stepLaneStep
+    include feat_answer_f.lane_core.i_stepLaneSearch
+
+    feat_answer_f.lane_client.actor_customer -> feat_answer_f.lane_edge.api_chatCallback '①提出问题'
+    feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.lane_core.step_answerLane '②归一化并派发'
+    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_core.i_stepLaneSearch '③检索候选知识'
+    feat_answer_f.lane_core.i_stepLaneSearch -> feat_answer_f.lane_core.step_answerLane '④候选返回'
+    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_core.i_stepLaneStep '⑤置信度校验'
+    feat_answer_f.lane_core.i_stepLaneStep -> feat_answer_f.lane_edge.api_chatCallback '⑥生成答复'
+    feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.lane_client.actor_customer '⑦答复送达'
+  }
+
+  dynamic view seq001NF-i-step-lanes {
+    variant sequence
+    title 'I 环 · 场景判定泳道流程 · Feature-001-NF'
+    description '归属 Feature-001-NF。运营发起查询、判定层依次判定三类极端场景、提示层给出下一步。'
+
+    include feat_degrade_nf.lane_operator.actor_ops
+    include feat_degrade_nf.lane_edge.api_status
+    include feat_degrade_nf.lane_core.step_probeLane
+    include feat_degrade_nf.lane_core.i_stepLaneKbCheck
+    include feat_degrade_nf.lane_core.i_stepLaneTimeoutCheck
+    include feat_degrade_nf.lane_core.i_stepLaneLlmCheck
+
+    feat_degrade_nf.lane_operator.actor_ops -> feat_degrade_nf.lane_edge.api_status '①查询状态'
+    feat_degrade_nf.lane_edge.api_status -> feat_degrade_nf.lane_core.step_probeLane '②发起探测'
+    feat_degrade_nf.lane_core.step_probeLane -> feat_degrade_nf.lane_core.i_stepLaneKbCheck '③判定条目数'
+    feat_degrade_nf.lane_core.i_stepLaneKbCheck -> feat_degrade_nf.lane_core.i_stepLaneTimeoutCheck '④判定响应耗时'
+    feat_degrade_nf.lane_core.i_stepLaneTimeoutCheck -> feat_degrade_nf.lane_core.i_stepLaneLlmCheck '⑤判定模型可用性'
+    feat_degrade_nf.lane_core.i_stepLaneLlmCheck -> feat_degrade_nf.lane_operator.actor_ops '⑥下发提示或转人工'
+  }
+
+  dynamic view seq001F-api-chat {
     variant sequence
     title 'API 泳道时序 · Feature-001-F 提交提问'
     description '泳道按调用方向：客户 → 服务端接入 → 领域层 → 外部依赖。'
@@ -117,7 +160,7 @@ views {
     feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_edge.api_chatCallback '返回答复'
   }
 
-  dynamic view seq001NFAPI {
+  dynamic view seq001NF-api-status {
     variant sequence
     title 'API 泳道时序 · Feature-001-NF 查询集成状态'
     description '泳道按调用方向：运营人员 → 服务端接入 → 判定层 → 外部依赖。'

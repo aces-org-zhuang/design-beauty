@@ -117,6 +117,12 @@ model {
       step_answerLane = implStep 'I-003 业务步骤（应答泳道）' {
         description '编排、检索、校验、生成答复的领域环节。'
       }
+      i_stepLaneSearch = implStep 'I-004 检索环节' {
+        description '向 RAGFlow 发起检索并接收候选知识。'
+      }
+      i_stepLaneStep = implStep 'I-005 校验与生成环节' {
+        description '按置信度与风险阈值判定放行或转人工，并生成答复正文。'
+      }
     }
     lane_ext = feature '外部依赖泳道' {
       ext_ragflow = system 'RAGFlow' {
