@@ -1,0 +1,193 @@
+// Feature-001-F · 能力链（按业务能力切）
+//
+// 分叉判据：本次交付新增或改变对外可见的能力。
+// 本链的 US 与 NF 链的 US 分别识别，不是共享的。
+//
+// 下钻路径：US → I → UI → SRC，中途不经过 F。
+// F 单元清单与 US 并列，是该链交付的业务能力单元。
+//
+// 所有 SRC 单元与数据载体都绑定真实路径，路径取自 BeautyCustomerService 源码树。
+
+model {
+  feat_answer_f = feature 'Feature-001-F 知识应答能力' {
+    description '按业务能力切分。交付边界：客户在企业微信提问美妆问题，能得到基于知识库的专业答复。所属愿景：让美妆咨询有据可依。'
+
+    // ---- US：本链自己识别 ----
+
+    us_ask = userStory 'US-001 客户提问获得专业答复' {
+      description '作为客户，我在企业微信提问美妆问题，以便拿到有依据的答复而不是广告。验收：答复内容来自知识库检索结果且不含未验证成分。'
+    }
+    us_lowConfidence = userStory 'US-002 答不准时转人工而非硬答' {
+      description '作为客户，当知识库没有覆盖我的问题时，以便被转给人工而不是收到编造答案。验收：置信度不足时生成人工工单并告知我等待。'
+    }
+
+    // ---- F 单元清单：与 US 并列，非路径环节 ----
+
+    f_answer = function 'F-001 应答编排能力' {
+      description '决定自动应答还是转人工，串联检索与策略校验。'
+    }
+    f_retrieval = function 'F-002 知识检索能力' {
+      description '从 RAGFlow 检索候选知识并按置信度排序。'
+    }
+
+    // ---- I 环：业务逻辑（不含源码） ----
+
+    i_goal = implStep 'I-001 业务目标' {
+      description '客户提问后得到有据可依的答复，或明确被转人工。'
+    }
+    i_state = implStep 'I-002 业务状态' {
+      description '问答状态：已接收 → 检索中 → 应答中 → 已答复 / 待人工。'
+    }
+    i_step = implStep 'I-003 业务步骤' {
+      description '主干步骤：接收消息 → 检索候选知识 → 置信度校验 → 生成答复。'
+    }
+
+    // ---- UI 环 ----
+
+    ui_interaction = uiSurface 'UI-001 企业微信会话交互' {
+      description '客户在企业微信会话中提问与接收答复；答复与提问同屏呈现。'
+    }
+    ui_information = uiSurface 'UI-002 答复信息设计' {
+      description '展示字段：问题原文、知识来源条目、答复正文。覆盖空态（无检索结果）、加载态（检索中）、错误态（检索失败）、无权限态（未授权知识）。'
+    }
+
+    // ---- SRC 环：代码结构 ----
+
+    src_wechatCallback = srcUnit 'SRC-001 微信客服回调入口' {
+      description 'src/routes/wechat-kf-routes.js — 接收企业微信加密回调并解密分发。'
+
+      wechatRoutes = srcUnit 'SRC-001-1 微信客服路由' {
+        description 'src/routes/wechat-kf-routes.js — 路由注册与报文解密。'
+      }
+    }
+    src_answerOrchestrator = srcUnit 'SRC-002 应答编排器' {
+      description 'src/services/answer-orchestrator.js — 决定自动应答或转人工。'
+    }
+    src_answerLoop = srcUnit 'SRC-003 知识应答循环' {
+      description 'src/services/knowledge-answer-loop-service.js — 检索增强的应答循环。'
+    }
+    src_replyPolicy = srcUnit 'SRC-004 回复策略' {
+      description 'src/services/reply-policy-service.js — 置信度与风险阈值判定。'
+    }
+    src_ragflowKnowledge = srcUnit 'SRC-005 RAGFlow 知识检索' {
+      description 'src/services/ragflow-knowledge-service.js — 检索与数据集访问。'
+    }
+    src_handoffService = srcUnit 'SRC-006 转人工服务' {
+      description 'src/services/handoff-service.js — 创建并跟踪人工工单。'
+    }
+    src_store = srcUnit 'SRC-007 本地存储' {
+      description 'src/domain/store.js — 以 JSON 文件承载工单与反馈状态。'
+    }
+
+    // ---- SRC 环：数据载体（按角色编号） ----
+
+    in_chatMessage = dto 'IN-001 客户提问入参' {
+      description 'src/domain/normalize.js — 企业微信回调解密后归一化的提问。'
+    }
+    biz_query = entity 'BIZ-001 检索查询对象' {
+      description 'src/services/knowledge-answer-loop-service.js — 承载检索意图与置信度计算。'
+    }
+    pod_ticket = entity 'POD-001 工单持久化实体' {
+      description 'data/local-mvp-store.json — 与 store.json 中 tickets 数组结构对应。'
+    }
+    out_answer = vo 'OUT-001 答复出参视图' {
+      description 'src/routes/wechat-kf-routes.js — 面向企业微信会话的答复载荷。'
+    }
+    dao_store = dataAccess 'DAO-001 本地存储访问' {
+      description 'src/domain/store.js — 工单与反馈的读写边界。'
+    }
+    cvt_normalize = converter 'CVT-001 提问归一化转换器' {
+      description 'src/domain/normalize.js — 覆盖 微信原始报文→IN-001 与 POD-001→OUT-001 两组映射。'
+    }
+
+    // ---- 泳道：按调用方向分组，不按操作步骤 ----
+
+    lane_client = feature '客户端泳道' {
+      actor_customer = person '客户'
+    }
+    lane_edge = feature '服务端接入泳道' {
+      api_chatCallback = apiEndpoint 'API-001 POST /wechat/callback 微信客服回调' {
+        description 'src/routes/wechat-kf-routes.js:12 — 接收企业微信加密回调。'
+      }
+      api_handoffList = apiEndpoint 'API-002 GET /handoffs 工单列表' {
+        description 'src/routes/handoff-routes.js:9 — 运营人员查看人工工单。'
+      }
+    }
+    lane_core = feature '领域层泳道' {
+      step_answerLane = implStep 'I-003 业务步骤（应答泳道）' {
+        description '编排、检索、校验、生成答复的领域环节。'
+      }
+    }
+    lane_ext = feature '外部依赖泳道' {
+      ext_ragflow = system 'RAGFlow' {
+        description '检索与知识库服务。'
+      }
+      ext_wechat = system '企业微信' {
+        description '企业微信客服平台。'
+      }
+    }
+
+    // ---- 追溯边：清单项的来源 ----
+
+    us_ask .trace f_answer '要求'
+    us_lowConfidence .trace f_retrieval '要求'
+
+    // ---- 追溯边：下钻路径 US → I → UI → SRC ----
+
+    us_ask .trace i_step '落为业务步骤'
+    us_lowConfidence .trace i_goal '落为业务目标'
+    i_step .trace i_state '推进问答状态'
+    i_state .trace ui_information '展示应答状态'
+    i_step .trace ui_interaction '反馈交互'
+    ui_interaction .trace src_wechatCallback '由回调触发'
+    ui_information .trace src_store '读取工单状态'
+
+    // ---- 依赖边：运行时怎么走 ----
+
+    src_wechatCallback .depends src_answerOrchestrator '分发归一化消息'
+    src_answerOrchestrator .depends src_answerLoop '请求应答'
+    src_answerLoop .depends src_ragflowKnowledge '检索候选知识'
+    src_answerLoop .depends src_replyPolicy '校验置信度'
+    src_answerOrchestrator .depends src_handoffService '低置信度时转人工'
+    src_handoffService .depends src_store '持久化工单'
+
+    // ---- 数据流：业务数据从入口到落库再回显 ----
+
+    ui_interaction .flow in_chatMessage '提交提问'
+    in_chatMessage .convert biz_query '转换为检索查询'
+    biz_query .flow src_ragflowKnowledge '发起检索'
+    biz_query .flow pod_ticket '低置信度落工单'
+    pod_ticket .flow dao_store '写入工单'
+    dao_store .flow out_answer '查询答复内容'
+    out_answer .flow ui_information '渲染答复'
+
+    // ---- 转换单元的覆盖范围：必须写成独立边 ----
+
+    cvt_normalize .trace in_chatMessage '负责 报文→IN-001 映射'
+    cvt_normalize .trace out_answer '负责 POD-001→OUT-001 映射'
+
+    // ---- 边界顺序 ----
+
+    lane_client.actor_customer -> lane_edge.api_chatCallback '企业微信提问'
+    lane_edge.api_chatCallback -> lane_core.step_answerLane '触发应答'
+    lane_core.step_answerLane -> lane_ext.ext_ragflow '检索知识'
+    lane_ext.ext_ragflow -> lane_core.step_answerLane '返回候选知识'
+    lane_core.step_answerLane -> lane_edge.api_chatCallback '返回答复或工单号'
+  }
+}
+
+// ---- 业务状态机：状态即元素，迁移即关系 ----
+
+model {
+  st_received = state '已接收'
+  st_retrieving = state '检索中'
+  st_answering = state '应答中'
+  st_answered = state '已答复'
+  st_waitingHuman = state '待人工'
+
+  st_received -> st_retrieving '发起检索'
+  st_retrieving -> st_answering '置信度达标'
+  st_retrieving -> st_waitingHuman '置信度不足'
+  st_answering -> st_answered '答复已下发'
+  st_waitingHuman -> st_answered '人工已接管'
+}

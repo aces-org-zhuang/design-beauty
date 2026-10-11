@@ -1,0 +1,80 @@
+// 链视图：两条链各自的下钻路径全景与业务设计视角。
+//
+// element view 可以写 of <feature>，自动带归属容器。
+// dynamic view 不支持 of，须靠 description 与元素嵌套表达归属。
+// views 块内不支持 // 注释。
+
+views {
+  view feat001FChain of feat_answer_f {
+    title 'Feature-001-F 链路总览'
+    description '能力链完整下钻路径：US → I → UI → SRC。链内不含任何 NF 元素。'
+    include *
+  }
+
+  view feat001NFFChain of feat_degrade_nf {
+    title 'Feature-001-NF 链路总览'
+    description '极端场景链完整下钻路径。链内不含任何 F 元素。'
+    include *
+  }
+
+  view feat001FBusiness of feat_answer_f {
+    title 'Feature-001-F 业务设计视角（不含源码）'
+    description 'US 到 UI 环的业务设计，供业务方确认。排除全部 SRC 单元与数据载体。'
+    include *
+    exclude feat_answer_f.src_wechatCallback
+    exclude feat_answer_f.src_answerOrchestrator
+    exclude feat_answer_f.src_answerLoop
+    exclude feat_answer_f.src_replyPolicy
+    exclude feat_answer_f.src_ragflowKnowledge
+    exclude feat_answer_f.src_handoffService
+    exclude feat_answer_f.src_store
+    exclude feat_answer_f.in_chatMessage
+    exclude feat_answer_f.biz_query
+    exclude feat_answer_f.pod_ticket
+    exclude feat_answer_f.out_answer
+    exclude feat_answer_f.dao_store
+    exclude feat_answer_f.cvt_normalize
+    exclude feat_answer_f.lane_edge
+    exclude feat_answer_f.lane_core
+    exclude feat_answer_f.lane_ext
+    exclude feat_answer_f.lane_client
+  }
+
+  view feat001NFBusiness of feat_degrade_nf {
+    title 'Feature-001-NF 业务设计视角（不含源码）'
+    description '极端场景链的业务设计。排除全部 SRC 单元与数据载体。'
+    include *
+    exclude feat_degrade_nf.src_integrationRoutes
+    exclude feat_degrade_nf.src_evaluationGate
+    exclude feat_degrade_nf.src_knowledgeAlert
+    exclude feat_degrade_nf.src_ragflowProbe
+    exclude feat_degrade_nf.src_operatorUi
+    exclude feat_degrade_nf.src_storeAlert
+    exclude feat_degrade_nf.in_probeQuery
+    exclude feat_degrade_nf.biz_probeResult
+    exclude feat_degrade_nf.pod_alert
+    exclude feat_degrade_nf.out_status
+    exclude feat_degrade_nf.dao_alert
+    exclude feat_degrade_nf.cvt_probe
+    exclude feat_degrade_nf.lane_edge
+    exclude feat_degrade_nf.lane_core
+    exclude feat_degrade_nf.lane_ext
+    exclude feat_degrade_nf.lane_operator
+  }
+
+  view feat001FFrame of feat_answer_f {
+    title 'Feature-001-F 能力清单'
+    description '该链交付的业务能力单元与对应 US。清单与 US 并列，不是路径环节。'
+    include feat_answer_f.us_ask, feat_answer_f.us_lowConfidence
+    include feat_answer_f.f_answer, feat_answer_f.f_retrieval
+  }
+
+  view feat001NFFrame of feat_degrade_nf {
+    title 'Feature-001-NF 场景清单'
+    description '该链交付的极端场景单元。每项均答出「谁 / 什么场景 / 因此得到什么」。'
+    include feat_degrade_nf.us_kbEmpty
+    include feat_degrade_nf.us_ragTimeout, feat_degrade_nf.us_llmDown
+    include feat_degrade_nf.nf_kbEmpty
+    include feat_degrade_nf.nf_ragTimeout, feat_degrade_nf.nf_llmDown
+  }
+}

@@ -4,13 +4,11 @@
   "private": true,
   "description": "Project-level architecture model for BeautyCustomerService.",
   "scripts": {
-    "dev": "likec4 serve",
+    "dev": "node scripts/serve-clean.mjs",
     "build": "likec4 build -o ./dist",
     "validate": "likec4 validate",
     "format": "likec4 format",
-    "format:check": "likec4 format --check",
-    "sync": "node scripts/sync-projects.mjs",
-    "sync:check": "node scripts/sync-projects.mjs --check"
+    "format:check": "likec4 format --check"
   },
   "devDependencies": {
     "likec4": "1.58.0"

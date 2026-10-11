@@ -1,0 +1,163 @@
+// Feature-001-NF · 极端场景链（按极端场景切）
+//
+// 分叉判据：本次交付要保证某个极端场景下的系统表现。
+// 本链的 US 与 F 链的 US 分别识别，不是共享的——
+// F 链的 US 写业务结果，本链的 US 写极端场景下的可感知表现。
+//
+// NF 单元是场景，不是角度。「可用性」「响应时延」这类是观察角度，
+// 必须落到具体场景、并且能答出「谁 / 什么场景 / 因此得到什么」三项，
+// 才是本链的交付单元。
+//
+// 编号段与 F 链分开：NF 链用 I-1xx / SRC-1xx / US-1xx。
+
+model {
+  feat_degrade_nf = feature 'Feature-001-NF 极端场景保障' {
+    description '按极端场景切分。交付边界：知识库为空、RAGFlow 超时、LLM 不可用三类场景下，运营人员与客户都能及时察觉并知道下一步。所属愿景：让美妆咨询有据可依。'
+
+    // ---- US：本链自己识别 ----
+
+    us_kbEmpty = userStory 'US-101 知识库为空时运营人员能看见' {
+      description '作为运营人员，新知识还没入库时，我能看见知识库为空的状态，以便知道要先补素材而不是以为系统坏了。验收：控制台显式提示当前知识条目为 0 条。'
+    }
+    us_ragTimeout = userStory 'US-102 RAGFlow 超时时客户不被静默等待' {
+      description '作为客户，RAGFlow 响应慢时，我能被告知系统在处理而不是一直等不到回复。验收：超过 8 秒未返回时下发带说明的提示。'
+    }
+    us_llmDown = userStory 'US-103 LLM 不可用时转人工而非静默失败' {
+      description '作为客户，模型服务不可用时，我能被转给人工而不是收到空白回复。验收：模型调用失败时生成人工工单并告知我等待。'
+    }
+
+    // ---- NF 单元：场景化的系统表现 ----
+
+    nf_kbEmpty = nonFunction 'NF-101 知识库为零条时状态可见' {
+      description '场景：知识库尚未入库。表现：控制台显式提示条目数为 0，不显示空白列表。角色：运营人员。'
+    }
+    nf_ragTimeout = nonFunction 'NF-102 RAGFlow 超 8 秒时客户可感知' {
+      description '场景：RAGFlow 响应超时。表现：超过 8 秒下发带说明的提示，客服不必反复刷新。角色：客户。'
+    }
+    nf_llmDown = nonFunction 'NF-103 LLM 不可用时自动转人工' {
+      description '场景：模型服务不可用。表现：生成人工工单并告知等待，不出现空白回复。角色：客户。'
+    }
+
+    // ---- I 环：业务逻辑 ----
+
+    i_goal = implStep 'I-101 业务目标' {
+      description '三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。'
+    }
+    i_step = implStep 'I-102 场景判定逻辑' {
+      description '主干步骤：判定知识库条目数 → 判定 RAG 响应耗时 → 判定 LLM 调用结果 → 分发对应提示或工单。'
+    }
+
+    // ---- UI 环 ----
+
+    ui_status = uiSurface 'UI-101 控制台状态提示' {
+      description '展示知识条目数与集成状态；空态显式提示「尚未入库」而非空白。'
+    }
+    ui_notice = uiSurface 'UI-102 极端场景提示' {
+      description '会话内提示层：说明原因并给出下一步（等待或转人工）。覆盖加载态（判定中）与错误态（判定失败）。'
+    }
+
+    // ---- SRC 环：代码结构 ----
+
+    src_integrationRoutes = srcUnit 'SRC-101 集成状态路由' {
+      description 'src/routes/integration-routes.js — 功能概览与集成状态查询。'
+    }
+    src_evaluationGate = srcUnit 'SRC-102 评测闸门' {
+      description 'src/services/evaluation-gate.js — 本地发布策略门禁，判定是否阻断应答。'
+    }
+    src_knowledgeAlert = srcUnit 'SRC-103 知识告警' {
+      description 'src/services/knowledge-alert-service.js — 暴露知识新鲜度与空库问题。'
+    }
+    src_ragflowProbe = srcUnit 'SRC-104 RAGFlow 生命周期探针' {
+      description 'src/services/ragflow-lifecycle-probe-service.js — 校验 RAGFlow 数据集状态与可用性。'
+    }
+    src_operatorUi = srcUnit 'SRC-105 运营人员控制台' {
+      description 'src/ui/operator.html — 运营人员单页控制台。'
+    }
+    src_storeAlert = srcUnit 'SRC-106 告警状态存储' {
+      description 'src/domain/store.js — 本链侧的告警与状态快照存储单元。'
+    }
+
+    // ---- SRC 环：数据载体 ----
+
+    in_probeQuery = dto 'IN-101 状态探测入参' {
+      description 'src/routes/integration-routes.js — 控制台发起的集成状态查询。'
+    }
+    biz_probeResult = entity 'BIZ-101 探测结果对象' {
+      description 'src/services/ragflow-lifecycle-probe-service.js — 承载条目数、响应耗时与调用结果判定。'
+    }
+    pod_alert = entity 'POD-101 告警持久化实体' {
+      description 'data/local-mvp-store.json — 与 store.json 中 alerts 数组结构对应。'
+    }
+    out_status = vo 'OUT-101 状态出参视图' {
+      description 'src/routes/integration-routes.js — 面向控制台的状态载荷。'
+    }
+    dao_alert = dataAccess 'DAO-101 告警存储访问' {
+      description 'src/domain/store.js — 告警与状态快照的读写边界。'
+    }
+    cvt_probe = converter 'CVT-101 探测结果转换器' {
+      description 'src/services/knowledge-alert-service.js — 覆盖 BIZ-101→OUT-101 与 BIZ-101→POD-101 两组映射。'
+    }
+
+    // ---- 泳道：按调用方向 ----
+
+    lane_operator = feature '运营人员泳道' {
+      actor_ops = person '运营人员'
+    }
+    lane_edge = feature '服务端接入泳道' {
+      api_status = apiEndpoint 'API-101 GET /integration/status 集成状态' {
+        description 'src/routes/integration-routes.js:7 — 查询集成状态与知识条目数。'
+      }
+    }
+    lane_core = feature '判定层泳道' {
+      step_probeLane = implStep 'I-102 场景判定逻辑（判定泳道）' {
+        description '知识条目、响应耗时、模型可用性的判定环节。'
+      }
+    }
+    lane_ext = feature '外部依赖泳道' {
+      ext_ragflow = system 'RAGFlow' {
+        description '检索与知识库服务，超时或不可用即触发本链场景。'
+      }
+    }
+
+    // ---- 追溯边：清单项的来源 ----
+
+    us_kbEmpty .trace nf_kbEmpty '要求'
+    us_ragTimeout .trace nf_ragTimeout '要求'
+    us_llmDown .trace nf_llmDown '要求'
+
+    // ---- 追溯边：下钻路径 ----
+
+    us_kbEmpty .trace i_goal '落为业务目标'
+    us_ragTimeout .trace i_step '落为场景判定逻辑'
+    us_llmDown .trace i_step '落为场景判定逻辑'
+    i_step .trace ui_status '反馈知识状态'
+    i_step .trace ui_notice '反馈场景提示'
+    ui_status .trace src_operatorUi '渲染于控制台'
+    ui_notice .trace src_evaluationGate '由门禁决定是否阻断'
+    ui_notice .trace src_knowledgeAlert '上报告警'
+
+    // ---- 依赖边 ----
+
+    src_integrationRoutes .depends src_knowledgeAlert '查询空库告警'
+    src_integrationRoutes .depends src_ragflowProbe '探测数据集状态'
+    src_knowledgeAlert .depends src_evaluationGate '提交发布判定'
+    src_evaluationGate .depends src_storeAlert '读取告警快照'
+
+    // ---- 数据流 ----
+
+    lane_operator.actor_ops -> lane_edge.api_status '查询状态'
+    lane_edge.api_status -> in_probeQuery '构造探测入参'
+    in_probeQuery .convert biz_probeResult '转换为探测结果'
+    biz_probeResult .flow ext_ragflow '探测数据集可用性'
+    ext_ragflow .flow biz_probeResult '返回探测结论'
+    biz_probeResult .flow out_status '渲染状态载荷'
+    out_status .flow ui_status '显示条目数与异常提示'
+    biz_probeResult .convert pod_alert '异常转告警实体'
+    pod_alert .flow dao_alert '写入告警'
+
+    // ---- 转换单元覆盖范围 ----
+
+    cvt_probe .trace biz_probeResult '负责 BIZ-101→OUT-101 映射'
+    cvt_probe .trace pod_alert '负责 BIZ-101→POD-101 映射'
+  }
+}
