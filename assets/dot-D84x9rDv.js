@@ -1,5 +1,5 @@
-var e=e=>{switch(e){case`procLocal`:return`digraph {
-  likec4_viewId = "procLocal";
+var e=e=>{switch(e){case`proc-local`:return`digraph {
+  likec4_viewId = "proc-local";
   bgcolor = "transparent";
   layout = "dot";
   compound = true;
@@ -35,8 +35,8 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     style = "filled";
     penwidth = 0;
   ];
-}`;case`procProd`:return`digraph {
-  likec4_viewId = "procProd";
+}`;case`proc-prod`:return`digraph {
+  likec4_viewId = "proc-prod";
   bgcolor = "transparent";
   layout = "dot";
   compound = true;
@@ -682,7 +682,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         minlen=0,
         style=solid];
 }
-`;case`panoSrc001F`:return`digraph {
+`;case`pano-src-001F`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -691,7 +691,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId=panoSrc001F,
+        likec4_viewId="pano-src-001F",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -827,7 +827,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         minlen=1,
         style=solid];
 }
-`;case`panoSrc001NF`:return`digraph {
+`;case`pano-src-001NF-empty`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -836,7 +836,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId=panoSrc001NF,
+        likec4_viewId="pano-src-001NF-empty",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -913,7 +913,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         minlen=1,
         style=solid];
 }
-`;case`panoSrc001NFnotice`:return`digraph {
+`;case`pano-src-001NF-notice`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -922,7 +922,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId=panoSrc001NFnotice,
+        likec4_viewId="pano-src-001NF-notice",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -976,7 +976,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         likec4_id="1ajfvh6",
         style=solid];
 }
-`;case`panoSrc002F`:return`digraph {
+`;case`pano-src-002F`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -985,7 +985,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId=panoSrc002F,
+        likec4_viewId="pano-src-002F",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -1747,7 +1747,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         minlen=1,
         style=solid];
 }
-`;case`srcdir001NFnotice`:return`digraph {
+`;case`srcdir001NF-notice`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -1756,7 +1756,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId=srcdir001NFnotice,
+        likec4_viewId="srcdir001NF-notice",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -2029,7 +2029,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         minlen=1,
         style=solid];
 }
-`;case`erm001F`:return`digraph {
+`;case`erm001F-ticket`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -2038,7 +2038,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId=erm001F,
+        likec4_viewId="erm001F-ticket",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -2083,7 +2083,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         likec4_id=dwf468,
         style=solid];
 }
-`;case`erm001NF`:return`digraph {
+`;case`erm001NF-alert`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -2092,7 +2092,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId=erm001NF,
+        likec4_viewId="erm001NF-alert",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -2137,7 +2137,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         likec4_id=ig0evv,
         style=solid];
 }
-`;case`stateMain`:return`digraph {
+`;case`chain001F-i-state-main`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -2146,7 +2146,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId=stateMain,
+        likec4_viewId="chain001F-i-state-main",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -2209,7 +2209,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         minlen=1,
         style=dashed];
 }
-`;case`stateBranchHuman`:return`digraph {
+`;case`chain001F-i-state-branch-human`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -2218,7 +2218,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId=stateBranchHuman,
+        likec4_viewId="chain001F-i-state-branch-human",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -3118,7 +3118,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
             width=4.445];
     }
 }
-`;case`chain001NF-uiNotice`:return`digraph {
+`;case`chain001NF-ui-notice`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -3127,7 +3127,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId="chain001NF-uiNotice",
+        likec4_viewId="chain001NF-ui-notice",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -3895,7 +3895,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         minlen=1,
         style=solid];
 }
-`;case`erm002F`:return`digraph {
+`;case`erm002F-document`:return`digraph {
     graph [TBbalance=min,
         bgcolor=transparent,
         compound=true,
@@ -3904,7 +3904,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         labeljust=l,
         labelloc=t,
         layout=dot,
-        likec4_viewId=erm002F,
+        likec4_viewId="erm002F-document",
         nodesep=1.528,
         outputorder=nodesfirst,
         pad=0.209,
@@ -4041,34 +4041,10 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     width = 4.445;
     height = 2.5;
   ];
-  "step_answerlane" [
-    likec4_id = "feat_answer_f.lane_core.step_answerLane";
-    likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-201 应答编排（泳道引用）</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">泳道中的编排环节，具体步骤见 US-001 容器下的 I-001~I-006。</FONT></TD></TR></TABLE>>;
-    margin = "0.223,0.223";
-    width = 4.445;
-    height = 2.5;
-  ];
-  "ext_ragflow" [
-    likec4_id = "feat_answer_f.lane_ext.ext_ragflow";
-    likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">检索与知识库服务。</FONT></TD></TR></TABLE>>;
-    margin = "0.223,0.223";
-    width = 4.445;
-    height = 2.5;
-  ];
   "src_answerorchestrator" [
     likec4_id = "feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator";
     likec4_level = 0;
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-002 应答编排器</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/answer-orchestrator.js —<BR/>决定自动应答或转人工。</FONT></TD></TR></TABLE>>;
-    margin = "0.5,0.223";
-    width = 4.584;
-    height = 2.5;
-  ];
-  "src_replypolicy" [
-    likec4_id = "feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy";
-    likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-004 回复策略</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/reply-policy-service.js —<BR/>置信度与风险阈值判定。</FONT></TD></TR></TABLE>>;
     margin = "0.5,0.223";
     width = 4.584;
     height = 2.5;
@@ -4081,10 +4057,18 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     width = 4.584;
     height = 2.5;
   ];
-  "src_handoffservice" [
-    likec4_id = "feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_handoffService";
+  "ext_ragflow" [
+    likec4_id = "feat_answer_f.lane_ext.ext_ragflow";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-006 转人工服务</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/handoff-service.js — 创建并跟踪人工工单。</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">RAGFlow</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">检索与知识库服务。</FONT></TD></TR></TABLE>>;
+    margin = "0.223,0.223";
+    width = 4.445;
+    height = 2.5;
+  ];
+  "src_replypolicy" [
+    likec4_id = "feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy";
+    likec4_level = 0;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-004 回复策略</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/reply-policy-service.js —<BR/>置信度与风险阈值判定。</FONT></TD></TR></TABLE>>;
     margin = "0.5,0.223";
     width = 4.584;
     height = 2.5;
@@ -4099,37 +4083,30 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">分发归一化消息</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "step_answerlane" -> "src_answerorchestrator" [
+  "src_answerorchestrator" -> "src_ragflowknowledge" [
     likec4_id = "step-03";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">请求应答</FONT></TD></TR></TABLE>>;
-    arrowtail = "normal";
-    dir = "back";
-  ];
-  "step_answerlane" -> "ext_ragflow" [
-    likec4_id = "step-04";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">检索候选知识</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">检索候选知识</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "step_answerlane" -> "ext_ragflow" [
+  "src_ragflowknowledge" -> "ext_ragflow" [
+    likec4_id = "step-04";
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">请求 RAGFlow</FONT></TD></TR></TABLE>>;
+    arrowhead = "normal";
+  ];
+  "src_ragflowknowledge" -> "ext_ragflow" [
     likec4_id = "step-05";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>5</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">返回候选知识</FONT></TD></TR></TABLE>>;
     arrowtail = "normal";
     dir = "back";
   ];
-  "step_answerlane" -> "src_replypolicy" [
+  "src_answerorchestrator" -> "src_replypolicy" [
     likec4_id = "step-06";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>6</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">校验置信度</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "step_answerlane" -> "src_replypolicy" [
+  "api_chatcallback" -> "src_replypolicy" [
     likec4_id = "step-07";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>7</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">达标放行</FONT></TD></TR></TABLE>>;
-    arrowtail = "normal";
-    dir = "back";
-  ];
-  "api_chatcallback" -> "step_answerlane" [
-    likec4_id = "step-08";
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>8</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">返回答复</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>7</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">达标放行并返回答复</FONT></TD></TR></TABLE>>;
     arrowtail = "normal";
     dir = "back";
   ];
@@ -4415,10 +4392,10 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     width = 4.445;
     height = 2.5;
   ];
-  "step_probelane" [
-    likec4_id = "feat_degrade_nf.lane_core.step_probeLane";
+  "i_kb_count" [
+    likec4_id = "feat_degrade_nf.us_kbEmpty.i_kb_count";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-151 场景判定（泳道引用）</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-111 读取条目数</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">从文档登记簿读取当前知识条目数，不做过滤。</FONT></TD></TR></TABLE>>;
     margin = "0.223,0.223";
     width = 4.445;
     height = 2.5;
@@ -4444,23 +4421,23 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">查询集成状态</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "api_status" -> "step_probelane" [
+  "api_status" -> "i_kb_count" [
     likec4_id = "step-02";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">发起探测</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "step_probelane" -> "ext_ragflow" [
+  "i_kb_count" -> "ext_ragflow" [
     likec4_id = "step-03";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">探测数据集可用性</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "step_probelane" -> "ext_ragflow" [
+  "i_kb_count" -> "ext_ragflow" [
     likec4_id = "step-04";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">返回探测结论</FONT></TD></TR></TABLE>>;
     arrowtail = "normal";
     dir = "back";
   ];
-  "step_probelane" -> "i_ll_notify" [
+  "i_kb_count" -> "i_ll_notify" [
     likec4_id = "step-05";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>5</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">提交发布判定并下发提示</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
@@ -4922,10 +4899,10 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     width = 4.445;
     height = 2.5;
   ];
-  "step_probelane" [
-    likec4_id = "feat_degrade_nf.lane_core.step_probeLane";
+  "i_kb_count" [
+    likec4_id = "feat_degrade_nf.us_kbEmpty.i_kb_count";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-151 场景判定（泳道引用）</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-111 读取条目数</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">从文档登记簿读取当前知识条目数，不做过滤。</FONT></TD></TR></TABLE>>;
     margin = "0.223,0.223";
     width = 4.445;
     height = 2.5;
@@ -4959,12 +4936,12 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">①查询状态</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "api_status" -> "step_probelane" [
+  "api_status" -> "i_kb_count" [
     likec4_id = "step-02";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">②发起探测</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "step_probelane" -> "i_kb_judge" [
+  "i_kb_count" -> "i_kb_judge" [
     likec4_id = "step-03";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">③判定条目数</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
@@ -5037,10 +5014,10 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     width = 4.445;
     height = 2.5;
   ];
-  "step_answerlane" [
-    likec4_id = "feat_answer_f.lane_core.step_answerLane";
+  "i_ask_deliver" [
+    likec4_id = "feat_answer_f.us_ask.i_ask_deliver";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-201 应答编排（泳道引用）</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">泳道中的编排环节，具体步骤见 US-001 容器下的 I-001~I-006。</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-006 下发答复</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">把答复通过企业微信会话回传给客户，完成本次闭环。</FONT></TD></TR></TABLE>>;
     margin = "0.223,0.223";
     width = 4.445;
     height = 2.5;
@@ -5058,23 +5035,23 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">POST /wechat/callback</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "api_chatcallback" -> "step_answerlane" [
+  "api_chatcallback" -> "i_ask_deliver" [
     likec4_id = "step-02";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">触发应答</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "step_answerlane" -> "ext_ragflow" [
+  "i_ask_deliver" -> "ext_ragflow" [
     likec4_id = "step-03";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">检索知识</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "step_answerlane" -> "ext_ragflow" [
+  "i_ask_deliver" -> "ext_ragflow" [
     likec4_id = "step-04";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">返回候选知识</FONT></TD></TR></TABLE>>;
     arrowtail = "normal";
     dir = "back";
   ];
-  "api_chatcallback" -> "step_answerlane" [
+  "api_chatcallback" -> "i_ask_deliver" [
     likec4_id = "step-05";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>5</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">返回答复</FONT></TD></TR></TABLE>>;
     arrowtail = "normal";
@@ -5132,10 +5109,10 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     width = 4.445;
     height = 2.5;
   ];
-  "step_probelane" [
-    likec4_id = "feat_degrade_nf.lane_core.step_probeLane";
+  "i_kb_count" [
+    likec4_id = "feat_degrade_nf.us_kbEmpty.i_kb_count";
     likec4_level = 0;
-    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-151 场景判定（泳道引用）</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。</FONT></TD></TR></TABLE>>;
+    label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-111 读取条目数</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">从文档登记簿读取当前知识条目数，不做过滤。</FONT></TD></TR></TABLE>>;
     margin = "0.223,0.223";
     width = 4.445;
     height = 2.5;
@@ -5153,23 +5130,23 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>1</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">GET /integration/status</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "api_status" -> "step_probelane" [
+  "api_status" -> "i_kb_count" [
     likec4_id = "step-02";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>2</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">发起探测</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "step_probelane" -> "ext_ragflow" [
+  "i_kb_count" -> "ext_ragflow" [
     likec4_id = "step-03";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>3</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">探测数据集</FONT></TD></TR></TABLE>>;
     arrowhead = "normal";
   ];
-  "step_probelane" -> "ext_ragflow" [
+  "i_kb_count" -> "ext_ragflow" [
     likec4_id = "step-04";
     label = <<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3"><TR><TD><TABLE BORDER="0" CELLPADDING="6" BGCOLOR="#18191BA0"><TR><TD WIDTH="20" HEIGHT="20"><FONT POINT-SIZE="14"><B>4</B></FONT></TD></TR></TABLE></TD><TD BGCOLOR="#18191BA0" CELLPADDING="3"><FONT POINT-SIZE="14">返回结论</FONT></TD></TR></TABLE>>;
     arrowtail = "normal";
     dir = "back";
   ];
-}`;default:throw Error(`Unknown viewId: `+e)}},t=e=>{switch(e){case`procLocal`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+}`;default:throw Error(`Unknown viewId: `+e)}},t=e=>{switch(e){case`proc-local`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -5180,7 +5157,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 15.05)">
 </g>
 </svg>
-`;case`procProd`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`proc-prod`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -5662,7 +5639,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`panoSrc001F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`pano-src-001F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -5785,7 +5762,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`panoSrc001NF`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`pano-src-001NF-empty`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -5848,7 +5825,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`panoSrc001NFnotice`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`pano-src-001NF-notice`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -5887,7 +5864,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`panoSrc002F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`pano-src-002F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -6571,7 +6548,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`srcdir001NFnotice`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`srcdir001NF-notice`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -6823,7 +6800,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`erm001F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`erm001F-ticket`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -6858,7 +6835,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`erm001NF`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`erm001NF-alert`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -6893,7 +6870,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`stateMain`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`chain001F-i-state-main`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -6952,7 +6929,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`stateBranchHuman`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`chain001F-i-state-branch-human`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -7560,7 +7537,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`chain001NF-uiNotice`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`chain001NF-ui-notice`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -8160,7 +8137,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 </g>
 </g>
 </svg>
-`;case`erm002F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+`;case`erm002F-document`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 14.1.5 (0)
@@ -8218,147 +8195,123 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="2299pt" height="925pt"
- viewBox="0.00 0.00 2299.00 925.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 910.05)">
+<svg width="2748pt" height="517pt"
+ viewBox="0.00 0.00 2748.00 517.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 502.05)">
 <!-- actor_customer -->
 <g id="node1" class="node">
 <title>actor_customer</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="373.4,-315 53.36,-315 53.36,-135 373.4,-135 373.4,-315"/>
-<text xml:space="preserve" text-anchor="start" x="196.71" y="-217" font-family="Arial" font-size="20.00" fill="#eff6ff">客户</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-247 0,-247 0,-67 320.04,-67 320.04,-247"/>
+<text xml:space="preserve" text-anchor="start" x="143.35" y="-149" font-family="Arial" font-size="20.00" fill="#eff6ff">客户</text>
 </g>
 <!-- api_chatcallback -->
 <g id="node2" class="node">
 <title>api_chatcallback</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1086.03,-315 655.77,-315 655.77,-135 1086.03,-135 1086.03,-315"/>
-<text xml:space="preserve" text-anchor="start" x="675.83" y="-237" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;001 POST /wechat/callback 微信客服回调</text>
-<text xml:space="preserve" text-anchor="start" x="754.19" y="-214" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/wechat&#45;kf&#45;routes.js:12 —</text>
-<text xml:space="preserve" text-anchor="start" x="802.14" y="-196" font-family="Arial" font-size="15.00" fill="#bfdbfe">接收企业微信加密回调。</text>
-</g>
-<!-- step_answerlane -->
-<g id="node3" class="node">
-<title>step_answerlane</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1709.86,-512 1291.71,-512 1291.71,-332 1709.86,-332 1709.86,-512"/>
-<text xml:space="preserve" text-anchor="start" x="1391.86" y="-425" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;201 应答编排（泳道引用）</text>
-<text xml:space="preserve" text-anchor="start" x="1311.76" y="-402" font-family="Arial" font-size="15.00" fill="#bfdbfe">泳道中的编排环节，具体步骤见 US&#45;001 容器下的 I&#45;001~I&#45;006。</text>
-</g>
-<!-- ext_ragflow -->
-<g id="node4" class="node">
-<title>ext_ragflow</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2263.92,-512 1943.88,-512 1943.88,-332 2263.92,-332 2263.92,-512"/>
-<text xml:space="preserve" text-anchor="start" x="2061.12" y="-425" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow</text>
-<text xml:space="preserve" text-anchor="start" x="2047.64" y="-402" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与知识库服务。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="979.31,-247 549.05,-247 549.05,-67 979.31,-67 979.31,-247"/>
+<text xml:space="preserve" text-anchor="start" x="569.11" y="-169" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;001 POST /wechat/callback 微信客服回调</text>
+<text xml:space="preserve" text-anchor="start" x="647.48" y="-146" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/wechat&#45;kf&#45;routes.js:12 —</text>
+<text xml:space="preserve" text-anchor="start" x="695.42" y="-128" font-family="Arial" font-size="15.00" fill="#bfdbfe">接收企业微信加密回调。</text>
 </g>
 <!-- src_answerorchestrator -->
-<g id="node5" class="node">
+<g id="node3" class="node">
 <title>src_answerorchestrator</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2268.93,-180 1938.88,-180 1938.88,0 2268.93,0 2268.93,-180"/>
-<text xml:space="preserve" text-anchor="start" x="2018.32" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;002 应答编排器</text>
-<text xml:space="preserve" text-anchor="start" x="1979.71" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/answer&#45;orchestrator.js —</text>
-<text xml:space="preserve" text-anchor="start" x="2035.14" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">决定自动应答或转人工。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1550.04,-401 1219.99,-401 1219.99,-221 1550.04,-221 1550.04,-401"/>
+<text xml:space="preserve" text-anchor="start" x="1299.44" y="-323" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;002 应答编排器</text>
+<text xml:space="preserve" text-anchor="start" x="1260.82" y="-300" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/answer&#45;orchestrator.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1316.26" y="-282" font-family="Arial" font-size="15.00" fill="#bfdbfe">决定自动应答或转人工。</text>
+</g>
+<!-- src_ragflowknowledge -->
+<g id="node4" class="node">
+<title>src_ragflowknowledge</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2151.64,-487 1779.06,-487 1779.06,-307 2151.64,-307 2151.64,-487"/>
+<text xml:space="preserve" text-anchor="start" x="1842.54" y="-409" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;005 RAGFlow 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="1819.06" y="-386" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/ragflow&#45;knowledge&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1909.09" y="-368" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问。</text>
+</g>
+<!-- ext_ragflow -->
+<g id="node5" class="node">
+<title>ext_ragflow</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2717.81,-487 2397.77,-487 2397.77,-307 2717.81,-307 2717.81,-487"/>
+<text xml:space="preserve" text-anchor="start" x="2515.01" y="-400" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="2501.53" y="-377" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与知识库服务。</text>
 </g>
 <!-- src_replypolicy -->
 <g id="node6" class="node">
 <title>src_replypolicy</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2268.93,-832 1938.88,-832 1938.88,-652 2268.93,-652 2268.93,-832"/>
-<text xml:space="preserve" text-anchor="start" x="2026.66" y="-754" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;004 回复策略</text>
-<text xml:space="preserve" text-anchor="start" x="1982.21" y="-731" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/reply&#45;policy&#45;service.js —</text>
-<text xml:space="preserve" text-anchor="start" x="2035.14" y="-713" font-family="Arial" font-size="15.00" fill="#bfdbfe">置信度与风险阈值判定。</text>
-</g>
-<!-- src_ragflowknowledge -->
-<g id="node7" class="node">
-<title>src_ragflowknowledge</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="399.67,-605 27.08,-605 27.08,-425 399.67,-425 399.67,-605"/>
-<text xml:space="preserve" text-anchor="start" x="90.57" y="-527" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;005 RAGFlow 知识检索</text>
-<text xml:space="preserve" text-anchor="start" x="67.08" y="-504" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/ragflow&#45;knowledge&#45;service.js —</text>
-<text xml:space="preserve" text-anchor="start" x="157.12" y="-486" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问。</text>
-</g>
-<!-- src_handoffservice -->
-<g id="node8" class="node">
-<title>src_handoffservice</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="426.76,-895 0,-895 0,-715 426.76,-715 426.76,-895"/>
-<text xml:space="preserve" text-anchor="start" x="127.8" y="-808" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;006 转人工服务</text>
-<text xml:space="preserve" text-anchor="start" x="40" y="-785" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/handoff&#45;service.js — 创建并跟踪人工工单。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2130.37,-180 1800.33,-180 1800.33,0 2130.37,0 2130.37,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1888.1" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;004 回复策略</text>
+<text xml:space="preserve" text-anchor="start" x="1843.66" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/reply&#45;policy&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1896.59" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">置信度与风险阈值判定。</text>
 </g>
 <!-- actor_customer&#45;&gt;api_chatcallback -->
 <g id="edge1" class="edge">
 <title>actor_customer&#45;&gt;api_chatcallback</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M373.06,-225C454.88,-225 556.06,-225 645.71,-225"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="645.49,-227.63 652.99,-225 645.49,-222.38 645.49,-227.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="489.76,-228 489.76,-260.8 513.76,-260.8 513.76,-228 489.76,-228"/>
-<text xml:space="preserve" text-anchor="start" x="497.86" y="-241.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">1</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="516.76,-228 516.76,-260.8 592.77,-260.8 592.77,-228 516.76,-228"/>
-<text xml:space="preserve" text-anchor="start" x="519.76" y="-238.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">企业微信提问</text>
-</g>
-<!-- api_chatcallback&#45;&gt;step_answerlane -->
-<g id="edge8" class="edge">
-<title>api_chatcallback&#45;&gt;step_answerlane</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1095.58,-295.18C1159.47,-315.23 1228.81,-336.98 1291.72,-356.72"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1096.62,-292.75 1088.68,-293.01 1095.05,-297.76 1096.62,-292.75"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1149.03,-338.29 1149.03,-371.09 1173.03,-371.09 1173.03,-338.29 1149.03,-338.29"/>
-<text xml:space="preserve" text-anchor="start" x="1157.14" y="-351.49" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">8</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1176.03,-338.29 1176.03,-371.09 1228.71,-371.09 1228.71,-338.29 1176.03,-338.29"/>
-<text xml:space="preserve" text-anchor="start" x="1179.03" y="-349.09" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回答复</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M320.02,-157C386.99,-157 466.14,-157 538.88,-157"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="538.57,-159.63 546.07,-157 538.57,-154.38 538.57,-159.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="383.04,-160 383.04,-192.8 407.04,-192.8 407.04,-160 383.04,-160"/>
+<text xml:space="preserve" text-anchor="start" x="391.15" y="-173.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">1</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="410.04,-160 410.04,-192.8 486.05,-192.8 486.05,-160 410.04,-160"/>
+<text xml:space="preserve" text-anchor="start" x="413.04" y="-170.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">企业微信提问</text>
 </g>
 <!-- api_chatcallback&#45;&gt;src_answerorchestrator -->
 <g id="edge2" class="edge">
 <title>api_chatcallback&#45;&gt;src_answerorchestrator</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1085.97,-201.52C1324.94,-175.32 1707.08,-133.41 1928.57,-109.12"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1928.82,-111.73 1935.99,-108.3 1928.25,-106.51 1928.82,-111.73"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1443.44,-180.48 1443.44,-213.28 1467.44,-213.28 1467.44,-180.48 1443.44,-180.48"/>
-<text xml:space="preserve" text-anchor="start" x="1451.55" y="-193.68" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1470.44,-180.48 1470.44,-213.28 1558.13,-213.28 1558.13,-180.48 1470.44,-180.48"/>
-<text xml:space="preserve" text-anchor="start" x="1473.44" y="-191.28" font-family="Arial" font-size="14.00" fill="#c9c9c9">分发归一化消息</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M979.02,-210.21C1054.59,-229.02 1138.6,-249.93 1210.43,-267.8"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1209.63,-270.31 1217.55,-269.57 1210.9,-265.21 1209.63,-270.31"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1042.31,-255.32 1042.31,-288.12 1066.31,-288.12 1066.31,-255.32 1042.31,-255.32"/>
+<text xml:space="preserve" text-anchor="start" x="1050.42" y="-268.52" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1069.31,-255.32 1069.31,-288.12 1156.99,-288.12 1156.99,-255.32 1069.31,-255.32"/>
+<text xml:space="preserve" text-anchor="start" x="1072.31" y="-266.12" font-family="Arial" font-size="14.00" fill="#c9c9c9">分发归一化消息</text>
 </g>
-<!-- step_answerlane&#45;&gt;ext_ragflow -->
-<g id="edge4" class="edge">
-<title>step_answerlane&#45;&gt;ext_ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1709.5,-422C1782.76,-422 1864.18,-422 1933.86,-422"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1933.52,-424.63 1941.02,-422 1933.52,-419.38 1933.52,-424.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1772.86,-425 1772.86,-457.8 1796.86,-457.8 1796.86,-425 1772.86,-425"/>
-<text xml:space="preserve" text-anchor="start" x="1780.97" y="-438.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1799.86,-425 1799.86,-457.8 1875.88,-457.8 1875.88,-425 1799.86,-425"/>
-<text xml:space="preserve" text-anchor="start" x="1802.86" y="-435.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">检索候选知识</text>
-</g>
-<!-- step_answerlane&#45;&gt;ext_ragflow -->
-<g id="edge5" class="edge">
-<title>step_answerlane&#45;&gt;ext_ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1719.75,-360.26C1771.79,-352.09 1827.23,-348.77 1878.88,-356.2 1900.24,-359.27 1922.41,-363.91 1944.13,-369.34"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1719.35,-357.67 1712.37,-361.47 1720.2,-362.85 1719.35,-357.67"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1772.86,-359.2 1772.86,-392 1796.86,-392 1796.86,-359.2 1772.86,-359.2"/>
-<text xml:space="preserve" text-anchor="start" x="1780.97" y="-372.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1799.86,-359.2 1799.86,-392 1875.88,-392 1875.88,-359.2 1799.86,-359.2"/>
-<text xml:space="preserve" text-anchor="start" x="1802.86" y="-370" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回候选知识</text>
-</g>
-<!-- step_answerlane&#45;&gt;src_answerorchestrator -->
-<g id="edge3" class="edge">
-<title>step_answerlane&#45;&gt;src_answerorchestrator</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1673.55,-327.14C1757.32,-280.87 1857.56,-225.51 1940.1,-179.92"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1672.4,-324.77 1667.11,-330.69 1674.94,-329.36 1672.4,-324.77"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1784.53,-268.95 1784.53,-301.75 1808.53,-301.75 1808.53,-268.95 1784.53,-268.95"/>
-<text xml:space="preserve" text-anchor="start" x="1792.64" y="-282.15" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1811.53,-268.95 1811.53,-301.75 1864.21,-301.75 1864.21,-268.95 1811.53,-268.95"/>
-<text xml:space="preserve" text-anchor="start" x="1814.53" y="-279.75" font-family="Arial" font-size="14.00" fill="#c9c9c9">请求应答</text>
-</g>
-<!-- step_answerlane&#45;&gt;src_replypolicy -->
-<g id="edge6" class="edge">
-<title>step_answerlane&#45;&gt;src_replypolicy</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1582.17,-511.87C1631.68,-562.05 1699.07,-621.78 1769.86,-659 1818.79,-684.73 1876,-702.71 1929.05,-715.18"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1928.4,-717.72 1936.3,-716.84 1929.58,-712.61 1928.4,-717.72"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1778.7,-703.57 1778.7,-736.37 1802.7,-736.37 1802.7,-703.57 1778.7,-703.57"/>
-<text xml:space="preserve" text-anchor="start" x="1786.81" y="-716.77" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1805.7,-703.57 1805.7,-736.37 1870.04,-736.37 1870.04,-703.57 1805.7,-703.57"/>
-<text xml:space="preserve" text-anchor="start" x="1808.7" y="-714.37" font-family="Arial" font-size="14.00" fill="#c9c9c9">校验置信度</text>
-</g>
-<!-- step_answerlane&#45;&gt;src_replypolicy -->
+<!-- api_chatcallback&#45;&gt;src_replypolicy -->
 <g id="edge7" class="edge">
-<title>step_answerlane&#45;&gt;src_replypolicy</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1719.25,-513.56C1772.3,-537.85 1828.31,-565.16 1878.88,-593.2 1910.83,-610.92 1944.18,-631.7 1975.09,-652.03"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1720.4,-511.2 1712.49,-510.48 1718.22,-515.98 1720.4,-511.2"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1784.53,-596.2 1784.53,-629 1808.53,-629 1808.53,-596.2 1784.53,-596.2"/>
-<text xml:space="preserve" text-anchor="start" x="1792.64" y="-609.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">7</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1811.53,-596.2 1811.53,-629 1864.21,-629 1864.21,-596.2 1811.53,-596.2"/>
-<text xml:space="preserve" text-anchor="start" x="1814.53" y="-607" font-family="Arial" font-size="14.00" fill="#c9c9c9">达标放行</text>
+<title>api_chatcallback&#45;&gt;src_replypolicy</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M989.46,-141.61C1062.91,-136.76 1144.92,-131.54 1219.99,-127.2 1419.73,-115.67 1649.74,-104.49 1800.59,-97.45"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="989.49,-138.98 982.18,-142.09 989.83,-144.22 989.49,-138.98"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1316.01,-130.2 1316.01,-163 1340.01,-163 1340.01,-130.2 1316.01,-130.2"/>
+<text xml:space="preserve" text-anchor="start" x="1324.12" y="-143.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">7</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1343.01,-130.2 1343.01,-163 1454.03,-163 1454.03,-130.2 1343.01,-130.2"/>
+<text xml:space="preserve" text-anchor="start" x="1346.01" y="-141" font-family="Arial" font-size="14.00" fill="#c9c9c9">达标放行并返回答复</text>
+</g>
+<!-- src_answerorchestrator&#45;&gt;src_ragflowknowledge -->
+<g id="edge3" class="edge">
+<title>src_answerorchestrator&#45;&gt;src_ragflowknowledge</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1549.81,-335.36C1618.07,-345.51 1697.9,-357.38 1769.17,-367.98"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1768.37,-370.51 1776.17,-369.02 1769.14,-365.32 1768.37,-370.51"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1613.04,-362.15 1613.04,-394.95 1637.04,-394.95 1637.04,-362.15 1613.04,-362.15"/>
+<text xml:space="preserve" text-anchor="start" x="1621.15" y="-375.35" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1640.04,-362.15 1640.04,-394.95 1716.06,-394.95 1716.06,-362.15 1640.04,-362.15"/>
+<text xml:space="preserve" text-anchor="start" x="1643.04" y="-372.95" font-family="Arial" font-size="14.00" fill="#c9c9c9">检索候选知识</text>
+</g>
+<!-- src_answerorchestrator&#45;&gt;src_replypolicy -->
+<g id="edge6" class="edge">
+<title>src_answerorchestrator&#45;&gt;src_replypolicy</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1549.81,-248.41C1625.08,-219.65 1714.4,-185.51 1790.82,-156.31"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1791.66,-158.8 1797.73,-153.67 1789.78,-153.9 1791.66,-158.8"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1618.88,-223.29 1618.88,-256.09 1642.88,-256.09 1642.88,-223.29 1618.88,-223.29"/>
+<text xml:space="preserve" text-anchor="start" x="1626.98" y="-236.49" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1645.88,-223.29 1645.88,-256.09 1710.22,-256.09 1710.22,-223.29 1645.88,-223.29"/>
+<text xml:space="preserve" text-anchor="start" x="1648.88" y="-234.09" font-family="Arial" font-size="14.00" fill="#c9c9c9">校验置信度</text>
+</g>
+<!-- src_ragflowknowledge&#45;&gt;ext_ragflow -->
+<g id="edge4" class="edge">
+<title>src_ragflowknowledge&#45;&gt;ext_ragflow</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2151.55,-397C2227.13,-397 2313.94,-397 2387.78,-397"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2387.58,-399.63 2395.08,-397 2387.58,-394.38 2387.58,-399.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2214.64,-400 2214.64,-432.8 2238.64,-432.8 2238.64,-400 2214.64,-400"/>
+<text xml:space="preserve" text-anchor="start" x="2222.75" y="-413.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2241.64,-400 2241.64,-432.8 2334.77,-432.8 2334.77,-400 2241.64,-400"/>
+<text xml:space="preserve" text-anchor="start" x="2244.64" y="-410.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">请求 RAGFlow</text>
+</g>
+<!-- src_ragflowknowledge&#45;&gt;ext_ragflow -->
+<g id="edge5" class="edge">
+<title>src_ragflowknowledge&#45;&gt;ext_ragflow</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2161.77,-338.51C2218.43,-328.03 2280.47,-322.78 2337.77,-331.2 2357.51,-334.1 2377.94,-338.4 2398.02,-343.43"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2161.47,-335.89 2154.59,-339.88 2162.45,-341.05 2161.47,-335.89"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2223.2,-334.2 2223.2,-367 2247.2,-367 2247.2,-334.2 2223.2,-334.2"/>
+<text xml:space="preserve" text-anchor="start" x="2231.31" y="-347.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2250.2,-334.2 2250.2,-367 2326.21,-367 2326.21,-334.2 2250.2,-334.2"/>
+<text xml:space="preserve" text-anchor="start" x="2253.2" y="-345" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回候选知识</text>
 </g>
 </g>
 </svg>
@@ -8563,8 +8516,8 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="2194pt" height="526pt"
- viewBox="0.00 0.00 2194.00 526.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="2115pt" height="526pt"
+ viewBox="0.00 0.00 2115.00 526.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 511.05)">
 <!-- actor_ops -->
 <g id="node1" class="node">
@@ -8580,26 +8533,26 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="630.94" y="-267" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/integration&#45;routes.js:7 —</text>
 <text xml:space="preserve" text-anchor="start" x="665.14" y="-249" font-family="Arial" font-size="15.00" fill="#bfdbfe">查询集成状态与知识条目数。</text>
 </g>
-<!-- step_probelane -->
+<!-- i_kb_count -->
 <g id="node3" class="node">
-<title>step_probelane</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1548.4,-385 1149.44,-385 1149.44,-205 1548.4,-205 1548.4,-385"/>
-<text xml:space="preserve" text-anchor="start" x="1240" y="-298" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;151 场景判定（泳道引用）</text>
-<text xml:space="preserve" text-anchor="start" x="1169.5" y="-275" font-family="Arial" font-size="15.00" fill="#bfdbfe">泳道中的判定环节，具体步骤见各 US 容器下的 I&#45;11x~I&#45;13x。</text>
+<title>i_kb_count</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1469.48,-385 1149.44,-385 1149.44,-205 1469.48,-205 1469.48,-385"/>
+<text xml:space="preserve" text-anchor="start" x="1242.21" y="-298" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;111 读取条目数</text>
+<text xml:space="preserve" text-anchor="start" x="1178.19" y="-275" font-family="Arial" font-size="15.00" fill="#bfdbfe">从文档登记簿读取当前知识条目数，不做过滤。</text>
 </g>
 <!-- ext_ragflow -->
 <g id="node4" class="node">
 <title>ext_ragflow</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2163.42,-496 1835.75,-496 1835.75,-316 2163.42,-316 2163.42,-496"/>
-<text xml:space="preserve" text-anchor="start" x="1956.81" y="-409" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow</text>
-<text xml:space="preserve" text-anchor="start" x="1855.81" y="-386" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与知识库服务，超时或不可用即触发本链场景。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2084.51,-496 1756.84,-496 1756.84,-316 2084.51,-316 2084.51,-496"/>
+<text xml:space="preserve" text-anchor="start" x="1877.89" y="-409" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="1776.9" y="-386" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与知识库服务，超时或不可用即触发本链场景。</text>
 </g>
 <!-- i_ll_notify -->
 <g id="node5" class="node">
 <title>i_ll_notify</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2159.61,-189 1839.57,-189 1839.57,-9 2159.61,-9 2159.61,-189"/>
-<text xml:space="preserve" text-anchor="start" x="1924.01" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;133 告知等待人工</text>
-<text xml:space="preserve" text-anchor="start" x="1880.82" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">在会话中告知已转人工，不返回空白内容。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2080.69,-189 1760.65,-189 1760.65,-9 2080.69,-9 2080.69,-189"/>
+<text xml:space="preserve" text-anchor="start" x="1845.09" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;133 告知等待人工</text>
+<text xml:space="preserve" text-anchor="start" x="1801.9" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">在会话中告知已转人工，不返回空白内容。</text>
 </g>
 <!-- actor_ops&#45;&gt;api_status -->
 <g id="edge1" class="edge">
@@ -8614,52 +8567,52 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- actor_ops&#45;&gt;i_ll_notify -->
 <g id="edge6" class="edge">
 <title>actor_ops&#45;&gt;i_ll_notify</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M330,-90.83C683.25,-92.56 1495.6,-96.54 1839.82,-98.22"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="330.22,-88.2 322.71,-90.79 330.19,-93.45 330.22,-88.2"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1006.77,-97.5 1006.77,-130.3 1030.77,-130.3 1030.77,-97.5 1006.77,-97.5"/>
-<text xml:space="preserve" text-anchor="start" x="1014.87" y="-110.7" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1033.77,-97.5 1033.77,-130.3 1086.44,-130.3 1086.44,-97.5 1033.77,-97.5"/>
-<text xml:space="preserve" text-anchor="start" x="1036.77" y="-108.3" font-family="Arial" font-size="14.00" fill="#c9c9c9">告知客户</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M330.22,-90.87C669.76,-92.6 1429.94,-96.49 1760.78,-98.19"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="330.34,-88.24 322.83,-90.83 330.31,-93.49 330.34,-88.24"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1006.77,-97.71 1006.77,-130.51 1030.77,-130.51 1030.77,-97.71 1006.77,-97.71"/>
+<text xml:space="preserve" text-anchor="start" x="1014.87" y="-110.91" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1033.77,-97.71 1033.77,-130.51 1086.44,-130.51 1086.44,-97.71 1033.77,-97.71"/>
+<text xml:space="preserve" text-anchor="start" x="1036.77" y="-108.51" font-family="Arial" font-size="14.00" fill="#c9c9c9">告知客户</text>
 </g>
-<!-- api_status&#45;&gt;step_probelane -->
+<!-- api_status&#45;&gt;i_kb_count -->
 <g id="edge2" class="edge">
-<title>api_status&#45;&gt;step_probelane</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M943.62,-283.55C1006.31,-285.33 1075.89,-287.3 1139.42,-289.1"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1138.96,-291.71 1146.53,-289.3 1139.11,-286.46 1138.96,-291.71"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1006.77,-290.52 1006.77,-323.32 1030.77,-323.32 1030.77,-290.52 1006.77,-290.52"/>
-<text xml:space="preserve" text-anchor="start" x="1014.87" y="-303.72" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1033.77,-290.52 1033.77,-323.32 1086.44,-323.32 1086.44,-290.52 1033.77,-290.52"/>
-<text xml:space="preserve" text-anchor="start" x="1036.77" y="-301.32" font-family="Arial" font-size="14.00" fill="#c9c9c9">发起探测</text>
+<title>api_status&#45;&gt;i_kb_count</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M943.64,-283.95C1007.55,-285.88 1077.89,-288.01 1139.61,-289.88"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1139.23,-292.5 1146.81,-290.1 1139.39,-287.25 1139.23,-292.5"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1006.77,-291.02 1006.77,-323.82 1030.77,-323.82 1030.77,-291.02 1006.77,-291.02"/>
+<text xml:space="preserve" text-anchor="start" x="1014.87" y="-304.22" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1033.77,-291.02 1033.77,-323.82 1086.44,-323.82 1086.44,-291.02 1033.77,-291.02"/>
+<text xml:space="preserve" text-anchor="start" x="1036.77" y="-301.82" font-family="Arial" font-size="14.00" fill="#c9c9c9">发起探测</text>
 </g>
-<!-- step_probelane&#45;&gt;ext_ragflow -->
+<!-- i_kb_count&#45;&gt;ext_ragflow -->
 <g id="edge3" class="edge">
-<title>step_probelane&#45;&gt;ext_ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1548.32,-356.69C1568.49,-361.71 1588.77,-366.28 1608.4,-370 1678.81,-383.34 1757.34,-391.79 1825.39,-397.13"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1825.09,-399.74 1832.77,-397.69 1825.49,-394.5 1825.09,-399.74"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1628.9,-395.07 1628.9,-427.87 1652.9,-427.87 1652.9,-395.07 1628.9,-395.07"/>
-<text xml:space="preserve" text-anchor="start" x="1637.01" y="-408.27" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1655.9,-395.07 1655.9,-427.87 1755.25,-427.87 1755.25,-395.07 1655.9,-395.07"/>
-<text xml:space="preserve" text-anchor="start" x="1658.9" y="-405.87" font-family="Arial" font-size="14.00" fill="#c9c9c9">探测数据集可用性</text>
+<title>i_kb_count&#45;&gt;ext_ragflow</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1469.21,-354.27C1489.3,-360.31 1509.73,-365.77 1529.48,-370 1599.71,-385.04 1678.38,-393.8 1746.59,-398.9"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1746.32,-401.51 1753.99,-399.43 1746.7,-396.27 1746.32,-401.51"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1549.98,-396.86 1549.98,-429.66 1573.98,-429.66 1573.98,-396.86 1549.98,-396.86"/>
+<text xml:space="preserve" text-anchor="start" x="1558.09" y="-410.06" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1576.98,-396.86 1576.98,-429.66 1676.34,-429.66 1676.34,-396.86 1576.98,-396.86"/>
+<text xml:space="preserve" text-anchor="start" x="1579.98" y="-407.66" font-family="Arial" font-size="14.00" fill="#c9c9c9">探测数据集可用性</text>
 </g>
-<!-- step_probelane&#45;&gt;ext_ragflow -->
+<!-- i_kb_count&#45;&gt;ext_ragflow -->
 <g id="edge4" class="edge">
-<title>step_probelane&#45;&gt;ext_ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1558.57,-282.72C1628.37,-283.04 1706.11,-288.25 1775.75,-304.2 1795.76,-308.78 1816.14,-315.25 1836.04,-322.73"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1558.87,-280.09 1551.36,-282.71 1558.86,-285.34 1558.87,-280.09"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1640.57,-307.2 1640.57,-340 1664.57,-340 1664.57,-307.2 1640.57,-307.2"/>
-<text xml:space="preserve" text-anchor="start" x="1648.68" y="-320.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1667.57,-307.2 1667.57,-340 1743.58,-340 1743.58,-307.2 1667.57,-307.2"/>
-<text xml:space="preserve" text-anchor="start" x="1670.57" y="-318" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回探测结论</text>
+<title>i_kb_count&#45;&gt;ext_ragflow</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1479.65,-284.36C1547.88,-283.85 1626.87,-288.1 1696.84,-304.2 1716.84,-308.8 1737.21,-315.29 1757.12,-322.78"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1479.72,-281.73 1472.25,-284.44 1479.78,-286.98 1479.72,-281.73"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1561.65,-307.2 1561.65,-340 1585.65,-340 1585.65,-307.2 1561.65,-307.2"/>
+<text xml:space="preserve" text-anchor="start" x="1569.76" y="-320.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1588.65,-307.2 1588.65,-340 1664.67,-340 1664.67,-307.2 1588.65,-307.2"/>
+<text xml:space="preserve" text-anchor="start" x="1591.65" y="-318" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回探测结论</text>
 </g>
-<!-- step_probelane&#45;&gt;i_ll_notify -->
+<!-- i_kb_count&#45;&gt;i_ll_notify -->
 <g id="edge5" class="edge">
-<title>step_probelane&#45;&gt;i_ll_notify</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1548.07,-235.13C1638.11,-207.92 1743.54,-176.07 1829.75,-150.01"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1830.32,-152.59 1836.74,-147.9 1828.8,-147.56 1830.32,-152.59"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1611.4,-217.56 1611.4,-250.36 1635.4,-250.36 1635.4,-217.56 1611.4,-217.56"/>
-<text xml:space="preserve" text-anchor="start" x="1619.5" y="-230.76" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1638.4,-217.56 1638.4,-250.36 1772.75,-250.36 1772.75,-217.56 1638.4,-217.56"/>
-<text xml:space="preserve" text-anchor="start" x="1641.4" y="-228.36" font-family="Arial" font-size="14.00" fill="#c9c9c9">提交发布判定并下发提示</text>
+<title>i_kb_count&#45;&gt;i_ll_notify</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1469.34,-239.29C1489.55,-232.42 1509.98,-225.58 1529.48,-219.2 1601.72,-195.58 1681.9,-170.66 1750.7,-149.67"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1751.46,-152.18 1757.86,-147.49 1749.93,-147.16 1751.46,-152.18"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1532.48,-222.2 1532.48,-255 1556.48,-255 1556.48,-222.2 1532.48,-222.2"/>
+<text xml:space="preserve" text-anchor="start" x="1540.59" y="-235.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1559.48,-222.2 1559.48,-255 1693.84,-255 1693.84,-222.2 1559.48,-222.2"/>
+<text xml:space="preserve" text-anchor="start" x="1562.48" y="-233" font-family="Arial" font-size="14.00" fill="#c9c9c9">提交发布判定并下发提示</text>
 </g>
 </g>
 </svg>
@@ -9064,8 +9017,8 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="3296pt" height="381pt"
- viewBox="0.00 0.00 3296.00 381.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="3217pt" height="381pt"
+ viewBox="0.00 0.00 3217.00 381.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 366.05)">
 <!-- actor_ops -->
 <g id="node1" class="node">
@@ -9081,33 +9034,33 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="619.27" y="-250" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/integration&#45;routes.js:7 —</text>
 <text xml:space="preserve" text-anchor="start" x="653.47" y="-232" font-family="Arial" font-size="15.00" fill="#bfdbfe">查询集成状态与知识条目数。</text>
 </g>
-<!-- step_probelane -->
+<!-- i_kb_count -->
 <g id="node3" class="node">
-<title>step_probelane</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1548.4,-351 1149.44,-351 1149.44,-171 1548.4,-171 1548.4,-351"/>
-<text xml:space="preserve" text-anchor="start" x="1240" y="-264" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;151 场景判定（泳道引用）</text>
-<text xml:space="preserve" text-anchor="start" x="1169.5" y="-241" font-family="Arial" font-size="15.00" fill="#bfdbfe">泳道中的判定环节，具体步骤见各 US 容器下的 I&#45;11x~I&#45;13x。</text>
+<title>i_kb_count</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1469.48,-351 1149.44,-351 1149.44,-171 1469.48,-171 1469.48,-351"/>
+<text xml:space="preserve" text-anchor="start" x="1242.21" y="-264" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;111 读取条目数</text>
+<text xml:space="preserve" text-anchor="start" x="1178.19" y="-241" font-family="Arial" font-size="15.00" fill="#bfdbfe">从文档登记簿读取当前知识条目数，不做过滤。</text>
 </g>
 <!-- i_kb_judge -->
 <g id="node4" class="node">
 <title>i_kb_judge</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2132.46,-351 1812.42,-351 1812.42,-171 2132.46,-171 2132.46,-351"/>
-<text xml:space="preserve" text-anchor="start" x="1896.86" y="-264" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;112 判定零条场景</text>
-<text xml:space="preserve" text-anchor="start" x="1832.82" y="-241" font-family="Arial" font-size="15.00" fill="#bfdbfe">条目数为 0 时判定为空库场景，标记需先补素材。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2053.54,-351 1733.5,-351 1733.5,-171 2053.54,-171 2053.54,-351"/>
+<text xml:space="preserve" text-anchor="start" x="1817.94" y="-264" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;112 判定零条场景</text>
+<text xml:space="preserve" text-anchor="start" x="1753.91" y="-241" font-family="Arial" font-size="15.00" fill="#bfdbfe">条目数为 0 时判定为空库场景，标记需先补素材。</text>
 </g>
 <!-- i_to_check -->
 <g id="node5" class="node">
 <title>i_to_check</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2693.18,-351 2373.14,-351 2373.14,-171 2693.18,-171 2693.18,-351"/>
-<text xml:space="preserve" text-anchor="start" x="2474.25" y="-264" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;122 判定超时</text>
-<text xml:space="preserve" text-anchor="start" x="2408.13" y="-241" font-family="Arial" font-size="15.00" fill="#bfdbfe">计时到期仍未返回候选知识时判定超时场景。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2614.26,-351 2294.22,-351 2294.22,-171 2614.26,-171 2614.26,-351"/>
+<text xml:space="preserve" text-anchor="start" x="2395.33" y="-264" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;122 判定超时</text>
+<text xml:space="preserve" text-anchor="start" x="2329.22" y="-241" font-family="Arial" font-size="15.00" fill="#bfdbfe">计时到期仍未返回候选知识时判定超时场景。</text>
 </g>
 <!-- i_ll_detect -->
 <g id="node6" class="node">
 <title>i_ll_detect</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3265.57,-180 2945.53,-180 2945.53,0 3265.57,0 3265.57,-180"/>
-<text xml:space="preserve" text-anchor="start" x="3029.97" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;131 判定调用结果</text>
-<text xml:space="preserve" text-anchor="start" x="3005.53" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">识别模型服务调用失败或返回异常。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3186.66,-180 2866.62,-180 2866.62,0 3186.66,0 3186.66,-180"/>
+<text xml:space="preserve" text-anchor="start" x="2951.05" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;131 判定调用结果</text>
+<text xml:space="preserve" text-anchor="start" x="2926.62" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">识别模型服务调用失败或返回异常。</text>
 </g>
 <!-- actor_ops&#45;&gt;api_status -->
 <g id="edge1" class="edge">
@@ -9122,52 +9075,52 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- actor_ops&#45;&gt;i_ll_detect -->
 <g id="edge6" class="edge">
 <title>actor_ops&#45;&gt;i_ll_detect</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M330.1,-51.55C443.62,-29.04 596.89,-5 733.74,-5 733.74,-5 733.74,-5 2534.16,-5 2674.33,-5 2831.77,-30.42 2945.68,-53.46"/>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M330.1,-51.55C443.62,-29.04 596.89,-5 733.74,-5 733.74,-5 733.74,-5 2455.24,-5 2595.41,-5 2752.86,-30.42 2866.77,-53.46"/>
 <polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="329.74,-48.94 322.9,-52.99 330.77,-54.09 329.74,-48.94"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1611.4,-8 1611.4,-40.8 1635.4,-40.8 1635.4,-8 1611.4,-8"/>
-<text xml:space="preserve" text-anchor="start" x="1619.5" y="-21.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1638.4,-8 1638.4,-40.8 1749.42,-40.8 1749.42,-8 1638.4,-8"/>
-<text xml:space="preserve" text-anchor="start" x="1641.4" y="-18.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">⑥下发提示或转人工</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1532.48,-8 1532.48,-40.8 1556.48,-40.8 1556.48,-8 1532.48,-8"/>
+<text xml:space="preserve" text-anchor="start" x="1540.59" y="-21.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">6</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1559.48,-8 1559.48,-40.8 1670.5,-40.8 1670.5,-8 1559.48,-8"/>
+<text xml:space="preserve" text-anchor="start" x="1562.48" y="-18.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">⑥下发提示或转人工</text>
 </g>
-<!-- api_status&#45;&gt;step_probelane -->
+<!-- api_status&#45;&gt;i_kb_count -->
 <g id="edge2" class="edge">
-<title>api_status&#45;&gt;step_probelane</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M931.96,-261C998.16,-261 1072.26,-261 1139.38,-261"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1139.13,-263.63 1146.63,-261 1139.13,-258.38 1139.13,-263.63"/>
+<title>api_status&#45;&gt;i_kb_count</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M932.04,-261C999.5,-261 1074.4,-261 1139.5,-261"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1139.33,-263.63 1146.83,-261 1139.33,-258.38 1139.33,-263.63"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="995.1,-264 995.1,-296.8 1019.1,-296.8 1019.1,-264 995.1,-264"/>
 <text xml:space="preserve" text-anchor="start" x="1003.2" y="-277.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1022.1,-264 1022.1,-296.8 1086.44,-296.8 1086.44,-264 1022.1,-264"/>
 <text xml:space="preserve" text-anchor="start" x="1025.1" y="-274.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">②发起探测</text>
 </g>
-<!-- step_probelane&#45;&gt;i_kb_judge -->
+<!-- i_kb_count&#45;&gt;i_kb_judge -->
 <g id="edge3" class="edge">
-<title>step_probelane&#45;&gt;i_kb_judge</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1548.28,-261C1629.96,-261 1723.62,-261 1802.02,-261"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1801.96,-263.63 1809.46,-261 1801.96,-258.38 1801.96,-263.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1628.9,-264 1628.9,-296.8 1652.9,-296.8 1652.9,-264 1628.9,-264"/>
-<text xml:space="preserve" text-anchor="start" x="1637.01" y="-277.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1655.9,-264 1655.9,-296.8 1731.91,-296.8 1731.91,-264 1655.9,-264"/>
-<text xml:space="preserve" text-anchor="start" x="1658.9" y="-274.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">③判定条目数</text>
+<title>i_kb_count&#45;&gt;i_kb_judge</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1469.13,-261C1547.97,-261 1643.29,-261 1723.51,-261"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1723.19,-263.63 1730.69,-261 1723.19,-258.38 1723.19,-263.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1549.98,-264 1549.98,-296.8 1573.98,-296.8 1573.98,-264 1549.98,-264"/>
+<text xml:space="preserve" text-anchor="start" x="1558.09" y="-277.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1576.98,-264 1576.98,-296.8 1653,-296.8 1653,-264 1576.98,-264"/>
+<text xml:space="preserve" text-anchor="start" x="1579.98" y="-274.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">③判定条目数</text>
 </g>
 <!-- i_kb_judge&#45;&gt;i_to_check -->
 <g id="edge4" class="edge">
 <title>i_kb_judge&#45;&gt;i_to_check</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2132.42,-261C2204.52,-261 2289.84,-261 2363.1,-261"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2362.83,-263.63 2370.33,-261 2362.82,-258.38 2362.83,-263.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2195.46,-264 2195.46,-296.8 2219.46,-296.8 2219.46,-264 2195.46,-264"/>
-<text xml:space="preserve" text-anchor="start" x="2203.56" y="-277.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2222.46,-264 2222.46,-296.8 2310.14,-296.8 2310.14,-264 2222.46,-264"/>
-<text xml:space="preserve" text-anchor="start" x="2225.46" y="-274.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">④判定响应耗时</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2053.51,-261C2125.6,-261 2210.92,-261 2284.18,-261"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2283.91,-263.63 2291.41,-261 2283.91,-258.38 2283.91,-263.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2116.54,-264 2116.54,-296.8 2140.54,-296.8 2140.54,-264 2116.54,-264"/>
+<text xml:space="preserve" text-anchor="start" x="2124.65" y="-277.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2143.54,-264 2143.54,-296.8 2231.22,-296.8 2231.22,-264 2143.54,-264"/>
+<text xml:space="preserve" text-anchor="start" x="2146.54" y="-274.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">④判定响应耗时</text>
 </g>
 <!-- i_to_check&#45;&gt;i_ll_detect -->
 <g id="edge5" class="edge">
 <title>i_to_check&#45;&gt;i_ll_detect</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2693.04,-213.37C2768.75,-190.67 2859.35,-163.51 2936.23,-140.46"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2936.69,-143.06 2943.12,-138.39 2935.19,-138.03 2936.69,-143.06"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2756.18,-193.82 2756.18,-226.62 2780.18,-226.62 2780.18,-193.82 2756.18,-193.82"/>
-<text xml:space="preserve" text-anchor="start" x="2764.29" y="-207.02" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2783.18,-193.82 2783.18,-226.62 2882.53,-226.62 2882.53,-193.82 2783.18,-193.82"/>
-<text xml:space="preserve" text-anchor="start" x="2786.18" y="-204.62" font-family="Arial" font-size="14.00" fill="#c9c9c9">⑤判定模型可用性</text>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M2614.13,-213.37C2689.84,-190.67 2780.43,-163.51 2857.32,-140.46"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="2857.78,-143.06 2864.21,-138.39 2856.27,-138.03 2857.78,-143.06"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2677.26,-193.82 2677.26,-226.62 2701.26,-226.62 2701.26,-193.82 2677.26,-193.82"/>
+<text xml:space="preserve" text-anchor="start" x="2685.37" y="-207.02" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2704.26,-193.82 2704.26,-226.62 2803.62,-226.62 2803.62,-193.82 2704.26,-193.82"/>
+<text xml:space="preserve" text-anchor="start" x="2707.26" y="-204.62" font-family="Arial" font-size="14.00" fill="#c9c9c9">⑤判定模型可用性</text>
 </g>
 </g>
 </svg>
@@ -9177,8 +9130,8 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="2257pt" height="210pt"
- viewBox="0.00 0.00 2257.00 210.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="2179pt" height="210pt"
+ viewBox="0.00 0.00 2179.00 210.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 195.05)">
 <!-- actor_customer -->
 <g id="node1" class="node">
@@ -9194,19 +9147,19 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="722.19" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/wechat&#45;kf&#45;routes.js:12 —</text>
 <text xml:space="preserve" text-anchor="start" x="770.13" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">接收企业微信加密回调。</text>
 </g>
-<!-- step_answerlane -->
+<!-- i_ask_deliver -->
 <g id="node3" class="node">
-<title>step_answerlane</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1677.86,-180 1259.7,-180 1259.7,0 1677.86,0 1677.86,-180"/>
-<text xml:space="preserve" text-anchor="start" x="1359.86" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;201 应答编排（泳道引用）</text>
-<text xml:space="preserve" text-anchor="start" x="1279.75" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">泳道中的编排环节，具体步骤见 US&#45;001 容器下的 I&#45;001~I&#45;006。</text>
+<title>i_ask_deliver</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1599.87,-180 1259.7,-180 1259.7,0 1599.87,0 1599.87,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1370.87" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;006 下发答复</text>
+<text xml:space="preserve" text-anchor="start" x="1279.75" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">把答复通过企业微信会话回传给客户，完成本次闭环。</text>
 </g>
 <!-- ext_ragflow -->
 <g id="node4" class="node">
 <title>ext_ragflow</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2226.91,-180 1906.87,-180 1906.87,0 2226.91,0 2226.91,-180"/>
-<text xml:space="preserve" text-anchor="start" x="2024.11" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow</text>
-<text xml:space="preserve" text-anchor="start" x="2010.63" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与知识库服务。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2148.92,-180 1828.88,-180 1828.88,0 2148.92,0 2148.92,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1946.12" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="1932.64" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与知识库服务。</text>
 </g>
 <!-- actor_customer&#45;&gt;api_chatcallback -->
 <g id="edge1" class="edge">
@@ -9218,45 +9171,45 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="410.04,-93 410.04,-125.8 560.76,-125.8 560.76,-93 410.04,-93"/>
 <text xml:space="preserve" text-anchor="start" x="413.04" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">POST /wechat/callback</text>
 </g>
-<!-- api_chatcallback&#45;&gt;step_answerlane -->
+<!-- api_chatcallback&#45;&gt;i_ask_deliver -->
 <g id="edge2" class="edge">
-<title>api_chatcallback&#45;&gt;step_answerlane</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1053.78,-90C1116.82,-90 1185.87,-90 1249.19,-90"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1249.19,-92.63 1256.69,-90 1249.19,-87.38 1249.19,-92.63"/>
+<title>api_chatcallback&#45;&gt;i_ask_deliver</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1053.74,-90C1118.1,-90 1188.03,-90 1249.87,-90"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1249.59,-92.63 1257.09,-90 1249.59,-87.38 1249.59,-92.63"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1117.02,-93 1117.02,-125.8 1141.02,-125.8 1141.02,-93 1117.02,-93"/>
 <text xml:space="preserve" text-anchor="start" x="1125.13" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1144.02,-93 1144.02,-125.8 1196.7,-125.8 1196.7,-93 1144.02,-93"/>
 <text xml:space="preserve" text-anchor="start" x="1147.02" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">触发应答</text>
 </g>
-<!-- api_chatcallback&#45;&gt;step_answerlane -->
+<!-- api_chatcallback&#45;&gt;i_ask_deliver -->
 <g id="edge5" class="edge">
-<title>api_chatcallback&#45;&gt;step_answerlane</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1063.9,-27.81C1108.72,-21.36 1155.59,-18.87 1199.7,-24.2 1219.32,-26.57 1239.58,-29.89 1259.77,-33.78"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1063.78,-25.17 1056.75,-28.88 1064.56,-30.36 1063.78,-25.17"/>
+<title>api_chatcallback&#45;&gt;i_ask_deliver</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1064.07,-26.44C1108.89,-20.11 1155.71,-18.01 1199.7,-24.2 1219.37,-26.97 1239.71,-31.01 1259.79,-35.76"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1063.97,-23.81 1056.94,-27.51 1064.74,-29 1063.97,-23.81"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1117.02,-27.2 1117.02,-60 1141.02,-60 1141.02,-27.2 1117.02,-27.2"/>
 <text xml:space="preserve" text-anchor="start" x="1125.13" y="-40.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">5</text>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1144.02,-27.2 1144.02,-60 1196.7,-60 1196.7,-27.2 1144.02,-27.2"/>
 <text xml:space="preserve" text-anchor="start" x="1147.02" y="-38" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回答复</text>
 </g>
-<!-- step_answerlane&#45;&gt;ext_ragflow -->
+<!-- i_ask_deliver&#45;&gt;ext_ragflow -->
 <g id="edge3" class="edge">
-<title>step_answerlane&#45;&gt;ext_ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1677.85,-90C1749.41,-90 1828.61,-90 1896.7,-90"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1896.57,-92.63 1904.07,-90 1896.57,-87.38 1896.57,-92.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1752.53,-93 1752.53,-125.8 1776.53,-125.8 1776.53,-93 1752.53,-93"/>
-<text xml:space="preserve" text-anchor="start" x="1760.63" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1779.53,-93 1779.53,-125.8 1832.2,-125.8 1832.2,-93 1779.53,-93"/>
-<text xml:space="preserve" text-anchor="start" x="1782.53" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">检索知识</text>
+<title>i_ask_deliver&#45;&gt;ext_ragflow</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1599.83,-90C1669.26,-90 1749.48,-90 1818.91,-90"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1818.54,-92.63 1826.04,-90 1818.54,-87.38 1818.54,-92.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1674.54,-93 1674.54,-125.8 1698.54,-125.8 1698.54,-93 1674.54,-93"/>
+<text xml:space="preserve" text-anchor="start" x="1682.64" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1701.54,-93 1701.54,-125.8 1754.21,-125.8 1754.21,-93 1701.54,-93"/>
+<text xml:space="preserve" text-anchor="start" x="1704.54" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">检索知识</text>
 </g>
-<!-- step_answerlane&#45;&gt;ext_ragflow -->
+<!-- i_ask_deliver&#45;&gt;ext_ragflow -->
 <g id="edge4" class="edge">
-<title>step_answerlane&#45;&gt;ext_ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1687.77,-28.03C1739.82,-19.87 1795.25,-16.61 1846.87,-24.2 1866.61,-27.1 1887.04,-31.4 1907.12,-36.43"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1687.38,-25.44 1680.4,-29.24 1688.22,-30.62 1687.38,-25.44"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1740.86,-27.2 1740.86,-60 1764.86,-60 1764.86,-27.2 1740.86,-27.2"/>
-<text xml:space="preserve" text-anchor="start" x="1748.96" y="-40.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1767.86,-27.2 1767.86,-60 1843.87,-60 1843.87,-27.2 1767.86,-27.2"/>
-<text xml:space="preserve" text-anchor="start" x="1770.86" y="-38" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回候选知识</text>
+<title>i_ask_deliver&#45;&gt;ext_ragflow</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1609.83,-32.17C1661.04,-21.89 1717.02,-16.58 1768.88,-24.2 1788.62,-27.1 1809.05,-31.4 1829.14,-36.43"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1609.43,-29.58 1602.62,-33.68 1610.5,-34.72 1609.43,-29.58"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1662.87,-27.2 1662.87,-60 1686.87,-60 1686.87,-27.2 1662.87,-27.2"/>
+<text xml:space="preserve" text-anchor="start" x="1670.98" y="-40.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1689.87,-27.2 1689.87,-60 1765.88,-60 1765.88,-27.2 1689.87,-27.2"/>
+<text xml:space="preserve" text-anchor="start" x="1692.87" y="-38" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回候选知识</text>
 </g>
 </g>
 </svg>
@@ -9266,8 +9219,8 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="2197pt" height="210pt"
- viewBox="0.00 0.00 2197.00 210.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="2118pt" height="210pt"
+ viewBox="0.00 0.00 2118.00 210.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 195.05)">
 <!-- actor_ops -->
 <g id="node1" class="node">
@@ -9283,19 +9236,19 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="704.11" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/integration&#45;routes.js:7 —</text>
 <text xml:space="preserve" text-anchor="start" x="738.31" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">查询集成状态与知识条目数。</text>
 </g>
-<!-- step_probelane -->
+<!-- i_kb_count -->
 <g id="node3" class="node">
-<title>step_probelane</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1621.56,-180 1222.61,-180 1222.61,0 1621.56,0 1621.56,-180"/>
-<text xml:space="preserve" text-anchor="start" x="1313.16" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;151 场景判定（泳道引用）</text>
-<text xml:space="preserve" text-anchor="start" x="1242.66" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">泳道中的判定环节，具体步骤见各 US 容器下的 I&#45;11x~I&#45;13x。</text>
+<title>i_kb_count</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1542.65,-180 1222.61,-180 1222.61,0 1542.65,0 1542.65,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1315.38" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;111 读取条目数</text>
+<text xml:space="preserve" text-anchor="start" x="1251.35" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">从文档登记簿读取当前知识条目数，不做过滤。</text>
 </g>
 <!-- ext_ragflow -->
 <g id="node4" class="node">
 <title>ext_ragflow</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2166.57,-180 1838.91,-180 1838.91,0 2166.57,0 2166.57,-180"/>
-<text xml:space="preserve" text-anchor="start" x="1959.96" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow</text>
-<text xml:space="preserve" text-anchor="start" x="1858.96" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与知识库服务，超时或不可用即触发本链场景。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2087.66,-180 1759.99,-180 1759.99,0 2087.66,0 2087.66,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1881.04" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">RAGFlow</text>
+<text xml:space="preserve" text-anchor="start" x="1780.05" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与知识库服务，超时或不可用即触发本链场景。</text>
 </g>
 <!-- actor_ops&#45;&gt;api_status -->
 <g id="edge1" class="edge">
@@ -9307,35 +9260,35 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="410.04,-93 410.04,-125.8 559.22,-125.8 559.22,-93 410.04,-93"/>
 <text xml:space="preserve" text-anchor="start" x="413.04" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">GET /integration/status</text>
 </g>
-<!-- api_status&#45;&gt;step_probelane -->
+<!-- api_status&#45;&gt;i_kb_count -->
 <g id="edge2" class="edge">
-<title>api_status&#45;&gt;step_probelane</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1016.79,-90C1079.47,-90 1149.06,-90 1212.58,-90"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1212.2,-92.63 1219.7,-90 1212.2,-87.38 1212.2,-92.63"/>
+<title>api_status&#45;&gt;i_kb_count</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1016.8,-90C1080.71,-90 1151.05,-90 1212.78,-90"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1212.47,-92.63 1219.97,-90 1212.47,-87.38 1212.47,-92.63"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1079.93,-93 1079.93,-125.8 1103.93,-125.8 1103.93,-93 1079.93,-93"/>
 <text xml:space="preserve" text-anchor="start" x="1088.04" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">2</text>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1106.93,-93 1106.93,-125.8 1159.61,-125.8 1159.61,-93 1106.93,-93"/>
 <text xml:space="preserve" text-anchor="start" x="1109.93" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">发起探测</text>
 </g>
-<!-- step_probelane&#45;&gt;ext_ragflow -->
+<!-- i_kb_count&#45;&gt;ext_ragflow -->
 <g id="edge3" class="edge">
-<title>step_probelane&#45;&gt;ext_ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1621.41,-90C1688.8,-90 1763.53,-90 1828.78,-90"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1828.64,-92.63 1836.14,-90 1828.64,-87.38 1828.64,-92.63"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1684.56,-93 1684.56,-125.8 1708.56,-125.8 1708.56,-93 1684.56,-93"/>
-<text xml:space="preserve" text-anchor="start" x="1692.67" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1711.56,-93 1711.56,-125.8 1775.91,-125.8 1775.91,-93 1711.56,-93"/>
-<text xml:space="preserve" text-anchor="start" x="1714.56" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">探测数据集</text>
+<title>i_kb_count&#45;&gt;ext_ragflow</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1542.49,-90C1607.79,-90 1683.58,-90 1750.24,-90"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1749.9,-92.63 1757.4,-90 1749.9,-87.38 1749.9,-92.63"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1605.65,-93 1605.65,-125.8 1629.65,-125.8 1629.65,-93 1605.65,-93"/>
+<text xml:space="preserve" text-anchor="start" x="1613.75" y="-106.2" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">3</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1632.65,-93 1632.65,-125.8 1696.99,-125.8 1696.99,-93 1632.65,-93"/>
+<text xml:space="preserve" text-anchor="start" x="1635.65" y="-103.8" font-family="Arial" font-size="14.00" fill="#c9c9c9">探测数据集</text>
 </g>
-<!-- step_probelane&#45;&gt;ext_ragflow -->
+<!-- i_kb_count&#45;&gt;ext_ragflow -->
 <g id="edge4" class="edge">
-<title>step_probelane&#45;&gt;ext_ragflow</title>
-<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1631.44,-28.33C1679.74,-20.48 1731.02,-17.28 1778.91,-24.2 1798.57,-27.04 1818.91,-31.23 1838.95,-36.13"/>
-<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1631.12,-25.73 1624.16,-29.57 1632,-30.9 1631.12,-25.73"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1690.4,-27.2 1690.4,-60 1714.4,-60 1714.4,-27.2 1690.4,-27.2"/>
-<text xml:space="preserve" text-anchor="start" x="1698.5" y="-40.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1717.4,-27.2 1717.4,-60 1770.07,-60 1770.07,-27.2 1717.4,-27.2"/>
-<text xml:space="preserve" text-anchor="start" x="1720.4" y="-38" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回结论</text>
+<title>i_kb_count&#45;&gt;ext_ragflow</title>
+<path fill="none" stroke="#8d8d8d" stroke-width="2" stroke-dasharray="5,2" d="M1552.3,-34.02C1569.16,-30.03 1586.15,-26.63 1602.65,-24.2 1654.16,-16.63 1709.87,-22.94 1760.16,-34.15"/>
+<polygon fill="#8d8d8d" stroke="#8d8d8d" stroke-width="2" points="1552,-31.39 1545.33,-35.72 1553.24,-36.49 1552,-31.39"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1611.48,-27.2 1611.48,-60 1635.48,-60 1635.48,-27.2 1611.48,-27.2"/>
+<text xml:space="preserve" text-anchor="start" x="1619.59" y="-40.4" font-family="Arial" font-weight="bold" font-size="14.00" fill="#c9c9c9">4</text>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1638.48,-27.2 1638.48,-60 1691.16,-60 1691.16,-27.2 1638.48,-27.2"/>
+<text xml:space="preserve" text-anchor="start" x="1641.48" y="-38" font-family="Arial" font-size="14.00" fill="#c9c9c9">返回结论</text>
 </g>
 </g>
 </svg>

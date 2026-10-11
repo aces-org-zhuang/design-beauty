@@ -1,6 +1,6 @@
-var e=e=>{switch(e){case`procLocal`:return`direction: down
+var e=e=>{switch(e){case`proc-local`:return`direction: down
 
-`;case`procProd`:return`direction: down
+`;case`proc-prod`:return`direction: down
 
 `;case`pano-us`:return`direction: down
 
@@ -179,7 +179,7 @@ Feat_answer_fUs_askI_ask_deliver.Ui_interaction -> Feat_answer_fUs_askI_ask_deli
 Feat_knowledge_fUs_alertI_alert_report.Ui_console -> Feat_knowledge_fUs_alertI_alert_report.Ui_information: "[...]"
 Feat_knowledge_fUs_alertI_alert_report.Ui_information -> Feat_knowledge_fUs_alertI_alert_report.Ui_console: "触发扫描"
 Feat_degrade_nfUs_kbEmpty.I_kb_renderUi_status -> Feat_degrade_nfUs_llmDown.I_ll_notifyUi_notice: "提交发布判定"
-`;case`panoSrc001F`:return`direction: down
+`;case`pano-src-001F`:return`direction: down
 
 Feat_answer_fUs_askI_ask_deliverUi_interaction: {
   label: "UI-001 企业微信会话交互"
@@ -217,7 +217,7 @@ Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_answerLoop -> Feat_answer_fUs
 Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_answerLoop -> Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_ragflowKnowledge: "检索候选知识"
 Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_answerOrchestrator -> Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_handoffService: "低置信度时转人工"
 Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_handoffService -> Feat_answer_fUs_askI_ask_deliverUi_information.Src_store: "持久化工单"
-`;case`panoSrc001NF`:return`direction: down
+`;case`pano-src-001NF-empty`:return`direction: down
 
 Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status: {
   label: "UI-101 控制台状态提示"
@@ -238,7 +238,7 @@ Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status: {
 
 Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_integrationRoutes -> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_knowledgeAlert: "查询空库告警"
 Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_integrationRoutes -> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_ragflowProbe: "探测数据集状态"
-`;case`panoSrc001NFnotice`:return`direction: down
+`;case`pano-src-001NF-notice`:return`direction: down
 
 Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice: {
   label: "UI-102 极端场景提示"
@@ -252,7 +252,7 @@ Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice: {
 }
 
 Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice.Src_evaluationGate -> Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice.Src_storeAlert: "读取告警快照"
-`;case`panoSrc002F`:return`direction: down
+`;case`pano-src-002F`:return`direction: down
 
 Feat_knowledge_fUs_alertI_alert_reportUi_information: {
   label: "UI-202 知识运营信息设计"
@@ -458,7 +458,7 @@ Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status: {
 
 Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_integrationRoutes -> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_knowledgeAlert: "查询空库告警"
 Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_integrationRoutes -> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_ragflowProbe: "探测数据集状态"
-`;case`srcdir001NFnotice`:return`direction: down
+`;case`srcdir001NF-notice`:return`direction: down
 
 Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice: {
   label: "UI-102 极端场景提示"
@@ -528,7 +528,7 @@ Feat_degrade_nfBiz_probeResult -> Feat_degrade_nfOut_status: "渲染状态载荷
 Feat_degrade_nfPod_alert -> Feat_degrade_nfDao_alert: "写入告警"
 Feat_degrade_nfCvt_probe -> Feat_degrade_nfBiz_probeResult: "负责 BIZ-101→OUT-101 映射"
 Feat_degrade_nfCvt_probe -> Feat_degrade_nfPod_alert: "负责 BIZ-101→POD-101 映射"
-`;case`erm001F`:return`direction: down
+`;case`erm001F-ticket`:return`direction: down
 
 Feat_answer_fPod_ticket: {
   label: "POD-001 工单持久化实体"
@@ -539,7 +539,7 @@ Feat_answer_fDao_store: {
 }
 
 Feat_answer_fPod_ticket -> Feat_answer_fDao_store: "写入工单"
-`;case`erm001NF`:return`direction: down
+`;case`erm001NF-alert`:return`direction: down
 
 Feat_degrade_nfPod_alert: {
   label: "POD-101 告警持久化实体"
@@ -550,7 +550,7 @@ Feat_degrade_nfDao_alert: {
 }
 
 Feat_degrade_nfPod_alert -> Feat_degrade_nfDao_alert: "写入告警"
-`;case`stateMain`:return`direction: down
+`;case`chain001F-i-state-main`:return`direction: down
 
 Feat_answer_fSt_received: {
   label: "已接收"
@@ -568,7 +568,7 @@ Feat_answer_fSt_answered: {
 Feat_answer_fSt_received -> Feat_answer_fSt_retrieving: "发起检索"
 Feat_answer_fSt_retrieving -> Feat_answer_fSt_answering: "置信度达标"
 Feat_answer_fSt_answering -> Feat_answer_fSt_answered: "答复已下发"
-`;case`stateBranchHuman`:return`direction: down
+`;case`chain001F-i-state-branch-human`:return`direction: down
 
 Feat_answer_fSt_retrieving: {
   label: "检索中"
@@ -799,7 +799,7 @@ Feat_degrade_nfUs_kbEmptyI_kb_render: {
     label: "UI-101 控制台状态提示"
   }
 }
-`;case`chain001NF-uiNotice`:return`direction: down
+`;case`chain001NF-ui-notice`:return`direction: down
 
 Feat_degrade_nfUs_llmDownI_ll_notify: {
   label: "I-133 告知等待人工"
@@ -1000,7 +1000,7 @@ Feat_knowledge_fPod_document -> Feat_knowledge_fDao_registry: "写入文档标�
 Feat_knowledge_fDao_registry -> Feat_knowledge_fOut_knowledgeStatus: "查询状态"
 Feat_knowledge_fCvt_material -> Feat_knowledge_fBiz_candidate: "负责 素材→BIZ-201 映射"
 Feat_knowledge_fCvt_material -> Feat_knowledge_fPod_document: "负责 BIZ-201→POD-201 映射"
-`;case`erm002F`:return`direction: down
+`;case`erm002F-document`:return`direction: down
 
 Feat_knowledge_fPod_document: {
   label: "POD-201 文档登记实体"
@@ -1025,33 +1025,26 @@ Feat_answer_fLane_clientActor_customer: {
 Feat_answer_fLane_edgeApi_chatCallback: {
   label: "API-001 POST /wechat/callback 微信客服回调"
 }
-Feat_answer_fLane_coreStep_answerLane: {
-  label: "I-201 应答编排（泳道引用）"
-}
-Feat_answer_fLane_extExt_ragflow: {
-  label: "RAGFlow"
-}
 Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator: {
   label: "SRC-002 应答编排器"
-}
-Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy: {
-  label: "SRC-004 回复策略"
 }
 Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge: {
   label: "SRC-005 RAGFlow 知识检索"
 }
-Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService: {
-  label: "SRC-006 转人工服务"
+Feat_answer_fLane_extExt_ragflow: {
+  label: "RAGFlow"
+}
+Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy: {
+  label: "SRC-004 回复策略"
 }
 
 Feat_answer_fLane_clientActor_customer -> Feat_answer_fLane_edgeApi_chatCallback: "企业微信提问"
 Feat_answer_fLane_edgeApi_chatCallback -> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator: "分发归一化消息"
-Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator -> Feat_answer_fLane_coreStep_answerLane: "请求应答"
-Feat_answer_fLane_coreStep_answerLane -> Feat_answer_fLane_extExt_ragflow: "检索候选知识"
-Feat_answer_fLane_extExt_ragflow -> Feat_answer_fLane_coreStep_answerLane: "返回候选知识"
-Feat_answer_fLane_coreStep_answerLane -> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy: "校验置信度"
-Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy -> Feat_answer_fLane_coreStep_answerLane: "达标放行"
-Feat_answer_fLane_coreStep_answerLane -> Feat_answer_fLane_edgeApi_chatCallback: "返回答复"
+Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator -> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge: "检索候选知识"
+Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge -> Feat_answer_fLane_extExt_ragflow: "请求 RAGFlow"
+Feat_answer_fLane_extExt_ragflow -> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge: "返回候选知识"
+Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator -> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy: "校验置信度"
+Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy -> Feat_answer_fLane_edgeApi_chatCallback: "达标放行并返回答复"
 `;case`seq001F-branch-low-confidence-src`:return`direction: right
 
 Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy: {
@@ -1110,8 +1103,8 @@ Feat_degrade_nfLane_operatorActor_ops: {
 Feat_degrade_nfLane_edgeApi_status: {
   label: "API-101 GET /integration/status 集成状态"
 }
-Feat_degrade_nfLane_coreStep_probeLane: {
-  label: "I-151 场景判定（泳道引用）"
+Feat_degrade_nfUs_kbEmptyI_kb_count: {
+  label: "I-111 读取条目数"
 }
 Feat_degrade_nfLane_extExt_ragflow: {
   label: "RAGFlow"
@@ -1121,10 +1114,10 @@ Feat_degrade_nfUs_llmDownI_ll_notify: {
 }
 
 Feat_degrade_nfLane_operatorActor_ops -> Feat_degrade_nfLane_edgeApi_status: "查询集成状态"
-Feat_degrade_nfLane_edgeApi_status -> Feat_degrade_nfLane_coreStep_probeLane: "发起探测"
-Feat_degrade_nfLane_coreStep_probeLane -> Feat_degrade_nfLane_extExt_ragflow: "探测数据集可用性"
-Feat_degrade_nfLane_extExt_ragflow -> Feat_degrade_nfLane_coreStep_probeLane: "返回探测结论"
-Feat_degrade_nfLane_coreStep_probeLane -> Feat_degrade_nfUs_llmDownI_ll_notify: "提交发布判定并下发提示"
+Feat_degrade_nfLane_edgeApi_status -> Feat_degrade_nfUs_kbEmptyI_kb_count: "发起探测"
+Feat_degrade_nfUs_kbEmptyI_kb_count -> Feat_degrade_nfLane_extExt_ragflow: "探测数据集可用性"
+Feat_degrade_nfLane_extExt_ragflow -> Feat_degrade_nfUs_kbEmptyI_kb_count: "返回探测结论"
+Feat_degrade_nfUs_kbEmptyI_kb_count -> Feat_degrade_nfUs_llmDownI_ll_notify: "提交发布判定并下发提示"
 Feat_degrade_nfUs_llmDownI_ll_notify -> Feat_degrade_nfLane_operatorActor_ops: "告知客户"
 `;case`dfd001NF-probe`:return`direction: right
 
@@ -1231,8 +1224,8 @@ Feat_degrade_nfLane_operatorActor_ops: {
 Feat_degrade_nfLane_edgeApi_status: {
   label: "API-101 GET /integration/status 集成状态"
 }
-Feat_degrade_nfLane_coreStep_probeLane: {
-  label: "I-151 场景判定（泳道引用）"
+Feat_degrade_nfUs_kbEmptyI_kb_count: {
+  label: "I-111 读取条目数"
 }
 Feat_degrade_nfUs_kbEmptyI_kb_judge: {
   label: "I-112 判定零条场景"
@@ -1245,8 +1238,8 @@ Feat_degrade_nfUs_llmDownI_ll_detect: {
 }
 
 Feat_degrade_nfLane_operatorActor_ops -> Feat_degrade_nfLane_edgeApi_status: "①查询状态"
-Feat_degrade_nfLane_edgeApi_status -> Feat_degrade_nfLane_coreStep_probeLane: "②发起探测"
-Feat_degrade_nfLane_coreStep_probeLane -> Feat_degrade_nfUs_kbEmptyI_kb_judge: "③判定条目数"
+Feat_degrade_nfLane_edgeApi_status -> Feat_degrade_nfUs_kbEmptyI_kb_count: "②发起探测"
+Feat_degrade_nfUs_kbEmptyI_kb_count -> Feat_degrade_nfUs_kbEmptyI_kb_judge: "③判定条目数"
 Feat_degrade_nfUs_kbEmptyI_kb_judge -> Feat_degrade_nfUs_ragTimeoutI_to_check: "④判定响应耗时"
 Feat_degrade_nfUs_ragTimeoutI_to_check -> Feat_degrade_nfUs_llmDownI_ll_detect: "⑤判定模型可用性"
 Feat_degrade_nfUs_llmDownI_ll_detect -> Feat_degrade_nfLane_operatorActor_ops: "⑥下发提示或转人工"
@@ -1259,18 +1252,18 @@ Feat_answer_fLane_clientActor_customer: {
 Feat_answer_fLane_edgeApi_chatCallback: {
   label: "API-001 POST /wechat/callback 微信客服回调"
 }
-Feat_answer_fLane_coreStep_answerLane: {
-  label: "I-201 应答编排（泳道引用）"
+Feat_answer_fUs_askI_ask_deliver: {
+  label: "I-006 下发答复"
 }
 Feat_answer_fLane_extExt_ragflow: {
   label: "RAGFlow"
 }
 
 Feat_answer_fLane_clientActor_customer -> Feat_answer_fLane_edgeApi_chatCallback: "POST /wechat/callback"
-Feat_answer_fLane_edgeApi_chatCallback -> Feat_answer_fLane_coreStep_answerLane: "触发应答"
-Feat_answer_fLane_coreStep_answerLane -> Feat_answer_fLane_extExt_ragflow: "检索知识"
-Feat_answer_fLane_extExt_ragflow -> Feat_answer_fLane_coreStep_answerLane: "返回候选知识"
-Feat_answer_fLane_coreStep_answerLane -> Feat_answer_fLane_edgeApi_chatCallback: "返回答复"
+Feat_answer_fLane_edgeApi_chatCallback -> Feat_answer_fUs_askI_ask_deliver: "触发应答"
+Feat_answer_fUs_askI_ask_deliver -> Feat_answer_fLane_extExt_ragflow: "检索知识"
+Feat_answer_fLane_extExt_ragflow -> Feat_answer_fUs_askI_ask_deliver: "返回候选知识"
+Feat_answer_fUs_askI_ask_deliver -> Feat_answer_fLane_edgeApi_chatCallback: "返回答复"
 `;case`seq001NF-api-status`:return`direction: right
 
 Feat_degrade_nfLane_operatorActor_ops: {
@@ -1280,15 +1273,15 @@ Feat_degrade_nfLane_operatorActor_ops: {
 Feat_degrade_nfLane_edgeApi_status: {
   label: "API-101 GET /integration/status 集成状态"
 }
-Feat_degrade_nfLane_coreStep_probeLane: {
-  label: "I-151 场景判定（泳道引用）"
+Feat_degrade_nfUs_kbEmptyI_kb_count: {
+  label: "I-111 读取条目数"
 }
 Feat_degrade_nfLane_extExt_ragflow: {
   label: "RAGFlow"
 }
 
 Feat_degrade_nfLane_operatorActor_ops -> Feat_degrade_nfLane_edgeApi_status: "GET /integration/status"
-Feat_degrade_nfLane_edgeApi_status -> Feat_degrade_nfLane_coreStep_probeLane: "发起探测"
-Feat_degrade_nfLane_coreStep_probeLane -> Feat_degrade_nfLane_extExt_ragflow: "探测数据集"
-Feat_degrade_nfLane_extExt_ragflow -> Feat_degrade_nfLane_coreStep_probeLane: "返回结论"
+Feat_degrade_nfLane_edgeApi_status -> Feat_degrade_nfUs_kbEmptyI_kb_count: "发起探测"
+Feat_degrade_nfUs_kbEmptyI_kb_count -> Feat_degrade_nfLane_extExt_ragflow: "探测数据集"
+Feat_degrade_nfLane_extExt_ragflow -> Feat_degrade_nfUs_kbEmptyI_kb_count: "返回结论"
 `;default:throw Error(`Unknown viewId: `+e)}};export{e as d2Source};

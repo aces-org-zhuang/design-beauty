@@ -1,5 +1,5 @@
-var e=e=>{switch(e){case`procLocal`:return`@startuml
-title "进程与线程视图 · 本地开发环境"
+var e=e=>{switch(e){case`proc-local`:return`@startuml
+title "构建部署 · 本地开发环境 · 进程与线程"
 top to bottom direction
 
 hide stereotype
@@ -14,8 +14,8 @@ skinparam {
 }
 
 @enduml
-`;case`procProd`:return`@startuml
-title "进程与线程视图 · 生产环境"
+`;case`proc-prod`:return`@startuml
+title "构建部署 · 生产环境 · 进程与线程"
 top to bottom direction
 
 hide stereotype
@@ -31,7 +31,7 @@ skinparam {
 
 @enduml
 `;case`pano-us`:return`@startuml
-title "US 全景 · 全部 Feature"
+title "US 环 · 全部 Feature · 用户故事"
 top to bottom direction
 
 hide stereotype
@@ -112,7 +112,7 @@ Feat_degrade_nfUs_kbEmpty .[#15803d,thickness=2].> Feat_degrade_nfUs_llmDown : <
 Feat_degrade_nfUs_ragTimeout .[#0ea5e9,thickness=2].> Feat_degrade_nfUs_llmDown : <color:#0ea5e9>统一由提示环节下发
 @enduml
 `;case`pano-f`:return`@startuml
-title "F 全景 · 全部 F 链的能力单元"
+title "F 环 · 全部 Feature-NNN-F · 业务能力单元"
 top to bottom direction
 
 hide stereotype
@@ -152,7 +152,7 @@ rectangle "==F-201 素材接入能力\\n\\n接收素材并登记文档标识，�
 rectangle "==F-202 知识治理能力\\n\\n候选知识的扫描、决策、晋升与下线。" <<Feat_knowledge_fF_govern>> as Feat_knowledge_fF_govern
 @enduml
 `;case`pano-nf`:return`@startuml
-title "NF 全景 · 全部 NF 链的极端场景单元"
+title "NF 环 · 全部 Feature-NNN-NF · 极端场景单元"
 top to bottom direction
 
 hide stereotype
@@ -186,7 +186,7 @@ rectangle "==NF-102 RAGFlow 超 8 秒时客户可感知\\n\\n场景：RAGFlow �
 rectangle "==NF-103 LLM 不可用时自动转人工\\n\\n场景：模型服务不可用。表现：生成人工工单并告知等待，不出现空白回复。角色：客户。" <<Feat_degrade_nfNf_llmDown>> as Feat_degrade_nfNf_llmDown
 @enduml
 `;case`pano-i`:return`@startuml
-title "I 全景 · 全部 Feature 的业务逻辑"
+title "I 环 · 全部 Feature · 业务目标与步骤"
 top to bottom direction
 
 hide stereotype
@@ -260,7 +260,7 @@ Feat_answer_fUs_lowConfidence .[#0ea5e9,thickness=2].> Feat_answer_fI_goal : <co
 Feat_degrade_nfUs_kbEmpty .[#0ea5e9,thickness=2].> Feat_degrade_nfI_goal : <color:#0ea5e9>落为业务目标
 @enduml
 `;case`pano-i-state`:return`@startuml
-title "I 环 · 业务状态全景"
+title "I 环 · 全部 Feature · 业务状态"
 top to bottom direction
 
 hide stereotype
@@ -312,7 +312,7 @@ Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_waitingHuman
 Feat_answer_fSt_waitingHuman .[#8D8D8D,thickness=2].> Feat_answer_fSt_answered : <color:#8D8D8D>人工已接管
 @enduml
 `;case`pano-ui`:return`@startuml
-title "UI 全景 · 全部 Feature 的界面面"
+title "UI 环 · 全部 Feature · 交互面与信息设计"
 top to bottom direction
 
 hide stereotype
@@ -392,8 +392,8 @@ Feat_knowledge_fUs_alertI_alert_reportUi_console .[#15803d,thickness=2].> Feat_k
 Feat_knowledge_fUs_alertI_alert_reportUi_information .[#15803d,thickness=2].> Feat_knowledge_fUs_alertI_alert_reportUi_console : <color:#15803d>触发扫描
 Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status .[#15803d,thickness=2].> Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice : <color:#15803d>提交发布判定
 @enduml
-`;case`panoSrc001F`:return`@startuml
-title "SRC 单元 · Feature-001-F"
+`;case`pano-src-001F`:return`@startuml
+title "SRC 环 · Feature-001-F · 代码结构"
 top to bottom direction
 
 hide stereotype
@@ -469,8 +469,8 @@ Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerLoop .[#15803d,thickness
 Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator .[#15803d,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService : <color:#15803d>低置信度时转人工
 Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService .[#15803d,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_informationSrc_store : <color:#15803d>持久化工单
 @enduml
-`;case`panoSrc001NF`:return`@startuml
-title "SRC 单元 · Feature-001-NF · 空库与探测"
+`;case`pano-src-001NF-empty`:return`@startuml
+title "SRC 环 · Feature-001-NF · 代码结构 · 空库与探测"
 top to bottom direction
 
 hide stereotype
@@ -518,8 +518,8 @@ rectangle "UI-101 控制台状态提示" <<Feat_degrade_nfUs_kbEmptyI_kb_renderU
 Feat_degrade_nfUs_kbEmptyI_kb_renderUi_statusSrc_integrationRoutes .[#15803d,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_statusSrc_knowledgeAlert : <color:#15803d>查询空库告警
 Feat_degrade_nfUs_kbEmptyI_kb_renderUi_statusSrc_integrationRoutes .[#15803d,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_statusSrc_ragflowProbe : <color:#15803d>探测数据集状态
 @enduml
-`;case`panoSrc001NFnotice`:return`@startuml
-title "SRC 单元 · Feature-001-NF · 场景提示"
+`;case`pano-src-001NF-notice`:return`@startuml
+title "SRC 环 · Feature-001-NF · 代码结构 · 场景提示"
 top to bottom direction
 
 hide stereotype
@@ -554,8 +554,8 @@ rectangle "UI-102 极端场景提示" <<Feat_degrade_nfUs_llmDownI_ll_notifyUi_n
 
 Feat_degrade_nfUs_llmDownI_ll_notifyUi_noticeSrc_evaluationGate .[#15803d,thickness=2].> Feat_degrade_nfUs_llmDownI_ll_notifyUi_noticeSrc_storeAlert : <color:#15803d>读取告警快照
 @enduml
-`;case`panoSrc002F`:return`@startuml
-title "SRC 单元 · Feature-002-F"
+`;case`pano-src-002F`:return`@startuml
+title "SRC 环 · Feature-002-F · 代码结构"
 top to bottom direction
 
 hide stereotype
@@ -646,7 +646,7 @@ Feat_knowledge_fUs_alertI_alert_reportUi_informationSrc_knowledgeSync .[#15803d,
 Feat_knowledge_fUs_alertI_alert_reportUi_informationSrc_lifecycle .[#15803d,thickness=2].> Feat_knowledge_fUs_alertI_alert_reportUi_informationSrc_documentRegistry : <color:#15803d>晋升或下线
 @enduml
 `;case`pano-carrier`:return`@startuml
-title "数据载体全景 · 全部 Feature"
+title "SRC 环 · 全部 Feature · 数据载体"
 top to bottom direction
 
 hide stereotype
@@ -807,7 +807,7 @@ Feat_degrade_nfCvt_probe .[#0ea5e9,thickness=2].> Feat_degrade_nfBiz_probeResult
 Feat_degrade_nfCvt_probe .[#0ea5e9,thickness=2].> Feat_degrade_nfPod_alert : <color:#0ea5e9>负责 BIZ-101→POD-101 映射
 @enduml
 `;case`pano-api`:return`@startuml
-title "API 全景 · 全部 Feature 的对外接口"
+title "SRC 环 · 全部 Feature · 对外接口"
 top to bottom direction
 
 hide stereotype
@@ -841,7 +841,7 @@ rectangle "==服务端接入泳道" <<Feat_knowledge_fLane_edge>> as Feat_knowle
 rectangle "==服务端接入泳道" <<Feat_degrade_nfLane_edge>> as Feat_degrade_nfLane_edge
 @enduml
 `;case`srcdir001F`:return`@startuml
-title "SRC 目录视图 · Feature-001-F"
+title "SRC 环 · Feature-001-F · 代码结构"
 top to bottom direction
 
 hide stereotype
@@ -918,7 +918,7 @@ Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator .[#15803d,t
 Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService .[#15803d,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_informationSrc_store : <color:#15803d>持久化工单
 @enduml
 `;case`srcdir001NF`:return`@startuml
-title "SRC 目录视图 · Feature-001-NF · 空库与探测"
+title "SRC 环 · Feature-001-NF · 代码结构 · 空库与探测"
 top to bottom direction
 
 hide stereotype
@@ -966,8 +966,8 @@ rectangle "UI-101 控制台状态提示" <<Feat_degrade_nfUs_kbEmptyI_kb_renderU
 Feat_degrade_nfUs_kbEmptyI_kb_renderUi_statusSrc_integrationRoutes .[#15803d,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_statusSrc_knowledgeAlert : <color:#15803d>查询空库告警
 Feat_degrade_nfUs_kbEmptyI_kb_renderUi_statusSrc_integrationRoutes .[#15803d,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_statusSrc_ragflowProbe : <color:#15803d>探测数据集状态
 @enduml
-`;case`srcdir001NFnotice`:return`@startuml
-title "SRC 目录视图 · Feature-001-NF · 场景提示"
+`;case`srcdir001NF-notice`:return`@startuml
+title "SRC 环 · Feature-001-NF · 代码结构 · 场景提示"
 top to bottom direction
 
 hide stereotype
@@ -1003,7 +1003,7 @@ rectangle "UI-102 极端场景提示" <<Feat_degrade_nfUs_llmDownI_ll_notifyUi_n
 Feat_degrade_nfUs_llmDownI_ll_notifyUi_noticeSrc_evaluationGate .[#15803d,thickness=2].> Feat_degrade_nfUs_llmDownI_ll_notifyUi_noticeSrc_storeAlert : <color:#15803d>读取告警快照
 @enduml
 `;case`carrier001F`:return`@startuml
-title "数据载体全景 · Feature-001-F"
+title "SRC 环 · Feature-001-F · 数据载体"
 top to bottom direction
 
 hide stereotype
@@ -1062,7 +1062,7 @@ Feat_answer_fCvt_normalize .[#0ea5e9,thickness=2].> Feat_answer_fIn_chatMessage 
 Feat_answer_fCvt_normalize .[#0ea5e9,thickness=2].> Feat_answer_fOut_answer : <color:#0ea5e9>负责 POD-001→OUT-001 映射
 @enduml
 `;case`carrier001NF`:return`@startuml
-title "数据载体全景 · Feature-001-NF"
+title "SRC 环 · Feature-001-NF · 数据载体"
 top to bottom direction
 
 hide stereotype
@@ -1120,8 +1120,8 @@ Feat_degrade_nfPod_alert .[#3b82f6,thickness=2].> Feat_degrade_nfDao_alert : <co
 Feat_degrade_nfCvt_probe .[#0ea5e9,thickness=2].> Feat_degrade_nfBiz_probeResult : <color:#0ea5e9>负责 BIZ-101→OUT-101 映射
 Feat_degrade_nfCvt_probe .[#0ea5e9,thickness=2].> Feat_degrade_nfPod_alert : <color:#0ea5e9>负责 BIZ-101→POD-101 映射
 @enduml
-`;case`erm001F`:return`@startuml
-title "数据模型全景 · Feature-001-F 工单结构"
+`;case`erm001F-ticket`:return`@startuml
+title "SRC 环 · Feature-001-F · 数据模型 · 工单"
 top to bottom direction
 
 hide stereotype
@@ -1150,8 +1150,8 @@ database "==DAO-001 本地存储访问\\n\\nsrc/domain/store.js — 工单与反
 
 Feat_answer_fPod_ticket .[#3b82f6,thickness=2].> Feat_answer_fDao_store : <color:#3b82f6>写入工单
 @enduml
-`;case`erm001NF`:return`@startuml
-title "数据模型全景 · Feature-001-NF 告警结构"
+`;case`erm001NF-alert`:return`@startuml
+title "SRC 环 · Feature-001-NF · 数据模型 · 告警"
 top to bottom direction
 
 hide stereotype
@@ -1180,8 +1180,8 @@ database "==DAO-101 告警存储访问\\n\\nsrc/domain/store.js — 告警与状
 
 Feat_degrade_nfPod_alert .[#3b82f6,thickness=2].> Feat_degrade_nfDao_alert : <color:#3b82f6>写入告警
 @enduml
-`;case`stateMain`:return`@startuml
-title "I 环 · 业务状态主干"
+`;case`chain001F-i-state-main`:return`@startuml
+title "I 环 · Feature-001-F · 业务状态 · 主干"
 top to bottom direction
 
 hide stereotype
@@ -1224,8 +1224,8 @@ Feat_answer_fSt_received .[#8D8D8D,thickness=2].> Feat_answer_fSt_retrieving : <
 Feat_answer_fSt_retrieving .[#8D8D8D,thickness=2].> Feat_answer_fSt_answering : <color:#8D8D8D>置信度达标
 Feat_answer_fSt_answering .[#8D8D8D,thickness=2].> Feat_answer_fSt_answered : <color:#8D8D8D>答复已下发
 @enduml
-`;case`stateBranchHuman`:return`@startuml
-title "I 环 · 业务状态分支 · 转人工"
+`;case`chain001F-i-state-branch-human`:return`@startuml
+title "I 环 · Feature-001-F · 业务状态 · 分支转人工"
 top to bottom direction
 
 hide stereotype
@@ -1289,7 +1289,7 @@ rectangle "==Feature-001-NF 极端场景保障\\n\\n按极端场景切分。交�
 rectangle "==Feature-002-F 知识运营能力\\n\\n按业务能力切分。交付边界：运营人员能把素材变成可检索知识，并能发现知识陈旧。所属愿景：让美妆咨询有据可依。" <<Feat_knowledge_f>> as Feat_knowledge_f
 @enduml
 `;case`chain001F-us`:return`@startuml
-title "US 视图 · Feature-001-F"
+title "US 环 · Feature-001-F · 用户故事"
 top to bottom direction
 
 hide stereotype
@@ -1323,7 +1323,7 @@ rectangle "Feature-001-F 知识应答能力" <<Feat_answer_f>> as Feat_answer_f 
 }
 @enduml
 `;case`chain001NF-us`:return`@startuml
-title "US 视图 · Feature-001-NF"
+title "US 环 · Feature-001-NF · 用户故事"
 top to bottom direction
 
 hide stereotype
@@ -1366,7 +1366,7 @@ Feat_degrade_nfUs_kbEmpty .[#15803d,thickness=2].> Feat_degrade_nfUs_llmDown : <
 Feat_degrade_nfUs_ragTimeout .[#0ea5e9,thickness=2].> Feat_degrade_nfUs_llmDown : <color:#0ea5e9>统一由提示环节下发
 @enduml
 `;case`chain001F-f`:return`@startuml
-title "能力清单 · Feature-001-F"
+title "F 环 · Feature-001-F · 业务能力单元清单"
 top to bottom direction
 
 hide stereotype
@@ -1415,7 +1415,7 @@ Feat_answer_fUs_ask .[#0ea5e9,thickness=2].> Feat_answer_fF_answer : <color:#0ea
 Feat_answer_fUs_lowConfidence .[#0ea5e9,thickness=2].> Feat_answer_fF_retrieval : <color:#0ea5e9>要求
 @enduml
 `;case`chain001NF-nf`:return`@startuml
-title "场景清单 · Feature-001-NF"
+title "NF 环 · Feature-001-NF · 极端场景单元清单"
 top to bottom direction
 
 hide stereotype
@@ -1479,7 +1479,7 @@ Feat_degrade_nfUs_ragTimeout .[#0ea5e9,thickness=2].> Feat_degrade_nfNf_ragTimeo
 Feat_degrade_nfUs_llmDown .[#0ea5e9,thickness=2].> Feat_degrade_nfNf_llmDown : <color:#0ea5e9>要求
 @enduml
 `;case`chain001F-i-goal`:return`@startuml
-title "I 环 · 业务目标 · Feature-001-F"
+title "I 环 · Feature-001-F · 业务目标"
 top to bottom direction
 
 hide stereotype
@@ -1501,7 +1501,7 @@ skinparam rectangle<<Feat_answer_fI_goal>>{
 rectangle "==I-101 业务目标\\n\\n客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。" <<Feat_answer_fI_goal>> as Feat_answer_fI_goal
 @enduml
 `;case`chain001F-i-step`:return`@startuml
-title "I 环 · 业务步骤 · Feature-001-F"
+title "I 环 · Feature-001-F · 业务步骤"
 top to bottom direction
 
 hide stereotype
@@ -1583,7 +1583,7 @@ rectangle "US-002 答不准时转人工而非硬答" <<Feat_answer_fUs_lowConfid
 }
 @enduml
 `;case`chain001NF-i-goal`:return`@startuml
-title "I 环 · 业务目标 · Feature-001-NF"
+title "I 环 · Feature-001-NF · 业务目标"
 top to bottom direction
 
 hide stereotype
@@ -1605,7 +1605,7 @@ skinparam rectangle<<Feat_degrade_nfI_goal>>{
 rectangle "==I-141 业务目标\\n\\n三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。" <<Feat_degrade_nfI_goal>> as Feat_degrade_nfI_goal
 @enduml
 `;case`chain001NF-i-step`:return`@startuml
-title "I 环 · 场景判定步骤 · Feature-001-NF"
+title "I 环 · Feature-001-NF · 场景判定步骤"
 top to bottom direction
 
 hide stereotype
@@ -1696,7 +1696,7 @@ Feat_degrade_nfUs_kbEmptyI_kb_render .[#15803d,thickness=2].> Feat_degrade_nfUs_
 Feat_degrade_nfUs_ragTimeout .[#0ea5e9,thickness=2].> Feat_degrade_nfUs_llmDownI_ll_notify : <color:#0ea5e9>统一由提示环节下发
 @enduml
 `;case`chain001F-ui`:return`@startuml
-title "UI 环 · Feature-001-F"
+title "UI 环 · Feature-001-F · 交互面与信息设计"
 top to bottom direction
 
 hide stereotype
@@ -1732,7 +1732,7 @@ rectangle "I-006 下发答复" <<Feat_answer_fUs_askI_ask_deliver>> as Feat_answ
 Feat_answer_fUs_askI_ask_deliverUi_interaction .[#15803d,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_information : <color:#15803d>持久化工单
 @enduml
 `;case`chain001NF-ui`:return`@startuml
-title "UI 环 · Feature-001-NF · 空库提示"
+title "UI 环 · Feature-001-NF · 交互面 · 空库提示"
 top to bottom direction
 
 hide stereotype
@@ -1759,8 +1759,8 @@ rectangle "I-113 渲染空库提示" <<Feat_degrade_nfUs_kbEmptyI_kb_render>> as
   rectangle "==UI-101 控制台状态提示\\n\\n展示知识条目数与集成状态；空态显式提示「尚未入库」而非空白。" <<Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status>> as Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status
 }
 @enduml
-`;case`chain001NF-uiNotice`:return`@startuml
-title "UI 环 · Feature-001-NF · 场景提示"
+`;case`chain001NF-ui-notice`:return`@startuml
+title "UI 环 · Feature-001-NF · 交互面 · 场景提示"
 top to bottom direction
 
 hide stereotype
@@ -1788,7 +1788,7 @@ rectangle "I-133 告知等待人工" <<Feat_degrade_nfUs_llmDownI_ll_notify>> as
 }
 @enduml
 `;case`chain002F-us`:return`@startuml
-title "US 视图 · Feature-002-F"
+title "US 环 · Feature-002-F · 用户故事"
 top to bottom direction
 
 hide stereotype
@@ -1831,7 +1831,7 @@ Feat_knowledge_fUs_scan .[#0ea5e9,thickness=2].> Feat_knowledge_fUs_govern : <co
 Feat_knowledge_fUs_govern .[#0ea5e9,thickness=2].> Feat_knowledge_fUs_alert : <color:#0ea5e9>晋升后进入新鲜度巡检
 @enduml
 `;case`chain002F-f`:return`@startuml
-title "能力清单 · Feature-002-F"
+title "F 环 · Feature-002-F · 业务能力单元清单"
 top to bottom direction
 
 hide stereotype
@@ -1889,7 +1889,7 @@ Feat_knowledge_fUs_govern .[#0ea5e9,thickness=2].> Feat_knowledge_fF_govern : <c
 Feat_knowledge_fUs_alert .[#0ea5e9,thickness=2].> Feat_knowledge_fF_govern : <color:#0ea5e9>要求
 @enduml
 `;case`chain002F-i-goal`:return`@startuml
-title "I 环 · 业务目标 · Feature-002-F"
+title "I 环 · Feature-002-F · 业务目标"
 top to bottom direction
 
 hide stereotype
@@ -1911,7 +1911,7 @@ skinparam rectangle<<Feat_knowledge_fI_goal>>{
 rectangle "==I-201 业务目标\\n\\n素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。" <<Feat_knowledge_fI_goal>> as Feat_knowledge_fI_goal
 @enduml
 `;case`chain002F-i-step`:return`@startuml
-title "I 环 · 业务步骤 · Feature-002-F"
+title "I 环 · Feature-002-F · 业务步骤"
 top to bottom direction
 
 hide stereotype
@@ -2002,7 +2002,7 @@ Feat_knowledge_fUs_scanI_scan_submit .[#0ea5e9,thickness=2].> Feat_knowledge_fUs
 Feat_knowledge_fUs_governI_gov_promote .[#0ea5e9,thickness=2].> Feat_knowledge_fUs_alertI_alert_judge : <color:#0ea5e9>晋升后进入新鲜度巡检
 @enduml
 `;case`chain002F-ui`:return`@startuml
-title "UI 环 · Feature-002-F"
+title "UI 环 · Feature-002-F · 交互面与信息设计"
 top to bottom direction
 
 hide stereotype
@@ -2039,7 +2039,7 @@ Feat_knowledge_fUs_alertI_alert_reportUi_console .[#15803d,thickness=2].> Feat_k
 Feat_knowledge_fUs_alertI_alert_reportUi_information .[#15803d,thickness=2].> Feat_knowledge_fUs_alertI_alert_reportUi_console : <color:#15803d>触发扫描
 @enduml
 `;case`srcdir002F`:return`@startuml
-title "SRC 目录视图 · Feature-002-F"
+title "SRC 环 · Feature-002-F · 代码结构"
 top to bottom direction
 
 hide stereotype
@@ -2130,7 +2130,7 @@ Feat_knowledge_fUs_alertI_alert_reportUi_informationSrc_knowledgeSync .[#15803d,
 Feat_knowledge_fUs_alertI_alert_reportUi_informationSrc_lifecycle .[#15803d,thickness=2].> Feat_knowledge_fUs_alertI_alert_reportUi_informationSrc_documentRegistry : <color:#15803d>晋升或下线
 @enduml
 `;case`carrier002F`:return`@startuml
-title "数据载体全景 · Feature-002-F"
+title "SRC 环 · Feature-002-F · 数据载体"
 top to bottom direction
 
 hide stereotype
@@ -2188,8 +2188,8 @@ Feat_knowledge_fDao_registry .[#3b82f6,thickness=2].> Feat_knowledge_fOut_knowle
 Feat_knowledge_fCvt_material .[#0ea5e9,thickness=2].> Feat_knowledge_fBiz_candidate : <color:#0ea5e9>负责 素材→BIZ-201 映射
 Feat_knowledge_fCvt_material .[#0ea5e9,thickness=2].> Feat_knowledge_fPod_document : <color:#0ea5e9>负责 BIZ-201→POD-201 映射
 @enduml
-`;case`erm002F`:return`@startuml
-title "数据模型全景 · Feature-002-F 文档结构"
+`;case`erm002F-document`:return`@startuml
+title "SRC 环 · Feature-002-F · 数据模型 · 文档"
 top to bottom direction
 
 hide stereotype
@@ -2219,7 +2219,7 @@ database "==DAO-201 文档登记访问\\n\\nsrc/domain/store.js — 素材与文
 Feat_knowledge_fPod_document .[#3b82f6,thickness=2].> Feat_knowledge_fDao_registry : <color:#3b82f6>写入文档标识
 @enduml
 `;case`api002F`:return`@startuml
-title "API 清单 · Feature-002-F"
+title "SRC 环 · Feature-002-F · 对外接口"
 top to bottom direction
 
 hide stereotype
@@ -2241,7 +2241,7 @@ skinparam rectangle<<Feat_knowledge_fLane_edge>>{
 rectangle "==服务端接入泳道" <<Feat_knowledge_fLane_edge>> as Feat_knowledge_fLane_edge
 @enduml
 `;case`seq001F-answer`:return`@startuml
-title "Feature-001-F 主干时序 · 客户提问到答复"
+title "SRC 环 · Feature-001-F · 应答主干时序"
 left to right direction
 
 hide stereotype
@@ -2265,22 +2265,7 @@ skinparam rectangle<<Feat_answer_fLane_edgeApi_chatCallback>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_answer_fLane_coreStep_answerLane>>{
-  BackgroundColor #3b82f6
-  FontColor #eff6ff
-  BorderColor #2563eb
-}
-skinparam rectangle<<Feat_answer_fLane_extExt_ragflow>>{
-  BackgroundColor #3b82f6
-  FontColor #eff6ff
-  BorderColor #2563eb
-}
 skinparam component<<Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator>>{
-  BackgroundColor #3b82f6
-  FontColor #eff6ff
-  BorderColor #2563eb
-}
-skinparam component<<Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
@@ -2290,31 +2275,33 @@ skinparam component<<Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKn
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam component<<Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService>>{
+skinparam rectangle<<Feat_answer_fLane_extExt_ragflow>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam component<<Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
 person "==客户" <<Feat_answer_fLane_clientActor_customer>> as Feat_answer_fLane_clientActor_customer
 rectangle "==API-001 POST /wechat/callback 微信客服回调\\n\\nsrc/routes/wechat-kf-routes.js:12 — 接收企业微信加密回调。" <<Feat_answer_fLane_edgeApi_chatCallback>> as Feat_answer_fLane_edgeApi_chatCallback
-rectangle "==I-201 应答编排（泳道引用）\\n\\n泳道中的编排环节，具体步骤见 US-001 容器下的 I-001~I-006。" <<Feat_answer_fLane_coreStep_answerLane>> as Feat_answer_fLane_coreStep_answerLane
-rectangle "==RAGFlow\\n\\n检索与知识库服务。" <<Feat_answer_fLane_extExt_ragflow>> as Feat_answer_fLane_extExt_ragflow
 component "==SRC-002 应答编排器\\n\\nsrc/services/answer-orchestrator.js — 决定自动应答或转人工。" <<Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator>> as Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator
-component "==SRC-004 回复策略\\n\\nsrc/services/reply-policy-service.js — 置信度与风险阈值判定。" <<Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy>> as Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy
 component "==SRC-005 RAGFlow 知识检索\\n\\nsrc/services/ragflow-knowledge-service.js — 检索与数据集访问。" <<Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge>> as Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge
-component "==SRC-006 转人工服务\\n\\nsrc/services/handoff-service.js — 创建并跟踪人工工单。" <<Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService>> as Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService
+rectangle "==RAGFlow\\n\\n检索与知识库服务。" <<Feat_answer_fLane_extExt_ragflow>> as Feat_answer_fLane_extExt_ragflow
+component "==SRC-004 回复策略\\n\\nsrc/services/reply-policy-service.js — 置信度与风险阈值判定。" <<Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy>> as Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy
 
 Feat_answer_fLane_clientActor_customer .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>企业微信提问
 Feat_answer_fLane_edgeApi_chatCallback .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator : <color:#8D8D8D>分发归一化消息
-Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator .[#8D8D8D,thickness=2].> Feat_answer_fLane_coreStep_answerLane : <color:#8D8D8D>请求应答
-Feat_answer_fLane_coreStep_answerLane .[#8D8D8D,thickness=2].> Feat_answer_fLane_extExt_ragflow : <color:#8D8D8D>检索候选知识
-Feat_answer_fLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_answer_fLane_coreStep_answerLane : <color:#8D8D8D>返回候选知识
-Feat_answer_fLane_coreStep_answerLane .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy : <color:#8D8D8D>校验置信度
-Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy .[#8D8D8D,thickness=2].> Feat_answer_fLane_coreStep_answerLane : <color:#8D8D8D>达标放行
-Feat_answer_fLane_coreStep_answerLane .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>返回答复
+Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge : <color:#8D8D8D>检索候选知识
+Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge .[#8D8D8D,thickness=2].> Feat_answer_fLane_extExt_ragflow : <color:#8D8D8D>请求 RAGFlow
+Feat_answer_fLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge : <color:#8D8D8D>返回候选知识
+Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy : <color:#8D8D8D>校验置信度
+Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>达标放行并返回答复
 @enduml
 `;case`seq001F-branch-low-confidence-src`:return`@startuml
-title "SRC · 分支时序 · Feature-001-F · 置信度不足转人工"
+title "SRC 环 · Feature-001-F · 分支时序 · 置信度不足转人工"
 left to right direction
 
 hide stereotype
@@ -2358,7 +2345,7 @@ Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator .[#15803d,t
 Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService .[#15803d,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_informationSrc_store : <color:#15803d>持久化工单
 @enduml
 `;case`dfd001F-answer`:return`@startuml
-title "DFD 全景 · Feature-001-F 应答数据流"
+title "SRC 环 · Feature-001-F · 数据流 · 应答"
 left to right direction
 
 hide stereotype
@@ -2423,7 +2410,7 @@ Feat_answer_fDao_store .[#3b82f6,thickness=2].> Feat_answer_fOut_answer : <color
 Feat_answer_fOut_answer .[#3b82f6,thickness=2].> Feat_answer_fUs_askI_ask_deliverUi_information : <color:#3b82f6>渲染答复
 @enduml
 `;case`seq001NF-degrade`:return`@startuml
-title "Feature-001-NF 主干时序 · 场景判定与提示"
+title "SRC 环 · Feature-001-NF · 场景判定时序"
 left to right direction
 
 hide stereotype
@@ -2447,7 +2434,7 @@ skinparam rectangle<<Feat_degrade_nfLane_edgeApi_status>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_degrade_nfLane_coreStep_probeLane>>{
+skinparam rectangle<<Feat_degrade_nfUs_kbEmptyI_kb_count>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
@@ -2464,19 +2451,19 @@ skinparam rectangle<<Feat_degrade_nfUs_llmDownI_ll_notify>>{
 }
 person "==运营人员" <<Feat_degrade_nfLane_operatorActor_ops>> as Feat_degrade_nfLane_operatorActor_ops
 rectangle "==API-101 GET /integration/status 集成状态\\n\\nsrc/routes/integration-routes.js:7 — 查询集成状态与知识条目数。" <<Feat_degrade_nfLane_edgeApi_status>> as Feat_degrade_nfLane_edgeApi_status
-rectangle "==I-151 场景判定（泳道引用）\\n\\n泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。" <<Feat_degrade_nfLane_coreStep_probeLane>> as Feat_degrade_nfLane_coreStep_probeLane
+rectangle "==I-111 读取条目数\\n\\n从文档登记簿读取当前知识条目数，不做过滤。" <<Feat_degrade_nfUs_kbEmptyI_kb_count>> as Feat_degrade_nfUs_kbEmptyI_kb_count
 rectangle "==RAGFlow\\n\\n检索与知识库服务，超时或不可用即触发本链场景。" <<Feat_degrade_nfLane_extExt_ragflow>> as Feat_degrade_nfLane_extExt_ragflow
 rectangle "==I-133 告知等待人工\\n\\n在会话中告知已转人工，不返回空白内容。" <<Feat_degrade_nfUs_llmDownI_ll_notify>> as Feat_degrade_nfUs_llmDownI_ll_notify
 
 Feat_degrade_nfLane_operatorActor_ops .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_edgeApi_status : <color:#8D8D8D>查询集成状态
-Feat_degrade_nfLane_edgeApi_status .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_coreStep_probeLane : <color:#8D8D8D>发起探测
-Feat_degrade_nfLane_coreStep_probeLane .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_extExt_ragflow : <color:#8D8D8D>探测数据集可用性
-Feat_degrade_nfLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_coreStep_probeLane : <color:#8D8D8D>返回探测结论
-Feat_degrade_nfLane_coreStep_probeLane .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_llmDownI_ll_notify : <color:#8D8D8D>提交发布判定并下发提示
+Feat_degrade_nfLane_edgeApi_status .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_count : <color:#8D8D8D>发起探测
+Feat_degrade_nfUs_kbEmptyI_kb_count .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_extExt_ragflow : <color:#8D8D8D>探测数据集可用性
+Feat_degrade_nfLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_count : <color:#8D8D8D>返回探测结论
+Feat_degrade_nfUs_kbEmptyI_kb_count .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_llmDownI_ll_notify : <color:#8D8D8D>提交发布判定并下发提示
 Feat_degrade_nfUs_llmDownI_ll_notify .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_operatorActor_ops : <color:#8D8D8D>告知客户
 @enduml
 `;case`dfd001NF-probe`:return`@startuml
-title "DFD 全景 · Feature-001-NF 探测数据流"
+title "SRC 环 · Feature-001-NF · 数据流 · 探测"
 left to right direction
 
 hide stereotype
@@ -2541,7 +2528,7 @@ Feat_degrade_nfBiz_probeResult .[#64748b,thickness=2].> Feat_degrade_nfPod_alert
 Feat_degrade_nfPod_alert .[#3b82f6,thickness=2].> Feat_degrade_nfDao_alert : <color:#3b82f6>写入告警
 @enduml
 `;case`seq001F-i-step-lanes`:return`@startuml
-title "I 环 · 业务步骤泳道流程 · Feature-001-F"
+title "I 环 · Feature-001-F · 业务步骤泳道流程"
 left to right direction
 
 hide stereotype
@@ -2623,7 +2610,7 @@ Feat_answer_fUs_askI_ask_deliver .[#8D8D8D,thickness=2].> Feat_answer_fLane_edge
 Feat_answer_fLane_edgeApi_chatCallback .[#8D8D8D,thickness=2].> Feat_answer_fLane_clientActor_customer : <color:#8D8D8D>⑪答复送达
 @enduml
 `;case`seq001F-branch-low-confidence`:return`@startuml
-title "I 环 · 分支泳道流程 · Feature-001-F · 置信度不足"
+title "I 环 · Feature-001-F · 分支泳道流程 · 置信度不足"
 left to right direction
 
 hide stereotype
@@ -2674,7 +2661,7 @@ Feat_answer_fUs_lowConfidenceI_lowTicket .[#8D8D8D,thickness=2].> Feat_answer_fU
 Feat_answer_fUs_lowConfidenceI_lowNotify .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>回复会话
 @enduml
 `;case`seq001NF-i-step-lanes`:return`@startuml
-title "I 环 · 场景判定泳道流程 · Feature-001-NF"
+title "I 环 · Feature-001-NF · 场景判定泳道流程"
 left to right direction
 
 hide stereotype
@@ -2698,7 +2685,7 @@ skinparam rectangle<<Feat_degrade_nfLane_edgeApi_status>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_degrade_nfLane_coreStep_probeLane>>{
+skinparam rectangle<<Feat_degrade_nfUs_kbEmptyI_kb_count>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
@@ -2720,20 +2707,20 @@ skinparam rectangle<<Feat_degrade_nfUs_llmDownI_ll_detect>>{
 }
 person "==运营人员" <<Feat_degrade_nfLane_operatorActor_ops>> as Feat_degrade_nfLane_operatorActor_ops
 rectangle "==API-101 GET /integration/status 集成状态\\n\\nsrc/routes/integration-routes.js:7 — 查询集成状态与知识条目数。" <<Feat_degrade_nfLane_edgeApi_status>> as Feat_degrade_nfLane_edgeApi_status
-rectangle "==I-151 场景判定（泳道引用）\\n\\n泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。" <<Feat_degrade_nfLane_coreStep_probeLane>> as Feat_degrade_nfLane_coreStep_probeLane
+rectangle "==I-111 读取条目数\\n\\n从文档登记簿读取当前知识条目数，不做过滤。" <<Feat_degrade_nfUs_kbEmptyI_kb_count>> as Feat_degrade_nfUs_kbEmptyI_kb_count
 rectangle "==I-112 判定零条场景\\n\\n条目数为 0 时判定为空库场景，标记需先补素材。" <<Feat_degrade_nfUs_kbEmptyI_kb_judge>> as Feat_degrade_nfUs_kbEmptyI_kb_judge
 rectangle "==I-122 判定超时\\n\\n计时到期仍未返回候选知识时判定超时场景。" <<Feat_degrade_nfUs_ragTimeoutI_to_check>> as Feat_degrade_nfUs_ragTimeoutI_to_check
 rectangle "==I-131 判定调用结果\\n\\n识别模型服务调用失败或返回异常。" <<Feat_degrade_nfUs_llmDownI_ll_detect>> as Feat_degrade_nfUs_llmDownI_ll_detect
 
 Feat_degrade_nfLane_operatorActor_ops .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_edgeApi_status : <color:#8D8D8D>①查询状态
-Feat_degrade_nfLane_edgeApi_status .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_coreStep_probeLane : <color:#8D8D8D>②发起探测
-Feat_degrade_nfLane_coreStep_probeLane .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_judge : <color:#8D8D8D>③判定条目数
+Feat_degrade_nfLane_edgeApi_status .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_count : <color:#8D8D8D>②发起探测
+Feat_degrade_nfUs_kbEmptyI_kb_count .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_judge : <color:#8D8D8D>③判定条目数
 Feat_degrade_nfUs_kbEmptyI_kb_judge .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_ragTimeoutI_to_check : <color:#8D8D8D>④判定响应耗时
 Feat_degrade_nfUs_ragTimeoutI_to_check .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_llmDownI_ll_detect : <color:#8D8D8D>⑤判定模型可用性
 Feat_degrade_nfUs_llmDownI_ll_detect .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_operatorActor_ops : <color:#8D8D8D>⑥下发提示或转人工
 @enduml
 `;case`seq001F-api-chat`:return`@startuml
-title "API 泳道时序 · Feature-001-F 提交提问"
+title "SRC 环 · Feature-001-F · 接口泳道时序 · 提交提问"
 left to right direction
 
 hide stereotype
@@ -2757,7 +2744,7 @@ skinparam rectangle<<Feat_answer_fLane_edgeApi_chatCallback>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_answer_fLane_coreStep_answerLane>>{
+skinparam rectangle<<Feat_answer_fUs_askI_ask_deliver>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
@@ -2769,17 +2756,17 @@ skinparam rectangle<<Feat_answer_fLane_extExt_ragflow>>{
 }
 person "==客户" <<Feat_answer_fLane_clientActor_customer>> as Feat_answer_fLane_clientActor_customer
 rectangle "==API-001 POST /wechat/callback 微信客服回调\\n\\nsrc/routes/wechat-kf-routes.js:12 — 接收企业微信加密回调。" <<Feat_answer_fLane_edgeApi_chatCallback>> as Feat_answer_fLane_edgeApi_chatCallback
-rectangle "==I-201 应答编排（泳道引用）\\n\\n泳道中的编排环节，具体步骤见 US-001 容器下的 I-001~I-006。" <<Feat_answer_fLane_coreStep_answerLane>> as Feat_answer_fLane_coreStep_answerLane
+rectangle "==I-006 下发答复\\n\\n把答复通过企业微信会话回传给客户，完成本次闭环。" <<Feat_answer_fUs_askI_ask_deliver>> as Feat_answer_fUs_askI_ask_deliver
 rectangle "==RAGFlow\\n\\n检索与知识库服务。" <<Feat_answer_fLane_extExt_ragflow>> as Feat_answer_fLane_extExt_ragflow
 
 Feat_answer_fLane_clientActor_customer .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>POST /wechat/callback
-Feat_answer_fLane_edgeApi_chatCallback .[#8D8D8D,thickness=2].> Feat_answer_fLane_coreStep_answerLane : <color:#8D8D8D>触发应答
-Feat_answer_fLane_coreStep_answerLane .[#8D8D8D,thickness=2].> Feat_answer_fLane_extExt_ragflow : <color:#8D8D8D>检索知识
-Feat_answer_fLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_answer_fLane_coreStep_answerLane : <color:#8D8D8D>返回候选知识
-Feat_answer_fLane_coreStep_answerLane .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>返回答复
+Feat_answer_fLane_edgeApi_chatCallback .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_deliver : <color:#8D8D8D>触发应答
+Feat_answer_fUs_askI_ask_deliver .[#8D8D8D,thickness=2].> Feat_answer_fLane_extExt_ragflow : <color:#8D8D8D>检索知识
+Feat_answer_fLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_ask_deliver : <color:#8D8D8D>返回候选知识
+Feat_answer_fUs_askI_ask_deliver .[#8D8D8D,thickness=2].> Feat_answer_fLane_edgeApi_chatCallback : <color:#8D8D8D>返回答复
 @enduml
 `;case`seq001NF-api-status`:return`@startuml
-title "API 泳道时序 · Feature-001-NF 查询集成状态"
+title "SRC 环 · Feature-001-NF · 接口泳道时序 · 查询集成状态"
 left to right direction
 
 hide stereotype
@@ -2803,7 +2790,7 @@ skinparam rectangle<<Feat_degrade_nfLane_edgeApi_status>>{
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_degrade_nfLane_coreStep_probeLane>>{
+skinparam rectangle<<Feat_degrade_nfUs_kbEmptyI_kb_count>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
@@ -2815,12 +2802,12 @@ skinparam rectangle<<Feat_degrade_nfLane_extExt_ragflow>>{
 }
 person "==运营人员" <<Feat_degrade_nfLane_operatorActor_ops>> as Feat_degrade_nfLane_operatorActor_ops
 rectangle "==API-101 GET /integration/status 集成状态\\n\\nsrc/routes/integration-routes.js:7 — 查询集成状态与知识条目数。" <<Feat_degrade_nfLane_edgeApi_status>> as Feat_degrade_nfLane_edgeApi_status
-rectangle "==I-151 场景判定（泳道引用）\\n\\n泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。" <<Feat_degrade_nfLane_coreStep_probeLane>> as Feat_degrade_nfLane_coreStep_probeLane
+rectangle "==I-111 读取条目数\\n\\n从文档登记簿读取当前知识条目数，不做过滤。" <<Feat_degrade_nfUs_kbEmptyI_kb_count>> as Feat_degrade_nfUs_kbEmptyI_kb_count
 rectangle "==RAGFlow\\n\\n检索与知识库服务，超时或不可用即触发本链场景。" <<Feat_degrade_nfLane_extExt_ragflow>> as Feat_degrade_nfLane_extExt_ragflow
 
 Feat_degrade_nfLane_operatorActor_ops .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_edgeApi_status : <color:#8D8D8D>GET /integration/status
-Feat_degrade_nfLane_edgeApi_status .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_coreStep_probeLane : <color:#8D8D8D>发起探测
-Feat_degrade_nfLane_coreStep_probeLane .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_extExt_ragflow : <color:#8D8D8D>探测数据集
-Feat_degrade_nfLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_coreStep_probeLane : <color:#8D8D8D>返回结论
+Feat_degrade_nfLane_edgeApi_status .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_count : <color:#8D8D8D>发起探测
+Feat_degrade_nfUs_kbEmptyI_kb_count .[#8D8D8D,thickness=2].> Feat_degrade_nfLane_extExt_ragflow : <color:#8D8D8D>探测数据集
+Feat_degrade_nfLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_kb_count : <color:#8D8D8D>返回结论
 @enduml
 `;default:throw Error(`Unknown viewId: `+e)}};export{e as pumlSource};

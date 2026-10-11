@@ -1,13 +1,13 @@
-var e=e=>{switch(e){case`procLocal`:return`---
-title: "进程与线程视图 · 本地开发环境"
+var e=e=>{switch(e){case`proc-local`:return`---
+title: "构建部署 · 本地开发环境 · 进程与线程"
 ---
 graph TB
-`;case`procProd`:return`---
-title: "进程与线程视图 · 生产环境"
+`;case`proc-prod`:return`---
+title: "构建部署 · 生产环境 · 进程与线程"
 ---
 graph TB
 `;case`pano-us`:return`---
-title: "US 全景 · 全部 Feature"
+title: "US 环 · 全部 Feature · 用户故事"
 ---
 graph TB
   Feat_answer_fUs_ask@{ shape: doc, label: "US-001 客户提问获得专业答复" }
@@ -27,7 +27,7 @@ graph TB
   Feat_degrade_nf.Us_kbEmpty -. "\`提交发布判定\`" .-> Feat_degrade_nf.Us_llmDown
   Feat_degrade_nf.Us_ragTimeout -. "\`统一由提示环节下发\`" .-> Feat_degrade_nf.Us_llmDown
 `;case`pano-f`:return`---
-title: "F 全景 · 全部 F 链的能力单元"
+title: "F 环 · 全部 Feature-NNN-F · 业务能力单元"
 ---
 graph TB
   Feat_answer_fF_answer@{ shape: rectangle, label: "F-001 应答编排能力" }
@@ -35,14 +35,14 @@ graph TB
   Feat_knowledge_fF_ingest@{ shape: rectangle, label: "F-201 素材接入能力" }
   Feat_knowledge_fF_govern@{ shape: rectangle, label: "F-202 知识治理能力" }
 `;case`pano-nf`:return`---
-title: "NF 全景 · 全部 NF 链的极端场景单元"
+title: "NF 环 · 全部 Feature-NNN-NF · 极端场景单元"
 ---
 graph TB
   Feat_degrade_nfNf_kbEmpty@{ shape: rounded, label: "NF-101 知识库为零条时状态可见" }
   Feat_degrade_nfNf_ragTimeout@{ shape: rounded, label: "NF-102 RAGFlow 超 8 秒时客户可感知" }
   Feat_degrade_nfNf_llmDown@{ shape: rounded, label: "NF-103 LLM 不可用时自动转人工" }
 `;case`pano-i`:return`---
-title: "I 全景 · 全部 Feature 的业务逻辑"
+title: "I 环 · 全部 Feature · 业务目标与步骤"
 ---
 graph TB
   subgraph Feat_answer_f["\`Feature-001-F 知识应答能力\`"]
@@ -60,7 +60,7 @@ graph TB
   Feat_answer_f.Us_lowConfidence -. "\`落为业务目标\`" .-> Feat_answer_f.I_goal
   Feat_degrade_nf.Us_kbEmpty -. "\`落为业务目标\`" .-> Feat_degrade_nf.I_goal
 `;case`pano-i-state`:return`---
-title: "I 环 · 业务状态全景"
+title: "I 环 · 全部 Feature · 业务状态"
 ---
 graph TB
   Feat_answer_fSt_received@{ shape: rectangle, label: "已接收" }
@@ -74,7 +74,7 @@ graph TB
   Feat_answer_fSt_retrieving -. "\`置信度不足\`" .-> Feat_answer_fSt_waitingHuman
   Feat_answer_fSt_waitingHuman -. "\`人工已接管\`" .-> Feat_answer_fSt_answered
 `;case`pano-ui`:return`---
-title: "UI 全景 · 全部 Feature 的界面面"
+title: "UI 环 · 全部 Feature · 交互面与信息设计"
 ---
 graph TB
   subgraph Feat_answer_fUs_askI_ask_deliver["\`I-006 下发答复\`"]
@@ -95,8 +95,8 @@ graph TB
   Feat_knowledge_fUs_alertI_alert_report.Ui_console -. "\`[...]\`" .-> Feat_knowledge_fUs_alertI_alert_report.Ui_information
   Feat_knowledge_fUs_alertI_alert_report.Ui_information -. "\`触发扫描\`" .-> Feat_knowledge_fUs_alertI_alert_report.Ui_console
   Feat_degrade_nfUs_kbEmpty.I_kb_renderUi_status -. "\`提交发布判定\`" .-> Feat_degrade_nfUs_llmDown.I_ll_notifyUi_notice
-`;case`panoSrc001F`:return`---
-title: "SRC 单元 · Feature-001-F"
+`;case`pano-src-001F`:return`---
+title: "SRC 环 · Feature-001-F · 代码结构"
 ---
 graph TB
   subgraph Feat_answer_fUs_askI_ask_deliverUi_interaction["\`UI-001 企业微信会话交互\`"]
@@ -116,8 +116,8 @@ graph TB
   Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_answerLoop -. "\`检索候选知识\`" .-> Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_ragflowKnowledge
   Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_answerOrchestrator -. "\`低置信度时转人工\`" .-> Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_handoffService
   Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_handoffService -. "\`持久化工单\`" .-> Feat_answer_fUs_askI_ask_deliverUi_information.Src_store
-`;case`panoSrc001NF`:return`---
-title: "SRC 单元 · Feature-001-NF · 空库与探测"
+`;case`pano-src-001NF-empty`:return`---
+title: "SRC 环 · Feature-001-NF · 代码结构 · 空库与探测"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status["\`UI-101 控制台状态提示\`"]
@@ -128,8 +128,8 @@ graph TB
   end
   Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_integrationRoutes -. "\`查询空库告警\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_knowledgeAlert
   Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_integrationRoutes -. "\`探测数据集状态\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_ragflowProbe
-`;case`panoSrc001NFnotice`:return`---
-title: "SRC 单元 · Feature-001-NF · 场景提示"
+`;case`pano-src-001NF-notice`:return`---
+title: "SRC 环 · Feature-001-NF · 代码结构 · 场景提示"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice["\`UI-102 极端场景提示\`"]
@@ -137,8 +137,8 @@ graph TB
     Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice.Src_storeAlert@{ shape: rectangle, label: "SRC-106 告警状态存储" }
   end
   Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice.Src_evaluationGate -. "\`读取告警快照\`" .-> Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice.Src_storeAlert
-`;case`panoSrc002F`:return`---
-title: "SRC 单元 · Feature-002-F"
+`;case`pano-src-002F`:return`---
+title: "SRC 环 · Feature-002-F · 代码结构"
 ---
 graph TB
   subgraph Feat_knowledge_fUs_alertI_alert_reportUi_information["\`UI-202 知识运营信息设计\`"]
@@ -163,7 +163,7 @@ graph TB
   Feat_knowledge_fUs_alertI_alert_reportUi_information.Src_knowledgeSync -. "\`更新生命周期\`" .-> Feat_knowledge_fUs_alertI_alert_reportUi_information.Src_lifecycle
   Feat_knowledge_fUs_alertI_alert_reportUi_information.Src_lifecycle -. "\`晋升或下线\`" .-> Feat_knowledge_fUs_alertI_alert_reportUi_information.Src_documentRegistry
 `;case`pano-carrier`:return`---
-title: "数据载体全景 · 全部 Feature"
+title: "SRC 环 · 全部 Feature · 数据载体"
 ---
 graph TB
   subgraph Feat_answer_f["\`Feature-001-F 知识应答能力\`"]
@@ -209,14 +209,14 @@ graph TB
   Feat_degrade_nf.Cvt_probe -. "\`负责 BIZ-101→OUT-101 映射\`" .-> Feat_degrade_nf.Biz_probeResult
   Feat_degrade_nf.Cvt_probe -. "\`负责 BIZ-101→POD-101 映射\`" .-> Feat_degrade_nf.Pod_alert
 `;case`pano-api`:return`---
-title: "API 全景 · 全部 Feature 的对外接口"
+title: "SRC 环 · 全部 Feature · 对外接口"
 ---
 graph TB
   Feat_answer_fLane_edge@{ shape: rectangle, label: "服务端接入泳道" }
   Feat_knowledge_fLane_edge@{ shape: rectangle, label: "服务端接入泳道" }
   Feat_degrade_nfLane_edge@{ shape: rectangle, label: "服务端接入泳道" }
 `;case`srcdir001F`:return`---
-title: "SRC 目录视图 · Feature-001-F"
+title: "SRC 环 · Feature-001-F · 代码结构"
 ---
 graph TB
   subgraph Feat_answer_fUs_askI_ask_deliverUi_interaction["\`UI-001 企业微信会话交互\`"]
@@ -237,7 +237,7 @@ graph TB
   Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_answerOrchestrator -. "\`低置信度时转人工\`" .-> Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_handoffService
   Feat_answer_fUs_askI_ask_deliverUi_interaction.Src_handoffService -. "\`持久化工单\`" .-> Feat_answer_fUs_askI_ask_deliverUi_information.Src_store
 `;case`srcdir001NF`:return`---
-title: "SRC 目录视图 · Feature-001-NF · 空库与探测"
+title: "SRC 环 · Feature-001-NF · 代码结构 · 空库与探测"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status["\`UI-101 控制台状态提示\`"]
@@ -248,8 +248,8 @@ graph TB
   end
   Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_integrationRoutes -. "\`查询空库告警\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_knowledgeAlert
   Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_integrationRoutes -. "\`探测数据集状态\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_renderUi_status.Src_ragflowProbe
-`;case`srcdir001NFnotice`:return`---
-title: "SRC 目录视图 · Feature-001-NF · 场景提示"
+`;case`srcdir001NF-notice`:return`---
+title: "SRC 环 · Feature-001-NF · 代码结构 · 场景提示"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice["\`UI-102 极端场景提示\`"]
@@ -258,7 +258,7 @@ graph TB
   end
   Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice.Src_evaluationGate -. "\`读取告警快照\`" .-> Feat_degrade_nfUs_llmDownI_ll_notifyUi_notice.Src_storeAlert
 `;case`carrier001F`:return`---
-title: "数据载体全景 · Feature-001-F"
+title: "SRC 环 · Feature-001-F · 数据载体"
 ---
 graph TB
   Feat_answer_fCvt_normalize@{ shape: rounded, label: "CVT-001 提问归一化转换器" }
@@ -274,7 +274,7 @@ graph TB
   Feat_answer_fCvt_normalize -. "\`负责 报文→IN-001 映射\`" .-> Feat_answer_fIn_chatMessage
   Feat_answer_fCvt_normalize -. "\`负责 POD-001→OUT-001 映射\`" .-> Feat_answer_fOut_answer
 `;case`carrier001NF`:return`---
-title: "数据载体全景 · Feature-001-NF"
+title: "SRC 环 · Feature-001-NF · 数据载体"
 ---
 graph TB
   Feat_degrade_nfIn_probeQuery@{ shape: rectangle, label: "IN-101 状态探测入参" }
@@ -289,22 +289,22 @@ graph TB
   Feat_degrade_nfPod_alert -. "\`写入告警\`" .-> Feat_degrade_nfDao_alert
   Feat_degrade_nfCvt_probe -. "\`负责 BIZ-101→OUT-101 映射\`" .-> Feat_degrade_nfBiz_probeResult
   Feat_degrade_nfCvt_probe -. "\`负责 BIZ-101→POD-101 映射\`" .-> Feat_degrade_nfPod_alert
-`;case`erm001F`:return`---
-title: "数据模型全景 · Feature-001-F 工单结构"
+`;case`erm001F-ticket`:return`---
+title: "SRC 环 · Feature-001-F · 数据模型 · 工单"
 ---
 graph TB
   Feat_answer_fPod_ticket@{ shape: rectangle, label: "POD-001 工单持久化实体" }
   Feat_answer_fDao_store@{ shape: cylinder, label: "DAO-001 本地存储访问" }
   Feat_answer_fPod_ticket -. "\`写入工单\`" .-> Feat_answer_fDao_store
-`;case`erm001NF`:return`---
-title: "数据模型全景 · Feature-001-NF 告警结构"
+`;case`erm001NF-alert`:return`---
+title: "SRC 环 · Feature-001-NF · 数据模型 · 告警"
 ---
 graph TB
   Feat_degrade_nfPod_alert@{ shape: rectangle, label: "POD-101 告警持久化实体" }
   Feat_degrade_nfDao_alert@{ shape: cylinder, label: "DAO-101 告警存储访问" }
   Feat_degrade_nfPod_alert -. "\`写入告警\`" .-> Feat_degrade_nfDao_alert
-`;case`stateMain`:return`---
-title: "I 环 · 业务状态主干"
+`;case`chain001F-i-state-main`:return`---
+title: "I 环 · Feature-001-F · 业务状态 · 主干"
 ---
 graph TB
   Feat_answer_fSt_received@{ shape: rectangle, label: "已接收" }
@@ -314,8 +314,8 @@ graph TB
   Feat_answer_fSt_received -. "\`发起检索\`" .-> Feat_answer_fSt_retrieving
   Feat_answer_fSt_retrieving -. "\`置信度达标\`" .-> Feat_answer_fSt_answering
   Feat_answer_fSt_answering -. "\`答复已下发\`" .-> Feat_answer_fSt_answered
-`;case`stateBranchHuman`:return`---
-title: "I 环 · 业务状态分支 · 转人工"
+`;case`chain001F-i-state-branch-human`:return`---
+title: "I 环 · Feature-001-F · 业务状态 · 分支转人工"
 ---
 graph TB
   Feat_answer_fSt_retrieving@{ shape: rectangle, label: "检索中" }
@@ -329,7 +329,7 @@ graph TB
   Feat_degrade_nf@{ shape: rectangle, label: "Feature-001-NF 极端场景保障" }
   Feat_knowledge_f@{ shape: rectangle, label: "Feature-002-F 知识运营能力" }
 `;case`chain001F-us`:return`---
-title: "US 视图 · Feature-001-F"
+title: "US 环 · Feature-001-F · 用户故事"
 ---
 graph TB
   subgraph Feat_answer_f["\`Feature-001-F 知识应答能力\`"]
@@ -337,7 +337,7 @@ graph TB
     Feat_answer_f.Us_lowConfidence@{ shape: doc, label: "US-002 答不准时转人工而非硬答" }
   end
 `;case`chain001NF-us`:return`---
-title: "US 视图 · Feature-001-NF"
+title: "US 环 · Feature-001-NF · 用户故事"
 ---
 graph TB
   subgraph Feat_degrade_nf["\`Feature-001-NF 极端场景保障\`"]
@@ -348,7 +348,7 @@ graph TB
   Feat_degrade_nf.Us_kbEmpty -. "\`提交发布判定\`" .-> Feat_degrade_nf.Us_llmDown
   Feat_degrade_nf.Us_ragTimeout -. "\`统一由提示环节下发\`" .-> Feat_degrade_nf.Us_llmDown
 `;case`chain001F-f`:return`---
-title: "能力清单 · Feature-001-F"
+title: "F 环 · Feature-001-F · 业务能力单元清单"
 ---
 graph TB
   subgraph Feat_answer_f["\`Feature-001-F 知识应答能力\`"]
@@ -360,7 +360,7 @@ graph TB
   Feat_answer_f.Us_ask -. "\`要求\`" .-> Feat_answer_f.F_answer
   Feat_answer_f.Us_lowConfidence -. "\`要求\`" .-> Feat_answer_f.F_retrieval
 `;case`chain001NF-nf`:return`---
-title: "场景清单 · Feature-001-NF"
+title: "NF 环 · Feature-001-NF · 极端场景单元清单"
 ---
 graph TB
   subgraph Feat_degrade_nf["\`Feature-001-NF 极端场景保障\`"]
@@ -377,12 +377,12 @@ graph TB
   Feat_degrade_nf.Us_ragTimeout -. "\`要求\`" .-> Feat_degrade_nf.Nf_ragTimeout
   Feat_degrade_nf.Us_llmDown -. "\`要求\`" .-> Feat_degrade_nf.Nf_llmDown
 `;case`chain001F-i-goal`:return`---
-title: "I 环 · 业务目标 · Feature-001-F"
+title: "I 环 · Feature-001-F · 业务目标"
 ---
 graph TB
   Feat_answer_fI_goal@{ shape: rectangle, label: "I-101 业务目标" }
 `;case`chain001F-i-step`:return`---
-title: "I 环 · 业务步骤 · Feature-001-F"
+title: "I 环 · Feature-001-F · 业务步骤"
 ---
 graph TB
   subgraph Feat_answer_fUs_ask["\`US-001 客户提问获得专业答复\`"]
@@ -399,12 +399,12 @@ graph TB
     Feat_answer_fUs_lowConfidence.I_lowNotify@{ shape: rectangle, label: "I-013 告知客户等待" }
   end
 `;case`chain001NF-i-goal`:return`---
-title: "I 环 · 业务目标 · Feature-001-NF"
+title: "I 环 · Feature-001-NF · 业务目标"
 ---
 graph TB
   Feat_degrade_nfI_goal@{ shape: rectangle, label: "I-141 业务目标" }
 `;case`chain001NF-i-step`:return`---
-title: "I 环 · 场景判定步骤 · Feature-001-NF"
+title: "I 环 · Feature-001-NF · 场景判定步骤"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_kbEmpty["\`US-101 知识库为空时运营人员能看见\`"]
@@ -425,7 +425,7 @@ graph TB
   Feat_degrade_nfUs_kbEmpty.I_kb_render -. "\`提交发布判定\`" .-> Feat_degrade_nfUs_llmDown.I_ll_notify
   Feat_degrade_nfUs_ragTimeout -. "\`统一由提示环节下发\`" .-> Feat_degrade_nfUs_llmDown.I_ll_notify
 `;case`chain001F-ui`:return`---
-title: "UI 环 · Feature-001-F"
+title: "UI 环 · Feature-001-F · 交互面与信息设计"
 ---
 graph TB
   subgraph Feat_answer_fUs_askI_ask_deliver["\`I-006 下发答复\`"]
@@ -434,21 +434,21 @@ graph TB
   end
   Feat_answer_fUs_askI_ask_deliver.Ui_interaction -. "\`持久化工单\`" .-> Feat_answer_fUs_askI_ask_deliver.Ui_information
 `;case`chain001NF-ui`:return`---
-title: "UI 环 · Feature-001-NF · 空库提示"
+title: "UI 环 · Feature-001-NF · 交互面 · 空库提示"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_kbEmptyI_kb_render["\`I-113 渲染空库提示\`"]
     Feat_degrade_nfUs_kbEmptyI_kb_render.Ui_status@{ shape: rounded, label: "UI-101 控制台状态提示" }
   end
-`;case`chain001NF-uiNotice`:return`---
-title: "UI 环 · Feature-001-NF · 场景提示"
+`;case`chain001NF-ui-notice`:return`---
+title: "UI 环 · Feature-001-NF · 交互面 · 场景提示"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_llmDownI_ll_notify["\`I-133 告知等待人工\`"]
     Feat_degrade_nfUs_llmDownI_ll_notify.Ui_notice@{ shape: rounded, label: "UI-102 极端场景提示" }
   end
 `;case`chain002F-us`:return`---
-title: "US 视图 · Feature-002-F"
+title: "US 环 · Feature-002-F · 用户故事"
 ---
 graph TB
   subgraph Feat_knowledge_f["\`Feature-002-F 知识运营能力\`"]
@@ -459,7 +459,7 @@ graph TB
   Feat_knowledge_f.Us_scan -. "\`提交候选进入治理\`" .-> Feat_knowledge_f.Us_govern
   Feat_knowledge_f.Us_govern -. "\`晋升后进入新鲜度巡检\`" .-> Feat_knowledge_f.Us_alert
 `;case`chain002F-f`:return`---
-title: "能力清单 · Feature-002-F"
+title: "F 环 · Feature-002-F · 业务能力单元清单"
 ---
 graph TB
   subgraph Feat_knowledge_f["\`Feature-002-F 知识运营能力\`"]
@@ -475,12 +475,12 @@ graph TB
   Feat_knowledge_f.Us_govern -. "\`要求\`" .-> Feat_knowledge_f.F_govern
   Feat_knowledge_f.Us_alert -. "\`要求\`" .-> Feat_knowledge_f.F_govern
 `;case`chain002F-i-goal`:return`---
-title: "I 环 · 业务目标 · Feature-002-F"
+title: "I 环 · Feature-002-F · 业务目标"
 ---
 graph TB
   Feat_knowledge_fI_goal@{ shape: rectangle, label: "I-201 业务目标" }
 `;case`chain002F-i-step`:return`---
-title: "I 环 · 业务步骤 · Feature-002-F"
+title: "I 环 · Feature-002-F · 业务步骤"
 ---
 graph TB
   subgraph Feat_knowledge_fUs_scan["\`US-201 素材入库后自动进入候选知识\`"]
@@ -501,7 +501,7 @@ graph TB
   Feat_knowledge_fUs_scan.I_scan_submit -. "\`提交候选进入治理\`" .-> Feat_knowledge_fUs_govern.I_gov_review
   Feat_knowledge_fUs_govern.I_gov_promote -. "\`晋升后进入新鲜度巡检\`" .-> Feat_knowledge_fUs_alert.I_alert_judge
 `;case`chain002F-ui`:return`---
-title: "UI 环 · Feature-002-F"
+title: "UI 环 · Feature-002-F · 交互面与信息设计"
 ---
 graph TB
   subgraph Feat_knowledge_fUs_alertI_alert_report["\`I-233 上报告警\`"]
@@ -511,7 +511,7 @@ graph TB
   Feat_knowledge_fUs_alertI_alert_report.Ui_console -. "\`[...]\`" .-> Feat_knowledge_fUs_alertI_alert_report.Ui_information
   Feat_knowledge_fUs_alertI_alert_report.Ui_information -. "\`触发扫描\`" .-> Feat_knowledge_fUs_alertI_alert_report.Ui_console
 `;case`srcdir002F`:return`---
-title: "SRC 目录视图 · Feature-002-F"
+title: "SRC 环 · Feature-002-F · 代码结构"
 ---
 graph TB
   subgraph Feat_knowledge_fUs_alertI_alert_reportUi_information["\`UI-202 知识运营信息设计\`"]
@@ -536,7 +536,7 @@ graph TB
   Feat_knowledge_fUs_alertI_alert_reportUi_information.Src_knowledgeSync -. "\`更新生命周期\`" .-> Feat_knowledge_fUs_alertI_alert_reportUi_information.Src_lifecycle
   Feat_knowledge_fUs_alertI_alert_reportUi_information.Src_lifecycle -. "\`晋升或下线\`" .-> Feat_knowledge_fUs_alertI_alert_reportUi_information.Src_documentRegistry
 `;case`carrier002F`:return`---
-title: "数据载体全景 · Feature-002-F"
+title: "SRC 环 · Feature-002-F · 数据载体"
 ---
 graph TB
   Feat_knowledge_fIn_material@{ shape: rectangle, label: "IN-201 素材入参" }
@@ -551,40 +551,37 @@ graph TB
   Feat_knowledge_fDao_registry -. "\`查询状态\`" .-> Feat_knowledge_fOut_knowledgeStatus
   Feat_knowledge_fCvt_material -. "\`负责 素材→BIZ-201 映射\`" .-> Feat_knowledge_fBiz_candidate
   Feat_knowledge_fCvt_material -. "\`负责 BIZ-201→POD-201 映射\`" .-> Feat_knowledge_fPod_document
-`;case`erm002F`:return`---
-title: "数据模型全景 · Feature-002-F 文档结构"
+`;case`erm002F-document`:return`---
+title: "SRC 环 · Feature-002-F · 数据模型 · 文档"
 ---
 graph TB
   Feat_knowledge_fPod_document@{ shape: rectangle, label: "POD-201 文档登记实体" }
   Feat_knowledge_fDao_registry@{ shape: cylinder, label: "DAO-201 文档登记访问" }
   Feat_knowledge_fPod_document -. "\`写入文档标识\`" .-> Feat_knowledge_fDao_registry
 `;case`api002F`:return`---
-title: "API 清单 · Feature-002-F"
+title: "SRC 环 · Feature-002-F · 对外接口"
 ---
 graph TB
   Feat_knowledge_fLane_edge@{ shape: rectangle, label: "服务端接入泳道" }
 `;case`seq001F-answer`:return`---
-title: "Feature-001-F 主干时序 · 客户提问到答复"
+title: "SRC 环 · Feature-001-F · 应答主干时序"
 ---
 graph LR
   Feat_answer_fLane_clientActor_customer@{ icon: "fa:user", shape: rounded, label: "客户" }
   Feat_answer_fLane_edgeApi_chatCallback@{ shape: rectangle, label: "API-001 POST /wechat/callback 微信客服回调" }
-  Feat_answer_fLane_coreStep_answerLane@{ shape: rectangle, label: "I-201 应答编排（泳道引用）" }
-  Feat_answer_fLane_extExt_ragflow@{ shape: rectangle, label: "RAGFlow" }
   Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator@{ shape: rectangle, label: "SRC-002 应答编排器" }
-  Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy@{ shape: rectangle, label: "SRC-004 回复策略" }
   Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge@{ shape: rectangle, label: "SRC-005 RAGFlow 知识检索" }
-  Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService@{ shape: rectangle, label: "SRC-006 转人工服务" }
+  Feat_answer_fLane_extExt_ragflow@{ shape: rectangle, label: "RAGFlow" }
+  Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy@{ shape: rectangle, label: "SRC-004 回复策略" }
   Feat_answer_fLane_clientActor_customer -. "\`企业微信提问\`" .-> Feat_answer_fLane_edgeApi_chatCallback
   Feat_answer_fLane_edgeApi_chatCallback -. "\`分发归一化消息\`" .-> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator
-  Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator -. "\`请求应答\`" .-> Feat_answer_fLane_coreStep_answerLane
-  Feat_answer_fLane_coreStep_answerLane -. "\`检索候选知识\`" .-> Feat_answer_fLane_extExt_ragflow
-  Feat_answer_fLane_extExt_ragflow -. "\`返回候选知识\`" .-> Feat_answer_fLane_coreStep_answerLane
-  Feat_answer_fLane_coreStep_answerLane -. "\`校验置信度\`" .-> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy
-  Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy -. "\`达标放行\`" .-> Feat_answer_fLane_coreStep_answerLane
-  Feat_answer_fLane_coreStep_answerLane -. "\`返回答复\`" .-> Feat_answer_fLane_edgeApi_chatCallback
+  Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator -. "\`检索候选知识\`" .-> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge
+  Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge -. "\`请求 RAGFlow\`" .-> Feat_answer_fLane_extExt_ragflow
+  Feat_answer_fLane_extExt_ragflow -. "\`返回候选知识\`" .-> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_ragflowKnowledge
+  Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator -. "\`校验置信度\`" .-> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy
+  Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy -. "\`达标放行并返回答复\`" .-> Feat_answer_fLane_edgeApi_chatCallback
 `;case`seq001F-branch-low-confidence-src`:return`---
-title: "SRC · 分支时序 · Feature-001-F · 置信度不足转人工"
+title: "SRC 环 · Feature-001-F · 分支时序 · 置信度不足转人工"
 ---
 graph LR
   Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_replyPolicy@{ shape: rectangle, label: "SRC-004 回复策略" }
@@ -595,7 +592,7 @@ graph LR
   Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_answerOrchestrator -. "\`转人工\`" .-> Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService
   Feat_answer_fUs_askI_ask_deliverUi_interactionSrc_handoffService -. "\`持久化工单\`" .-> Feat_answer_fUs_askI_ask_deliverUi_informationSrc_store
 `;case`dfd001F-answer`:return`---
-title: "DFD 全景 · Feature-001-F 应答数据流"
+title: "SRC 环 · Feature-001-F · 数据流 · 应答"
 ---
 graph LR
   Feat_answer_fUs_askI_ask_deliverUi_interaction@{ shape: rounded, label: "UI-001 企业微信会话交互" }
@@ -612,22 +609,22 @@ graph LR
   Feat_answer_fDao_store -. "\`查询答复内容\`" .-> Feat_answer_fOut_answer
   Feat_answer_fOut_answer -. "\`渲染答复\`" .-> Feat_answer_fUs_askI_ask_deliverUi_information
 `;case`seq001NF-degrade`:return`---
-title: "Feature-001-NF 主干时序 · 场景判定与提示"
+title: "SRC 环 · Feature-001-NF · 场景判定时序"
 ---
 graph LR
   Feat_degrade_nfLane_operatorActor_ops@{ icon: "fa:user", shape: rounded, label: "运营人员" }
   Feat_degrade_nfLane_edgeApi_status@{ shape: rectangle, label: "API-101 GET /integration/status 集成状态" }
-  Feat_degrade_nfLane_coreStep_probeLane@{ shape: rectangle, label: "I-151 场景判定（泳道引用）" }
+  Feat_degrade_nfUs_kbEmptyI_kb_count@{ shape: rectangle, label: "I-111 读取条目数" }
   Feat_degrade_nfLane_extExt_ragflow@{ shape: rectangle, label: "RAGFlow" }
   Feat_degrade_nfUs_llmDownI_ll_notify@{ shape: rectangle, label: "I-133 告知等待人工" }
   Feat_degrade_nfLane_operatorActor_ops -. "\`查询集成状态\`" .-> Feat_degrade_nfLane_edgeApi_status
-  Feat_degrade_nfLane_edgeApi_status -. "\`发起探测\`" .-> Feat_degrade_nfLane_coreStep_probeLane
-  Feat_degrade_nfLane_coreStep_probeLane -. "\`探测数据集可用性\`" .-> Feat_degrade_nfLane_extExt_ragflow
-  Feat_degrade_nfLane_extExt_ragflow -. "\`返回探测结论\`" .-> Feat_degrade_nfLane_coreStep_probeLane
-  Feat_degrade_nfLane_coreStep_probeLane -. "\`提交发布判定并下发提示\`" .-> Feat_degrade_nfUs_llmDownI_ll_notify
+  Feat_degrade_nfLane_edgeApi_status -. "\`发起探测\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_count
+  Feat_degrade_nfUs_kbEmptyI_kb_count -. "\`探测数据集可用性\`" .-> Feat_degrade_nfLane_extExt_ragflow
+  Feat_degrade_nfLane_extExt_ragflow -. "\`返回探测结论\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_count
+  Feat_degrade_nfUs_kbEmptyI_kb_count -. "\`提交发布判定并下发提示\`" .-> Feat_degrade_nfUs_llmDownI_ll_notify
   Feat_degrade_nfUs_llmDownI_ll_notify -. "\`告知客户\`" .-> Feat_degrade_nfLane_operatorActor_ops
 `;case`dfd001NF-probe`:return`---
-title: "DFD 全景 · Feature-001-NF 探测数据流"
+title: "SRC 环 · Feature-001-NF · 数据流 · 探测"
 ---
 graph LR
   Feat_degrade_nfLane_operatorActor_ops@{ icon: "fa:user", shape: rounded, label: "运营人员" }
@@ -644,7 +641,7 @@ graph LR
   Feat_degrade_nfBiz_probeResult -. "\`异常转告警实体\`" .-> Feat_degrade_nfPod_alert
   Feat_degrade_nfPod_alert -. "\`写入告警\`" .-> Feat_degrade_nfDao_alert
 `;case`seq001F-i-step-lanes`:return`---
-title: "I 环 · 业务步骤泳道流程 · Feature-001-F"
+title: "I 环 · Feature-001-F · 业务步骤泳道流程"
 ---
 graph LR
   Feat_answer_fLane_clientActor_customer@{ icon: "fa:user", shape: rounded, label: "客户" }
@@ -668,7 +665,7 @@ graph LR
   Feat_answer_fUs_askI_ask_deliver -. "\`⑩回复会话\`" .-> Feat_answer_fLane_edgeApi_chatCallback
   Feat_answer_fLane_edgeApi_chatCallback -. "\`⑪答复送达\`" .-> Feat_answer_fLane_clientActor_customer
 `;case`seq001F-branch-low-confidence`:return`---
-title: "I 环 · 分支泳道流程 · Feature-001-F · 置信度不足"
+title: "I 环 · Feature-001-F · 分支泳道流程 · 置信度不足"
 ---
 graph LR
   Feat_answer_fUs_askI_ask_verify@{ shape: rectangle, label: "I-004 置信度校验" }
@@ -681,44 +678,44 @@ graph LR
   Feat_answer_fUs_lowConfidenceI_lowTicket -. "\`告知等待\`" .-> Feat_answer_fUs_lowConfidenceI_lowNotify
   Feat_answer_fUs_lowConfidenceI_lowNotify -. "\`回复会话\`" .-> Feat_answer_fLane_edgeApi_chatCallback
 `;case`seq001NF-i-step-lanes`:return`---
-title: "I 环 · 场景判定泳道流程 · Feature-001-NF"
+title: "I 环 · Feature-001-NF · 场景判定泳道流程"
 ---
 graph LR
   Feat_degrade_nfLane_operatorActor_ops@{ icon: "fa:user", shape: rounded, label: "运营人员" }
   Feat_degrade_nfLane_edgeApi_status@{ shape: rectangle, label: "API-101 GET /integration/status 集成状态" }
-  Feat_degrade_nfLane_coreStep_probeLane@{ shape: rectangle, label: "I-151 场景判定（泳道引用）" }
+  Feat_degrade_nfUs_kbEmptyI_kb_count@{ shape: rectangle, label: "I-111 读取条目数" }
   Feat_degrade_nfUs_kbEmptyI_kb_judge@{ shape: rectangle, label: "I-112 判定零条场景" }
   Feat_degrade_nfUs_ragTimeoutI_to_check@{ shape: rectangle, label: "I-122 判定超时" }
   Feat_degrade_nfUs_llmDownI_ll_detect@{ shape: rectangle, label: "I-131 判定调用结果" }
   Feat_degrade_nfLane_operatorActor_ops -. "\`①查询状态\`" .-> Feat_degrade_nfLane_edgeApi_status
-  Feat_degrade_nfLane_edgeApi_status -. "\`②发起探测\`" .-> Feat_degrade_nfLane_coreStep_probeLane
-  Feat_degrade_nfLane_coreStep_probeLane -. "\`③判定条目数\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_judge
+  Feat_degrade_nfLane_edgeApi_status -. "\`②发起探测\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_count
+  Feat_degrade_nfUs_kbEmptyI_kb_count -. "\`③判定条目数\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_judge
   Feat_degrade_nfUs_kbEmptyI_kb_judge -. "\`④判定响应耗时\`" .-> Feat_degrade_nfUs_ragTimeoutI_to_check
   Feat_degrade_nfUs_ragTimeoutI_to_check -. "\`⑤判定模型可用性\`" .-> Feat_degrade_nfUs_llmDownI_ll_detect
   Feat_degrade_nfUs_llmDownI_ll_detect -. "\`⑥下发提示或转人工\`" .-> Feat_degrade_nfLane_operatorActor_ops
 `;case`seq001F-api-chat`:return`---
-title: "API 泳道时序 · Feature-001-F 提交提问"
+title: "SRC 环 · Feature-001-F · 接口泳道时序 · 提交提问"
 ---
 graph LR
   Feat_answer_fLane_clientActor_customer@{ icon: "fa:user", shape: rounded, label: "客户" }
   Feat_answer_fLane_edgeApi_chatCallback@{ shape: rectangle, label: "API-001 POST /wechat/callback 微信客服回调" }
-  Feat_answer_fLane_coreStep_answerLane@{ shape: rectangle, label: "I-201 应答编排（泳道引用）" }
+  Feat_answer_fUs_askI_ask_deliver@{ shape: rectangle, label: "I-006 下发答复" }
   Feat_answer_fLane_extExt_ragflow@{ shape: rectangle, label: "RAGFlow" }
   Feat_answer_fLane_clientActor_customer -. "\`POST /wechat/callback\`" .-> Feat_answer_fLane_edgeApi_chatCallback
-  Feat_answer_fLane_edgeApi_chatCallback -. "\`触发应答\`" .-> Feat_answer_fLane_coreStep_answerLane
-  Feat_answer_fLane_coreStep_answerLane -. "\`检索知识\`" .-> Feat_answer_fLane_extExt_ragflow
-  Feat_answer_fLane_extExt_ragflow -. "\`返回候选知识\`" .-> Feat_answer_fLane_coreStep_answerLane
-  Feat_answer_fLane_coreStep_answerLane -. "\`返回答复\`" .-> Feat_answer_fLane_edgeApi_chatCallback
+  Feat_answer_fLane_edgeApi_chatCallback -. "\`触发应答\`" .-> Feat_answer_fUs_askI_ask_deliver
+  Feat_answer_fUs_askI_ask_deliver -. "\`检索知识\`" .-> Feat_answer_fLane_extExt_ragflow
+  Feat_answer_fLane_extExt_ragflow -. "\`返回候选知识\`" .-> Feat_answer_fUs_askI_ask_deliver
+  Feat_answer_fUs_askI_ask_deliver -. "\`返回答复\`" .-> Feat_answer_fLane_edgeApi_chatCallback
 `;case`seq001NF-api-status`:return`---
-title: "API 泳道时序 · Feature-001-NF 查询集成状态"
+title: "SRC 环 · Feature-001-NF · 接口泳道时序 · 查询集成状态"
 ---
 graph LR
   Feat_degrade_nfLane_operatorActor_ops@{ icon: "fa:user", shape: rounded, label: "运营人员" }
   Feat_degrade_nfLane_edgeApi_status@{ shape: rectangle, label: "API-101 GET /integration/status 集成状态" }
-  Feat_degrade_nfLane_coreStep_probeLane@{ shape: rectangle, label: "I-151 场景判定（泳道引用）" }
+  Feat_degrade_nfUs_kbEmptyI_kb_count@{ shape: rectangle, label: "I-111 读取条目数" }
   Feat_degrade_nfLane_extExt_ragflow@{ shape: rectangle, label: "RAGFlow" }
   Feat_degrade_nfLane_operatorActor_ops -. "\`GET /integration/status\`" .-> Feat_degrade_nfLane_edgeApi_status
-  Feat_degrade_nfLane_edgeApi_status -. "\`发起探测\`" .-> Feat_degrade_nfLane_coreStep_probeLane
-  Feat_degrade_nfLane_coreStep_probeLane -. "\`探测数据集\`" .-> Feat_degrade_nfLane_extExt_ragflow
-  Feat_degrade_nfLane_extExt_ragflow -. "\`返回结论\`" .-> Feat_degrade_nfLane_coreStep_probeLane
+  Feat_degrade_nfLane_edgeApi_status -. "\`发起探测\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_count
+  Feat_degrade_nfUs_kbEmptyI_kb_count -. "\`探测数据集\`" .-> Feat_degrade_nfLane_extExt_ragflow
+  Feat_degrade_nfLane_extExt_ragflow -. "\`返回结论\`" .-> Feat_degrade_nfUs_kbEmptyI_kb_count
 `;default:throw Error(`Unknown viewId: `+e)}};export{e as mmdSource};
