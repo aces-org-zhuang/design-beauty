@@ -4,14 +4,14 @@
 // 视图名带环境，不带链序号，因为它属于环境而不属于单条链。
 
 views {
-  deployment view procLocal {
-    title '进程与线程视图 · 本地开发环境'
+  deployment view proc-local {
+    title '构建部署 · 本地开发环境 · 进程与线程'
     description '本地环境的服务进程与线程构成。逻辑挂载与线程树并列——instanceOf 节点内不可再嵌节点。'
     include local.**
   }
 
-  deployment view procProd {
-    title '进程与线程视图 · 生产环境'
+  deployment view proc-prod {
+    title '构建部署 · 生产环境 · 进程与线程'
     description '生产环境的进程与线程构成。两条链的 SRC 同处服务进程内——这是收敛的运行现实。'
     include prod.**
   }

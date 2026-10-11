@@ -145,10 +145,9 @@ model {
         description 'src/routes/integration-routes.js:7 — 查询集成状态与知识条目数。'
       }
     }
+    // 泳道只做分组，**不自造编号**。环节用真实的 I 步骤元素。
     lane_core = feature '判定层泳道' {
-      step_probeLane = implStep 'I-151 场景判定（泳道引用）' {
-        description '泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。'
-      }
+      description '判定层负责场景识别。具体环节见各 US 容器下的 I-111~I-133，此处不重复定义。'
     }
     lane_ext = feature '外部依赖泳道' {
       ext_ragflow = system 'RAGFlow' {

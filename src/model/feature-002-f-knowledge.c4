@@ -150,10 +150,9 @@ model {
         description 'src/routes/knowledge-routes.js:26 — 查询扫描与治理状态。'
       }
     }
+    // 泳道只做分组，**不自造编号**。环节用真实的 I 步骤元素。
     lane_core = feature '治理层泳道' {
-      step_governLane = implStep 'I-241 治理编排（泳道引用）' {
-        description '泳道中的治理环节，具体步骤见各 US 容器下的 I-21x~I-23x。'
-      }
+      description '治理层负责审阅与决策。具体环节见各 US 容器下的 I-211~I-233，此处不重复定义。'
     }
     lane_ext = feature '外部依赖泳道' {
       ext_ragflow2 = system 'RAGFlow' {
@@ -205,12 +204,12 @@ model {
 
     // ---- 边界顺序 ----
     //
-    // 泳道之间表达调用方向的边界，具体步骤顺序见 seq002F-i-step-lanes。
+    // 泳道之间表达调用方向的边界。引用真实的 I 步骤元素，不引用泳道占位元素。
 
-    lane_edge.api_material -> lane_core.step_governLane '接收待治理素材'
-    lane_core.step_governLane -> lane_ext.ext_ragflow2 '推送数据集'
-    lane_core.step_governLane -> lane_ext.ext_wiki '读取 wiki 候选'
-    lane_core.step_governLane -> lane_edge.api_scan '触发扫描'
+    lane_edge.api_material -> us_govern.i_gov_review '接收待治理素材'
+    us_govern.i_gov_promote -> lane_ext.ext_ragflow2 '推送数据集'
+    us_scan.i_scan_extract -> lane_ext.ext_wiki '读取 wiki 候选'
+    us_scan.i_scan_submit -> lane_edge.api_scan '触发扫描'
     lane_edge.api_scan -> lane_ops.actor_operator '返回候选状态'
   }
 }

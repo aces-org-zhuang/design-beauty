@@ -23,14 +23,14 @@
 
 views {
   view chain001F-us {
-    title 'US 视图 · Feature-001-F'
+    title 'US 环 · Feature-001-F · 用户故事'
     description '只承载本链的用户故事：这个角色在什么场景下要达成什么、怎样算完成。归属锚是 Feature 容器——US 的直接上层。不含能力单元、I 环与源码。'
     include feat_answer_f
     include feat_answer_f.us_ask, feat_answer_f.us_lowConfidence
   }
 
   view chain001NF-us {
-    title 'US 视图 · Feature-001-NF'
+    title 'US 环 · Feature-001-NF · 用户故事'
     description '只承载极端场景链的用户故事。每条都绑定一个具体场景，不是质量角度。归属锚是 Feature 容器。'
     include feat_degrade_nf
     include feat_degrade_nf.us_kbEmpty
@@ -38,7 +38,7 @@ views {
   }
 
   view chain001F-f {
-    title '能力清单 · Feature-001-F'
+    title 'F 环 · Feature-001-F · 业务能力单元清单'
     description '本链交付的业务能力单元，以及每个单元由哪条 US 要求。清单与 US 并列，不是下钻路径的一步——这里同时出现 US 是为了展示对应关系，不是把 US 当成能力单元。'
     include feat_answer_f
     include feat_answer_f.us_ask, feat_answer_f.us_lowConfidence
@@ -46,7 +46,7 @@ views {
   }
 
   view chain001NF-nf {
-    title '场景清单 · Feature-001-NF'
+    title 'NF 环 · Feature-001-NF · 极端场景单元清单'
     description '本链交付的极端场景单元，以及每项由哪条 US 要求。每一项都答出谁、什么场景、因此得到什么。US 在此仅用于展示对应关系。'
     include feat_degrade_nf
     include feat_degrade_nf.us_kbEmpty
@@ -56,13 +56,13 @@ views {
   }
 
   view chain001F-i-goal {
-    title 'I 环 · 业务目标 · Feature-001-F'
+    title 'I 环 · Feature-001-F · 业务目标'
     description '只承载业务目标。归属锚是 Feature 容器下的业务目标元素本身，它不属于任何单条 US。状态流转与业务步骤各自成图。'
     include feat_answer_f.i_goal
   }
 
   view chain001F-i-step {
-    title 'I 环 · 业务步骤 · Feature-001-F'
+    title 'I 环 · Feature-001-F · 业务步骤'
     description '归属靠 US 容器表达：US 作为容器标识，这些步骤属于哪条 US 一眼可见。祖先与目标元素同时 include，否则步骤不会显示。不画 US→I 的连线。'
     include feat_answer_f.us_ask
     include feat_answer_f.us_ask.i_ask_normalize, feat_answer_f.us_ask.i_ask_retrieve
@@ -74,13 +74,13 @@ views {
   }
 
   view chain001NF-i-goal {
-    title 'I 环 · 业务目标 · Feature-001-NF'
+    title 'I 环 · Feature-001-NF · 业务目标'
     description '极端场景链的业务目标。归属锚是 Feature 容器下的业务目标元素本身。'
     include feat_degrade_nf.i_goal
   }
 
   view chain001NF-i-step {
-    title 'I 环 · 场景判定步骤 · Feature-001-NF'
+    title 'I 环 · Feature-001-NF · 场景判定步骤'
     description '三类极端场景的判定步骤。归属靠 US 容器表达，祖先与目标元素同时 include。'
     include feat_degrade_nf.us_kbEmpty
     include feat_degrade_nf.us_kbEmpty.i_kb_count, feat_degrade_nf.us_kbEmpty.i_kb_judge
@@ -94,7 +94,7 @@ views {
   }
 
   view chain001F-ui {
-    title 'UI 环 · Feature-001-F'
+    title 'UI 环 · Feature-001-F · 交互面与信息设计'
     description '只承载交互面与信息设计。归属锚是 I 步骤容器——UI 的直接上层是 I，不是 Feature 更不是 US。不含源码与数据载体。'
     include feat_answer_f.us_ask.i_ask_deliver
     include feat_answer_f.us_ask.i_ask_deliver.ui_interaction
@@ -102,21 +102,21 @@ views {
   }
 
   view chain001NF-ui {
-    title 'UI 环 · Feature-001-NF · 空库提示'
+    title 'UI 环 · Feature-001-NF · 交互面 · 空库提示'
     description '极端场景链的交互面。归属锚是 I 步骤容器。本链 UI 分属不同 US，按 US 拆分以避免越层。'
     include feat_degrade_nf.us_kbEmpty.i_kb_render
     include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status
   }
 
-  view chain001NF-uiNotice {
-    title 'UI 环 · Feature-001-NF · 场景提示'
+  view chain001NF-ui-notice {
+    title 'UI 环 · Feature-001-NF · 交互面 · 场景提示'
     description '归属锚是 I 步骤容器。按 US 拆分以避免越层。'
     include feat_degrade_nf.us_llmDown.i_ll_notify
     include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice
   }
 
   view chain002F-us {
-    title 'US 视图 · Feature-002-F'
+    title 'US 环 · Feature-002-F · 用户故事'
     description '只承载本链的用户故事。归属锚是 Feature 容器。不含能力单元、I 环与源码。'
     include feat_knowledge_f
     include feat_knowledge_f.us_scan, feat_knowledge_f.us_govern
@@ -124,7 +124,7 @@ views {
   }
 
   view chain002F-f {
-    title '能力清单 · Feature-002-F'
+    title 'F 环 · Feature-002-F · 业务能力单元清单'
     description '本链的业务能力单元与对应 US。US 在此仅用于展示对应关系。'
     include feat_knowledge_f
     include feat_knowledge_f.us_scan, feat_knowledge_f.us_govern
@@ -133,13 +133,13 @@ views {
   }
 
   view chain002F-i-goal {
-    title 'I 环 · 业务目标 · Feature-002-F'
+    title 'I 环 · Feature-002-F · 业务目标'
     description '只承载业务目标。归属锚是业务目标元素本身。状态流转与业务步骤各自成图。'
     include feat_knowledge_f.i_goal
   }
 
   view chain002F-i-step {
-    title 'I 环 · 业务步骤 · Feature-002-F'
+    title 'I 环 · Feature-002-F · 业务步骤'
     description '主干治理步骤。归属靠 US 容器表达，祖先与目标元素同时 include。'
     include feat_knowledge_f.us_scan
     include feat_knowledge_f.us_scan.i_scan_register, feat_knowledge_f.us_scan.i_scan_extract
@@ -153,14 +153,14 @@ views {
   }
 
   view chain002F-ui {
-    title 'UI 环 · Feature-002-F'
+    title 'UI 环 · Feature-002-F · 交互面与信息设计'
     description '只承载交互面与信息设计。归属锚是 I 步骤容器。'
     include feat_knowledge_f.us_alert.i_alert_report
     include feat_knowledge_f.us_alert.i_alert_report.ui_console, feat_knowledge_f.us_alert.i_alert_report.ui_information
   }
 
   view srcdir002F {
-    title 'SRC 目录视图 · Feature-002-F'
+    title 'SRC 环 · Feature-002-F · 代码结构'
     description '本链源码单元与真实文件路径的对应。归属锚是 UI 面容器——SRC 的直接上层是 UI，不是 Feature，也绝不出现 F 单元。'
     include feat_knowledge_f.us_alert.i_alert_report.ui_console
     include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_materialRoutes
@@ -176,21 +176,21 @@ views {
   }
 
   view carrier002F {
-    title '数据载体全景 · Feature-002-F'
+    title 'SRC 环 · Feature-002-F · 数据载体'
     description '本链的数据载体与转换关系。数据载体是 SRC 环内部的横向维度，不属于 UI→SRC 这条纵向路径，因此平铺不强制带容器。'
     include feat_knowledge_f.in_material, feat_knowledge_f.biz_candidate
     include feat_knowledge_f.pod_document, feat_knowledge_f.out_knowledgeStatus
     include feat_knowledge_f.dao_registry, feat_knowledge_f.cvt_material
   }
 
-  view erm002F {
-    title '数据模型全景 · Feature-002-F 文档结构'
+  view erm002F-document {
+    title 'SRC 环 · Feature-002-F · 数据模型 · 文档'
     description '本链的持久化实体与数据访问单元。SRC 内部横向维度，平铺。'
     include feat_knowledge_f.pod_document, feat_knowledge_f.dao_registry
   }
 
   view api002F of feat_knowledge_f.lane_edge {
-    title 'API 清单 · Feature-002-F'
+    title 'SRC 环 · Feature-002-F · 对外接口'
     description '本链对外接口，含方法、路径与路由位置。归属锚是接入泳道容器。'
     include feat_knowledge_f.lane_edge
   }

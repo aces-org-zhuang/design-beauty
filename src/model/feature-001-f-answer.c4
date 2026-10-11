@@ -166,10 +166,10 @@ model {
         description 'src/routes/handoff-routes.js:9 — 运营人员查看人工工单。'
       }
     }
+    // 泳道只做分组，**不自造编号**。环节用真实的 I 步骤元素，
+    // 由 seq001F-i-step-lanes 等流程图 include 真实 FQN 表达。
     lane_core = feature '领域层泳道' {
-      step_answerLane = implStep 'I-201 应答编排（泳道引用）' {
-        description '泳道中的编排环节，具体步骤见 US-001 容器下的 I-001~I-006。'
-      }
+      description '领域层负责编排与校验。具体环节见 US-001 下的 I-001~I-006、US-002 下的 I-011~I-013，此处不重复定义。'
     }
     lane_ext = feature '外部依赖泳道' {
       ext_ragflow = system 'RAGFlow' {
@@ -220,11 +220,12 @@ model {
     // ---- 边界顺序 ----
     //
     // 泳道之间表达调用方向的边界，具体步骤顺序见 seq001F-i-step-lanes。
+    // 引用真实的 I 步骤元素（US-001 下的 I-001~I-006），不引用泳道占位元素。
 
     lane_client.actor_customer -> lane_edge.api_chatCallback '企业微信提问'
-    lane_edge.api_chatCallback -> lane_core.step_answerLane '触发应答'
-    lane_core.step_answerLane -> lane_ext.ext_ragflow '检索知识'
-    lane_ext.ext_ragflow -> lane_core.step_answerLane '返回候选知识'
-    lane_core.step_answerLane -> lane_edge.api_chatCallback '返回答复或工单号'
+    lane_edge.api_chatCallback -> us_ask.i_ask_normalize '触发应答'
+    us_ask.i_ask_retrieve -> lane_ext.ext_ragflow '检索知识'
+    lane_ext.ext_ragflow -> us_ask.i_ask_retrieve '返回候选知识'
+    us_ask.i_ask_deliver -> lane_edge.api_chatCallback '返回答复或工单号'
   }
 }

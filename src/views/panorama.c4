@@ -20,7 +20,7 @@
 
 views {
   view pano-us {
-    title 'US 全景 · 全部 Feature'
+    title 'US 环 · 全部 Feature · 用户故事'
     description '所有链的用户故事，按链分组。两条链的 US 分别识别，不是共享的。不含任何其他环的元素。'
     include feat_answer_f.us_ask, feat_answer_f.us_lowConfidence
     include feat_degrade_nf.us_kbEmpty, feat_degrade_nf.us_ragTimeout
@@ -30,21 +30,21 @@ views {
   }
 
   view pano-f {
-    title 'F 全景 · 全部 F 链的能力单元'
+    title 'F 环 · 全部 Feature-NNN-F · 业务能力单元'
     description '聚合单位是 Feature 而非链：收录所有 Feature-NNN-F 的 F 单元。当前有 Feature-001-F 与 Feature-002-F 两条，新增 Feature-003-F 后本视图自动聚合。只含业务能力，刻意不含 US——单元与 US 的对应见各链的能力清单视图。'
     include feat_answer_f.f_answer, feat_answer_f.f_retrieval
     include feat_knowledge_f.f_ingest, feat_knowledge_f.f_govern
   }
 
   view pano-nf {
-    title 'NF 全景 · 全部 NF 链的极端场景单元'
+    title 'NF 环 · 全部 Feature-NNN-NF · 极端场景单元'
     description '聚合单位是 Feature 而非链：收录所有 Feature-NNN-NF 的 NF 单元。当前仅 Feature-001-NF 一条；Feature-002 走能力链无 NF 侧，新增后本视图自动聚合。只含场景化表现，刻意不含 US。'
     include feat_degrade_nf.nf_kbEmpty
     include feat_degrade_nf.nf_ragTimeout, feat_degrade_nf.nf_llmDown
   }
 
   view pano-i {
-    title 'I 全景 · 全部 Feature 的业务逻辑'
+    title 'I 环 · 全部 Feature · 业务目标与步骤'
     description '聚合单位是 Feature：收录所有 Feature 的 I 环元素，按编号段区分（F 链 I-0xx，NF 链 I-1xx，Feature-002 用 I-2xx）。'
     include feat_answer_f.i_goal
     include feat_answer_f.us_ask
@@ -54,22 +54,22 @@ views {
   }
 
   view pano-i-state {
-    title 'I 环 · 业务状态全景'
-    description '全部业务状态。状态即元素、迁移即关系；主干与分支在 stateMain / stateBranchHuman 各自成图。'
+    title 'I 环 · 全部 Feature · 业务状态'
+    description '全部业务状态。状态即元素、迁移即关系；主干与分支在 chain001F-i-state-main / chain001F-i-state-branch-human 各自成图。'
     include feat_answer_f.st_received, feat_answer_f.st_retrieving, feat_answer_f.st_answering, feat_answer_f.st_answered
     include feat_answer_f.st_waitingHuman
   }
 
   view pano-ui {
-    title 'UI 全景 · 全部 Feature 的界面面'
+    title 'UI 环 · 全部 Feature · 交互面与信息设计'
     description '聚合单位是 Feature：收录所有 Feature 的 UI 元素。'
     include feat_answer_f.us_ask.i_ask_deliver.ui_interaction, feat_answer_f.us_ask.i_ask_deliver.ui_information
     include feat_knowledge_f.us_alert.i_alert_report.ui_console, feat_knowledge_f.us_alert.i_alert_report.ui_information
     include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status, feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice
   }
 
-  view panoSrc001F {
-    title 'SRC 单元 · Feature-001-F'
+  view pano-src-001F {
+    title 'SRC 环 · Feature-001-F · 代码结构'
     description '归属锚是 UI 面容器——SRC 的直接上层是 UI。只含代码结构单元，文件路径见 srcdir001F。'
     include feat_answer_f.us_ask.i_ask_deliver.ui_interaction
     include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_wechatCallback
@@ -82,8 +82,8 @@ views {
     include feat_answer_f.us_ask.i_ask_deliver.ui_information.src_store
   }
 
-  view panoSrc001NF {
-    title 'SRC 单元 · Feature-001-NF · 空库与探测'
+  view pano-src-001NF-empty {
+    title 'SRC 环 · Feature-001-NF · 代码结构 · 空库与探测'
     description '归属锚是 UI 面容器——SRC 的直接上层是 UI。本链的 UI 分属不同 US，LikeC4 会把每个 US 提为根并展开中间层造成越层，故按 US 拆成两张。'
     include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status
     include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_integrationRoutes
@@ -92,16 +92,16 @@ views {
     include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_operatorUi
   }
 
-  view panoSrc001NFnotice {
-    title 'SRC 单元 · Feature-001-NF · 场景提示'
+  view pano-src-001NF-notice {
+    title 'SRC 环 · Feature-001-NF · 代码结构 · 场景提示'
     description '归属锚是 UI 面容器。本链的 UI 分属不同 US，按 US 拆分以避免越层。'
     include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice
     include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_evaluationGate
     include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_storeAlert
   }
 
-  view panoSrc002F {
-    title 'SRC 单元 · Feature-002-F'
+  view pano-src-002F {
+    title 'SRC 环 · Feature-002-F · 代码结构'
     description '归属锚是 UI 面容器。只含代码结构单元，文件路径见 srcdir002F。'
     include feat_knowledge_f.us_alert.i_alert_report.ui_console
     include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_materialRoutes
@@ -117,7 +117,7 @@ views {
   }
 
   view pano-carrier {
-    title '数据载体全景 · 全部 Feature'
+    title 'SRC 环 · 全部 Feature · 数据载体'
     description '聚合单位是 Feature：收录所有 Feature 的数据载体，按角色分列：入参 / 业务 / 持久化 / 出参 / 数据访问 / 转换。这是 SRC 维度，不是某一环的内容。'
     include feat_answer_f.in_chatMessage, feat_answer_f.biz_query
     include feat_answer_f.pod_ticket, feat_answer_f.out_answer
@@ -131,7 +131,7 @@ views {
   }
 
   view pano-api {
-    title 'API 全景 · 全部 Feature 的对外接口'
+    title 'SRC 环 · 全部 Feature · 对外接口'
     description '聚合单位是 Feature：收录所有 Feature 的对外接口，只含接口元素。这是 SRC 维度，不含任何内部单元。'
     include feat_answer_f.lane_edge
     include feat_knowledge_f.lane_edge
@@ -139,7 +139,7 @@ views {
   }
 
   view srcdir001F {
-    title 'SRC 目录视图 · Feature-001-F'
+    title 'SRC 环 · Feature-001-F · 代码结构'
     description '本链源码单元与真实文件路径的对应。归属锚是 UI 面容器——SRC 的直接上层是 UI，不是 Feature。'
     include feat_answer_f.us_ask.i_ask_deliver.ui_interaction
     include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_wechatCallback
@@ -153,7 +153,7 @@ views {
   }
 
   view srcdir001NF {
-    title 'SRC 目录视图 · Feature-001-NF · 空库与探测'
+    title 'SRC 环 · Feature-001-NF · 代码结构 · 空库与探测'
     description '本链源码单元与真实文件路径对应。归属锚是 UI 面容器。按 US 拆分以避免 LikeC4 补齐中间层造成越层。'
     include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status
     include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_integrationRoutes
@@ -162,8 +162,8 @@ views {
     include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_operatorUi
   }
 
-  view srcdir001NFnotice {
-    title 'SRC 目录视图 · Feature-001-NF · 场景提示'
+  view srcdir001NF-notice {
+    title 'SRC 环 · Feature-001-NF · 代码结构 · 场景提示'
     description '归属锚是 UI 面容器。按 US 拆分以避免越层。'
     include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice
     include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_evaluationGate
@@ -171,7 +171,7 @@ views {
   }
 
   view carrier001F of feat_answer_f {
-    title '数据载体全景 · Feature-001-F'
+    title 'SRC 环 · Feature-001-F · 数据载体'
     description '本链的数据载体与转换关系。角色为 IN / BIZ / POD / OUT / DAO / CVT。'
     include feat_answer_f.in_chatMessage, feat_answer_f.biz_query
     include feat_answer_f.pod_ticket, feat_answer_f.out_answer
@@ -179,33 +179,33 @@ views {
   }
 
   view carrier001NF of feat_degrade_nf {
-    title '数据载体全景 · Feature-001-NF'
+    title 'SRC 环 · Feature-001-NF · 数据载体'
     description '极端场景链的数据载体。编号段与 F 链分开。'
     include feat_degrade_nf.in_probeQuery, feat_degrade_nf.biz_probeResult
     include feat_degrade_nf.pod_alert, feat_degrade_nf.out_status
     include feat_degrade_nf.dao_alert, feat_degrade_nf.cvt_probe
   }
 
-  view erm001F of feat_answer_f {
-    title '数据模型全景 · Feature-001-F 工单结构'
+  view erm001F-ticket of feat_answer_f {
+    title 'SRC 环 · Feature-001-F · 数据模型 · 工单'
     description '本链的持久化实体与数据访问单元。字段清单写在 description，图上不承载字段定义。'
     include feat_answer_f.pod_ticket, feat_answer_f.dao_store
   }
 
-  view erm001NF of feat_degrade_nf {
-    title '数据模型全景 · Feature-001-NF 告警结构'
+  view erm001NF-alert of feat_degrade_nf {
+    title 'SRC 环 · Feature-001-NF · 数据模型 · 告警'
     description '极端场景链的持久化实体与数据访问单元。'
     include feat_degrade_nf.pod_alert, feat_degrade_nf.dao_alert
   }
 
-  view stateMain {
-    title 'I 环 · 业务状态主干'
+  view chain001F-i-state-main {
+    title 'I 环 · Feature-001-F · 业务状态 · 主干'
     description '必经状态链路，不含转人工分支。'
     include feat_answer_f.st_received, feat_answer_f.st_retrieving, feat_answer_f.st_answering, feat_answer_f.st_answered
   }
 
-  view stateBranchHuman {
-    title 'I 环 · 业务状态分支 · 转人工'
+  view chain001F-i-state-branch-human {
+    title 'I 环 · Feature-001-F · 业务状态 · 分支转人工'
     description '自检索中节点岔出，合流至已答复。分支独立成图，不重复主干状态。'
     include feat_answer_f.st_retrieving, feat_answer_f.st_waitingHuman
   }

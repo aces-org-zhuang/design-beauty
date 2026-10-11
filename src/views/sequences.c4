@@ -11,29 +11,28 @@
 views {
   dynamic view seq001F-answer {
     variant sequence
-    title 'Feature-001-F 主干时序 · 客户提问到答复'
+    title 'SRC 环 · Feature-001-F · 应答主干时序'
     description '归属 Feature-001-F。客户提问经回调、编排、检索、校验后得到答复。dynamic view 不支持 of，归属写在此处。'
 
     include feat_answer_f.lane_client.actor_customer
     include feat_answer_f.lane_edge.api_chatCallback
-    include feat_answer_f.lane_core.step_answerLane
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator
     include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_ragflowKnowledge
     include feat_answer_f.lane_ext.ext_ragflow
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_handoffService
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy
 
     feat_answer_f.lane_client.actor_customer -> feat_answer_f.lane_edge.api_chatCallback '企业微信提问'
     feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator '分发归一化消息'
-    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator -> feat_answer_f.lane_core.step_answerLane '请求应答'
-    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_ext.ext_ragflow '检索候选知识'
-    feat_answer_f.lane_ext.ext_ragflow -> feat_answer_f.lane_core.step_answerLane '返回候选知识'
-    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy '校验置信度'
-    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy -> feat_answer_f.lane_core.step_answerLane '达标放行'
-    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_edge.api_chatCallback '返回答复'
+    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator -> feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_ragflowKnowledge '检索候选知识'
+    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_ragflowKnowledge -> feat_answer_f.lane_ext.ext_ragflow '请求 RAGFlow'
+    feat_answer_f.lane_ext.ext_ragflow -> feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_ragflowKnowledge '返回候选知识'
+    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator -> feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy '校验置信度'
+    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy -> feat_answer_f.lane_edge.api_chatCallback '达标放行并返回答复'
   }
 
   dynamic view seq001F-branch-low-confidence-src {
     variant sequence
-    title 'SRC · 分支时序 · Feature-001-F · 置信度不足转人工'
+    title 'SRC 环 · Feature-001-F · 分支时序 · 置信度不足转人工'
     description '归属 Feature-001-F 的 SRC 环。自策略校验节点岔出，经编排到工单落库。SRC 环的分支，与 I 环的分支各自成图。'
 
     include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy
@@ -48,7 +47,7 @@ views {
 
   dynamic view dfd001F-answer {
     variant sequence
-    title 'DFD 全景 · Feature-001-F 应答数据流'
+    title 'SRC 环 · Feature-001-F · 数据流 · 应答'
     description '归属 Feature-001-F。业务数据从提问入参到落库再回显的完整链路，含转换点。'
 
     include feat_answer_f.us_ask.i_ask_deliver.ui_interaction
@@ -66,27 +65,27 @@ views {
 
   dynamic view seq001NF-degrade {
     variant sequence
-    title 'Feature-001-NF 主干时序 · 场景判定与提示'
+    title 'SRC 环 · Feature-001-NF · 场景判定时序'
     description '归属 Feature-001-NF。运营查询状态后依次判定三类极端场景并给出提示。'
 
     include feat_degrade_nf.lane_operator.actor_ops
     include feat_degrade_nf.lane_edge.api_status
-    include feat_degrade_nf.lane_core.step_probeLane
+    include feat_degrade_nf.us_kbEmpty.i_kb_count
     include feat_degrade_nf.lane_ext.ext_ragflow
     include feat_degrade_nf.us_llmDown.i_ll_notify
     include feat_degrade_nf.lane_operator.actor_ops
 
     feat_degrade_nf.lane_operator.actor_ops -> feat_degrade_nf.lane_edge.api_status '查询集成状态'
-    feat_degrade_nf.lane_edge.api_status -> feat_degrade_nf.lane_core.step_probeLane '发起探测'
-    feat_degrade_nf.lane_core.step_probeLane -> feat_degrade_nf.lane_ext.ext_ragflow '探测数据集可用性'
-    feat_degrade_nf.lane_ext.ext_ragflow -> feat_degrade_nf.lane_core.step_probeLane '返回探测结论'
-    feat_degrade_nf.lane_core.step_probeLane -> feat_degrade_nf.us_llmDown.i_ll_notify '提交发布判定并下发提示'
+    feat_degrade_nf.lane_edge.api_status -> feat_degrade_nf.us_kbEmpty.i_kb_count '发起探测'
+    feat_degrade_nf.us_kbEmpty.i_kb_count -> feat_degrade_nf.lane_ext.ext_ragflow '探测数据集可用性'
+    feat_degrade_nf.lane_ext.ext_ragflow -> feat_degrade_nf.us_kbEmpty.i_kb_count '返回探测结论'
+    feat_degrade_nf.us_kbEmpty.i_kb_count -> feat_degrade_nf.us_llmDown.i_ll_notify '提交发布判定并下发提示'
     feat_degrade_nf.us_llmDown.i_ll_notify -> feat_degrade_nf.lane_operator.actor_ops '告知客户'
   }
 
   dynamic view dfd001NF-probe {
     variant sequence
-    title 'DFD 全景 · Feature-001-NF 探测数据流'
+    title 'SRC 环 · Feature-001-NF · 数据流 · 探测'
     description '归属 Feature-001-NF。探测入参到状态出参与告警落库的完整链路。'
 
     include feat_degrade_nf.lane_operator.actor_ops
@@ -104,7 +103,7 @@ views {
 
   dynamic view seq001F-i-step-lanes {
     variant sequence
-    title 'I 环 · 业务步骤泳道流程 · Feature-001-F'
+    title 'I 环 · Feature-001-F · 业务步骤泳道流程'
     description '归属 Feature-001-F。用嵌套后的真实 I 环步骤表达主干：归一化 → 检索 → 排序 → 校验 → 生成 → 下发。泳道按责任分区，步骤本身嵌在 US 容器内。'
 
     include feat_answer_f.lane_client.actor_customer
@@ -132,7 +131,7 @@ views {
 
   dynamic view seq001F-branch-low-confidence {
     variant sequence
-    title 'I 环 · 分支泳道流程 · Feature-001-F · 置信度不足'
+    title 'I 环 · Feature-001-F · 分支泳道流程 · 置信度不足'
     description '归属 Feature-001-F。自置信度校验节点岔出，走 US-002 的三个步骤。分支独立成图，不重复主干步骤。'
 
     include feat_answer_f.us_ask.i_ask_verify
@@ -149,19 +148,19 @@ views {
 
   dynamic view seq001NF-i-step-lanes {
     variant sequence
-    title 'I 环 · 场景判定泳道流程 · Feature-001-NF'
+    title 'I 环 · Feature-001-NF · 场景判定泳道流程'
     description '归属 Feature-001-NF。运营发起查询、判定层依次判定三类极端场景、提示层给出下一步。'
 
     include feat_degrade_nf.lane_operator.actor_ops
     include feat_degrade_nf.lane_edge.api_status
-    include feat_degrade_nf.lane_core.step_probeLane
+    include feat_degrade_nf.us_kbEmpty.i_kb_count
     include feat_degrade_nf.us_kbEmpty.i_kb_judge
     include feat_degrade_nf.us_ragTimeout.i_to_check
     include feat_degrade_nf.us_llmDown.i_ll_detect
 
     feat_degrade_nf.lane_operator.actor_ops -> feat_degrade_nf.lane_edge.api_status '①查询状态'
-    feat_degrade_nf.lane_edge.api_status -> feat_degrade_nf.lane_core.step_probeLane '②发起探测'
-    feat_degrade_nf.lane_core.step_probeLane -> feat_degrade_nf.us_kbEmpty.i_kb_judge '③判定条目数'
+    feat_degrade_nf.lane_edge.api_status -> feat_degrade_nf.us_kbEmpty.i_kb_count '②发起探测'
+    feat_degrade_nf.us_kbEmpty.i_kb_count -> feat_degrade_nf.us_kbEmpty.i_kb_judge '③判定条目数'
     feat_degrade_nf.us_kbEmpty.i_kb_judge -> feat_degrade_nf.us_ragTimeout.i_to_check '④判定响应耗时'
     feat_degrade_nf.us_ragTimeout.i_to_check -> feat_degrade_nf.us_llmDown.i_ll_detect '⑤判定模型可用性'
     feat_degrade_nf.us_llmDown.i_ll_detect -> feat_degrade_nf.lane_operator.actor_ops '⑥下发提示或转人工'
@@ -169,34 +168,34 @@ views {
 
   dynamic view seq001F-api-chat {
     variant sequence
-    title 'API 泳道时序 · Feature-001-F 提交提问'
+    title 'SRC 环 · Feature-001-F · 接口泳道时序 · 提交提问'
     description '泳道按调用方向：客户 → 服务端接入 → 领域层 → 外部依赖。'
 
     include feat_answer_f.lane_client.actor_customer
     include feat_answer_f.lane_edge.api_chatCallback
-    include feat_answer_f.lane_core.step_answerLane
+    include feat_answer_f.us_ask.i_ask_deliver
     include feat_answer_f.lane_ext.ext_ragflow
 
     feat_answer_f.lane_client.actor_customer -> feat_answer_f.lane_edge.api_chatCallback 'POST /wechat/callback'
-    feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.lane_core.step_answerLane '触发应答'
-    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_ext.ext_ragflow '检索知识'
-    feat_answer_f.lane_ext.ext_ragflow -> feat_answer_f.lane_core.step_answerLane '返回候选知识'
-    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_edge.api_chatCallback '返回答复'
+    feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.us_ask.i_ask_deliver '触发应答'
+    feat_answer_f.us_ask.i_ask_deliver -> feat_answer_f.lane_ext.ext_ragflow '检索知识'
+    feat_answer_f.lane_ext.ext_ragflow -> feat_answer_f.us_ask.i_ask_deliver '返回候选知识'
+    feat_answer_f.us_ask.i_ask_deliver -> feat_answer_f.lane_edge.api_chatCallback '返回答复'
   }
 
   dynamic view seq001NF-api-status {
     variant sequence
-    title 'API 泳道时序 · Feature-001-NF 查询集成状态'
+    title 'SRC 环 · Feature-001-NF · 接口泳道时序 · 查询集成状态'
     description '泳道按调用方向：运营人员 → 服务端接入 → 判定层 → 外部依赖。'
 
     include feat_degrade_nf.lane_operator.actor_ops
     include feat_degrade_nf.lane_edge.api_status
-    include feat_degrade_nf.lane_core.step_probeLane
+    include feat_degrade_nf.us_kbEmpty.i_kb_count
     include feat_degrade_nf.lane_ext.ext_ragflow
 
     feat_degrade_nf.lane_operator.actor_ops -> feat_degrade_nf.lane_edge.api_status 'GET /integration/status'
-    feat_degrade_nf.lane_edge.api_status -> feat_degrade_nf.lane_core.step_probeLane '发起探测'
-    feat_degrade_nf.lane_core.step_probeLane -> feat_degrade_nf.lane_ext.ext_ragflow '探测数据集'
-    feat_degrade_nf.lane_ext.ext_ragflow -> feat_degrade_nf.lane_core.step_probeLane '返回结论'
+    feat_degrade_nf.lane_edge.api_status -> feat_degrade_nf.us_kbEmpty.i_kb_count '发起探测'
+    feat_degrade_nf.us_kbEmpty.i_kb_count -> feat_degrade_nf.lane_ext.ext_ragflow '探测数据集'
+    feat_degrade_nf.lane_ext.ext_ragflow -> feat_degrade_nf.us_kbEmpty.i_kb_count '返回结论'
   }
 }
