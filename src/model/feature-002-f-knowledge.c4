@@ -1,0 +1,190 @@
+// Feature-002 · 知识运营
+//
+// 这个 Feature 补上原先缺失的第二个交付单元。
+// 上一轮迁移时把整个知识运营链路（扫描 → 同步 → 治理 → 生命周期 → 告警）
+// 压缩进了 Feature-001 的边里，导致全景视图退化成「Feature-001 的总览」。
+// 有了第二个 Feature，pano-f / pano-nf 才真正是跨 Feature 聚合。
+//
+// 分叉判据：本次交付新增或改变对外可见的能力 → F 链。
+// 编号段：US-2xx / F-2xx / I-2xx / SRC-2xx。
+
+model {
+  feat_knowledge_f = feature 'Feature-002-F 知识运营能力' {
+    description '按业务能力切分。交付边界：运营人员能把素材变成可检索知识，并能发现知识陈旧。所属愿景：让美妆咨询有据可依。'
+
+    // ---- US：本链自己识别 ----
+
+    us_scan = userStory 'US-201 素材入库后自动进入候选知识' {
+      description '作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。'
+    }
+    us_govern = userStory 'US-202 候选知识经我决策后才对外可见' {
+      description '作为运营人员，我需要审核候选知识再决定是否发布，以便错误内容不会直接答给客户。验收：候选知识需经我批准才进入知识库。'
+    }
+    us_alert = userStory 'US-203 知识陈旧时我能收到提示' {
+      description '作为运营人员，知识过期或数据集异常时，我能被提醒，以便在客户问到之前修好。验收：知识新鲜度异常时控制台列出问题条目。'
+    }
+
+    // ---- F 单元清单 ----
+
+    f_ingest = function 'F-201 素材接入能力' {
+      description '接收素材并登记文档标识，支持单条与批量。'
+    }
+    f_govern = function 'F-202 知识治理能力' {
+      description '候选知识的扫描、决策、晋升与下线。'
+    }
+
+    // ---- I 环 ----
+
+    i_goal = implStep 'I-201 业务目标' {
+      description '素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。'
+    }
+    i_step = implStep 'I-202 业务步骤' {
+      description '主干步骤：登记素材 → 扫描候选知识 → 治理决策 → 同步至知识库 → 巡检新鲜度。'
+    }
+
+    // ---- UI 环 ----
+
+    ui_console = uiSurface 'UI-201 运营控制台' {
+      description '运营人员管理素材、审核候选知识、查看新鲜度告警的单页控制台。'
+    }
+    ui_information = uiSurface 'UI-202 知识运营信息设计' {
+      description '字段：素材标识、来源、扫描状态、决策结果、新鲜度天数。覆盖空态（暂无素材）、加载态（扫描中）、错误态（同步失败）、无权限态（未授权）。'
+    }
+
+    // ---- SRC 环 ----
+
+    src_materialRoutes = srcUnit 'SRC-201 素材路由' {
+      description 'src/routes/material-routes.js — 美妆素材接入接口。'
+    }
+    src_knowledgeRoutes = srcUnit 'SRC-202 知识库路由' {
+      description 'src/routes/knowledge-routes.js — 知识扫描、同步与生命周期接口。'
+    }
+    src_materialService = srcUnit 'SRC-203 素材服务' {
+      description 'src/services/material-service.js — 素材接入规则。'
+    }
+    src_materialBatch = srcUnit 'SRC-204 素材批处理' {
+      description 'src/services/material-batch-service.js — 批量素材接入。'
+    }
+    src_documentRegistry = srcUnit 'SRC-205 文档登记簿' {
+      description 'src/services/knowledge-document-registry.js — 跟踪素材与文档标识。'
+    }
+    src_knowledgeScan = srcUnit 'SRC-206 知识扫描' {
+      description 'src/services/knowledge-scan-service.js — 发现候选知识。'
+    }
+    src_governance = srcUnit 'SRC-207 知识治理' {
+      description 'src/services/knowledge-governance-service.js — 发布决策与治理。'
+    }
+    src_knowledgeSync = srcUnit 'SRC-208 知识同步' {
+      description 'src/services/knowledge-sync-service.js — 把已批准知识推送到 RAGFlow。'
+    }
+    src_lifecycle = srcUnit 'SRC-209 知识生命周期视图' {
+      description 'src/services/knowledge-lifecycle-service.js — 知识的晋升与下线。'
+    }
+
+    // ---- 数据载体 ----
+
+    in_material = dto 'IN-201 素材入参' {
+      description 'src/routes/material-routes.js — 上传素材的请求载荷。'
+    }
+    biz_candidate = entity 'BIZ-201 候选知识对象' {
+      description 'src/services/knowledge-scan-service.js — 承载扫描出的候选条目与决策状态。'
+    }
+    pod_document = entity 'POD-201 文档登记实体' {
+      description 'data/local-mvp-store.json — 与 store.json 中 documents 数组结构对应。'
+    }
+    out_knowledgeStatus = vo 'OUT-201 知识状态出参视图' {
+      description 'src/routes/knowledge-routes.js — 面向控制台的扫描与治理状态载荷。'
+    }
+    dao_registry = dataAccess 'DAO-201 文档登记访问' {
+      description 'src/domain/store.js — 素材与文档标识的读写边界。'
+    }
+    cvt_material = converter 'CVT-201 素材转换器' {
+      description 'src/services/material-service.js — 覆盖 素材载荷→BIZ-201 与 BIZ-201→POD-201 两组映射。'
+    }
+
+    // ---- 泳道：按调用方向 ----
+
+    lane_ops = feature '运营人员泳道' {
+      actor_operator = person '运营人员'
+    }
+    lane_edge = feature '服务端接入泳道' {
+      api_material = apiEndpoint 'API-201 POST /materials 素材接入' {
+        description 'src/routes/material-routes.js:8 — 接收素材。'
+      }
+      api_scan = apiEndpoint 'API-202 POST /knowledge/scan 知识扫描' {
+        description 'src/routes/knowledge-routes.js:10 — 触发候选知识扫描。'
+      }
+      api_status = apiEndpoint 'API-203 GET /knowledge/status 知识状态' {
+        description 'src/routes/knowledge-routes.js:26 — 查询扫描与治理状态。'
+      }
+    }
+    lane_core = feature '治理层泳道' {
+      step_governLane = implStep 'I-202 业务步骤（治理泳道）' {
+        description '登记、扫描、决策、同步的治理环节。'
+      }
+      i_stepLaneSync = implStep 'I-203 同步环节' {
+        description '把已批准知识推送到 RAGFlow 数据集。'
+      }
+    }
+    lane_ext = feature '外部依赖泳道' {
+      ext_ragflow2 = system 'RAGFlow' {
+        description '知识库与检索服务。'
+      }
+      ext_wiki = system 'LLM Wiki' {
+        description '生成的 wiki 候选来源。'
+      }
+    }
+
+    // ---- 清单对应 ----
+
+    us_scan .trace f_ingest '要求'
+    us_govern .trace f_govern '要求'
+    us_alert .trace f_govern '要求'
+
+    // ---- 下钻路径 ----
+
+    us_scan .trace i_step '落为业务步骤'
+    us_govern .trace i_goal '落为业务目标'
+    us_alert .trace i_step '落为巡检步骤'
+    i_step .trace i_goal '推进治理目标'
+    i_goal .trace ui_information '展示治理状态'
+    i_step .trace ui_console '反馈交互'
+    ui_console .trace src_knowledgeRoutes '由知识路由支撑'
+    ui_information .trace src_knowledgeRoutes '读取状态'
+
+    // ---- 依赖边 ----
+
+    src_materialRoutes .depends src_materialService '接收素材'
+    src_materialBatch .depends src_materialService '批量接入'
+    src_materialService .depends src_documentRegistry '登记文档'
+    src_knowledgeRoutes .depends src_knowledgeScan '触发扫描'
+    src_knowledgeScan .depends src_governance '提交候选'
+    src_governance .depends src_knowledgeSync '批准后推送'
+    src_knowledgeSync .depends src_lifecycle '更新生命周期'
+    src_lifecycle .depends src_documentRegistry '晋升或下线'
+
+    // ---- 数据流 ----
+
+    lane_ops.actor_operator -> lane_edge.api_material '上传素材'
+    lane_edge.api_material -> in_material '构造入参'
+    in_material .convert biz_candidate '转换为候选对象'
+    biz_candidate .convert pod_document '登记为文档实体'
+    pod_document .flow dao_registry '写入文档标识'
+    dao_registry .flow out_knowledgeStatus '查询状态'
+    out_knowledgeStatus .flow ui_information '渲染状态'
+
+    // ---- 转换覆盖 ----
+
+    cvt_material .trace biz_candidate '负责 素材→BIZ-201 映射'
+    cvt_material .trace pod_document '负责 BIZ-201→POD-201 映射'
+
+    // ---- 边界顺序 ----
+
+    lane_edge.api_material -> lane_core.step_governLane '接收待治理素材'
+    lane_core.step_governLane -> lane_core.i_stepLaneSync '批准后进入同步'
+    lane_core.i_stepLaneSync -> lane_ext.ext_ragflow2 '推送数据集'
+    lane_core.i_stepLaneSync -> lane_ext.ext_wiki '读取 wiki 候选'
+    lane_core.step_governLane -> lane_edge.api_scan '触发扫描'
+    lane_edge.api_scan -> lane_ops.actor_operator '返回候选状态'
+  }
+}

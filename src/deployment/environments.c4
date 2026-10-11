@@ -13,6 +13,7 @@ deployment {
       vm appVm '本机 8787' {
         answerInst = instanceOf feat_answer_f.src_answerOrchestrator
         degradeInst = instanceOf feat_degrade_nf.src_evaluationGate
+        knowledgeInst = instanceOf feat_knowledge_f.src_knowledgeRoutes
 
         processNode serverProc '服务进程 · node src/server.js' {
           threadNode httpPool 'HTTP 线程池 · 8' { }
@@ -47,6 +48,7 @@ deployment {
       vm appVm '服务实例 · 2C4G' {
         answerInstProd = instanceOf feat_answer_f.src_answerOrchestrator
         degradeInstProd = instanceOf feat_degrade_nf.src_evaluationGate
+        knowledgeInstProd = instanceOf feat_knowledge_f.src_knowledgeRoutes
 
         processNode serverProc '服务进程 · node src/server.js' {
           threadNode httpPool 'HTTP 线程池 · 32' { }

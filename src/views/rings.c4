@@ -80,4 +80,67 @@ views {
     description '极端场景链的交互面与信息设计。'
     include feat_degrade_nf.ui_status, feat_degrade_nf.ui_notice
   }
+
+  view chain002F-us of feat_knowledge_f {
+    title 'US 视图 · Feature-002-F'
+    description '只承载本链的用户故事。不含能力单元、I 环与源码。'
+    include feat_knowledge_f.us_scan, feat_knowledge_f.us_govern
+    include feat_knowledge_f.us_alert
+  }
+
+  view chain002F-f of feat_knowledge_f {
+    title '能力清单 · Feature-002-F'
+    description '本链的业务能力单元与对应 US。US 在此仅用于展示对应关系。'
+    include feat_knowledge_f.us_scan, feat_knowledge_f.us_govern
+    include feat_knowledge_f.us_alert
+    include feat_knowledge_f.f_ingest, feat_knowledge_f.f_govern
+  }
+
+  view chain002F-i-goal of feat_knowledge_f {
+    title 'I 环 · 业务目标 · Feature-002-F'
+    description '只承载业务目标。状态流转与业务步骤各自成图。'
+    include feat_knowledge_f.i_goal
+  }
+
+  view chain002F-i-step of feat_knowledge_f {
+    title 'I 环 · 业务步骤 · Feature-002-F'
+    description '只承载主干治理步骤的静态结构。'
+    include feat_knowledge_f.i_step
+  }
+
+  view chain002F-ui of feat_knowledge_f {
+    title 'UI 环 · Feature-002-F'
+    description '只承载交互面与信息设计。'
+    include feat_knowledge_f.ui_console, feat_knowledge_f.ui_information
+  }
+
+  view srcdir002F of feat_knowledge_f {
+    title 'SRC 目录视图 · Feature-002-F'
+    description '本链源码单元与真实文件路径的对应。'
+    include feat_knowledge_f.src_materialRoutes, feat_knowledge_f.src_knowledgeRoutes
+    include feat_knowledge_f.src_materialService, feat_knowledge_f.src_materialBatch
+    include feat_knowledge_f.src_documentRegistry, feat_knowledge_f.src_knowledgeScan
+    include feat_knowledge_f.src_governance, feat_knowledge_f.src_knowledgeSync
+    include feat_knowledge_f.src_lifecycle
+  }
+
+  view carrier002F of feat_knowledge_f {
+    title '数据载体全景 · Feature-002-F'
+    description '本链的数据载体与转换关系。'
+    include feat_knowledge_f.in_material, feat_knowledge_f.biz_candidate
+    include feat_knowledge_f.pod_document, feat_knowledge_f.out_knowledgeStatus
+    include feat_knowledge_f.dao_registry, feat_knowledge_f.cvt_material
+  }
+
+  view erm002F of feat_knowledge_f {
+    title '数据模型全景 · Feature-002-F 文档结构'
+    description '本链的持久化实体与数据访问单元。'
+    include feat_knowledge_f.pod_document, feat_knowledge_f.dao_registry
+  }
+
+  view api002F of feat_knowledge_f.lane_edge {
+    title 'API 清单 · Feature-002-F'
+    description '本链对外接口，含方法、路径与路由位置。'
+    include feat_knowledge_f.lane_edge
+  }
 }
