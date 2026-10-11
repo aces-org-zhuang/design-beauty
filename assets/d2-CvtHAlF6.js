@@ -20,6 +20,18 @@ Feat_degrade_nfUs_ragTimeout: {
   label: "US-102 RAGFlow 超时时客户不被静默等待"
   shape: document
 }
+Feat_knowledge_fUs_scan: {
+  label: "US-201 素材入库后自动进入候选知识"
+  shape: document
+}
+Feat_knowledge_fUs_govern: {
+  label: "US-202 候选知识经我决策后才对外可见"
+  shape: document
+}
+Feat_knowledge_fUs_alert: {
+  label: "US-203 知识陈旧时我能收到提示"
+  shape: document
+}
 Feat_degrade_nfUs_llmDown: {
   label: "US-103 LLM 不可用时转人工而非静默失败"
   shape: document
@@ -31,6 +43,12 @@ Feat_answer_fF_answer: {
 }
 Feat_answer_fF_retrieval: {
   label: "F-002 知识检索能力"
+}
+Feat_knowledge_fF_ingest: {
+  label: "F-201 素材接入能力"
+}
+Feat_knowledge_fF_govern: {
+  label: "F-202 知识治理能力"
 }
 `;case`pano-nf`:return`direction: down
 
@@ -51,12 +69,24 @@ Feat_answer_fI_goal: {
 Feat_answer_fI_step: {
   label: "I-003 业务步骤"
 }
+Feat_knowledge_f: {
+  label: "Feature-002-F 知识运营能力"
+
+  I_step: {
+    label: "I-202 业务步骤"
+  }
+  I_goal: {
+    label: "I-201 业务目标"
+  }
+}
 Feat_degrade_nfI_goal: {
   label: "I-101 业务目标"
 }
 Feat_degrade_nfI_step: {
   label: "I-102 场景判定逻辑"
 }
+
+Feat_knowledge_f.I_step -> Feat_knowledge_f.I_goal: "推进治理目标"
 `;case`pano-i-state`:return`direction: down
 
 St_received: {
@@ -87,6 +117,12 @@ Feat_answer_fUi_interaction: {
 }
 Feat_answer_fUi_information: {
   label: "UI-002 答复信息设计"
+}
+Feat_knowledge_fUi_console: {
+  label: "UI-201 运营控制台"
+}
+Feat_knowledge_fUi_information: {
+  label: "UI-202 知识运营信息设计"
 }
 Feat_degrade_nfUi_status: {
   label: "UI-101 控制台状态提示"
@@ -143,6 +179,37 @@ Feat_degrade_nf: {
     label: "SRC-106 告警状态存储"
   }
 }
+Feat_knowledge_f: {
+  label: "Feature-002-F 知识运营能力"
+
+  Src_materialRoutes: {
+    label: "SRC-201 素材路由"
+  }
+  Src_materialBatch: {
+    label: "SRC-204 素材批处理"
+  }
+  Src_knowledgeRoutes: {
+    label: "SRC-202 知识库路由"
+  }
+  Src_materialService: {
+    label: "SRC-203 素材服务"
+  }
+  Src_knowledgeScan: {
+    label: "SRC-206 知识扫描"
+  }
+  Src_governance: {
+    label: "SRC-207 知识治理"
+  }
+  Src_knowledgeSync: {
+    label: "SRC-208 知识同步"
+  }
+  Src_lifecycle: {
+    label: "SRC-209 知识生命周期视图"
+  }
+  Src_documentRegistry: {
+    label: "SRC-205 文档登记簿"
+  }
+}
 
 Feat_answer_f.Src_wechatCallback -> Feat_answer_f.Src_answerOrchestrator: "分发归一化消息"
 Feat_answer_f.Src_answerOrchestrator -> Feat_answer_f.Src_answerLoop: "请求应答"
@@ -153,6 +220,14 @@ Feat_answer_f.Src_handoffService -> Feat_answer_f.Src_store: "持久化工单"
 Feat_degrade_nf.Src_integrationRoutes -> Feat_degrade_nf.Src_knowledgeAlert: "查询空库告警"
 Feat_degrade_nf.Src_knowledgeAlert -> Feat_degrade_nf.Src_evaluationGate: "提交发布判定"
 Feat_degrade_nf.Src_integrationRoutes -> Feat_degrade_nf.Src_ragflowProbe: "探测数据集状态"
+Feat_knowledge_f.Src_materialRoutes -> Feat_knowledge_f.Src_materialService: "接收素材"
+Feat_knowledge_f.Src_materialBatch -> Feat_knowledge_f.Src_materialService: "批量接入"
+Feat_knowledge_f.Src_materialService -> Feat_knowledge_f.Src_documentRegistry: "登记文档"
+Feat_knowledge_f.Src_knowledgeRoutes -> Feat_knowledge_f.Src_knowledgeScan: "触发扫描"
+Feat_knowledge_f.Src_knowledgeScan -> Feat_knowledge_f.Src_governance: "提交候选"
+Feat_knowledge_f.Src_governance -> Feat_knowledge_f.Src_knowledgeSync: "批准后推送"
+Feat_knowledge_f.Src_knowledgeSync -> Feat_knowledge_f.Src_lifecycle: "更新生命周期"
+Feat_knowledge_f.Src_lifecycle -> Feat_knowledge_f.Src_documentRegistry: "晋升或下线"
 Feat_degrade_nf.Src_evaluationGate -> Feat_degrade_nf.Src_storeAlert: "读取告警快照"
 `;case`pano-carrier`:return`direction: down
 
@@ -202,6 +277,29 @@ Feat_degrade_nf: {
     shape: cylinder
   }
 }
+Feat_knowledge_f: {
+  label: "Feature-002-F 知识运营能力"
+
+  In_material: {
+    label: "IN-201 素材入参"
+  }
+  Cvt_material: {
+    label: "CVT-201 素材转换器"
+  }
+  Biz_candidate: {
+    label: "BIZ-201 候选知识对象"
+  }
+  Pod_document: {
+    label: "POD-201 文档登记实体"
+  }
+  Dao_registry: {
+    label: "DAO-201 文档登记访问"
+    shape: cylinder
+  }
+  Out_knowledgeStatus: {
+    label: "OUT-201 知识状态出参视图"
+  }
+}
 
 Feat_answer_f.In_chatMessage -> Feat_answer_f.Biz_query: "转换为检索查询"
 Feat_answer_f.Biz_query -> Feat_answer_f.Pod_ticket: "低置信度落工单"
@@ -212,12 +310,21 @@ Feat_answer_f.Cvt_normalize -> Feat_answer_f.Out_answer: "负责 POD-001→OUT-0
 Feat_degrade_nf.In_probeQuery -> Feat_degrade_nf.Biz_probeResult: "转换为探测结果"
 Feat_degrade_nf.Biz_probeResult -> Feat_degrade_nf.Pod_alert: "异常转告警实体"
 Feat_degrade_nf.Biz_probeResult -> Feat_degrade_nf.Out_status: "渲染状态载荷"
+Feat_knowledge_f.In_material -> Feat_knowledge_f.Biz_candidate: "转换为候选对象"
+Feat_knowledge_f.Biz_candidate -> Feat_knowledge_f.Pod_document: "登记为文档实体"
+Feat_knowledge_f.Pod_document -> Feat_knowledge_f.Dao_registry: "写入文档标识"
+Feat_knowledge_f.Dao_registry -> Feat_knowledge_f.Out_knowledgeStatus: "查询状态"
+Feat_knowledge_f.Cvt_material -> Feat_knowledge_f.Biz_candidate: "负责 素材→BIZ-201 映射"
+Feat_knowledge_f.Cvt_material -> Feat_knowledge_f.Pod_document: "负责 BIZ-201→POD-201 映射"
 Feat_degrade_nf.Pod_alert -> Feat_degrade_nf.Dao_alert: "写入告警"
 Feat_degrade_nf.Cvt_probe -> Feat_degrade_nf.Biz_probeResult: "负责 BIZ-101→OUT-101 映射"
 Feat_degrade_nf.Cvt_probe -> Feat_degrade_nf.Pod_alert: "负责 BIZ-101→POD-101 映射"
 `;case`pano-api`:return`direction: down
 
 Feat_answer_fLane_edge: {
+  label: "服务端接入泳道"
+}
+Feat_knowledge_fLane_edge: {
   label: "服务端接入泳道"
 }
 Feat_degrade_nfLane_edge: {
@@ -392,6 +499,9 @@ Feat_answer_f: {
 Feat_degrade_nf: {
   label: "Feature-001-NF 极端场景保障"
 }
+Feat_knowledge_f: {
+  label: "Feature-002-F 知识运营能力"
+}
 `;case`chain001F-us`:return`direction: down
 
 Feat_answer_fUs_ask: {
@@ -497,6 +607,144 @@ Feat_degrade_nfUi_status: {
 }
 Feat_degrade_nfUi_notice: {
   label: "UI-102 极端场景提示"
+}
+`;case`chain002F-us`:return`direction: down
+
+Feat_knowledge_fUs_scan: {
+  label: "US-201 素材入库后自动进入候选知识"
+  shape: document
+}
+Feat_knowledge_fUs_govern: {
+  label: "US-202 候选知识经我决策后才对外可见"
+  shape: document
+}
+Feat_knowledge_fUs_alert: {
+  label: "US-203 知识陈旧时我能收到提示"
+  shape: document
+}
+`;case`chain002F-f`:return`direction: down
+
+Feat_knowledge_fUs_scan: {
+  label: "US-201 素材入库后自动进入候选知识"
+  shape: document
+}
+Feat_knowledge_fUs_govern: {
+  label: "US-202 候选知识经我决策后才对外可见"
+  shape: document
+}
+Feat_knowledge_fUs_alert: {
+  label: "US-203 知识陈旧时我能收到提示"
+  shape: document
+}
+Feat_knowledge_fF_ingest: {
+  label: "F-201 素材接入能力"
+}
+Feat_knowledge_fF_govern: {
+  label: "F-202 知识治理能力"
+}
+
+Feat_knowledge_fUs_scan -> Feat_knowledge_fF_ingest: "要求"
+Feat_knowledge_fUs_govern -> Feat_knowledge_fF_govern: "要求"
+Feat_knowledge_fUs_alert -> Feat_knowledge_fF_govern: "要求"
+`;case`chain002F-i-goal`:return`direction: down
+
+Feat_knowledge_fI_goal: {
+  label: "I-201 业务目标"
+}
+`;case`chain002F-i-step`:return`direction: down
+
+Feat_knowledge_fI_step: {
+  label: "I-202 业务步骤"
+}
+`;case`chain002F-ui`:return`direction: down
+
+Feat_knowledge_fUi_console: {
+  label: "UI-201 运营控制台"
+}
+Feat_knowledge_fUi_information: {
+  label: "UI-202 知识运营信息设计"
+}
+`;case`srcdir002F`:return`direction: down
+
+Feat_knowledge_fSrc_materialRoutes: {
+  label: "SRC-201 素材路由"
+}
+Feat_knowledge_fSrc_materialBatch: {
+  label: "SRC-204 素材批处理"
+}
+Feat_knowledge_fSrc_knowledgeRoutes: {
+  label: "SRC-202 知识库路由"
+}
+Feat_knowledge_fSrc_materialService: {
+  label: "SRC-203 素材服务"
+}
+Feat_knowledge_fSrc_knowledgeScan: {
+  label: "SRC-206 知识扫描"
+}
+Feat_knowledge_fSrc_governance: {
+  label: "SRC-207 知识治理"
+}
+Feat_knowledge_fSrc_knowledgeSync: {
+  label: "SRC-208 知识同步"
+}
+Feat_knowledge_fSrc_lifecycle: {
+  label: "SRC-209 知识生命周期视图"
+}
+Feat_knowledge_fSrc_documentRegistry: {
+  label: "SRC-205 文档登记簿"
+}
+
+Feat_knowledge_fSrc_materialRoutes -> Feat_knowledge_fSrc_materialService: "接收素材"
+Feat_knowledge_fSrc_materialBatch -> Feat_knowledge_fSrc_materialService: "批量接入"
+Feat_knowledge_fSrc_materialService -> Feat_knowledge_fSrc_documentRegistry: "登记文档"
+Feat_knowledge_fSrc_knowledgeRoutes -> Feat_knowledge_fSrc_knowledgeScan: "触发扫描"
+Feat_knowledge_fSrc_knowledgeScan -> Feat_knowledge_fSrc_governance: "提交候选"
+Feat_knowledge_fSrc_governance -> Feat_knowledge_fSrc_knowledgeSync: "批准后推送"
+Feat_knowledge_fSrc_knowledgeSync -> Feat_knowledge_fSrc_lifecycle: "更新生命周期"
+Feat_knowledge_fSrc_lifecycle -> Feat_knowledge_fSrc_documentRegistry: "晋升或下线"
+`;case`carrier002F`:return`direction: down
+
+Feat_knowledge_fIn_material: {
+  label: "IN-201 素材入参"
+}
+Feat_knowledge_fCvt_material: {
+  label: "CVT-201 素材转换器"
+}
+Feat_knowledge_fBiz_candidate: {
+  label: "BIZ-201 候选知识对象"
+}
+Feat_knowledge_fPod_document: {
+  label: "POD-201 文档登记实体"
+}
+Feat_knowledge_fDao_registry: {
+  label: "DAO-201 文档登记访问"
+  shape: cylinder
+}
+Feat_knowledge_fOut_knowledgeStatus: {
+  label: "OUT-201 知识状态出参视图"
+}
+
+Feat_knowledge_fIn_material -> Feat_knowledge_fBiz_candidate: "转换为候选对象"
+Feat_knowledge_fBiz_candidate -> Feat_knowledge_fPod_document: "登记为文档实体"
+Feat_knowledge_fPod_document -> Feat_knowledge_fDao_registry: "写入文档标识"
+Feat_knowledge_fDao_registry -> Feat_knowledge_fOut_knowledgeStatus: "查询状态"
+Feat_knowledge_fCvt_material -> Feat_knowledge_fBiz_candidate: "负责 素材→BIZ-201 映射"
+Feat_knowledge_fCvt_material -> Feat_knowledge_fPod_document: "负责 BIZ-201→POD-201 映射"
+`;case`erm002F`:return`direction: down
+
+Feat_knowledge_fPod_document: {
+  label: "POD-201 文档登记实体"
+}
+Feat_knowledge_fDao_registry: {
+  label: "DAO-201 文档登记访问"
+  shape: cylinder
+}
+
+Feat_knowledge_fPod_document -> Feat_knowledge_fDao_registry: "写入文档标识"
+`;case`api002F`:return`direction: down
+
+Feat_knowledge_fLane_edge: {
+  label: "服务端接入泳道"
 }
 `;case`seq001F-answer`:return`direction: right
 

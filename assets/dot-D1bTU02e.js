@@ -133,12 +133,33 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         margin="0.223,0.223",
         width=4.445];
     us_kbempty -> us_ragtimeout [style=invis];
+    us_scan [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">US-201 素材入库后自动进入候选知识</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.us_scan",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    us_govern [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">US-202 候选知识经我决策后才对外可见</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">作为运营人员，我需要审核候选知识再决定是否发布，以便错误内容不会直接答给客户。验收：候选知识需经我批准才进入知识库。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.us_govern",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    us_scan -> us_govern [style=invis];
+    us_alert [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">US-203 知识陈旧时我能收到提示</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">作为运营人员，知识过期或数据集异常时，我能被提醒，以便在客户问到之前修好。验收：知识新鲜度异常时控制台列出问题条目。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.us_alert",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    us_govern -> us_alert [style=invis];
     us_llmdown [height=2.5,
         label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">US-103 LLM 不可用时转人工而非静默失败</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">作为客户，模型服务不可用时，我能被转给人工而不是收到空白回复。验收：模型调用失败时生成人工工单并告知我等待。</FONT></TD></TR></TABLE>>,
         likec4_id="feat_degrade_nf.us_llmDown",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
+    us_alert -> us_llmdown [style=invis];
 }
 `;case`pano-f`:return`digraph {
     graph [TBbalance=min,
@@ -187,6 +208,20 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         margin="0.223,0.223",
         width=4.445];
     f_answer -> f_retrieval [style=invis];
+    f_ingest [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">F-201 素材接入能力</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">接收素材并登记文档标识，支持单条与批量。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.f_ingest",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    f_retrieval -> f_ingest [style=invis];
+    f_govern [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">F-202 知识治理能力</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">候选知识的扫描、决策、晋升与下线。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.f_govern",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    f_ingest -> f_govern [style=invis];
 }
 `;case`pano-nf`:return`digraph {
     graph [TBbalance=min,
@@ -277,6 +312,29 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         penwidth=2,
         style=""
     ];
+    subgraph cluster_feat_knowledge_f {
+        graph [color="#1b3d88",
+            fillcolor="#194b9e",
+            label=<<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>FEATURE-002-F 知识运营能力</B></FONT>>,
+            likec4_depth=1,
+            likec4_id=feat_knowledge_f,
+            likec4_level=0,
+            margin=40,
+            style=filled
+        ];
+        i_step_1 [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-202 业务步骤</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">主干步骤：登记素材 → 扫描候选知识 → 治理决策 → 同步至知识库 → 巡检新鲜度。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.i_step",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        i_goal_1 [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-201 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.i_goal",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+    }
     i_goal [height=2.5,
         label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-001 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">客户提问后得到有据可依的答复，或明确被转人工。</FONT></TD></TR></TABLE>>,
         likec4_id="feat_answer_f.i_goal",
@@ -290,20 +348,26 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         margin="0.223,0.223",
         width=4.445];
     i_goal -> i_step [style=invis];
-    i_goal_1 [height=2.5,
+    i_goal_2 [height=2.5,
         label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-101 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。</FONT></TD></TR></TABLE>>,
         likec4_id="feat_degrade_nf.i_goal",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
-    i_step -> i_goal_1 [style=invis];
-    i_step_1 [height=2.5,
+    i_step -> i_goal_2 [style=invis];
+    i_step_1 -> i_goal_1 [arrowhead=normal,
+        color="#0ea5e9",
+        fontcolor="#d4f2ff",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">推进治理目标</FONT></TD></TR></TABLE>>,
+        likec4_id="1b9fml",
+        style=solid];
+    i_step_2 [height=2.5,
         label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-102 场景判定逻辑</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">主干步骤：判定知识库条目数 → 判定 RAG 响应耗时 → 判定 LLM 调用结果 →<BR/>分发对应提示或工单。</FONT></TD></TR></TABLE>>,
         likec4_id="feat_degrade_nf.i_step",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
-    i_goal_1 -> i_step_1 [style=invis];
+    i_goal_2 -> i_step_2 [style=invis];
 }
 `;case`pano-i-state`:return`digraph {
     graph [TBbalance=min,
@@ -438,13 +502,26 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         margin="0.278,0.306",
         width=4.445];
     ui_interaction -> ui_information [style=invis];
+    ui_console [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">UI-201 运营控制台</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">运营人员管理素材、审核候选知识、查看新鲜度告警的单页控制台。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.ui_console",
+        likec4_level=0,
+        margin="0.278,0.306",
+        width=4.445];
+    ui_information -> ui_console [style=invis];
+    ui_information_1 [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">UI-202 知识运营信息设计</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">字段：素材标识、来源、扫描状态、决策结果、新鲜度天数。覆盖空态（暂无素材）、加载态（扫描中）、错误态（同步失败）、无权限态（未授权）。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.ui_information",
+        likec4_level=0,
+        margin="0.278,0.306",
+        width=4.445];
+    ui_console -> ui_information_1 [style=invis];
     ui_status [height=2.5,
         label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">UI-101 控制台状态提示</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">展示知识条目数与集成状态；空态显式提示「尚未入库」而非空白。</FONT></TD></TR></TABLE>>,
         likec4_id="feat_degrade_nf.ui_status",
         likec4_level=0,
         margin="0.278,0.306",
         width=4.445];
-    ui_information -> ui_status [style=invis];
     ui_notice [height=2.5,
         label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">UI-102 极端场景提示</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">会话内提示层：说明原因并给出下一步（等待或转人工）。覆盖加载态（判定中）与错误态（判定失败）。</FONT></TD></TR></TABLE>>,
         likec4_id="feat_degrade_nf.ui_notice",
@@ -599,6 +676,71 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
             margin="0.5,0.223",
             width=4.584];
     }
+    subgraph cluster_feat_knowledge_f {
+        graph [color="#1b3d88",
+            fillcolor="#194b9e",
+            label=<<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>FEATURE-002-F 知识运营能力</B></FONT>>,
+            likec4_depth=1,
+            likec4_id=feat_knowledge_f,
+            likec4_level=0,
+            margin=40,
+            style=filled
+        ];
+        src_materialroutes [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-201 素材路由</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/material-routes.js — 美妆素材接入接口。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.src_materialRoutes",
+            likec4_level=1,
+            margin="0.5,0.223",
+            width=4.584];
+        src_materialbatch [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-204 素材批处理</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/material-batch-service.js —<BR/>批量素材接入。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.src_materialBatch",
+            likec4_level=1,
+            margin="0.5,0.223",
+            width=4.584];
+        src_knowledgeroutes [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-202 知识库路由</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/knowledge-routes.js —<BR/>知识扫描、同步与生命周期接口。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.src_knowledgeRoutes",
+            likec4_level=1,
+            margin="0.5,0.223",
+            width=4.584];
+        src_materialservice [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-203 素材服务</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/material-service.js — 素材接入规则。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.src_materialService",
+            likec4_level=1,
+            margin="0.5,0.223",
+            width=4.584];
+        src_knowledgescan [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-206 知识扫描</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-scan-service.js —<BR/>发现候选知识。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.src_knowledgeScan",
+            likec4_level=1,
+            margin="0.5,0.223",
+            width=4.584];
+        src_governance [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-207 知识治理</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-governance-service.js<BR/>— 发布决策与治理。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.src_governance",
+            likec4_level=1,
+            margin="0.5,0.223",
+            width=4.584];
+        src_knowledgesync [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-208 知识同步</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-sync-service.js —<BR/>把已批准知识推送到 RAGFlow。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.src_knowledgeSync",
+            likec4_level=1,
+            margin="0.5,0.223",
+            width=4.584];
+        src_lifecycle [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-209 知识生命周期视图</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-lifecycle-service.js —<BR/>知识的晋升与下线。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.src_lifecycle",
+            likec4_level=1,
+            margin="0.5,0.223",
+            width=4.584];
+        src_documentregistry [height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-205 文档登记簿</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-document-registry.js —<BR/>跟踪素材与文档标识。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.src_documentRegistry",
+            likec4_level=1,
+            margin="0.5,0.223",
+            width=4.584];
+    }
     src_wechatcallback -> src_answerorchestrator [arrowhead=normal,
         color="#15803d",
         fontcolor="#bbfcd3",
@@ -619,6 +761,27 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         likec4_id="1x6lz3m",
         minlen=1,
         style=solid];
+    src_materialroutes -> src_materialservice [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">接收素材</FONT></TD></TR></TABLE>>,
+        likec4_id=htkkql,
+        minlen=1,
+        style=solid];
+    src_materialbatch -> src_materialservice [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">批量接入</FONT></TD></TR></TABLE>>,
+        likec4_id="1jrszkb",
+        minlen=1,
+        style=solid];
+    src_knowledgeroutes -> src_knowledgescan [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">触发扫描</FONT></TD></TR></TABLE>>,
+        likec4_id=ephpq7,
+        minlen=1,
+        style=solid];
     src_answerorchestrator -> src_answerloop [arrowhead=normal,
         color="#15803d",
         fontcolor="#bbfcd3",
@@ -636,6 +799,18 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         fontcolor="#bbfcd3",
         label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">提交发布判定</FONT></TD></TR></TABLE>>,
         likec4_id=nzxl87,
+        style=solid];
+    src_materialservice -> src_documentregistry [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">登记文档</FONT></TD></TR></TABLE>>,
+        likec4_id=oiusdi,
+        style=solid];
+    src_knowledgescan -> src_governance [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">提交候选</FONT></TD></TR></TABLE>>,
+        likec4_id=d45yi1,
         style=solid];
     src_answerloop -> src_replypolicy [arrowhead=normal,
         color="#15803d",
@@ -664,6 +839,24 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">读取告警快照</FONT></TD></TR></TABLE>>,
         likec4_id=vpj122,
         minlen=1,
+        style=solid];
+    src_governance -> src_knowledgesync [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">批准后推送</FONT></TD></TR></TABLE>>,
+        likec4_id="12x4j1t",
+        style=solid];
+    src_knowledgesync -> src_lifecycle [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">更新生命周期</FONT></TD></TR></TABLE>>,
+        likec4_id="1y2cvux",
+        style=solid];
+    src_lifecycle -> src_documentregistry [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">晋升或下线</FONT></TD></TR></TABLE>>,
+        likec4_id="15donk6",
         style=solid];
 }
 `;case`pano-carrier`:return`digraph {
@@ -810,6 +1003,61 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
             shape=cylinder,
             width=4.445];
     }
+    subgraph cluster_feat_knowledge_f {
+        graph [color="#1b3d88",
+            fillcolor="#194b9e",
+            label=<<FONT POINT-SIZE="11" COLOR="#bfdbfeb3"><B>FEATURE-002-F 知识运营能力</B></FONT>>,
+            likec4_depth=1,
+            likec4_id=feat_knowledge_f,
+            likec4_level=0,
+            margin=40,
+            style=filled
+        ];
+        in_material [group=feat_knowledge_f,
+            height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">IN-201 素材入参</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/material-routes.js — 上传素材的请求载荷。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.in_material",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        cvt_material [group=feat_knowledge_f,
+            height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">CVT-201 素材转换器</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/material-service.js — 覆盖<BR/>素材载荷→BIZ-201 与 BIZ-201→POD-201 两组映射。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.cvt_material",
+            likec4_level=1,
+            margin="0.278,0.223",
+            width=4.445];
+        biz_candidate [group=feat_knowledge_f,
+            height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">BIZ-201 候选知识对象</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-scan-service.js —<BR/>承载扫描出的候选条目与决策状态。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.biz_candidate",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        pod_document [group=feat_knowledge_f,
+            height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">POD-201 文档登记实体</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">data/local-mvp-store.json — 与 store.json 中<BR/>documents 数组结构对应。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.pod_document",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+        dao_registry [group=feat_knowledge_f,
+            height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">DAO-201 文档登记访问</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/domain/store.js — 素材与文档标识的读写边界。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.dao_registry",
+            likec4_level=1,
+            margin="0.223,0",
+            penwidth=2,
+            shape=cylinder,
+            width=4.445];
+        out_knowledgestatus [group=feat_knowledge_f,
+            height=2.5,
+            label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">OUT-201 知识状态出参视图</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/knowledge-routes.js —<BR/>面向控制台的扫描与治理状态载荷。</FONT></TD></TR></TABLE>>,
+            likec4_id="feat_knowledge_f.out_knowledgeStatus",
+            likec4_level=1,
+            margin="0.223,0.223",
+            width=4.445];
+    }
     cvt_normalize -> in_chatmessage [arrowhead=normal,
         color="#0ea5e9",
         fontcolor="#d4f2ff",
@@ -841,6 +1089,25 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">负责 BIZ-101→POD-101 映射</FONT></TD></TR></TABLE>>,
         likec4_id="12wvz78",
         style=solid];
+    in_material -> biz_candidate [arrowhead=normal,
+        color="#64748b",
+        fontcolor="#cbd5e1",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">转换为候选对象</FONT></TD></TR></TABLE>>,
+        likec4_id=e6u1xe,
+        minlen=1,
+        style=dashed];
+    cvt_material -> biz_candidate [arrowhead=normal,
+        color="#0ea5e9",
+        fontcolor="#d4f2ff",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">负责 素材→BIZ-201 映射</FONT></TD></TR></TABLE>>,
+        likec4_id="19mytj8",
+        style=solid];
+    cvt_material -> pod_document [arrowhead=normal,
+        color="#0ea5e9",
+        fontcolor="#d4f2ff",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">负责 BIZ-201→POD-201 映射</FONT></TD></TR></TABLE>>,
+        likec4_id=jozf5g,
+        style=solid];
     in_chatmessage -> biz_query [arrowhead=normal,
         color="#64748b",
         fontcolor="#cbd5e1",
@@ -860,6 +1127,12 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         likec4_id=vi1a6a,
         minlen=1,
         style=solid];
+    biz_candidate -> pod_document [arrowhead=normal,
+        color="#64748b",
+        fontcolor="#cbd5e1",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">登记为文档实体</FONT></TD></TR></TABLE>>,
+        likec4_id=nbdftm,
+        style=dashed];
     biz_query -> pod_ticket [arrowhead=normal,
         color="#3b82f6",
         fontcolor="#eff5fd",
@@ -873,11 +1146,24 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         likec4_id=ig0evv,
         minlen=1,
         style=solid];
+    pod_document -> dao_registry [arrowhead=normal,
+        color="#3b82f6",
+        fontcolor="#eff5fd",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">写入文档标识</FONT></TD></TR></TABLE>>,
+        likec4_id="1c116g1",
+        style=solid];
     pod_ticket -> dao_store [arrowhead=normal,
         color="#3b82f6",
         fontcolor="#eff5fd",
         label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">写入工单</FONT></TD></TR></TABLE>>,
         likec4_id=dwf468,
+        style=solid];
+    dao_registry -> out_knowledgestatus [arrowhead=normal,
+        color="#3b82f6",
+        fontcolor="#eff5fd",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">查询状态</FONT></TD></TR></TABLE>>,
+        likec4_id=ghn725,
+        minlen=1,
         style=solid];
     dao_store -> out_answer [arrowhead=normal,
         color="#3b82f6",
@@ -928,11 +1214,18 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         width=4.445];
     lane_edge_1 [height=2.5,
         label=<<FONT POINT-SIZE="20">服务端接入泳道</FONT>>,
-        likec4_id="feat_degrade_nf.lane_edge",
+        likec4_id="feat_knowledge_f.lane_edge",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
     lane_edge -> lane_edge_1 [style=invis];
+    lane_edge_2 [height=2.5,
+        label=<<FONT POINT-SIZE="20">服务端接入泳道</FONT>>,
+        likec4_id="feat_degrade_nf.lane_edge",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    lane_edge_1 -> lane_edge_2 [style=invis];
 }
 `;case`srcdir001F`:return`digraph {
     graph [TBbalance=min,
@@ -1390,6 +1683,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -1444,6 +1738,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         fillcolor="#3b82f6",
         fontcolor="#eff6ff",
         fontname=Arial,
+        label="\\N",
         penwidth=0,
         shape=rect,
         style=filled
@@ -1645,6 +1940,13 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         margin="0.223,0.223",
         width=4.445];
     feat_answer_f -> feat_degrade_nf [style=invis];
+    feat_knowledge_f [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">Feature-002-F 知识运营能力</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">按业务能力切分。交付边界：运营人员能把素材变成可检索知识，并能发现知识陈旧。所属愿景：让美妆咨询有据可依。</FONT></TD></TR></TABLE>>,
+        likec4_id=feat_knowledge_f,
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    feat_degrade_nf -> feat_knowledge_f [style=invis];
 }
 `;case`chain001F-us`:return`digraph {
     graph [TBbalance=min,
@@ -2158,6 +2460,614 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
         margin="0.278,0.306",
         width=4.445];
     ui_status -> ui_notice [style=invis];
+}
+`;case`chain002F-us`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId="chain002F-us",
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    us_scan [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">US-201 素材入库后自动进入候选知识</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.us_scan",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    us_govern [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">US-202 候选知识经我决策后才对外可见</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">作为运营人员，我需要审核候选知识再决定是否发布，以便错误内容不会直接答给客户。验收：候选知识需经我批准才进入知识库。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.us_govern",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    us_scan -> us_govern [style=invis];
+    us_alert [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">US-203 知识陈旧时我能收到提示</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">作为运营人员，知识过期或数据集异常时，我能被提醒，以便在客户问到之前修好。验收：知识新鲜度异常时控制台列出问题条目。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.us_alert",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    us_govern -> us_alert [style=invis];
+}
+`;case`chain002F-f`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId="chain002F-f",
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    us_scan [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">US-201 素材入库后自动进入候选知识</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.us_scan",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    f_ingest [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">F-201 素材接入能力</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">接收素材并登记文档标识，支持单条与批量。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.f_ingest",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    us_scan -> f_ingest [arrowhead=normal,
+        color="#0ea5e9",
+        fontcolor="#d4f2ff",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">要求</FONT></TD></TR></TABLE>>,
+        likec4_id=h2l113,
+        style=solid];
+    us_govern [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">US-202 候选知识经我决策后才对外可见</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">作为运营人员，我需要审核候选知识再决定是否发布，以便错误内容不会直接答给客户。验收：候选知识需经我批准才进入知识库。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.us_govern",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    f_govern [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">F-202 知识治理能力</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">候选知识的扫描、决策、晋升与下线。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.f_govern",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    us_govern -> f_govern [arrowhead=normal,
+        color="#0ea5e9",
+        fontcolor="#d4f2ff",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">要求</FONT></TD></TR></TABLE>>,
+        likec4_id="12oly8a",
+        minlen=1,
+        style=solid];
+    us_alert [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">US-203 知识陈旧时我能收到提示</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">作为运营人员，知识过期或数据集异常时，我能被提醒，以便在客户问到之前修好。验收：知识新鲜度异常时控制台列出问题条目。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.us_alert",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    us_alert -> f_govern [arrowhead=normal,
+        color="#0ea5e9",
+        fontcolor="#d4f2ff",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">要求</FONT></TD></TR></TABLE>>,
+        likec4_id=bd7x0j,
+        minlen=1,
+        style=solid];
+}
+`;case`chain002F-i-goal`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId="chain002F-i-goal",
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    i_goal [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-201 业务目标</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.i_goal",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+}
+`;case`chain002F-i-step`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId="chain002F-i-step",
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    i_step [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">I-202 业务步骤</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">主干步骤：登记素材 → 扫描候选知识 → 治理决策 → 同步至知识库 → 巡检新鲜度。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.i_step",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+}
+`;case`chain002F-ui`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId="chain002F-ui",
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    ui_console [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">UI-201 运营控制台</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">运营人员管理素材、审核候选知识、查看新鲜度告警的单页控制台。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.ui_console",
+        likec4_level=0,
+        margin="0.278,0.306",
+        width=4.445];
+    ui_information [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">UI-202 知识运营信息设计</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">字段：素材标识、来源、扫描状态、决策结果、新鲜度天数。覆盖空态（暂无素材）、加载态（扫描中）、错误态（同步失败）、无权限态（未授权）。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.ui_information",
+        likec4_level=0,
+        margin="0.278,0.306",
+        width=4.445];
+    ui_console -> ui_information [style=invis];
+}
+`;case`srcdir002F`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId=srcdir002F,
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    src_materialroutes [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-201 素材路由</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/material-routes.js — 美妆素材接入接口。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.src_materialRoutes",
+        likec4_level=0,
+        margin="0.5,0.223",
+        width=4.584];
+    src_materialservice [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-203 素材服务</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/material-service.js — 素材接入规则。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.src_materialService",
+        likec4_level=0,
+        margin="0.5,0.223",
+        width=4.584];
+    src_materialroutes -> src_materialservice [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">接收素材</FONT></TD></TR></TABLE>>,
+        likec4_id=htkkql,
+        minlen=1,
+        style=solid];
+    src_materialbatch [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-204 素材批处理</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/material-batch-service.js —<BR/>批量素材接入。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.src_materialBatch",
+        likec4_level=0,
+        margin="0.5,0.223",
+        width=4.584];
+    src_materialbatch -> src_materialservice [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">批量接入</FONT></TD></TR></TABLE>>,
+        likec4_id="1jrszkb",
+        minlen=1,
+        style=solid];
+    src_knowledgeroutes [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-202 知识库路由</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/knowledge-routes.js —<BR/>知识扫描、同步与生命周期接口。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.src_knowledgeRoutes",
+        likec4_level=0,
+        margin="0.5,0.223",
+        width=4.584];
+    src_knowledgescan [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-206 知识扫描</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-scan-service.js —<BR/>发现候选知识。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.src_knowledgeScan",
+        likec4_level=0,
+        margin="0.5,0.223",
+        width=4.584];
+    src_knowledgeroutes -> src_knowledgescan [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">触发扫描</FONT></TD></TR></TABLE>>,
+        likec4_id=ephpq7,
+        minlen=1,
+        style=solid];
+    src_documentregistry [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-205 文档登记簿</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-document-registry.js —<BR/>跟踪素材与文档标识。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.src_documentRegistry",
+        likec4_level=0,
+        margin="0.5,0.223",
+        width=4.584];
+    src_materialservice -> src_documentregistry [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">登记文档</FONT></TD></TR></TABLE>>,
+        likec4_id=oiusdi,
+        style=solid];
+    src_governance [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-207 知识治理</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-governance-service.js<BR/>— 发布决策与治理。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.src_governance",
+        likec4_level=0,
+        margin="0.5,0.223",
+        width=4.584];
+    src_knowledgescan -> src_governance [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">提交候选</FONT></TD></TR></TABLE>>,
+        likec4_id=d45yi1,
+        style=solid];
+    src_knowledgesync [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-208 知识同步</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-sync-service.js —<BR/>把已批准知识推送到 RAGFlow。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.src_knowledgeSync",
+        likec4_level=0,
+        margin="0.5,0.223",
+        width=4.584];
+    src_governance -> src_knowledgesync [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">批准后推送</FONT></TD></TR></TABLE>>,
+        likec4_id="12x4j1t",
+        style=solid];
+    src_lifecycle [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">SRC-209 知识生命周期视图</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-lifecycle-service.js —<BR/>知识的晋升与下线。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.src_lifecycle",
+        likec4_level=0,
+        margin="0.5,0.223",
+        width=4.584];
+    src_knowledgesync -> src_lifecycle [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">更新生命周期</FONT></TD></TR></TABLE>>,
+        likec4_id="1y2cvux",
+        style=solid];
+    src_lifecycle -> src_documentregistry [arrowhead=normal,
+        color="#15803d",
+        fontcolor="#bbfcd3",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">晋升或下线</FONT></TD></TR></TABLE>>,
+        likec4_id="15donk6",
+        style=solid];
+}
+`;case`carrier002F`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId=carrier002F,
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    in_material [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">IN-201 素材入参</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/material-routes.js — 上传素材的请求载荷。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.in_material",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    biz_candidate [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">BIZ-201 候选知识对象</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/knowledge-scan-service.js —<BR/>承载扫描出的候选条目与决策状态。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.biz_candidate",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    in_material -> biz_candidate [arrowhead=normal,
+        color="#64748b",
+        fontcolor="#cbd5e1",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">转换为候选对象</FONT></TD></TR></TABLE>>,
+        likec4_id=e6u1xe,
+        minlen=1,
+        style=dashed];
+    cvt_material [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">CVT-201 素材转换器</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/services/material-service.js — 覆盖<BR/>素材载荷→BIZ-201 与 BIZ-201→POD-201 两组映射。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.cvt_material",
+        likec4_level=0,
+        margin="0.278,0.223",
+        width=4.445];
+    cvt_material -> biz_candidate [arrowhead=normal,
+        color="#0ea5e9",
+        fontcolor="#d4f2ff",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">负责 素材→BIZ-201 映射</FONT></TD></TR></TABLE>>,
+        likec4_id="19mytj8",
+        style=solid];
+    pod_document [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">POD-201 文档登记实体</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">data/local-mvp-store.json — 与 store.json 中<BR/>documents 数组结构对应。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.pod_document",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    cvt_material -> pod_document [arrowhead=normal,
+        color="#0ea5e9",
+        fontcolor="#d4f2ff",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">负责 BIZ-201→POD-201 映射</FONT></TD></TR></TABLE>>,
+        likec4_id=jozf5g,
+        style=solid];
+    biz_candidate -> pod_document [arrowhead=normal,
+        color="#64748b",
+        fontcolor="#cbd5e1",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">登记为文档实体</FONT></TD></TR></TABLE>>,
+        likec4_id=nbdftm,
+        style=dashed];
+    dao_registry [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">DAO-201 文档登记访问</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/domain/store.js — 素材与文档标识的读写边界。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.dao_registry",
+        likec4_level=0,
+        margin="0.223,0",
+        penwidth=2,
+        shape=cylinder,
+        width=4.445];
+    pod_document -> dao_registry [arrowhead=normal,
+        color="#3b82f6",
+        fontcolor="#eff5fd",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">写入文档标识</FONT></TD></TR></TABLE>>,
+        likec4_id="1c116g1",
+        style=solid];
+    out_knowledgestatus [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">OUT-201 知识状态出参视图</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/knowledge-routes.js —<BR/>面向控制台的扫描与治理状态载荷。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.out_knowledgeStatus",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    dao_registry -> out_knowledgestatus [arrowhead=normal,
+        color="#3b82f6",
+        fontcolor="#eff5fd",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">查询状态</FONT></TD></TR></TABLE>>,
+        likec4_id=ghn725,
+        minlen=1,
+        style=solid];
+}
+`;case`erm002F`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId=erm002F,
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    pod_document [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">POD-201 文档登记实体</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">data/local-mvp-store.json — 与 store.json 中<BR/>documents 数组结构对应。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.pod_document",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    dao_registry [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">DAO-201 文档登记访问</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/domain/store.js — 素材与文档标识的读写边界。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.dao_registry",
+        likec4_level=0,
+        margin="0.223,0",
+        penwidth=2,
+        shape=cylinder,
+        width=4.445];
+    pod_document -> dao_registry [arrowhead=normal,
+        color="#3b82f6",
+        fontcolor="#eff5fd",
+        label=<<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" BGCOLOR="#18191BA0"><TR><TD ALIGN="TEXT" BALIGN="LEFT"><FONT POINT-SIZE="14">写入文档标识</FONT></TD></TR></TABLE>>,
+        likec4_id="1c116g1",
+        style=solid];
+}
+`;case`api002F`:return`digraph {
+    graph [TBbalance=min,
+        bgcolor=transparent,
+        compound=true,
+        fontname=Arial,
+        fontsize=20,
+        labeljust=l,
+        labelloc=t,
+        layout=dot,
+        likec4_viewId=api002F,
+        nodesep=1.528,
+        outputorder=nodesfirst,
+        pad=0.209,
+        rankdir=TB,
+        ranksep=1.667,
+        splines=spline
+    ];
+    node [color="#2563eb",
+        fillcolor="#3b82f6",
+        fontcolor="#eff6ff",
+        fontname=Arial,
+        penwidth=0,
+        shape=rect,
+        style=filled
+    ];
+    edge [arrowsize=0.75,
+        color="#8D8D8D",
+        fontcolor="#C9C9C9",
+        fontname=Arial,
+        fontsize=14,
+        penwidth=2,
+        style=""
+    ];
+    lane_edge [height=2.5,
+        label=<<FONT POINT-SIZE="20">服务端接入泳道</FONT>>,
+        likec4_id="feat_knowledge_f.lane_edge",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
 }
 `;case`seq001F-answer`:return`digraph {
   likec4_viewId = "seq001F-answer";
@@ -3239,8 +4149,8 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="1670pt" height="1110pt"
- viewBox="0.00 0.00 1670.00 1110.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1789pt" height="1110pt"
+ viewBox="0.00 0.00 1789.00 1110.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1095.05)">
 <!-- us_ask -->
 <g id="node1" class="node">
@@ -3272,16 +4182,40 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="167.17" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为客户，RAGFlow 响应慢时，我能被告知系统在处理而不是一直等不到回复。验收：超过</text>
 <text xml:space="preserve" text-anchor="start" x="332.61" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">8 秒未返回时下发带说明的提示。</text>
 </g>
-<!-- us_llmdown -->
+<!-- us_scan -->
 <g id="node5" class="node">
+<title>us_scan</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1759.27,-1080 931.5,-1080 931.5,-900 1759.27,-900 1759.27,-1080"/>
+<text xml:space="preserve" text-anchor="start" x="1200.35" y="-993" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;201 素材入库后自动进入候选知识</text>
+<text xml:space="preserve" text-anchor="start" x="951.56" y="-970" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。</text>
+</g>
+<!-- us_govern -->
+<g id="node6" class="node">
+<title>us_govern</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1728.01,-780 962.76,-780 962.76,-600 1728.01,-600 1728.01,-780"/>
+<text xml:space="preserve" text-anchor="start" x="1192.01" y="-693" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;202 候选知识经我决策后才对外可见</text>
+<text xml:space="preserve" text-anchor="start" x="982.81" y="-670" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为运营人员，我需要审核候选知识再决定是否发布，以便错误内容不会直接答给客户。验收：候选知识需经我批准才进入知识库。</text>
+</g>
+<!-- us_alert -->
+<g id="node7" class="node">
+<title>us_alert</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1728.01,-480 962.76,-480 962.76,-300 1728.01,-300 1728.01,-480"/>
+<text xml:space="preserve" text-anchor="start" x="1217.02" y="-393" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;203 知识陈旧时我能收到提示</text>
+<text xml:space="preserve" text-anchor="start" x="982.81" y="-370" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为运营人员，知识过期或数据集异常时，我能被提醒，以便在客户问到之前修好。验收：知识新鲜度异常时控制台列出问题条目。</text>
+</g>
+<!-- us_llmdown -->
+<g id="node8" class="node">
 <title>us_llmdown</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1640.01,-1080 924.76,-1080 924.76,-900 1640.01,-900 1640.01,-1080"/>
-<text xml:space="preserve" text-anchor="start" x="1115.11" y="-993" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;103 LLM 不可用时转人工而非静默失败</text>
-<text xml:space="preserve" text-anchor="start" x="944.82" y="-970" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为客户，模型服务不可用时，我能被转给人工而不是收到空白回复。验收：模型调用失败时生成人工工单并告知我等待。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1703.01,-180 987.76,-180 987.76,0 1703.01,0 1703.01,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1178.11" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;103 LLM 不可用时转人工而非静默失败</text>
+<text xml:space="preserve" text-anchor="start" x="1007.82" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为客户，模型服务不可用时，我能被转给人工而不是收到空白回复。验收：模型调用失败时生成人工工单并告知我等待。</text>
 </g>
 <!-- us_ask&#45;&gt;us_lowconfidence -->
 <!-- us_lowconfidence&#45;&gt;us_kbempty -->
 <!-- us_kbempty&#45;&gt;us_ragtimeout -->
+<!-- us_scan&#45;&gt;us_govern -->
+<!-- us_govern&#45;&gt;us_alert -->
+<!-- us_alert&#45;&gt;us_llmdown -->
 </g>
 </svg>
 `;case`pano-f`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -3290,24 +4224,40 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="350pt" height="510pt"
- viewBox="0.00 0.00 350.00 510.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 495.05)">
+<svg width="350pt" height="1110pt"
+ viewBox="0.00 0.00 350.00 1110.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1095.05)">
 <!-- f_answer -->
 <g id="node1" class="node">
 <title>f_answer</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-480 0,-480 0,-300 320.04,-300 320.04,-480"/>
-<text xml:space="preserve" text-anchor="start" x="81.11" y="-393" font-family="Arial" font-size="20.00" fill="#eff6ff">F&#45;001 应答编排能力</text>
-<text xml:space="preserve" text-anchor="start" x="22.49" y="-370" font-family="Arial" font-size="15.00" fill="#bfdbfe">决定自动应答还是转人工，串联检索与策略校验。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-1080 0,-1080 0,-900 320.04,-900 320.04,-1080"/>
+<text xml:space="preserve" text-anchor="start" x="81.11" y="-993" font-family="Arial" font-size="20.00" fill="#eff6ff">F&#45;001 应答编排能力</text>
+<text xml:space="preserve" text-anchor="start" x="22.49" y="-970" font-family="Arial" font-size="15.00" fill="#bfdbfe">决定自动应答还是转人工，串联检索与策略校验。</text>
 </g>
 <!-- f_retrieval -->
 <g id="node2" class="node">
 <title>f_retrieval</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-780 0,-780 0,-600 320.04,-600 320.04,-780"/>
+<text xml:space="preserve" text-anchor="start" x="81.11" y="-693" font-family="Arial" font-size="20.00" fill="#eff6ff">F&#45;002 知识检索能力</text>
+<text xml:space="preserve" text-anchor="start" x="30" y="-670" font-family="Arial" font-size="15.00" fill="#bfdbfe">从 RAGFlow 检索候选知识并按置信度排序。</text>
+</g>
+<!-- f_ingest -->
+<g id="node3" class="node">
+<title>f_ingest</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-480 0,-480 0,-300 320.04,-300 320.04,-480"/>
+<text xml:space="preserve" text-anchor="start" x="81.11" y="-393" font-family="Arial" font-size="20.00" fill="#eff6ff">F&#45;201 素材接入能力</text>
+<text xml:space="preserve" text-anchor="start" x="35" y="-370" font-family="Arial" font-size="15.00" fill="#bfdbfe">接收素材并登记文档标识，支持单条与批量。</text>
+</g>
+<!-- f_govern -->
+<g id="node4" class="node">
+<title>f_govern</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-180 0,-180 0,0 320.04,0 320.04,-180"/>
-<text xml:space="preserve" text-anchor="start" x="81.11" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">F&#45;002 知识检索能力</text>
-<text xml:space="preserve" text-anchor="start" x="30" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">从 RAGFlow 检索候选知识并按置信度排序。</text>
+<text xml:space="preserve" text-anchor="start" x="81.11" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">F&#45;202 知识治理能力</text>
+<text xml:space="preserve" text-anchor="start" x="53.75" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">候选知识的扫描、决策、晋升与下线。</text>
 </g>
 <!-- f_answer&#45;&gt;f_retrieval -->
+<!-- f_retrieval&#45;&gt;f_ingest -->
+<!-- f_ingest&#45;&gt;f_govern -->
 </g>
 </svg>
 `;case`pano-nf`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -3351,41 +4301,68 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="519pt" height="1110pt"
- viewBox="0.00 0.00 519.00 1110.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1095.05)">
-<!-- i_goal -->
-<g id="node1" class="node">
-<title>i_goal</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="408.52,-1080 80.85,-1080 80.85,-900 408.52,-900 408.52,-1080"/>
-<text xml:space="preserve" text-anchor="start" x="185.77" y="-993" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;001 业务目标</text>
-<text xml:space="preserve" text-anchor="start" x="100.91" y="-970" font-family="Arial" font-size="15.00" fill="#bfdbfe">客户提问后得到有据可依的答复，或明确被转人工。</text>
-</g>
-<!-- i_step -->
-<g id="node2" class="node">
-<title>i_step</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="452.28,-780 37.09,-780 37.09,-600 452.28,-600 452.28,-780"/>
-<text xml:space="preserve" text-anchor="start" x="185.77" y="-693" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;003 业务步骤</text>
-<text xml:space="preserve" text-anchor="start" x="57.15" y="-670" font-family="Arial" font-size="15.00" fill="#bfdbfe">主干步骤：接收消息 → 检索候选知识 → 置信度校验 → 生成答复。</text>
-</g>
-<!-- i_goal_1 -->
-<g id="node3" class="node">
-<title>i_goal_1</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="452.28,-480 37.09,-480 37.09,-300 452.28,-300 452.28,-480"/>
-<text xml:space="preserve" text-anchor="start" x="185.77" y="-393" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;101 业务目标</text>
-<text xml:space="preserve" text-anchor="start" x="57.15" y="-370" font-family="Arial" font-size="15.00" fill="#bfdbfe">三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。</text>
+<svg width="1123pt" height="1204pt"
+ viewBox="0.00 0.00 1123.00 1204.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1189.05)">
+<g id="clust1" class="cluster">
+<title>cluster_feat_knowledge_f</title>
+<polygon fill="#194b9e" stroke="#1b3d88" points="8,-562 8,-1166 600,-1166 600,-562 8,-562"/>
+<text xml:space="preserve" text-anchor="start" x="16" y="-1153.1" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;002&#45;F 知识运营能力</text>
 </g>
 <!-- i_step_1 -->
-<g id="node4" class="node">
+<g id="node1" class="node">
 <title>i_step_1</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="489.37,-180 0,-180 0,0 489.37,0 489.37,-180"/>
-<text xml:space="preserve" text-anchor="start" x="169.11" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;102 场景判定逻辑</text>
-<text xml:space="preserve" text-anchor="start" x="20.06" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">主干步骤：判定知识库条目数 → 判定 RAG 响应耗时 → 判定 LLM 调用结果 →</text>
-<text xml:space="preserve" text-anchor="start" x="182.17" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">分发对应提示或工单。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="559.52,-1104.8 48.48,-1104.8 48.48,-924.8 559.52,-924.8 559.52,-1104.8"/>
+<text xml:space="preserve" text-anchor="start" x="245.09" y="-1017.8" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;202 业务步骤</text>
+<text xml:space="preserve" text-anchor="start" x="68.54" y="-994.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">主干步骤：登记素材 → 扫描候选知识 → 治理决策 → 同步至知识库 → 巡检新鲜度。</text>
+</g>
+<!-- i_goal_1 -->
+<g id="node2" class="node">
+<title>i_goal_1</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="511.59,-782 96.41,-782 96.41,-602 511.59,-602 511.59,-782"/>
+<text xml:space="preserve" text-anchor="start" x="245.09" y="-695" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;201 业务目标</text>
+<text xml:space="preserve" text-anchor="start" x="116.46" y="-672" font-family="Arial" font-size="15.00" fill="#bfdbfe">素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。</text>
+</g>
+<!-- i_goal -->
+<g id="node3" class="node">
+<title>i_goal</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1011.83,-1104.8 684.17,-1104.8 684.17,-924.8 1011.83,-924.8 1011.83,-1104.8"/>
+<text xml:space="preserve" text-anchor="start" x="789.09" y="-1017.8" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;001 业务目标</text>
+<text xml:space="preserve" text-anchor="start" x="704.22" y="-994.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">客户提问后得到有据可依的答复，或明确被转人工。</text>
+</g>
+<!-- i_step -->
+<g id="node4" class="node">
+<title>i_step</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1055.59,-782 640.41,-782 640.41,-602 1055.59,-602 1055.59,-782"/>
+<text xml:space="preserve" text-anchor="start" x="789.09" y="-695" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;003 业务步骤</text>
+<text xml:space="preserve" text-anchor="start" x="660.46" y="-672" font-family="Arial" font-size="15.00" fill="#bfdbfe">主干步骤：接收消息 → 检索候选知识 → 置信度校验 → 生成答复。</text>
+</g>
+<!-- i_goal_2 -->
+<g id="node5" class="node">
+<title>i_goal_2</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1055.59,-481 640.41,-481 640.41,-301 1055.59,-301 1055.59,-481"/>
+<text xml:space="preserve" text-anchor="start" x="789.09" y="-394" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;101 业务目标</text>
+<text xml:space="preserve" text-anchor="start" x="660.46" y="-371" font-family="Arial" font-size="15.00" fill="#bfdbfe">三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。</text>
+</g>
+<!-- i_step_2 -->
+<g id="node6" class="node">
+<title>i_step_2</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1092.69,-180 603.31,-180 603.31,0 1092.69,0 1092.69,-180"/>
+<text xml:space="preserve" text-anchor="start" x="772.42" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;102 场景判定逻辑</text>
+<text xml:space="preserve" text-anchor="start" x="623.37" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">主干步骤：判定知识库条目数 → 判定 RAG 响应耗时 → 判定 LLM 调用结果 →</text>
+<text xml:space="preserve" text-anchor="start" x="785.49" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">分发对应提示或工单。</text>
+</g>
+<!-- i_step_1&#45;&gt;i_goal_1 -->
+<g id="edge3" class="edge">
+<title>i_step_1&#45;&gt;i_goal_1</title>
+<path fill="none" stroke="#0ea5e9" stroke-width="2" d="M304,-924.87C304,-883.67 304,-834.56 304,-792.17"/>
+<polygon fill="#0ea5e9" stroke="#0ea5e9" stroke-width="2" points="306.63,-792.36 304,-784.86 301.38,-792.36 306.63,-792.36"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="304,-842 304,-864.8 380.01,-864.8 380.01,-842 304,-842"/>
+<text xml:space="preserve" text-anchor="start" x="307" y="-847.8" font-family="Arial" font-size="14.00" fill="#d4f2ff">推进治理目标</text>
 </g>
 <!-- i_goal&#45;&gt;i_step -->
-<!-- i_step&#45;&gt;i_goal_1 -->
-<!-- i_goal_1&#45;&gt;i_step_1 -->
+<!-- i_step&#45;&gt;i_goal_2 -->
+<!-- i_goal_2&#45;&gt;i_step_2 -->
 </g>
 </svg>
 `;case`pano-i-state`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -3475,39 +4452,54 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="891pt" height="1110pt"
- viewBox="0.00 0.00 891.00 1110.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1649pt" height="1110pt"
+ viewBox="0.00 0.00 1649.00 1110.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1095.05)">
 <!-- ui_interaction -->
 <g id="node1" class="node">
 <title>ui_interaction</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="629.4,-1080 231.3,-1080 231.3,-900 629.4,-900 629.4,-1080"/>
-<text xml:space="preserve" text-anchor="start" x="330.87" y="-993" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;001 企业微信会话交互</text>
-<text xml:space="preserve" text-anchor="start" x="255.31" y="-970" font-family="Arial" font-size="15.00" fill="#bfdbfe">客户在企业微信会话中提问与接收答复；答复与提问同屏呈现。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="641.9,-1080 243.8,-1080 243.8,-900 641.9,-900 641.9,-1080"/>
+<text xml:space="preserve" text-anchor="start" x="343.38" y="-993" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;001 企业微信会话交互</text>
+<text xml:space="preserve" text-anchor="start" x="267.81" y="-970" font-family="Arial" font-size="15.00" fill="#bfdbfe">客户在企业微信会话中提问与接收答复；答复与提问同屏呈现。</text>
 </g>
 <!-- ui_information -->
 <g id="node2" class="node">
 <title>ui_information</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="860.69,-780 0,-780 0,-600 860.69,-600 860.69,-780"/>
-<text xml:space="preserve" text-anchor="start" x="347.54" y="-693" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;002 答复信息设计</text>
-<text xml:space="preserve" text-anchor="start" x="24.02" y="-670" font-family="Arial" font-size="15.00" fill="#bfdbfe">展示字段：问题原文、知识来源条目、答复正文。覆盖空态（无检索结果）、加载态（检索中）、错误态（检索失败）、无权限态（未授权知识）。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="873.19,-780 12.5,-780 12.5,-600 873.19,-600 873.19,-780"/>
+<text xml:space="preserve" text-anchor="start" x="360.05" y="-693" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;002 答复信息设计</text>
+<text xml:space="preserve" text-anchor="start" x="36.52" y="-670" font-family="Arial" font-size="15.00" fill="#bfdbfe">展示字段：问题原文、知识来源条目、答复正文。覆盖空态（无检索结果）、加载态（检索中）、错误态（检索失败）、无权限态（未授权知识）。</text>
+</g>
+<!-- ui_console -->
+<g id="node3" class="node">
+<title>ui_console</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="654.4,-480 231.3,-480 231.3,-300 654.4,-300 654.4,-480"/>
+<text xml:space="preserve" text-anchor="start" x="368.38" y="-393" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;201 运营控制台</text>
+<text xml:space="preserve" text-anchor="start" x="255.31" y="-370" font-family="Arial" font-size="15.00" fill="#bfdbfe">运营人员管理素材、审核候选知识、查看新鲜度告警的单页控制台。</text>
+</g>
+<!-- ui_information_1 -->
+<g id="node4" class="node">
+<title>ui_information_1</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="885.7,-180 0,-180 0,0 885.7,0 885.7,-180"/>
+<text xml:space="preserve" text-anchor="start" x="343.38" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;202 知识运营信息设计</text>
+<text xml:space="preserve" text-anchor="start" x="24.02" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">字段：素材标识、来源、扫描状态、决策结果、新鲜度天数。覆盖空态（暂无素材）、加载态（扫描中）、错误态（同步失败）、无权限态（未授权）。</text>
 </g>
 <!-- ui_status -->
-<g id="node3" class="node">
+<g id="node5" class="node">
 <title>ui_status</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="641.9,-480 218.79,-480 218.79,-300 641.9,-300 641.9,-480"/>
-<text xml:space="preserve" text-anchor="start" x="339.21" y="-393" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;101 控制台状态提示</text>
-<text xml:space="preserve" text-anchor="start" x="242.81" y="-370" font-family="Arial" font-size="15.00" fill="#bfdbfe">展示知识条目数与集成状态；空态显式提示「尚未入库」而非空白。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1512.4,-1080 1089.3,-1080 1089.3,-900 1512.4,-900 1512.4,-1080"/>
+<text xml:space="preserve" text-anchor="start" x="1209.71" y="-993" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;101 控制台状态提示</text>
+<text xml:space="preserve" text-anchor="start" x="1113.31" y="-970" font-family="Arial" font-size="15.00" fill="#bfdbfe">展示知识条目数与集成状态；空态显式提示「尚未入库」而非空白。</text>
 </g>
 <!-- ui_notice -->
-<g id="node4" class="node">
+<g id="node6" class="node">
 <title>ui_notice</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="748.17,-180 112.52,-180 112.52,0 748.17,0 748.17,-180"/>
-<text xml:space="preserve" text-anchor="start" x="347.54" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;102 极端场景提示</text>
-<text xml:space="preserve" text-anchor="start" x="136.54" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">会话内提示层：说明原因并给出下一步（等待或转人工）。覆盖加载态（判定中）与错误态（判定失败）。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1618.67,-780 983.02,-780 983.02,-600 1618.67,-600 1618.67,-780"/>
+<text xml:space="preserve" text-anchor="start" x="1218.05" y="-693" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;102 极端场景提示</text>
+<text xml:space="preserve" text-anchor="start" x="1007.04" y="-670" font-family="Arial" font-size="15.00" fill="#bfdbfe">会话内提示层：说明原因并给出下一步（等待或转人工）。覆盖加载态（判定中）与错误态（判定失败）。</text>
 </g>
 <!-- ui_interaction&#45;&gt;ui_information -->
-<!-- ui_information&#45;&gt;ui_status -->
+<!-- ui_information&#45;&gt;ui_console -->
+<!-- ui_console&#45;&gt;ui_information_1 -->
 <!-- ui_status&#45;&gt;ui_notice -->
 </g>
 </svg>
@@ -3517,198 +4509,337 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="2440pt" height="1296pt"
- viewBox="0.00 0.00 2440.00 1296.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1280.65)">
+<svg width="3818pt" height="1941pt"
+ viewBox="0.00 0.00 3818.00 1941.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1926.25)">
 <g id="clust1" class="cluster">
 <title>cluster_feat_answer_f</title>
-<polygon fill="#194b9e" stroke="#1b3d88" points="8,-8 8,-1257.6 1448,-1257.6 1448,-8 8,-8"/>
-<text xml:space="preserve" text-anchor="start" x="16" y="-1244.7" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;001&#45;F 知识应答能力</text>
+<polygon fill="#194b9e" stroke="#1b3d88" points="8,-653.6 8,-1903.2 1448,-1903.2 1448,-653.6 8,-653.6"/>
+<text xml:space="preserve" text-anchor="start" x="16" y="-1890.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;001&#45;F 知识应答能力</text>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_feat_degrade_nf</title>
-<polygon fill="#194b9e" stroke="#1b3d88" points="1478,-8 1478,-1257.6 2402,-1257.6 2402,-8 1478,-8"/>
-<text xml:space="preserve" text-anchor="start" x="1486" y="-1244.7" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;001&#45;NF 极端场景保障</text>
+<polygon fill="#194b9e" stroke="#1b3d88" points="1478,-653.6 1478,-1903.2 2402,-1903.2 2402,-653.6 1478,-653.6"/>
+<text xml:space="preserve" text-anchor="start" x="1486" y="-1890.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;001&#45;NF 极端场景保障</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_feat_knowledge_f</title>
+<polygon fill="#194b9e" stroke="#1b3d88" points="2410,-8 2410,-1903.2 3780,-1903.2 3780,-8 2410,-8"/>
+<text xml:space="preserve" text-anchor="start" x="2418" y="-1890.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;002&#45;F 知识运营能力</text>
 </g>
 <!-- src_wechatcallback -->
 <g id="node1" class="node">
 <title>src_wechatcallback</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1007.02,-1196.4 676.98,-1196.4 676.98,-1016.4 1007.02,-1016.4 1007.02,-1196.4"/>
-<text xml:space="preserve" text-anchor="start" x="731.41" y="-1118.4" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;001 微信客服回调入口</text>
-<text xml:space="preserve" text-anchor="start" x="735.72" y="-1095.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/wechat&#45;kf&#45;routes.js —</text>
-<text xml:space="preserve" text-anchor="start" x="741.98" y="-1077.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">接收企业微信加密回调并解密分发。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1007.02,-1842 676.98,-1842 676.98,-1662 1007.02,-1662 1007.02,-1842"/>
+<text xml:space="preserve" text-anchor="start" x="731.41" y="-1764" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;001 微信客服回调入口</text>
+<text xml:space="preserve" text-anchor="start" x="735.72" y="-1741" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/wechat&#45;kf&#45;routes.js —</text>
+<text xml:space="preserve" text-anchor="start" x="741.98" y="-1723" font-family="Arial" font-size="15.00" fill="#bfdbfe">接收企业微信加密回调并解密分发。</text>
 </g>
 <!-- src_answerorchestrator -->
 <g id="node2" class="node">
 <title>src_answerorchestrator</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1007.02,-873.6 676.98,-873.6 676.98,-693.6 1007.02,-693.6 1007.02,-873.6"/>
-<text xml:space="preserve" text-anchor="start" x="756.42" y="-795.6" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;002 应答编排器</text>
-<text xml:space="preserve" text-anchor="start" x="717.8" y="-772.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/answer&#45;orchestrator.js —</text>
-<text xml:space="preserve" text-anchor="start" x="773.24" y="-754.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">决定自动应答或转人工。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1007.02,-1519.2 676.98,-1519.2 676.98,-1339.2 1007.02,-1339.2 1007.02,-1519.2"/>
+<text xml:space="preserve" text-anchor="start" x="756.42" y="-1441.2" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;002 应答编排器</text>
+<text xml:space="preserve" text-anchor="start" x="717.8" y="-1418.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/answer&#45;orchestrator.js —</text>
+<text xml:space="preserve" text-anchor="start" x="773.24" y="-1400.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">决定自动应答或转人工。</text>
 </g>
 <!-- src_answerloop -->
 <g id="node3" class="node">
 <title>src_answerloop</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="865.64,-550.8 476.36,-550.8 476.36,-370.8 865.64,-370.8 865.64,-550.8"/>
-<text xml:space="preserve" text-anchor="start" x="577.08" y="-472.8" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;003 知识应答循环</text>
-<text xml:space="preserve" text-anchor="start" x="516.36" y="-449.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;answer&#45;loop&#45;service.js</text>
-<text xml:space="preserve" text-anchor="start" x="600.15" y="-431.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">— 检索增强的应答循环。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="865.64,-1196.4 476.36,-1196.4 476.36,-1016.4 865.64,-1016.4 865.64,-1196.4"/>
+<text xml:space="preserve" text-anchor="start" x="577.08" y="-1118.4" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;003 知识应答循环</text>
+<text xml:space="preserve" text-anchor="start" x="516.36" y="-1095.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;answer&#45;loop&#45;service.js</text>
+<text xml:space="preserve" text-anchor="start" x="600.15" y="-1077.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">— 检索增强的应答循环。</text>
 </g>
 <!-- src_handoffservice -->
 <g id="node4" class="node">
 <title>src_handoffservice</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1402.38,-550.8 975.62,-550.8 975.62,-370.8 1402.38,-370.8 1402.38,-550.8"/>
-<text xml:space="preserve" text-anchor="start" x="1103.42" y="-463.8" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;006 转人工服务</text>
-<text xml:space="preserve" text-anchor="start" x="1015.62" y="-440.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/handoff&#45;service.js — 创建并跟踪人工工单。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1402.38,-1196.4 975.62,-1196.4 975.62,-1016.4 1402.38,-1016.4 1402.38,-1196.4"/>
+<text xml:space="preserve" text-anchor="start" x="1103.42" y="-1109.4" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;006 转人工服务</text>
+<text xml:space="preserve" text-anchor="start" x="1015.62" y="-1086.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/handoff&#45;service.js — 创建并跟踪人工工单。</text>
 </g>
 <!-- src_replypolicy -->
 <g id="node5" class="node">
 <title>src_replypolicy</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="378.02,-228 47.98,-228 47.98,-48 378.02,-48 378.02,-228"/>
-<text xml:space="preserve" text-anchor="start" x="135.75" y="-150" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;004 回复策略</text>
-<text xml:space="preserve" text-anchor="start" x="91.31" y="-127" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/reply&#45;policy&#45;service.js —</text>
-<text xml:space="preserve" text-anchor="start" x="144.24" y="-109" font-family="Arial" font-size="15.00" fill="#bfdbfe">置信度与风险阈值判定。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="378.02,-873.6 47.98,-873.6 47.98,-693.6 378.02,-693.6 378.02,-873.6"/>
+<text xml:space="preserve" text-anchor="start" x="135.75" y="-795.6" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;004 回复策略</text>
+<text xml:space="preserve" text-anchor="start" x="91.31" y="-772.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/reply&#45;policy&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="144.24" y="-754.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">置信度与风险阈值判定。</text>
 </g>
 <!-- src_ragflowknowledge -->
 <g id="node6" class="node">
 <title>src_ragflowknowledge</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="860.29,-228 487.71,-228 487.71,-48 860.29,-48 860.29,-228"/>
-<text xml:space="preserve" text-anchor="start" x="551.19" y="-150" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;005 RAGFlow 知识检索</text>
-<text xml:space="preserve" text-anchor="start" x="527.71" y="-127" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/ragflow&#45;knowledge&#45;service.js —</text>
-<text xml:space="preserve" text-anchor="start" x="617.74" y="-109" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="860.29,-873.6 487.71,-873.6 487.71,-693.6 860.29,-693.6 860.29,-873.6"/>
+<text xml:space="preserve" text-anchor="start" x="551.19" y="-795.6" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;005 RAGFlow 知识检索</text>
+<text xml:space="preserve" text-anchor="start" x="527.71" y="-772.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/ragflow&#45;knowledge&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="617.74" y="-754.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">检索与数据集访问。</text>
 </g>
 <!-- src_store -->
 <g id="node7" class="node">
 <title>src_store</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1407.79,-228 970.21,-228 970.21,-48 1407.79,-48 1407.79,-228"/>
-<text xml:space="preserve" text-anchor="start" x="1111.75" y="-141" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;007 本地存储</text>
-<text xml:space="preserve" text-anchor="start" x="1010.21" y="-118" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/domain/store.js — 以 JSON 文件承载工单与反馈状态。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1407.79,-873.6 970.21,-873.6 970.21,-693.6 1407.79,-693.6 1407.79,-873.6"/>
+<text xml:space="preserve" text-anchor="start" x="1111.75" y="-786.6" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;007 本地存储</text>
+<text xml:space="preserve" text-anchor="start" x="1010.21" y="-763.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/domain/store.js — 以 JSON 文件承载工单与反馈状态。</text>
 </g>
 <!-- src_integrationroutes -->
 <g id="node8" class="node">
 <title>src_integrationroutes</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1874.02,-1196.4 1543.98,-1196.4 1543.98,-1016.4 1874.02,-1016.4 1874.02,-1196.4"/>
-<text xml:space="preserve" text-anchor="start" x="1615.08" y="-1118.4" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;101 集成状态路由</text>
-<text xml:space="preserve" text-anchor="start" x="1599.79" y="-1095.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/integration&#45;routes.js —</text>
-<text xml:space="preserve" text-anchor="start" x="1633.99" y="-1077.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">功能概览与集成状态查询。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1866.02,-1842 1535.98,-1842 1535.98,-1662 1866.02,-1662 1866.02,-1842"/>
+<text xml:space="preserve" text-anchor="start" x="1607.08" y="-1764" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;101 集成状态路由</text>
+<text xml:space="preserve" text-anchor="start" x="1591.79" y="-1741" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/integration&#45;routes.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1625.99" y="-1723" font-family="Arial" font-size="15.00" fill="#bfdbfe">功能概览与集成状态查询。</text>
 </g>
 <!-- src_knowledgealert -->
 <g id="node9" class="node">
 <title>src_knowledgealert</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1871.71,-873.6 1518.29,-873.6 1518.29,-693.6 1871.71,-693.6 1871.71,-873.6"/>
-<text xml:space="preserve" text-anchor="start" x="1617.75" y="-795.6" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;103 知识告警</text>
-<text xml:space="preserve" text-anchor="start" x="1558.29" y="-772.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;alert&#45;service.js —</text>
-<text xml:space="preserve" text-anchor="start" x="1613.73" y="-754.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">暴露知识新鲜度与空库问题。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1871.71,-1519.2 1518.29,-1519.2 1518.29,-1339.2 1871.71,-1339.2 1871.71,-1519.2"/>
+<text xml:space="preserve" text-anchor="start" x="1617.75" y="-1441.2" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;103 知识告警</text>
+<text xml:space="preserve" text-anchor="start" x="1558.29" y="-1418.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;alert&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1613.73" y="-1400.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">暴露知识新鲜度与空库问题。</text>
 </g>
 <!-- src_ragflowprobe -->
 <g id="node10" class="node">
 <title>src_ragflowprobe</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2362.45,-873.6 1981.55,-873.6 1981.55,-693.6 2362.45,-693.6 2362.45,-873.6"/>
-<text xml:space="preserve" text-anchor="start" x="2032.52" y="-795.6" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;104 RAGFlow 生命周期探针</text>
-<text xml:space="preserve" text-anchor="start" x="2021.55" y="-772.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/ragflow&#45;lifecycle&#45;probe&#45;service.js</text>
-<text xml:space="preserve" text-anchor="start" x="2052.4" y="-754.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">— 校验 RAGFlow 数据集状态与可用性。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2362.45,-1519.2 1981.55,-1519.2 1981.55,-1339.2 2362.45,-1339.2 2362.45,-1519.2"/>
+<text xml:space="preserve" text-anchor="start" x="2032.52" y="-1441.2" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;104 RAGFlow 生命周期探针</text>
+<text xml:space="preserve" text-anchor="start" x="2021.55" y="-1418.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/ragflow&#45;lifecycle&#45;probe&#45;service.js</text>
+<text xml:space="preserve" text-anchor="start" x="2052.4" y="-1400.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">— 校验 RAGFlow 数据集状态与可用性。</text>
 </g>
 <!-- src_evaluationgate -->
 <g id="node11" class="node">
 <title>src_evaluationgate</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1882.02,-550.8 1551.98,-550.8 1551.98,-370.8 1882.02,-370.8 1882.02,-550.8"/>
-<text xml:space="preserve" text-anchor="start" x="1639.75" y="-472.8" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;102 评测闸门</text>
-<text xml:space="preserve" text-anchor="start" x="1608.21" y="-449.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/evaluation&#45;gate.js —</text>
-<text xml:space="preserve" text-anchor="start" x="1604.48" y="-431.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">本地发布策略门禁，判定是否阻断应答。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1882.02,-1196.4 1551.98,-1196.4 1551.98,-1016.4 1882.02,-1016.4 1882.02,-1196.4"/>
+<text xml:space="preserve" text-anchor="start" x="1639.75" y="-1118.4" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;102 评测闸门</text>
+<text xml:space="preserve" text-anchor="start" x="1608.21" y="-1095.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/evaluation&#45;gate.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1604.48" y="-1077.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">本地发布策略门禁，判定是否阻断应答。</text>
 </g>
 <!-- src_operatorui -->
 <g id="node12" class="node">
 <title>src_operatorui</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2357.12,-1196.4 2002.88,-1196.4 2002.88,-1016.4 2357.12,-1016.4 2357.12,-1196.4"/>
-<text xml:space="preserve" text-anchor="start" x="2077.75" y="-1109.4" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;105 运营人员控制台</text>
-<text xml:space="preserve" text-anchor="start" x="2042.88" y="-1086.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/ui/operator.html — 运营人员单页控制台。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2338.12,-1842 1983.88,-1842 1983.88,-1662 2338.12,-1662 2338.12,-1842"/>
+<text xml:space="preserve" text-anchor="start" x="2058.75" y="-1755" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;105 运营人员控制台</text>
+<text xml:space="preserve" text-anchor="start" x="2023.88" y="-1732" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/ui/operator.html — 运营人员单页控制台。</text>
 </g>
 <!-- src_storealert -->
 <g id="node13" class="node">
 <title>src_storealert</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1944.38,-228 1517.62,-228 1517.62,-48 1944.38,-48 1944.38,-228"/>
-<text xml:space="preserve" text-anchor="start" x="1637.08" y="-141" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;106 告警状态存储</text>
-<text xml:space="preserve" text-anchor="start" x="1557.62" y="-118" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/domain/store.js — 本链侧的告警与状态快照存储单元。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1944.38,-873.6 1517.62,-873.6 1517.62,-693.6 1944.38,-693.6 1944.38,-873.6"/>
+<text xml:space="preserve" text-anchor="start" x="1637.08" y="-786.6" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;106 告警状态存储</text>
+<text xml:space="preserve" text-anchor="start" x="1557.62" y="-763.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/domain/store.js — 本链侧的告警与状态快照存储单元。</text>
+</g>
+<!-- src_materialroutes -->
+<g id="node14" class="node">
+<title>src_materialroutes</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2848.21,-1842 2449.79,-1842 2449.79,-1662 2848.21,-1662 2848.21,-1842"/>
+<text xml:space="preserve" text-anchor="start" x="2571.75" y="-1755" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;201 素材路由</text>
+<text xml:space="preserve" text-anchor="start" x="2489.79" y="-1732" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/material&#45;routes.js — 美妆素材接入接口。</text>
+</g>
+<!-- src_materialbatch -->
+<g id="node15" class="node">
+<title>src_materialbatch</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3300.28,-1842 2957.72,-1842 2957.72,-1662 3300.28,-1662 3300.28,-1842"/>
+<text xml:space="preserve" text-anchor="start" x="3043.42" y="-1764" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;204 素材批处理</text>
+<text xml:space="preserve" text-anchor="start" x="2997.72" y="-1741" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/material&#45;batch&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="3085.24" y="-1723" font-family="Arial" font-size="15.00" fill="#bfdbfe">批量素材接入。</text>
+</g>
+<!-- src_knowledgeroutes -->
+<g id="node16" class="node">
+<title>src_knowledgeroutes</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3740.02,-1842 3409.98,-1842 3409.98,-1662 3740.02,-1662 3740.02,-1842"/>
+<text xml:space="preserve" text-anchor="start" x="3489.42" y="-1764" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;202 知识库路由</text>
+<text xml:space="preserve" text-anchor="start" x="3464.95" y="-1741" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/knowledge&#45;routes.js —</text>
+<text xml:space="preserve" text-anchor="start" x="3481.23" y="-1723" font-family="Arial" font-size="15.00" fill="#bfdbfe">知识扫描、同步与生命周期接口。</text>
+</g>
+<!-- src_materialservice -->
+<g id="node17" class="node">
+<title>src_materialservice</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3248.28,-550.8 2855.72,-550.8 2855.72,-370.8 3248.28,-370.8 3248.28,-550.8"/>
+<text xml:space="preserve" text-anchor="start" x="2974.75" y="-463.8" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;203 素材服务</text>
+<text xml:space="preserve" text-anchor="start" x="2895.72" y="-440.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/material&#45;service.js — 素材接入规则。</text>
+</g>
+<!-- src_knowledgescan -->
+<g id="node18" class="node">
+<title>src_knowledgescan</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3735.96,-1519.2 3380.04,-1519.2 3380.04,-1339.2 3735.96,-1339.2 3735.96,-1519.2"/>
+<text xml:space="preserve" text-anchor="start" x="3480.75" y="-1441.2" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;206 知识扫描</text>
+<text xml:space="preserve" text-anchor="start" x="3420.04" y="-1418.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;scan&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="3514.24" y="-1400.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">发现候选知识。</text>
+</g>
+<!-- src_governance -->
+<g id="node19" class="node">
+<title>src_governance</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3739.98,-1196.4 3354.02,-1196.4 3354.02,-1016.4 3739.98,-1016.4 3739.98,-1196.4"/>
+<text xml:space="preserve" text-anchor="start" x="3469.75" y="-1118.4" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;207 知识治理</text>
+<text xml:space="preserve" text-anchor="start" x="3394.02" y="-1095.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;governance&#45;service.js</text>
+<text xml:space="preserve" text-anchor="start" x="3488.66" y="-1077.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">— 发布决策与治理。</text>
+</g>
+<!-- src_knowledgesync -->
+<g id="node20" class="node">
+<title>src_knowledgesync</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3724.54,-873.6 3369.46,-873.6 3369.46,-693.6 3724.54,-693.6 3724.54,-873.6"/>
+<text xml:space="preserve" text-anchor="start" x="3469.75" y="-795.6" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;208 知识同步</text>
+<text xml:space="preserve" text-anchor="start" x="3409.46" y="-772.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;sync&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="3450.32" y="-754.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">把已批准知识推送到 RAGFlow。</text>
+</g>
+<!-- src_lifecycle -->
+<g id="node21" class="node">
+<title>src_lifecycle</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3735.79,-550.8 3358.21,-550.8 3358.21,-370.8 3735.79,-370.8 3735.79,-550.8"/>
+<text xml:space="preserve" text-anchor="start" x="3436.41" y="-472.8" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;209 知识生命周期视图</text>
+<text xml:space="preserve" text-anchor="start" x="3398.21" y="-449.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;lifecycle&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="3490.74" y="-431.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">知识的晋升与下线。</text>
+</g>
+<!-- src_documentregistry -->
+<g id="node22" class="node">
+<title>src_documentregistry</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="3413.89,-228 3022.11,-228 3022.11,-48 3413.89,-48 3413.89,-228"/>
+<text xml:space="preserve" text-anchor="start" x="3132.42" y="-150" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;205 文档登记簿</text>
+<text xml:space="preserve" text-anchor="start" x="3062.11" y="-127" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;document&#45;registry.js —</text>
+<text xml:space="preserve" text-anchor="start" x="3155.49" y="-109" font-family="Arial" font-size="15.00" fill="#bfdbfe">跟踪素材与文档标识。</text>
 </g>
 <!-- src_wechatcallback&#45;&gt;src_answerorchestrator -->
 <g id="edge1" class="edge">
 <title>src_wechatcallback&#45;&gt;src_answerorchestrator</title>
-<path fill="none" stroke="#15803d" stroke-width="2" d="M842,-1016.47C842,-975.27 842,-926.16 842,-883.77"/>
-<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="844.63,-883.96 842,-876.46 839.38,-883.96 844.63,-883.96"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="842,-933.6 842,-956.4 929.68,-956.4 929.68,-933.6 842,-933.6"/>
-<text xml:space="preserve" text-anchor="start" x="845" y="-939.4" font-family="Arial" font-size="14.00" fill="#bbfcd3">分发归一化消息</text>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M842,-1662.07C842,-1620.87 842,-1571.76 842,-1529.37"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="844.63,-1529.56 842,-1522.06 839.38,-1529.56 844.63,-1529.56"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="842,-1579.2 842,-1602 929.68,-1602 929.68,-1579.2 842,-1579.2"/>
+<text xml:space="preserve" text-anchor="start" x="845" y="-1585" font-family="Arial" font-size="14.00" fill="#bbfcd3">分发归一化消息</text>
 </g>
 <!-- src_answerorchestrator&#45;&gt;src_answerloop -->
-<g id="edge4" class="edge">
+<g id="edge7" class="edge">
 <title>src_answerorchestrator&#45;&gt;src_answerloop</title>
-<path fill="none" stroke="#15803d" stroke-width="2" d="M794.59,-693.67C772.45,-652.12 746.02,-602.53 723.29,-559.9"/>
-<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="725.62,-558.68 719.77,-553.3 720.99,-561.15 725.62,-558.68"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="761.63,-610.8 761.63,-633.6 814.3,-633.6 814.3,-610.8 761.63,-610.8"/>
-<text xml:space="preserve" text-anchor="start" x="764.63" y="-616.6" font-family="Arial" font-size="14.00" fill="#bbfcd3">请求应答</text>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M794.59,-1339.27C772.45,-1297.72 746.02,-1248.13 723.29,-1205.5"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="725.62,-1204.28 719.77,-1198.9 720.99,-1206.75 725.62,-1204.28"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="761.63,-1256.4 761.63,-1279.2 814.3,-1279.2 814.3,-1256.4 761.63,-1256.4"/>
+<text xml:space="preserve" text-anchor="start" x="764.63" y="-1262.2" font-family="Arial" font-size="14.00" fill="#bbfcd3">请求应答</text>
 </g>
 <!-- src_answerorchestrator&#45;&gt;src_handoffservice -->
-<g id="edge5" class="edge">
+<g id="edge8" class="edge">
 <title>src_answerorchestrator&#45;&gt;src_handoffservice</title>
-<path fill="none" stroke="#15803d" stroke-width="2" d="M938.2,-693.67C983.89,-651.42 1038.58,-600.87 1085.21,-557.76"/>
-<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1086.97,-559.7 1090.69,-552.68 1083.4,-555.85 1086.97,-559.7"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1025.9,-610.8 1025.9,-633.6 1125.26,-633.6 1125.26,-610.8 1025.9,-610.8"/>
-<text xml:space="preserve" text-anchor="start" x="1028.9" y="-616.6" font-family="Arial" font-size="14.00" fill="#bbfcd3">低置信度时转人工</text>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M938.2,-1339.27C983.89,-1297.02 1038.58,-1246.47 1085.21,-1203.36"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1086.97,-1205.3 1090.69,-1198.28 1083.4,-1201.45 1086.97,-1205.3"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1025.9,-1256.4 1025.9,-1279.2 1125.26,-1279.2 1125.26,-1256.4 1025.9,-1256.4"/>
+<text xml:space="preserve" text-anchor="start" x="1028.9" y="-1262.2" font-family="Arial" font-size="14.00" fill="#bbfcd3">低置信度时转人工</text>
 </g>
 <!-- src_answerloop&#45;&gt;src_replypolicy -->
-<g id="edge7" class="edge">
+<g id="edge12" class="edge">
 <title>src_answerloop&#45;&gt;src_replypolicy</title>
-<path fill="none" stroke="#15803d" stroke-width="2" d="M544.03,-370.87C483.1,-328.19 410.05,-277.02 348.1,-233.63"/>
-<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="349.95,-231.72 342.3,-229.57 346.94,-236.02 349.95,-231.72"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="455.73,-288 455.73,-310.8 520.08,-310.8 520.08,-288 455.73,-288"/>
-<text xml:space="preserve" text-anchor="start" x="458.73" y="-293.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">校验置信度</text>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M544.03,-1016.47C483.1,-973.79 410.05,-922.62 348.1,-879.23"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="349.95,-877.32 342.3,-875.17 346.94,-881.62 349.95,-877.32"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="455.73,-933.6 455.73,-956.4 520.08,-956.4 520.08,-933.6 455.73,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="458.73" y="-939.4" font-family="Arial" font-size="14.00" fill="#bbfcd3">校验置信度</text>
 </g>
 <!-- src_answerloop&#45;&gt;src_ragflowknowledge -->
-<g id="edge8" class="edge">
+<g id="edge13" class="edge">
 <title>src_answerloop&#45;&gt;src_ragflowknowledge</title>
-<path fill="none" stroke="#15803d" stroke-width="2" d="M671.83,-370.87C672.22,-329.67 672.68,-280.56 673.07,-238.17"/>
-<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="675.7,-238.38 673.14,-230.86 670.45,-238.33 675.7,-238.38"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="672.59,-288 672.59,-310.8 748.6,-310.8 748.6,-288 672.59,-288"/>
-<text xml:space="preserve" text-anchor="start" x="675.59" y="-293.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">检索候选知识</text>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M671.83,-1016.47C672.22,-975.27 672.68,-926.16 673.07,-883.77"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="675.7,-883.98 673.14,-876.46 670.45,-883.93 675.7,-883.98"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="672.59,-933.6 672.59,-956.4 748.6,-956.4 748.6,-933.6 672.59,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="675.59" y="-939.4" font-family="Arial" font-size="14.00" fill="#bbfcd3">检索候选知识</text>
 </g>
 <!-- src_handoffservice&#45;&gt;src_store -->
-<g id="edge9" class="edge">
+<g id="edge14" class="edge">
 <title>src_handoffservice&#45;&gt;src_store</title>
-<path fill="none" stroke="#15803d" stroke-width="2" d="M1189,-370.87C1189,-329.67 1189,-280.56 1189,-238.17"/>
-<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1191.63,-238.36 1189,-230.86 1186.38,-238.36 1191.63,-238.36"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1189,-288 1189,-310.8 1253.34,-310.8 1253.34,-288 1189,-288"/>
-<text xml:space="preserve" text-anchor="start" x="1192" y="-293.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">持久化工单</text>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M1189,-1016.47C1189,-975.27 1189,-926.16 1189,-883.77"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1191.63,-883.96 1189,-876.46 1186.38,-883.96 1191.63,-883.96"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1189,-933.6 1189,-956.4 1253.34,-956.4 1253.34,-933.6 1189,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="1192" y="-939.4" font-family="Arial" font-size="14.00" fill="#bbfcd3">持久化工单</text>
 </g>
 <!-- src_integrationroutes&#45;&gt;src_knowledgealert -->
 <g id="edge2" class="edge">
 <title>src_integrationroutes&#45;&gt;src_knowledgealert</title>
-<path fill="none" stroke="#15803d" stroke-width="2" d="M1705.12,-1016.47C1703.32,-975.27 1701.18,-926.16 1699.33,-883.77"/>
-<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1701.96,-883.83 1699.01,-876.45 1696.71,-884.06 1701.96,-883.83"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1702.42,-933.6 1702.42,-956.4 1778.43,-956.4 1778.43,-933.6 1702.42,-933.6"/>
-<text xml:space="preserve" text-anchor="start" x="1705.42" y="-939.4" font-family="Arial" font-size="14.00" fill="#bbfcd3">查询空库告警</text>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M1699.34,-1662.07C1698.57,-1620.87 1697.65,-1571.76 1696.85,-1529.37"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1699.48,-1529.51 1696.72,-1522.06 1694.23,-1529.6 1699.48,-1529.51"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1698.18,-1579.2 1698.18,-1602 1774.19,-1602 1774.19,-1579.2 1698.18,-1579.2"/>
+<text xml:space="preserve" text-anchor="start" x="1701.18" y="-1585" font-family="Arial" font-size="14.00" fill="#bbfcd3">查询空库告警</text>
 </g>
 <!-- src_integrationroutes&#45;&gt;src_ragflowprobe -->
 <g id="edge3" class="edge">
 <title>src_integrationroutes&#45;&gt;src_ragflowprobe</title>
-<path fill="none" stroke="#15803d" stroke-width="2" d="M1837.36,-1016.47C1898.95,-973.79 1972.8,-922.62 2035.43,-879.23"/>
-<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="2036.64,-881.58 2041.31,-875.15 2033.65,-877.27 2036.64,-881.58"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1954.38,-933.6 1954.38,-956.4 2042.07,-956.4 2042.07,-933.6 1954.38,-933.6"/>
-<text xml:space="preserve" text-anchor="start" x="1957.38" y="-939.4" font-family="Arial" font-size="14.00" fill="#bbfcd3">探测数据集状态</text>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M1831.57,-1662.07C1894.24,-1619.39 1969.36,-1568.22 2033.07,-1524.83"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="2034.36,-1527.13 2039.08,-1520.73 2031.4,-1522.79 2034.36,-1527.13"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1950.62,-1579.2 1950.62,-1602 2038.31,-1602 2038.31,-1579.2 1950.62,-1579.2"/>
+<text xml:space="preserve" text-anchor="start" x="1953.62" y="-1585" font-family="Arial" font-size="14.00" fill="#bbfcd3">探测数据集状态</text>
 </g>
 <!-- src_knowledgealert&#45;&gt;src_evaluationgate -->
-<g id="edge6" class="edge">
+<g id="edge9" class="edge">
 <title>src_knowledgealert&#45;&gt;src_evaluationgate</title>
-<path fill="none" stroke="#15803d" stroke-width="2" d="M1701.1,-693.67C1703.92,-652.47 1707.29,-603.36 1710.2,-560.97"/>
-<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1712.81,-561.31 1710.7,-553.65 1707.57,-560.95 1712.81,-561.31"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1706.66,-610.8 1706.66,-633.6 1782.67,-633.6 1782.67,-610.8 1706.66,-610.8"/>
-<text xml:space="preserve" text-anchor="start" x="1709.66" y="-616.6" font-family="Arial" font-size="14.00" fill="#bbfcd3">提交发布判定</text>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M1701.1,-1339.27C1703.92,-1298.07 1707.29,-1248.96 1710.2,-1206.57"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1712.81,-1206.91 1710.7,-1199.25 1707.57,-1206.55 1712.81,-1206.91"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1706.66,-1256.4 1706.66,-1279.2 1782.67,-1279.2 1782.67,-1256.4 1706.66,-1256.4"/>
+<text xml:space="preserve" text-anchor="start" x="1709.66" y="-1262.2" font-family="Arial" font-size="14.00" fill="#bbfcd3">提交发布判定</text>
 </g>
 <!-- src_evaluationgate&#45;&gt;src_storealert -->
-<g id="edge10" class="edge">
+<g id="edge15" class="edge">
 <title>src_evaluationgate&#45;&gt;src_storealert</title>
-<path fill="none" stroke="#15803d" stroke-width="2" d="M1720.88,-370.87C1722.68,-329.67 1724.82,-280.56 1726.67,-238.17"/>
-<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1729.29,-238.46 1726.99,-230.85 1724.04,-238.23 1729.29,-238.46"/>
-<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1724.42,-288 1724.42,-310.8 1800.43,-310.8 1800.43,-288 1724.42,-288"/>
-<text xml:space="preserve" text-anchor="start" x="1727.42" y="-293.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">读取告警快照</text>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M1720.88,-1016.47C1722.68,-975.27 1724.82,-926.16 1726.67,-883.77"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1729.29,-884.06 1726.99,-876.45 1724.04,-883.83 1729.29,-884.06"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1724.42,-933.6 1724.42,-956.4 1800.43,-956.4 1800.43,-933.6 1724.42,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="1727.42" y="-939.4" font-family="Arial" font-size="14.00" fill="#bbfcd3">读取告警快照</text>
+</g>
+<!-- src_materialroutes&#45;&gt;src_materialservice -->
+<g id="edge4" class="edge">
+<title>src_materialroutes&#45;&gt;src_materialservice</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M2685.36,-1662.06C2708.06,-1598.56 2733,-1510.51 2733,-1430.2 2733,-1430.2 2733,-1430.2 2733,-782.6 2733,-687.87 2803.8,-611.2 2878.69,-556.59"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="2879.87,-558.98 2884.43,-552.48 2876.81,-554.71 2879.87,-558.98"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2733,-1095 2733,-1117.8 2785.68,-1117.8 2785.68,-1095 2733,-1095"/>
+<text xml:space="preserve" text-anchor="start" x="2736" y="-1100.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">接收素材</text>
+</g>
+<!-- src_materialbatch&#45;&gt;src_materialservice -->
+<g id="edge5" class="edge">
+<title>src_materialbatch&#45;&gt;src_materialservice</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M3112.77,-1662.14C3102.45,-1597.93 3091,-1509 3091,-1430.2 3091,-1430.2 3091,-1430.2 3091,-782.6 3091,-707.93 3080.46,-624.19 3070.34,-561"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="3072.93,-560.61 3069.14,-553.63 3067.75,-561.45 3072.93,-560.61"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3091,-1095 3091,-1117.8 3143.68,-1117.8 3143.68,-1095 3091,-1095"/>
+<text xml:space="preserve" text-anchor="start" x="3094" y="-1100.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">批量接入</text>
+</g>
+<!-- src_knowledgeroutes&#45;&gt;src_knowledgescan -->
+<g id="edge6" class="edge">
+<title>src_knowledgeroutes&#45;&gt;src_knowledgescan</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M3570.29,-1662.07C3568.1,-1620.87 3565.5,-1571.76 3563.26,-1529.37"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="3565.89,-1529.4 3562.87,-1522.05 3560.64,-1529.68 3565.89,-1529.4"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3567.01,-1579.2 3567.01,-1602 3619.69,-1602 3619.69,-1579.2 3567.01,-1579.2"/>
+<text xml:space="preserve" text-anchor="start" x="3570.01" y="-1585" font-family="Arial" font-size="14.00" fill="#bbfcd3">触发扫描</text>
+</g>
+<!-- src_materialservice&#45;&gt;src_documentregistry -->
+<g id="edge10" class="edge">
+<title>src_materialservice&#45;&gt;src_documentregistry</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M3098.02,-370.87C3119.52,-329.32 3145.18,-279.73 3167.24,-237.1"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="3169.53,-238.39 3170.64,-230.52 3164.87,-235.97 3169.53,-238.39"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3139.98,-288 3139.98,-310.8 3192.65,-310.8 3192.65,-288 3139.98,-288"/>
+<text xml:space="preserve" text-anchor="start" x="3142.98" y="-293.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">登记文档</text>
+</g>
+<!-- src_knowledgescan&#45;&gt;src_governance -->
+<g id="edge11" class="edge">
+<title>src_knowledgescan&#45;&gt;src_governance</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M3554.95,-1339.27C3553.54,-1298.07 3551.85,-1248.96 3550.4,-1206.57"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="3553.03,-1206.66 3550.15,-1199.25 3547.78,-1206.84 3553.03,-1206.66"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3552.83,-1256.4 3552.83,-1279.2 3605.51,-1279.2 3605.51,-1256.4 3552.83,-1256.4"/>
+<text xml:space="preserve" text-anchor="start" x="3555.83" y="-1262.2" font-family="Arial" font-size="14.00" fill="#bbfcd3">提交候选</text>
+</g>
+<!-- src_governance&#45;&gt;src_knowledgesync -->
+<g id="edge16" class="edge">
+<title>src_governance&#45;&gt;src_knowledgesync</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M3547,-1016.47C3547,-975.27 3547,-926.16 3547,-883.77"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="3549.63,-883.96 3547,-876.46 3544.38,-883.96 3549.63,-883.96"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3547,-933.6 3547,-956.4 3611.34,-956.4 3611.34,-933.6 3547,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="3550" y="-939.4" font-family="Arial" font-size="14.00" fill="#bbfcd3">批准后推送</text>
+</g>
+<!-- src_knowledgesync&#45;&gt;src_lifecycle -->
+<g id="edge17" class="edge">
+<title>src_knowledgesync&#45;&gt;src_lifecycle</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M3547,-693.67C3547,-652.47 3547,-603.36 3547,-560.97"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="3549.63,-561.16 3547,-553.66 3544.38,-561.16 3549.63,-561.16"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3547,-610.8 3547,-633.6 3623.01,-633.6 3623.01,-610.8 3547,-610.8"/>
+<text xml:space="preserve" text-anchor="start" x="3550" y="-616.6" font-family="Arial" font-size="14.00" fill="#bbfcd3">更新生命周期</text>
+</g>
+<!-- src_lifecycle&#45;&gt;src_documentregistry -->
+<g id="edge18" class="edge">
+<title>src_lifecycle&#45;&gt;src_documentregistry</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M3455.79,-370.87C3412.47,-328.62 3360.62,-278.07 3316.41,-234.96"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="3318.47,-233.3 3311.27,-229.94 3314.8,-237.06 3318.47,-233.3"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="3392.36,-288 3392.36,-310.8 3456.71,-310.8 3456.71,-288 3392.36,-288"/>
+<text xml:space="preserve" text-anchor="start" x="3395.36" y="-293.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">晋升或下线</text>
 </g>
 </g>
 </svg>
@@ -3718,8 +4849,8 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="1753pt" height="1941pt"
- viewBox="0.00 0.00 1753.00 1941.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="2723pt" height="1941pt"
+ viewBox="0.00 0.00 2723.00 1941.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1926.25)">
 <g id="clust1" class="cluster">
 <title>cluster_feat_answer_f</title>
@@ -3730,6 +4861,11 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <title>cluster_feat_degrade_nf</title>
 <polygon fill="#194b9e" stroke="#1b3d88" points="813,-653.6 813,-1903.2 1715,-1903.2 1715,-653.6 813,-653.6"/>
 <text xml:space="preserve" text-anchor="start" x="821" y="-1890.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;001&#45;NF 极端场景保障</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_feat_knowledge_f</title>
+<polygon fill="#194b9e" stroke="#1b3d88" points="1744,-330.8 1744,-1903.2 2685,-1903.2 2685,-330.8 1744,-330.8"/>
+<text xml:space="preserve" text-anchor="start" x="1752" y="-1890.3" font-family="Arial" font-weight="bold" font-size="11.00" fill="#bfdbfe" fill-opacity="0.701961">FEATURE&#45;002&#45;F 知识运营能力</text>
 </g>
 <!-- cvt_normalize -->
 <g id="node1" class="node">
@@ -3826,6 +4962,53 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="1384.53" y="-786.6" font-family="Arial" font-size="20.00" fill="#eff6ff">DAO&#45;101 告警存储访问</text>
 <text xml:space="preserve" text-anchor="start" x="1324.38" y="-763.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/domain/store.js — 告警与状态快照的读写边界。</text>
 </g>
+<!-- in_material -->
+<g id="node13" class="node">
+<title>in_material</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2155.51,-1842 1784.49,-1842 1784.49,-1662 2155.51,-1662 2155.51,-1842"/>
+<text xml:space="preserve" text-anchor="start" x="1903.87" y="-1755" font-family="Arial" font-size="20.00" fill="#eff6ff">IN&#45;201 素材入参</text>
+<text xml:space="preserve" text-anchor="start" x="1804.54" y="-1732" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/material&#45;routes.js — 上传素材的请求载荷。</text>
+</g>
+<!-- cvt_material -->
+<g id="node14" class="node">
+<title>cvt_material</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2644.9,-1842 2265.1,-1842 2265.1,-1662 2644.9,-1662 2644.9,-1842"/>
+<text xml:space="preserve" text-anchor="start" x="2370.53" y="-1764" font-family="Arial" font-size="20.00" fill="#eff6ff">CVT&#45;201 素材转换器</text>
+<text xml:space="preserve" text-anchor="start" x="2329.98" y="-1741" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/material&#45;service.js — 覆盖</text>
+<text xml:space="preserve" text-anchor="start" x="2289.11" y="-1723" font-family="Arial" font-size="15.00" fill="#bfdbfe">素材载荷→BIZ&#45;201 与 BIZ&#45;201→POD&#45;201 两组映射。</text>
+</g>
+<!-- biz_candidate -->
+<g id="node15" class="node">
+<title>biz_candidate</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2235.02,-1519.2 1914.98,-1519.2 1914.98,-1339.2 2235.02,-1339.2 2235.02,-1519.2"/>
+<text xml:space="preserve" text-anchor="start" x="1986.64" y="-1441.2" font-family="Arial" font-size="20.00" fill="#eff6ff">BIZ&#45;201 候选知识对象</text>
+<text xml:space="preserve" text-anchor="start" x="1937.04" y="-1418.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;scan&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1974.98" y="-1400.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">承载扫描出的候选条目与决策状态。</text>
+</g>
+<!-- pod_document -->
+<g id="node16" class="node">
+<title>pod_document</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2523.45,-1196.4 2196.55,-1196.4 2196.55,-1016.4 2523.45,-1016.4 2523.45,-1196.4"/>
+<text xml:space="preserve" text-anchor="start" x="2265.53" y="-1118.4" font-family="Arial" font-size="20.00" fill="#eff6ff">POD&#45;201 文档登记实体</text>
+<text xml:space="preserve" text-anchor="start" x="2216.61" y="-1095.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">data/local&#45;mvp&#45;store.json — 与 store.json 中</text>
+<text xml:space="preserve" text-anchor="start" x="2277.47" y="-1077.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">documents 数组结构对应。</text>
+</g>
+<!-- dao_registry -->
+<g id="node17" class="node">
+<title>dao_registry</title>
+<path fill="#3b82f6" stroke="#2563eb" stroke-width="2" d="M2534.68,-857.24C2534.68,-866.27 2456.38,-873.6 2360,-873.6 2263.62,-873.6 2185.32,-866.27 2185.32,-857.24 2185.32,-857.24 2185.32,-709.96 2185.32,-709.96 2185.32,-700.93 2263.62,-693.6 2360,-693.6 2456.38,-693.6 2534.68,-700.93 2534.68,-709.96 2534.68,-709.96 2534.68,-857.24 2534.68,-857.24"/>
+<path fill="none" stroke="#2563eb" stroke-width="2" d="M2534.68,-857.24C2534.68,-848.21 2456.38,-840.87 2360,-840.87 2263.62,-840.87 2185.32,-848.21 2185.32,-857.24"/>
+<text xml:space="preserve" text-anchor="start" x="2265.53" y="-786.6" font-family="Arial" font-size="20.00" fill="#eff6ff">DAO&#45;201 文档登记访问</text>
+<text xml:space="preserve" text-anchor="start" x="2205.38" y="-763.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/domain/store.js — 素材与文档标识的读写边界。</text>
+</g>
+<!-- out_knowledgestatus -->
+<g id="node18" class="node">
+<title>out_knowledgestatus</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2520.02,-550.8 2199.98,-550.8 2199.98,-370.8 2520.02,-370.8 2520.02,-550.8"/>
+<text xml:space="preserve" text-anchor="start" x="2249.42" y="-472.8" font-family="Arial" font-size="20.00" fill="#eff6ff">OUT&#45;201 知识状态出参视图</text>
+<text xml:space="preserve" text-anchor="start" x="2249.95" y="-449.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/knowledge&#45;routes.js —</text>
+<text xml:space="preserve" text-anchor="start" x="2259.98" y="-431.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">面向控制台的扫描与治理状态载荷。</text>
+</g>
 <!-- cvt_normalize&#45;&gt;in_chatmessage -->
 <g id="edge1" class="edge">
 <title>cvt_normalize&#45;&gt;in_chatmessage</title>
@@ -3843,7 +5026,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="580" y="-939.4" font-family="Arial" font-size="14.00" fill="#d4f2ff">负责 POD&#45;001→OUT&#45;001 映射</text>
 </g>
 <!-- in_chatmessage&#45;&gt;biz_query -->
-<g id="edge6" class="edge">
+<g id="edge9" class="edge">
 <title>in_chatmessage&#45;&gt;biz_query</title>
 <path fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5,2" d="M261.71,-1339.27C263.9,-1298.07 266.5,-1248.96 268.74,-1206.57"/>
 <polygon fill="#64748b" stroke="#64748b" stroke-width="2" points="271.36,-1206.88 269.13,-1199.25 266.11,-1206.6 271.36,-1206.88"/>
@@ -3851,7 +5034,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="269.01" y="-1262.2" font-family="Arial" font-size="14.00" fill="#cbd5e1">转换为检索查询</text>
 </g>
 <!-- biz_query&#45;&gt;pod_ticket -->
-<g id="edge9" class="edge">
+<g id="edge13" class="edge">
 <title>biz_query&#45;&gt;pod_ticket</title>
 <path fill="none" stroke="#3b82f6" stroke-width="2" d="M276.5,-1016.47C277.65,-975.27 279.03,-926.16 280.22,-883.77"/>
 <polygon fill="#3b82f6" stroke="#3b82f6" stroke-width="2" points="282.84,-884.03 280.42,-876.46 277.59,-883.88 282.84,-884.03"/>
@@ -3859,7 +5042,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="281.77" y="-939.4" font-family="Arial" font-size="14.00" fill="#eff5fd">低置信度落工单</text>
 </g>
 <!-- pod_ticket&#45;&gt;dao_store -->
-<g id="edge11" class="edge">
+<g id="edge16" class="edge">
 <title>pod_ticket&#45;&gt;dao_store</title>
 <path fill="none" stroke="#3b82f6" stroke-width="2" d="M284.66,-693.67C285.43,-652.81 286.34,-604.18 287.13,-562.03"/>
 <polygon fill="#3b82f6" stroke="#3b82f6" stroke-width="2" points="289.75,-562.32 287.26,-554.77 284.5,-562.22 289.75,-562.32"/>
@@ -3867,7 +5050,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="289.18" y="-616.6" font-family="Arial" font-size="14.00" fill="#eff5fd">写入工单</text>
 </g>
 <!-- dao_store&#45;&gt;out_answer -->
-<g id="edge12" class="edge">
+<g id="edge18" class="edge">
 <title>dao_store&#45;&gt;out_answer</title>
 <path fill="none" stroke="#3b82f6" stroke-width="2" d="M349.46,-370.01C377.42,-328.48 410.7,-279.06 439.28,-236.6"/>
 <polygon fill="#3b82f6" stroke="#3b82f6" stroke-width="2" points="441.42,-238.13 443.43,-230.44 437.06,-235.2 441.42,-238.13"/>
@@ -3899,7 +5082,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="1482" y="-1423.6" font-family="Arial" font-size="14.00" fill="#d4f2ff">负责 BIZ&#45;101→POD&#45;101 映射</text>
 </g>
 <!-- biz_proberesult&#45;&gt;pod_alert -->
-<g id="edge7" class="edge">
+<g id="edge10" class="edge">
 <title>biz_proberesult&#45;&gt;pod_alert</title>
 <path fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5,2" d="M1181.22,-1339.27C1235.81,-1296.76 1301.2,-1245.84 1356.79,-1202.56"/>
 <polygon fill="#64748b" stroke="#64748b" stroke-width="2" points="1358.22,-1204.77 1362.53,-1198.09 1355,-1200.63 1358.22,-1204.77"/>
@@ -3907,7 +5090,7 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="1288.35" y="-1262.2" font-family="Arial" font-size="14.00" fill="#cbd5e1">异常转告警实体</text>
 </g>
 <!-- biz_proberesult&#45;&gt;out_status -->
-<g id="edge8" class="edge">
+<g id="edge11" class="edge">
 <title>biz_proberesult&#45;&gt;out_status</title>
 <path fill="none" stroke="#3b82f6" stroke-width="2" d="M1061.18,-1339.27C1058.48,-1298.07 1055.27,-1248.96 1052.49,-1206.57"/>
 <polygon fill="#3b82f6" stroke="#3b82f6" stroke-width="2" points="1055.12,-1206.56 1052.01,-1199.25 1049.88,-1206.91 1055.12,-1206.56"/>
@@ -3915,12 +5098,60 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="1060.13" y="-1262.2" font-family="Arial" font-size="14.00" fill="#eff5fd">渲染状态载荷</text>
 </g>
 <!-- pod_alert&#45;&gt;dao_alert -->
-<g id="edge10" class="edge">
+<g id="edge14" class="edge">
 <title>pod_alert&#45;&gt;dao_alert</title>
 <path fill="none" stroke="#3b82f6" stroke-width="2" d="M1479,-1016.47C1479,-975.61 1479,-926.98 1479,-884.83"/>
 <polygon fill="#3b82f6" stroke="#3b82f6" stroke-width="2" points="1481.63,-885.07 1479,-877.57 1476.38,-885.07 1481.63,-885.07"/>
 <polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1479,-933.6 1479,-956.4 1531.68,-956.4 1531.68,-933.6 1479,-933.6"/>
 <text xml:space="preserve" text-anchor="start" x="1482" y="-939.4" font-family="Arial" font-size="14.00" fill="#eff5fd">写入告警</text>
+</g>
+<!-- in_material&#45;&gt;biz_candidate -->
+<g id="edge6" class="edge">
+<title>in_material&#45;&gt;biz_candidate</title>
+<path fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5,2" d="M1990.52,-1662.06C1997.36,-1635.21 2005.51,-1605.81 2014.32,-1579.2 2019.78,-1562.69 2026.18,-1545.39 2032.73,-1528.67"/>
+<polygon fill="#64748b" stroke="#64748b" stroke-width="2" points="2035.17,-1529.65 2035.49,-1521.71 2030.29,-1527.72 2035.17,-1529.65"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2014.32,-1579.2 2014.32,-1602 2102,-1602 2102,-1579.2 2014.32,-1579.2"/>
+<text xml:space="preserve" text-anchor="start" x="2017.32" y="-1585" font-family="Arial" font-size="14.00" fill="#cbd5e1">转换为候选对象</text>
+</g>
+<!-- cvt_material&#45;&gt;biz_candidate -->
+<g id="edge7" class="edge">
+<title>cvt_material&#45;&gt;biz_candidate</title>
+<path fill="none" stroke="#0ea5e9" stroke-width="2" d="M2349.65,-1662.07C2299.41,-1619.65 2239.23,-1568.85 2188.03,-1525.62"/>
+<polygon fill="#0ea5e9" stroke="#0ea5e9" stroke-width="2" points="2189.96,-1523.81 2182.54,-1520.98 2186.57,-1527.83 2189.96,-1523.81"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2276.39,-1579.2 2276.39,-1602 2421.66,-1602 2421.66,-1579.2 2276.39,-1579.2"/>
+<text xml:space="preserve" text-anchor="start" x="2279.39" y="-1585" font-family="Arial" font-size="14.00" fill="#d4f2ff">负责 素材→BIZ&#45;201 映射</text>
+</g>
+<!-- cvt_material&#45;&gt;pod_document -->
+<g id="edge8" class="edge">
+<title>cvt_material&#45;&gt;pod_document</title>
+<path fill="none" stroke="#0ea5e9" stroke-width="2" d="M2454.46,-1662.09C2453.61,-1635.38 2451.98,-1606.04 2449,-1579.2 2434.56,-1449.31 2404.43,-1301.55 2383.24,-1206.53"/>
+<polygon fill="#0ea5e9" stroke="#0ea5e9" stroke-width="2" points="2385.82,-1206.06 2381.62,-1199.32 2380.7,-1207.21 2385.82,-1206.06"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2440.78,-1417.8 2440.78,-1440.6 2621.06,-1440.6 2621.06,-1417.8 2440.78,-1417.8"/>
+<text xml:space="preserve" text-anchor="start" x="2443.78" y="-1423.6" font-family="Arial" font-size="14.00" fill="#d4f2ff">负责 BIZ&#45;201→POD&#45;201 映射</text>
+</g>
+<!-- biz_candidate&#45;&gt;pod_document -->
+<g id="edge12" class="edge">
+<title>biz_candidate&#45;&gt;pod_document</title>
+<path fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5,2" d="M2154.01,-1339.27C2191.38,-1297.2 2236.08,-1246.88 2274.28,-1203.89"/>
+<polygon fill="#64748b" stroke="#64748b" stroke-width="2" points="2276.05,-1205.84 2279.07,-1198.49 2272.13,-1202.36 2276.05,-1205.84"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2226.05,-1256.4 2226.05,-1279.2 2313.73,-1279.2 2313.73,-1256.4 2226.05,-1256.4"/>
+<text xml:space="preserve" text-anchor="start" x="2229.05" y="-1262.2" font-family="Arial" font-size="14.00" fill="#cbd5e1">登记为文档实体</text>
+</g>
+<!-- pod_document&#45;&gt;dao_registry -->
+<g id="edge15" class="edge">
+<title>pod_document&#45;&gt;dao_registry</title>
+<path fill="none" stroke="#3b82f6" stroke-width="2" d="M2360,-1016.47C2360,-975.61 2360,-926.98 2360,-884.83"/>
+<polygon fill="#3b82f6" stroke="#3b82f6" stroke-width="2" points="2362.63,-885.07 2360,-877.57 2357.38,-885.07 2362.63,-885.07"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2360,-933.6 2360,-956.4 2436.01,-956.4 2436.01,-933.6 2360,-933.6"/>
+<text xml:space="preserve" text-anchor="start" x="2363" y="-939.4" font-family="Arial" font-size="14.00" fill="#eff5fd">写入文档标识</text>
+</g>
+<!-- dao_registry&#45;&gt;out_knowledgestatus -->
+<g id="edge17" class="edge">
+<title>dao_registry&#45;&gt;out_knowledgestatus</title>
+<path fill="none" stroke="#3b82f6" stroke-width="2" d="M2360,-692.81C2360,-651.8 2360,-603.09 2360,-561"/>
+<polygon fill="#3b82f6" stroke="#3b82f6" stroke-width="2" points="2362.63,-561.26 2360,-553.76 2357.38,-561.26 2362.63,-561.26"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="2360,-610.8 2360,-633.6 2412.68,-633.6 2412.68,-610.8 2360,-610.8"/>
+<text xml:space="preserve" text-anchor="start" x="2363" y="-616.6" font-family="Arial" font-size="14.00" fill="#eff5fd">查询状态</text>
 </g>
 </g>
 </svg>
@@ -3930,22 +5161,29 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="350pt" height="510pt"
- viewBox="0.00 0.00 350.00 510.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 495.05)">
+<svg width="350pt" height="810pt"
+ viewBox="0.00 0.00 350.00 810.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 795.05)">
 <!-- lane_edge -->
 <g id="node1" class="node">
 <title>lane_edge</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-480 0,-480 0,-300 320.04,-300 320.04,-480"/>
-<text xml:space="preserve" text-anchor="start" x="101.68" y="-382" font-family="Arial" font-size="20.00" fill="#eff6ff">服务端接入泳道</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-780 0,-780 0,-600 320.04,-600 320.04,-780"/>
+<text xml:space="preserve" text-anchor="start" x="101.68" y="-682" font-family="Arial" font-size="20.00" fill="#eff6ff">服务端接入泳道</text>
 </g>
 <!-- lane_edge_1 -->
 <g id="node2" class="node">
 <title>lane_edge_1</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-480 0,-480 0,-300 320.04,-300 320.04,-480"/>
+<text xml:space="preserve" text-anchor="start" x="101.68" y="-382" font-family="Arial" font-size="20.00" fill="#eff6ff">服务端接入泳道</text>
+</g>
+<!-- lane_edge_2 -->
+<g id="node3" class="node">
+<title>lane_edge_2</title>
 <polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-180 0,-180 0,0 320.04,0 320.04,-180"/>
 <text xml:space="preserve" text-anchor="start" x="101.68" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">服务端接入泳道</text>
 </g>
 <!-- lane_edge&#45;&gt;lane_edge_1 -->
+<!-- lane_edge_1&#45;&gt;lane_edge_2 -->
 </g>
 </svg>
 `;case`srcdir001F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -4529,25 +5767,33 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="770pt" height="510pt"
- viewBox="0.00 0.00 770.00 510.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 495.05)">
+<svg width="770pt" height="810pt"
+ viewBox="0.00 0.00 770.00 810.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 795.05)">
 <!-- feat_answer_f -->
 <g id="node1" class="node">
 <title>feat_answer_f</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="740.25,-480 0,-480 0,-300 740.25,-300 740.25,-480"/>
-<text xml:space="preserve" text-anchor="start" x="253.42" y="-393" font-family="Arial" font-size="20.00" fill="#eff6ff">Feature&#45;001&#45;F 知识应答能力</text>
-<text xml:space="preserve" text-anchor="start" x="20.06" y="-370" font-family="Arial" font-size="15.00" fill="#bfdbfe">按业务能力切分。交付边界：客户在企业微信提问美妆问题，能得到基于知识库的专业答复。所属愿景：让美妆咨询有据可依。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="740.25,-780 0,-780 0,-600 740.25,-600 740.25,-780"/>
+<text xml:space="preserve" text-anchor="start" x="253.42" y="-693" font-family="Arial" font-size="20.00" fill="#eff6ff">Feature&#45;001&#45;F 知识应答能力</text>
+<text xml:space="preserve" text-anchor="start" x="20.06" y="-670" font-family="Arial" font-size="15.00" fill="#bfdbfe">按业务能力切分。交付边界：客户在企业微信提问美妆问题，能得到基于知识库的专业答复。所属愿景：让美妆咨询有据可依。</text>
 </g>
 <!-- feat_degrade_nf -->
 <g id="node2" class="node">
 <title>feat_degrade_nf</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="665.23,-180 75.01,-180 75.01,0 665.23,0 665.23,-180"/>
-<text xml:space="preserve" text-anchor="start" x="246.2" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">Feature&#45;001&#45;NF 极端场景保障</text>
-<text xml:space="preserve" text-anchor="start" x="183.84" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">按极端场景切分。交付边界：知识库为空、RAGFlow 超时、LLM</text>
-<text xml:space="preserve" text-anchor="start" x="95.07" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">不可用三类场景下，运营人员与客户都能及时察觉并知道下一步。所属愿景：让美妆咨询有据可依。</text>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="665.23,-480 75.01,-480 75.01,-300 665.23,-300 665.23,-480"/>
+<text xml:space="preserve" text-anchor="start" x="246.2" y="-402" font-family="Arial" font-size="20.00" fill="#eff6ff">Feature&#45;001&#45;NF 极端场景保障</text>
+<text xml:space="preserve" text-anchor="start" x="183.84" y="-379" font-family="Arial" font-size="15.00" fill="#bfdbfe">按极端场景切分。交付边界：知识库为空、RAGFlow 超时、LLM</text>
+<text xml:space="preserve" text-anchor="start" x="95.07" y="-361" font-family="Arial" font-size="15.00" fill="#bfdbfe">不可用三类场景下，运营人员与客户都能及时察觉并知道下一步。所属愿景：让美妆咨询有据可依。</text>
+</g>
+<!-- feat_knowledge_f -->
+<g id="node3" class="node">
+<title>feat_knowledge_f</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="721.5,-180 18.75,-180 18.75,0 721.5,0 721.5,-180"/>
+<text xml:space="preserve" text-anchor="start" x="253.42" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">Feature&#45;002&#45;F 知识运营能力</text>
+<text xml:space="preserve" text-anchor="start" x="38.81" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">按业务能力切分。交付边界：运营人员能把素材变成可检索知识，并能发现知识陈旧。所属愿景：让美妆咨询有据可依。</text>
 </g>
 <!-- feat_answer_f&#45;&gt;feat_degrade_nf -->
+<!-- feat_degrade_nf&#45;&gt;feat_knowledge_f -->
 </g>
 </svg>
 `;case`chain001F-us`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -4870,6 +6116,475 @@ var e=e=>{switch(e){case`procLocal`:return`digraph {
 <text xml:space="preserve" text-anchor="start" x="24.02" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">会话内提示层：说明原因并给出下一步（等待或转人工）。覆盖加载态（判定中）与错误态（判定失败）。</text>
 </g>
 <!-- ui_status&#45;&gt;ui_notice -->
+</g>
+</svg>
+`;case`chain002F-us`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="858pt" height="810pt"
+ viewBox="0.00 0.00 858.00 810.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 795.05)">
+<!-- us_scan -->
+<g id="node1" class="node">
+<title>us_scan</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="827.77,-780 0,-780 0,-600 827.77,-600 827.77,-780"/>
+<text xml:space="preserve" text-anchor="start" x="268.84" y="-693" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;201 素材入库后自动进入候选知识</text>
+<text xml:space="preserve" text-anchor="start" x="20.06" y="-670" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。</text>
+</g>
+<!-- us_govern -->
+<g id="node2" class="node">
+<title>us_govern</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="796.51,-480 31.26,-480 31.26,-300 796.51,-300 796.51,-480"/>
+<text xml:space="preserve" text-anchor="start" x="260.51" y="-393" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;202 候选知识经我决策后才对外可见</text>
+<text xml:space="preserve" text-anchor="start" x="51.31" y="-370" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为运营人员，我需要审核候选知识再决定是否发布，以便错误内容不会直接答给客户。验收：候选知识需经我批准才进入知识库。</text>
+</g>
+<!-- us_alert -->
+<g id="node3" class="node">
+<title>us_alert</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="796.51,-180 31.26,-180 31.26,0 796.51,0 796.51,-180"/>
+<text xml:space="preserve" text-anchor="start" x="285.51" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;203 知识陈旧时我能收到提示</text>
+<text xml:space="preserve" text-anchor="start" x="51.31" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为运营人员，知识过期或数据集异常时，我能被提醒，以便在客户问到之前修好。验收：知识新鲜度异常时控制台列出问题条目。</text>
+</g>
+<!-- us_scan&#45;&gt;us_govern -->
+<!-- us_govern&#45;&gt;us_alert -->
+</g>
+</svg>
+`;case`chain002F-f`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="2609pt" height="533pt"
+ viewBox="0.00 0.00 2609.00 533.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 517.85)">
+<!-- us_scan -->
+<g id="node1" class="node">
+<title>us_scan</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="827.77,-502.8 0,-502.8 0,-322.8 827.77,-322.8 827.77,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="268.84" y="-415.8" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;201 素材入库后自动进入候选知识</text>
+<text xml:space="preserve" text-anchor="start" x="20.06" y="-392.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。</text>
+</g>
+<!-- f_ingest -->
+<g id="node2" class="node">
+<title>f_ingest</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="573.9,-180 253.86,-180 253.86,0 573.9,0 573.9,-180"/>
+<text xml:space="preserve" text-anchor="start" x="334.97" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">F&#45;201 素材接入能力</text>
+<text xml:space="preserve" text-anchor="start" x="288.86" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">接收素材并登记文档标识，支持单条与批量。</text>
+</g>
+<!-- us_govern -->
+<g id="node3" class="node">
+<title>us_govern</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1703.51,-502.8 938.26,-502.8 938.26,-322.8 1703.51,-322.8 1703.51,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="1167.51" y="-415.8" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;202 候选知识经我决策后才对外可见</text>
+<text xml:space="preserve" text-anchor="start" x="958.31" y="-392.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为运营人员，我需要审核候选知识再决定是否发布，以便错误内容不会直接答给客户。验收：候选知识需经我批准才进入知识库。</text>
+</g>
+<!-- f_govern -->
+<g id="node4" class="node">
+<title>f_govern</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1918.9,-180 1598.86,-180 1598.86,0 1918.9,0 1918.9,-180"/>
+<text xml:space="preserve" text-anchor="start" x="1679.97" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">F&#45;202 知识治理能力</text>
+<text xml:space="preserve" text-anchor="start" x="1652.61" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">候选知识的扫描、决策、晋升与下线。</text>
+</g>
+<!-- us_alert -->
+<g id="node5" class="node">
+<title>us_alert</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="2578.51,-502.8 1813.26,-502.8 1813.26,-322.8 2578.51,-322.8 2578.51,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="2067.51" y="-415.8" font-family="Arial" font-size="20.00" fill="#eff6ff">US&#45;203 知识陈旧时我能收到提示</text>
+<text xml:space="preserve" text-anchor="start" x="1833.31" y="-392.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">作为运营人员，知识过期或数据集异常时，我能被提醒，以便在客户问到之前修好。验收：知识新鲜度异常时控制台列出问题条目。</text>
+</g>
+<!-- us_scan&#45;&gt;f_ingest -->
+<g id="edge1" class="edge">
+<title>us_scan&#45;&gt;f_ingest</title>
+<path fill="none" stroke="#0ea5e9" stroke-width="2" d="M413.88,-322.87C413.88,-281.67 413.88,-232.56 413.88,-190.17"/>
+<polygon fill="#0ea5e9" stroke="#0ea5e9" stroke-width="2" points="416.51,-190.36 413.88,-182.86 411.26,-190.36 416.51,-190.36"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="413.88,-240 413.88,-262.8 443.22,-262.8 443.22,-240 413.88,-240"/>
+<text xml:space="preserve" text-anchor="start" x="416.88" y="-245.8" font-family="Arial" font-size="14.00" fill="#d4f2ff">要求</text>
+</g>
+<!-- us_govern&#45;&gt;f_govern -->
+<g id="edge2" class="edge">
+<title>us_govern&#45;&gt;f_govern</title>
+<path fill="none" stroke="#0ea5e9" stroke-width="2" d="M1442.31,-322.87C1500.46,-280.27 1570.15,-229.23 1629.32,-185.89"/>
+<polygon fill="#0ea5e9" stroke="#0ea5e9" stroke-width="2" points="1630.66,-188.17 1635.16,-181.62 1627.56,-183.93 1630.66,-188.17"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1553.02,-240 1553.02,-262.8 1582.35,-262.8 1582.35,-240 1553.02,-240"/>
+<text xml:space="preserve" text-anchor="start" x="1556.02" y="-245.8" font-family="Arial" font-size="14.00" fill="#d4f2ff">要求</text>
+</g>
+<!-- us_alert&#45;&gt;f_govern -->
+<g id="edge3" class="edge">
+<title>us_alert&#45;&gt;f_govern</title>
+<path fill="none" stroke="#0ea5e9" stroke-width="2" d="M2074.73,-322.87C2016.71,-280.27 1947.18,-229.23 1888.15,-185.89"/>
+<polygon fill="#0ea5e9" stroke="#0ea5e9" stroke-width="2" points="1889.93,-183.94 1882.33,-181.62 1886.82,-188.18 1889.93,-183.94"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1990.49,-240 1990.49,-262.8 2019.82,-262.8 2019.82,-240 1990.49,-240"/>
+<text xml:space="preserve" text-anchor="start" x="1993.49" y="-245.8" font-family="Arial" font-size="14.00" fill="#d4f2ff">要求</text>
+</g>
+</g>
+</svg>
+`;case`chain002F-i-goal`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="445pt" height="210pt"
+ viewBox="0.00 0.00 445.00 210.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 195.05)">
+<!-- i_goal -->
+<g id="node1" class="node">
+<title>i_goal</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="415.19,-180 0,-180 0,0 415.19,0 415.19,-180"/>
+<text xml:space="preserve" text-anchor="start" x="148.68" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;201 业务目标</text>
+<text xml:space="preserve" text-anchor="start" x="20.06" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。</text>
+</g>
+</g>
+</svg>
+`;case`chain002F-i-step`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="541pt" height="210pt"
+ viewBox="0.00 0.00 541.00 210.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 195.05)">
+<!-- i_step -->
+<g id="node1" class="node">
+<title>i_step</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="511.04,-180 0,-180 0,0 511.04,0 511.04,-180"/>
+<text xml:space="preserve" text-anchor="start" x="196.61" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">I&#45;202 业务步骤</text>
+<text xml:space="preserve" text-anchor="start" x="20.06" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">主干步骤：登记素材 → 扫描候选知识 → 治理决策 → 同步至知识库 → 巡检新鲜度。</text>
+</g>
+</g>
+</svg>
+`;case`chain002F-ui`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="916pt" height="510pt"
+ viewBox="0.00 0.00 916.00 510.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 495.05)">
+<!-- ui_console -->
+<g id="node1" class="node">
+<title>ui_console</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="654.4,-480 231.3,-480 231.3,-300 654.4,-300 654.4,-480"/>
+<text xml:space="preserve" text-anchor="start" x="368.38" y="-393" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;201 运营控制台</text>
+<text xml:space="preserve" text-anchor="start" x="255.31" y="-370" font-family="Arial" font-size="15.00" fill="#bfdbfe">运营人员管理素材、审核候选知识、查看新鲜度告警的单页控制台。</text>
+</g>
+<!-- ui_information -->
+<g id="node2" class="node">
+<title>ui_information</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="885.7,-180 0,-180 0,0 885.7,0 885.7,-180"/>
+<text xml:space="preserve" text-anchor="start" x="343.38" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">UI&#45;202 知识运营信息设计</text>
+<text xml:space="preserve" text-anchor="start" x="24.02" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">字段：素材标识、来源、扫描状态、决策结果、新鲜度天数。覆盖空态（暂无素材）、加载态（扫描中）、错误态（同步失败）、无权限态（未授权）。</text>
+</g>
+<!-- ui_console&#45;&gt;ui_information -->
+</g>
+</svg>
+`;case`srcdir002F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="1372pt" height="1824pt"
+ viewBox="0.00 0.00 1372.00 1824.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1809.05)">
+<!-- src_materialroutes -->
+<g id="node1" class="node">
+<title>src_materialroutes</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="398.41,-1794 0,-1794 0,-1614 398.41,-1614 398.41,-1794"/>
+<text xml:space="preserve" text-anchor="start" x="121.96" y="-1707" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;201 素材路由</text>
+<text xml:space="preserve" text-anchor="start" x="40" y="-1684" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/material&#45;routes.js — 美妆素材接入接口。</text>
+</g>
+<!-- src_materialservice -->
+<g id="node2" class="node">
+<title>src_materialservice</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="850.48,-502.8 457.93,-502.8 457.93,-322.8 850.48,-322.8 850.48,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="576.96" y="-415.8" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;203 素材服务</text>
+<text xml:space="preserve" text-anchor="start" x="497.93" y="-392.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/material&#45;service.js — 素材接入规则。</text>
+</g>
+<!-- src_materialbatch -->
+<g id="node3" class="node">
+<title>src_materialbatch</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="850.49,-1794 507.93,-1794 507.93,-1614 850.49,-1614 850.49,-1794"/>
+<text xml:space="preserve" text-anchor="start" x="593.63" y="-1716" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;204 素材批处理</text>
+<text xml:space="preserve" text-anchor="start" x="547.93" y="-1693" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/material&#45;batch&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="635.45" y="-1675" font-family="Arial" font-size="15.00" fill="#bfdbfe">批量素材接入。</text>
+</g>
+<!-- src_knowledgeroutes -->
+<g id="node4" class="node">
+<title>src_knowledgeroutes</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1314.23,-1794 984.18,-1794 984.18,-1614 1314.23,-1614 1314.23,-1794"/>
+<text xml:space="preserve" text-anchor="start" x="1063.63" y="-1716" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;202 知识库路由</text>
+<text xml:space="preserve" text-anchor="start" x="1039.16" y="-1693" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/knowledge&#45;routes.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1055.44" y="-1675" font-family="Arial" font-size="15.00" fill="#bfdbfe">知识扫描、同步与生命周期接口。</text>
+</g>
+<!-- src_knowledgescan -->
+<g id="node5" class="node">
+<title>src_knowledgescan</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1327.17,-1471.2 971.25,-1471.2 971.25,-1291.2 1327.17,-1291.2 1327.17,-1471.2"/>
+<text xml:space="preserve" text-anchor="start" x="1071.96" y="-1393.2" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;206 知识扫描</text>
+<text xml:space="preserve" text-anchor="start" x="1011.25" y="-1370.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;scan&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1105.45" y="-1352.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">发现候选知识。</text>
+</g>
+<!-- src_documentregistry -->
+<g id="node6" class="node">
+<title>src_documentregistry</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1097.09,-180 705.32,-180 705.32,0 1097.09,0 1097.09,-180"/>
+<text xml:space="preserve" text-anchor="start" x="815.63" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;205 文档登记簿</text>
+<text xml:space="preserve" text-anchor="start" x="745.32" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;document&#45;registry.js —</text>
+<text xml:space="preserve" text-anchor="start" x="838.69" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">跟踪素材与文档标识。</text>
+</g>
+<!-- src_governance -->
+<g id="node7" class="node">
+<title>src_governance</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1342.18,-1148.4 956.23,-1148.4 956.23,-968.4 1342.18,-968.4 1342.18,-1148.4"/>
+<text xml:space="preserve" text-anchor="start" x="1071.96" y="-1070.4" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;207 知识治理</text>
+<text xml:space="preserve" text-anchor="start" x="996.23" y="-1047.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;governance&#45;service.js</text>
+<text xml:space="preserve" text-anchor="start" x="1090.86" y="-1029.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">— 发布决策与治理。</text>
+</g>
+<!-- src_knowledgesync -->
+<g id="node8" class="node">
+<title>src_knowledgesync</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1326.74,-825.6 971.67,-825.6 971.67,-645.6 1326.74,-645.6 1326.74,-825.6"/>
+<text xml:space="preserve" text-anchor="start" x="1071.96" y="-747.6" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;208 知识同步</text>
+<text xml:space="preserve" text-anchor="start" x="1011.67" y="-724.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;sync&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1052.52" y="-706.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">把已批准知识推送到 RAGFlow。</text>
+</g>
+<!-- src_lifecycle -->
+<g id="node9" class="node">
+<title>src_lifecycle</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="1338,-502.8 960.42,-502.8 960.42,-322.8 1338,-322.8 1338,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="1038.62" y="-424.8" font-family="Arial" font-size="20.00" fill="#eff6ff">SRC&#45;209 知识生命周期视图</text>
+<text xml:space="preserve" text-anchor="start" x="1000.42" y="-401.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;lifecycle&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="1092.95" y="-383.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">知识的晋升与下线。</text>
+</g>
+<!-- src_materialroutes&#45;&gt;src_materialservice -->
+<g id="edge1" class="edge">
+<title>src_materialroutes&#45;&gt;src_materialservice</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M199.21,-1614.15C199.21,-1549.75 199.21,-1460.59 199.21,-1382.2 199.21,-1382.2 199.21,-1382.2 199.21,-734.6 199.21,-603.09 327.74,-520.75 448.18,-472.46"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="449.11,-474.92 455.13,-469.73 447.19,-470.03 449.11,-474.92"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="199.21,-1047 199.21,-1069.8 251.88,-1069.8 251.88,-1047 199.21,-1047"/>
+<text xml:space="preserve" text-anchor="start" x="202.21" y="-1052.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">接收素材</text>
+</g>
+<!-- src_materialservice&#45;&gt;src_documentregistry -->
+<g id="edge4" class="edge">
+<title>src_materialservice&#45;&gt;src_documentregistry</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M722.68,-322.87C754.94,-280.97 793.49,-230.9 826.5,-188.03"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="828.47,-189.77 830.97,-182.23 824.31,-186.57 828.47,-189.77"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="785.11,-240 785.11,-262.8 837.79,-262.8 837.79,-240 785.11,-240"/>
+<text xml:space="preserve" text-anchor="start" x="788.11" y="-245.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">登记文档</text>
+</g>
+<!-- src_materialbatch&#45;&gt;src_materialservice -->
+<g id="edge2" class="edge">
+<title>src_materialbatch&#45;&gt;src_materialservice</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M679.21,-1614.15C679.21,-1549.75 679.21,-1460.59 679.21,-1382.2 679.21,-1382.2 679.21,-1382.2 679.21,-734.6 679.21,-660.12 672.43,-576.2 665.93,-512.88"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="668.55,-512.7 665.16,-505.52 663.33,-513.25 668.55,-512.7"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="679.21,-1047 679.21,-1069.8 731.88,-1069.8 731.88,-1047 679.21,-1047"/>
+<text xml:space="preserve" text-anchor="start" x="682.21" y="-1052.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">批量接入</text>
+</g>
+<!-- src_knowledgeroutes&#45;&gt;src_knowledgescan -->
+<g id="edge3" class="edge">
+<title>src_knowledgeroutes&#45;&gt;src_knowledgescan</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M1149.21,-1614.07C1149.21,-1572.87 1149.21,-1523.76 1149.21,-1481.37"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1151.83,-1481.56 1149.21,-1474.06 1146.58,-1481.56 1151.83,-1481.56"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1149.21,-1531.2 1149.21,-1554 1201.88,-1554 1201.88,-1531.2 1149.21,-1531.2"/>
+<text xml:space="preserve" text-anchor="start" x="1152.21" y="-1537" font-family="Arial" font-size="14.00" fill="#bbfcd3">触发扫描</text>
+</g>
+<!-- src_knowledgescan&#45;&gt;src_governance -->
+<g id="edge5" class="edge">
+<title>src_knowledgescan&#45;&gt;src_governance</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M1149.21,-1291.27C1149.21,-1250.07 1149.21,-1200.96 1149.21,-1158.57"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1151.83,-1158.76 1149.21,-1151.26 1146.58,-1158.76 1151.83,-1158.76"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1149.21,-1208.4 1149.21,-1231.2 1201.88,-1231.2 1201.88,-1208.4 1149.21,-1208.4"/>
+<text xml:space="preserve" text-anchor="start" x="1152.21" y="-1214.2" font-family="Arial" font-size="14.00" fill="#bbfcd3">提交候选</text>
+</g>
+<!-- src_governance&#45;&gt;src_knowledgesync -->
+<g id="edge6" class="edge">
+<title>src_governance&#45;&gt;src_knowledgesync</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M1149.21,-968.47C1149.21,-927.27 1149.21,-878.16 1149.21,-835.77"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1151.83,-835.96 1149.21,-828.46 1146.58,-835.96 1151.83,-835.96"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1149.21,-885.6 1149.21,-908.4 1213.55,-908.4 1213.55,-885.6 1149.21,-885.6"/>
+<text xml:space="preserve" text-anchor="start" x="1152.21" y="-891.4" font-family="Arial" font-size="14.00" fill="#bbfcd3">批准后推送</text>
+</g>
+<!-- src_knowledgesync&#45;&gt;src_lifecycle -->
+<g id="edge7" class="edge">
+<title>src_knowledgesync&#45;&gt;src_lifecycle</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M1149.21,-645.67C1149.21,-604.47 1149.21,-555.36 1149.21,-512.97"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="1151.83,-513.16 1149.21,-505.66 1146.58,-513.16 1151.83,-513.16"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1149.21,-562.8 1149.21,-585.6 1225.22,-585.6 1225.22,-562.8 1149.21,-562.8"/>
+<text xml:space="preserve" text-anchor="start" x="1152.21" y="-568.6" font-family="Arial" font-size="14.00" fill="#bbfcd3">更新生命周期</text>
+</g>
+<!-- src_lifecycle&#45;&gt;src_documentregistry -->
+<g id="edge8" class="edge">
+<title>src_lifecycle&#45;&gt;src_documentregistry</title>
+<path fill="none" stroke="#15803d" stroke-width="2" d="M1080.45,-322.87C1048.07,-280.97 1009.36,-230.9 976.21,-188.03"/>
+<polygon fill="#15803d" stroke="#15803d" stroke-width="2" points="978.39,-186.55 971.73,-182.22 974.24,-189.76 978.39,-186.55"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="1032.64,-240 1032.64,-262.8 1096.99,-262.8 1096.99,-240 1032.64,-240"/>
+<text xml:space="preserve" text-anchor="start" x="1035.64" y="-245.8" font-family="Arial" font-size="14.00" fill="#bbfcd3">晋升或下线</text>
+</g>
+</g>
+</svg>
+`;case`carrier002F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="891pt" height="1501pt"
+ viewBox="0.00 0.00 891.00 1501.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1486.25)">
+<!-- in_material -->
+<g id="node1" class="node">
+<title>in_material</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="371.03,-1471.2 0,-1471.2 0,-1291.2 371.03,-1291.2 371.03,-1471.2"/>
+<text xml:space="preserve" text-anchor="start" x="119.38" y="-1384.2" font-family="Arial" font-size="20.00" fill="#eff6ff">IN&#45;201 素材入参</text>
+<text xml:space="preserve" text-anchor="start" x="20.06" y="-1361.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/material&#45;routes.js — 上传素材的请求载荷。</text>
+</g>
+<!-- biz_candidate -->
+<g id="node2" class="node">
+<title>biz_candidate</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="450.53,-1148.4 130.49,-1148.4 130.49,-968.4 450.53,-968.4 450.53,-1148.4"/>
+<text xml:space="preserve" text-anchor="start" x="202.15" y="-1070.4" font-family="Arial" font-size="20.00" fill="#eff6ff">BIZ&#45;201 候选知识对象</text>
+<text xml:space="preserve" text-anchor="start" x="152.55" y="-1047.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/knowledge&#45;scan&#45;service.js —</text>
+<text xml:space="preserve" text-anchor="start" x="190.49" y="-1029.4" font-family="Arial" font-size="15.00" fill="#bfdbfe">承载扫描出的候选条目与决策状态。</text>
+</g>
+<!-- cvt_material -->
+<g id="node3" class="node">
+<title>cvt_material</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="860.42,-1471.2 480.61,-1471.2 480.61,-1291.2 860.42,-1291.2 860.42,-1471.2"/>
+<text xml:space="preserve" text-anchor="start" x="586.05" y="-1393.2" font-family="Arial" font-size="20.00" fill="#eff6ff">CVT&#45;201 素材转换器</text>
+<text xml:space="preserve" text-anchor="start" x="545.49" y="-1370.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/services/material&#45;service.js — 覆盖</text>
+<text xml:space="preserve" text-anchor="start" x="504.63" y="-1352.2" font-family="Arial" font-size="15.00" fill="#bfdbfe">素材载荷→BIZ&#45;201 与 BIZ&#45;201→POD&#45;201 两组映射。</text>
+</g>
+<!-- pod_document -->
+<g id="node4" class="node">
+<title>pod_document</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="643.96,-825.6 317.07,-825.6 317.07,-645.6 643.96,-645.6 643.96,-825.6"/>
+<text xml:space="preserve" text-anchor="start" x="386.04" y="-747.6" font-family="Arial" font-size="20.00" fill="#eff6ff">POD&#45;201 文档登记实体</text>
+<text xml:space="preserve" text-anchor="start" x="337.12" y="-724.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">data/local&#45;mvp&#45;store.json — 与 store.json 中</text>
+<text xml:space="preserve" text-anchor="start" x="397.98" y="-706.6" font-family="Arial" font-size="15.00" fill="#bfdbfe">documents 数组结构对应。</text>
+</g>
+<!-- dao_registry -->
+<g id="node5" class="node">
+<title>dao_registry</title>
+<path fill="#3b82f6" stroke="#2563eb" stroke-width="2" d="M655.19,-486.44C655.19,-495.47 576.9,-502.8 480.51,-502.8 384.13,-502.8 305.84,-495.47 305.84,-486.44 305.84,-486.44 305.84,-339.16 305.84,-339.16 305.84,-330.13 384.13,-322.8 480.51,-322.8 576.9,-322.8 655.19,-330.13 655.19,-339.16 655.19,-339.16 655.19,-486.44 655.19,-486.44"/>
+<path fill="none" stroke="#2563eb" stroke-width="2" d="M655.19,-486.44C655.19,-477.41 576.9,-470.07 480.51,-470.07 384.13,-470.07 305.84,-477.41 305.84,-486.44"/>
+<text xml:space="preserve" text-anchor="start" x="386.04" y="-415.8" font-family="Arial" font-size="20.00" fill="#eff6ff">DAO&#45;201 文档登记访问</text>
+<text xml:space="preserve" text-anchor="start" x="325.89" y="-392.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/domain/store.js — 素材与文档标识的读写边界。</text>
+</g>
+<!-- out_knowledgestatus -->
+<g id="node6" class="node">
+<title>out_knowledgestatus</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="640.53,-180 320.49,-180 320.49,0 640.53,0 640.53,-180"/>
+<text xml:space="preserve" text-anchor="start" x="369.93" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">OUT&#45;201 知识状态出参视图</text>
+<text xml:space="preserve" text-anchor="start" x="370.47" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/knowledge&#45;routes.js —</text>
+<text xml:space="preserve" text-anchor="start" x="380.49" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">面向控制台的扫描与治理状态载荷。</text>
+</g>
+<!-- in_material&#45;&gt;biz_candidate -->
+<g id="edge1" class="edge">
+<title>in_material&#45;&gt;biz_candidate</title>
+<path fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5,2" d="M186.48,-1291.27C188.76,-1264.16 193.27,-1234.6 201.83,-1208.4 207.47,-1191.14 215.38,-1173.74 224.17,-1157.22"/>
+<polygon fill="#64748b" stroke="#64748b" stroke-width="2" points="226.39,-1158.64 227.68,-1150.8 221.78,-1156.12 226.39,-1158.64"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="201.83,-1208.4 201.83,-1231.2 289.51,-1231.2 289.51,-1208.4 201.83,-1208.4"/>
+<text xml:space="preserve" text-anchor="start" x="204.83" y="-1214.2" font-family="Arial" font-size="14.00" fill="#cbd5e1">转换为候选对象</text>
+</g>
+<!-- biz_candidate&#45;&gt;pod_document -->
+<g id="edge4" class="edge">
+<title>biz_candidate&#45;&gt;pod_document</title>
+<path fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="5,2" d="M343.19,-968.47C367.85,-926.83 397.29,-877.12 422.57,-834.43"/>
+<polygon fill="#64748b" stroke="#64748b" stroke-width="2" points="424.8,-835.82 426.36,-828.03 420.28,-833.15 424.8,-835.82"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="391.21,-885.6 391.21,-908.4 478.89,-908.4 478.89,-885.6 391.21,-885.6"/>
+<text xml:space="preserve" text-anchor="start" x="394.21" y="-891.4" font-family="Arial" font-size="14.00" fill="#cbd5e1">登记为文档实体</text>
+</g>
+<!-- cvt_material&#45;&gt;biz_candidate -->
+<g id="edge2" class="edge">
+<title>cvt_material&#45;&gt;biz_candidate</title>
+<path fill="none" stroke="#0ea5e9" stroke-width="2" d="M521.4,-1291.2C494.11,-1272.62 466.6,-1252.25 442.25,-1231.2 416.08,-1208.58 390.19,-1181.51 367.41,-1155.63"/>
+<polygon fill="#0ea5e9" stroke="#0ea5e9" stroke-width="2" points="369.65,-1154.21 362.74,-1150.29 365.7,-1157.66 369.65,-1154.21"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="442.25,-1208.4 442.25,-1231.2 587.51,-1231.2 587.51,-1208.4 442.25,-1208.4"/>
+<text xml:space="preserve" text-anchor="start" x="445.25" y="-1214.2" font-family="Arial" font-size="14.00" fill="#d4f2ff">负责 素材→BIZ&#45;201 映射</text>
+</g>
+<!-- cvt_material&#45;&gt;pod_document -->
+<g id="edge3" class="edge">
+<title>cvt_material&#45;&gt;pod_document</title>
+<path fill="none" stroke="#0ea5e9" stroke-width="2" d="M644.29,-1291.39C609.01,-1171.86 546.44,-959.91 509.7,-835.45"/>
+<polygon fill="#0ea5e9" stroke="#0ea5e9" stroke-width="2" points="512.27,-834.89 507.63,-828.44 507.23,-836.37 512.27,-834.89"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="600.58,-1047 600.58,-1069.8 780.86,-1069.8 780.86,-1047 600.58,-1047"/>
+<text xml:space="preserve" text-anchor="start" x="603.58" y="-1052.8" font-family="Arial" font-size="14.00" fill="#d4f2ff">负责 BIZ&#45;201→POD&#45;201 映射</text>
+</g>
+<!-- pod_document&#45;&gt;dao_registry -->
+<g id="edge5" class="edge">
+<title>pod_document&#45;&gt;dao_registry</title>
+<path fill="none" stroke="#3b82f6" stroke-width="2" d="M480.51,-645.67C480.51,-604.81 480.51,-556.18 480.51,-514.03"/>
+<polygon fill="#3b82f6" stroke="#3b82f6" stroke-width="2" points="483.14,-514.27 480.51,-506.77 477.89,-514.27 483.14,-514.27"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="480.51,-562.8 480.51,-585.6 556.53,-585.6 556.53,-562.8 480.51,-562.8"/>
+<text xml:space="preserve" text-anchor="start" x="483.51" y="-568.6" font-family="Arial" font-size="14.00" fill="#eff5fd">写入文档标识</text>
+</g>
+<!-- dao_registry&#45;&gt;out_knowledgestatus -->
+<g id="edge6" class="edge">
+<title>dao_registry&#45;&gt;out_knowledgestatus</title>
+<path fill="none" stroke="#3b82f6" stroke-width="2" d="M480.51,-322.01C480.51,-281 480.51,-232.29 480.51,-190.2"/>
+<polygon fill="#3b82f6" stroke="#3b82f6" stroke-width="2" points="483.14,-190.46 480.51,-182.96 477.89,-190.46 483.14,-190.46"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="480.51,-240 480.51,-262.8 533.19,-262.8 533.19,-240 480.51,-240"/>
+<text xml:space="preserve" text-anchor="start" x="483.51" y="-245.8" font-family="Arial" font-size="14.00" fill="#eff5fd">查询状态</text>
+</g>
+</g>
+</svg>
+`;case`erm002F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="379pt" height="533pt"
+ viewBox="0.00 0.00 379.00 533.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 517.85)">
+<!-- pod_document -->
+<g id="node1" class="node">
+<title>pod_document</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="338.12,-502.8 11.23,-502.8 11.23,-322.8 338.12,-322.8 338.12,-502.8"/>
+<text xml:space="preserve" text-anchor="start" x="80.2" y="-424.8" font-family="Arial" font-size="20.00" fill="#eff6ff">POD&#45;201 文档登记实体</text>
+<text xml:space="preserve" text-anchor="start" x="31.29" y="-401.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">data/local&#45;mvp&#45;store.json — 与 store.json 中</text>
+<text xml:space="preserve" text-anchor="start" x="92.15" y="-383.8" font-family="Arial" font-size="15.00" fill="#bfdbfe">documents 数组结构对应。</text>
+</g>
+<!-- dao_registry -->
+<g id="node2" class="node">
+<title>dao_registry</title>
+<path fill="#3b82f6" stroke="#2563eb" stroke-width="2" d="M349.36,-163.64C349.36,-172.67 271.06,-180 174.68,-180 78.29,-180 0,-172.67 0,-163.64 0,-163.64 0,-16.36 0,-16.36 0,-7.33 78.29,0 174.68,0 271.06,0 349.36,-7.33 349.36,-16.36 349.36,-16.36 349.36,-163.64 349.36,-163.64"/>
+<path fill="none" stroke="#2563eb" stroke-width="2" d="M349.36,-163.64C349.36,-154.61 271.06,-147.27 174.68,-147.27 78.29,-147.27 0,-154.61 0,-163.64"/>
+<text xml:space="preserve" text-anchor="start" x="80.2" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">DAO&#45;201 文档登记访问</text>
+<text xml:space="preserve" text-anchor="start" x="20.06" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/domain/store.js — 素材与文档标识的读写边界。</text>
+</g>
+<!-- pod_document&#45;&gt;dao_registry -->
+<g id="edge1" class="edge">
+<title>pod_document&#45;&gt;dao_registry</title>
+<path fill="none" stroke="#3b82f6" stroke-width="2" d="M174.68,-322.87C174.68,-282.01 174.68,-233.38 174.68,-191.23"/>
+<polygon fill="#3b82f6" stroke="#3b82f6" stroke-width="2" points="177.3,-191.47 174.68,-183.97 172.05,-191.47 177.3,-191.47"/>
+<polygon fill="#18191b" fill-opacity="0.627451" stroke="none" points="174.68,-240 174.68,-262.8 250.69,-262.8 250.69,-240 174.68,-240"/>
+<text xml:space="preserve" text-anchor="start" x="177.68" y="-245.8" font-family="Arial" font-size="14.00" fill="#eff5fd">写入文档标识</text>
+</g>
+</g>
+</svg>
+`;case`api002F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.5 (0)
+ -->
+<!-- Pages: 1 -->
+<svg width="350pt" height="210pt"
+ viewBox="0.00 0.00 350.00 210.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 195.05)">
+<!-- lane_edge -->
+<g id="node1" class="node">
+<title>lane_edge</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-180 0,-180 0,0 320.04,0 320.04,-180"/>
+<text xml:space="preserve" text-anchor="start" x="101.68" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">服务端接入泳道</text>
+</g>
 </g>
 </svg>
 `;case`seq001F-answer`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
