@@ -53,8 +53,9 @@ views {
 
   view chain001F-i-step of feat_answer_f {
     title 'I 环 · 业务步骤 · Feature-001-F'
-    description '只承载主干业务步骤的静态结构。步骤的具体时序见 seq 视图。'
-    include feat_answer_f.i_step
+    description '归属靠嵌套容器表达：US 作为容器标识，这些步骤属于哪条 US 一眼可见。不画 US→I 的连线，也不把 US 与 I 平铺在一起。'
+    include feat_answer_f.us_ask
+    include feat_answer_f.us_lowConfidence
   }
 
   view chain001NF-i-goal of feat_degrade_nf {
@@ -66,7 +67,7 @@ views {
   view chain001NF-i-step of feat_degrade_nf {
     title 'I 环 · 场景判定步骤 · Feature-001-NF'
     description '三类极端场景的判定步骤静态结构。'
-    include feat_degrade_nf.i_step
+    include feat_degrade_nf.us_kbEmpty
   }
 
   view chain001F-ui of feat_answer_f {
@@ -105,7 +106,7 @@ views {
   view chain002F-i-step of feat_knowledge_f {
     title 'I 环 · 业务步骤 · Feature-002-F'
     description '只承载主干治理步骤的静态结构。'
-    include feat_knowledge_f.i_step
+    include feat_knowledge_f.us_scan
   }
 
   view chain002F-ui of feat_knowledge_f {

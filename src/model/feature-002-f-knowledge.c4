@@ -13,15 +13,49 @@ model {
     description '按业务能力切分。交付边界：运营人员能把素材变成可检索知识，并能发现知识陈旧。所属愿景：让美妆咨询有据可依。'
 
     // ---- US：本链自己识别 ----
+    //
+    // I 环步骤嵌套在 US 容器内：归属靠嵌套表达，不用跨层边。
 
     us_scan = userStory 'US-201 素材入库后自动进入候选知识' {
       description '作为运营人员，我上传美妆素材后，系统能自动扫描出候选知识，以便我不用手工逐条录入。验收：素材入库后能查到扫描出的候选知识条目。'
+
+      i_scan_register = implStep 'I-211 登记素材' {
+        description '把上传的素材登记到文档簿，生成文档标识。'
+      }
+      i_scan_extract = implStep 'I-212 抽取候选知识' {
+        description '从素材正文中抽取可独立回答问题的候选条目。'
+      }
+      i_scan_submit = implStep 'I-213 提交候选' {
+        description '把候选条目提交给治理环节，等待决策。'
+      }
     }
+
     us_govern = userStory 'US-202 候选知识经我决策后才对外可见' {
       description '作为运营人员，我需要审核候选知识再决定是否发布，以便错误内容不会直接答给客户。验收：候选知识需经我批准才进入知识库。'
+
+      i_gov_review = implStep 'I-221 人工审阅候选' {
+        description '展示候选条目供运营人员逐条审阅。'
+      }
+      i_gov_decide = implStep 'I-222 记录决策' {
+        description '记录批准或驳回，驳回需填写理由。'
+      }
+      i_gov_promote = implStep 'I-223 晋升知识' {
+        description '批准的候选进入知识库生命周期，进入可检索状态。'
+      }
     }
+
     us_alert = userStory 'US-203 知识陈旧时我能收到提示' {
       description '作为运营人员，知识过期或数据集异常时，我能被提醒，以便在客户问到之前修好。验收：知识新鲜度异常时控制台列出问题条目。'
+
+      i_alert_probe = implStep 'I-231 巡检数据集状态' {
+        description '定期探测知识库数据集的可用性与新鲜度。'
+      }
+      i_alert_judge = implStep 'I-232 判定新鲜度异常' {
+        description '按更新时间阈值判定是否属于陈旧或异常。'
+      }
+      i_alert_report = implStep 'I-233 上报告警' {
+        description '把问题条目写入告警并在控制台列出。'
+      }
     }
 
     // ---- F 单元清单 ----
@@ -37,9 +71,6 @@ model {
 
     i_goal = implStep 'I-201 业务目标' {
       description '素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。'
-    }
-    i_step = implStep 'I-202 业务步骤' {
-      description '主干步骤：登记素材 → 扫描候选知识 → 治理决策 → 同步至知识库 → 巡检新鲜度。'
     }
 
     // ---- UI 环 ----
@@ -119,11 +150,8 @@ model {
       }
     }
     lane_core = feature '治理层泳道' {
-      step_governLane = implStep 'I-202 业务步骤（治理泳道）' {
-        description '登记、扫描、决策、同步的治理环节。'
-      }
-      i_stepLaneSync = implStep 'I-203 同步环节' {
-        description '把已批准知识推送到 RAGFlow 数据集。'
+      step_governLane = implStep 'I-241 治理编排（泳道引用）' {
+        description '泳道中的治理环节，具体步骤见各 US 容器下的 I-21x~I-23x。'
       }
     }
     lane_ext = feature '外部依赖泳道' {
@@ -143,12 +171,10 @@ model {
 
     // ---- 下钻路径 ----
 
-    us_scan .trace i_step '落为业务步骤'
     us_govern .trace i_goal '落为业务目标'
-    us_alert .trace i_step '落为巡检步骤'
-    i_step .trace i_goal '推进治理目标'
+    us_govern .trace i_goal '推进治理目标'
     i_goal .trace ui_information '展示治理状态'
-    i_step .trace ui_console '反馈交互'
+    us_scan .trace ui_console '反馈交互'
     ui_console .trace src_knowledgeRoutes '由知识路由支撑'
     ui_information .trace src_knowledgeRoutes '读取状态'
 
@@ -179,11 +205,12 @@ model {
     cvt_material .trace pod_document '负责 BIZ-201→POD-201 映射'
 
     // ---- 边界顺序 ----
+    //
+    // 泳道之间表达调用方向的边界，具体步骤顺序见 seq002F-i-step-lanes。
 
     lane_edge.api_material -> lane_core.step_governLane '接收待治理素材'
-    lane_core.step_governLane -> lane_core.i_stepLaneSync '批准后进入同步'
-    lane_core.i_stepLaneSync -> lane_ext.ext_ragflow2 '推送数据集'
-    lane_core.i_stepLaneSync -> lane_ext.ext_wiki '读取 wiki 候选'
+    lane_core.step_governLane -> lane_ext.ext_ragflow2 '推送数据集'
+    lane_core.step_governLane -> lane_ext.ext_wiki '读取 wiki 候选'
     lane_core.step_governLane -> lane_edge.api_scan '触发扫描'
     lane_edge.api_scan -> lane_ops.actor_operator '返回候选状态'
   }

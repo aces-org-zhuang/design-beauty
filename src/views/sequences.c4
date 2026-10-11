@@ -31,10 +31,10 @@ views {
     feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_edge.api_chatCallback '返回答复'
   }
 
-  dynamic view seq001F-branch-low-confidence {
+  dynamic view seq001F-branch-low-confidence-src {
     variant sequence
-    title 'Feature-001-F 分支 · 置信度不足转人工'
-    description '归属 Feature-001-F。自校验节点岔出，合流至工单与告知。分支独立成图，不重复主干步骤。'
+    title 'SRC · 分支时序 · Feature-001-F · 置信度不足转人工'
+    description '归属 Feature-001-F 的 SRC 环。自策略校验节点岔出，经编排到工单落库。SRC 环的分支，与 I 环的分支各自成图。'
 
     include feat_answer_f.src_replyPolicy
     include feat_answer_f.src_answerOrchestrator
@@ -44,7 +44,6 @@ views {
     feat_answer_f.src_replyPolicy -> feat_answer_f.src_answerOrchestrator '置信度不足'
     feat_answer_f.src_answerOrchestrator -> feat_answer_f.src_handoffService '转人工'
     feat_answer_f.src_handoffService -> feat_answer_f.src_store '持久化工单'
-    feat_answer_f.src_store -> feat_answer_f.lane_client.actor_customer '告知等待人工'
   }
 
   dynamic view dfd001F-answer {
@@ -106,21 +105,46 @@ views {
   dynamic view seq001F-i-step-lanes {
     variant sequence
     title 'I 环 · 业务步骤泳道流程 · Feature-001-F'
-    description '归属 Feature-001-F。用泳道表达主干步骤的责任划分：角色发起、领域层编排、领域层检索、接入层返回。同一环节的内容不进这张图。'
+    description '归属 Feature-001-F。用嵌套后的真实 I 环步骤表达主干：归一化 → 检索 → 排序 → 校验 → 生成 → 下发。泳道按责任分区，步骤本身嵌在 US 容器内。'
 
     include feat_answer_f.lane_client.actor_customer
     include feat_answer_f.lane_edge.api_chatCallback
-    include feat_answer_f.lane_core.step_answerLane
-    include feat_answer_f.lane_core.i_stepLaneStep
-    include feat_answer_f.lane_core.i_stepLaneSearch
+    include feat_answer_f.us_ask.i_ask_normalize
+    include feat_answer_f.us_ask.i_ask_retrieve
+    include feat_answer_f.us_ask.i_ask_rank
+    include feat_answer_f.us_ask.i_ask_verify
+    include feat_answer_f.us_ask.i_ask_compose
+    include feat_answer_f.us_ask.i_ask_deliver
+    include feat_answer_f.lane_ext.ext_ragflow
 
     feat_answer_f.lane_client.actor_customer -> feat_answer_f.lane_edge.api_chatCallback '①提出问题'
-    feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.lane_core.step_answerLane '②归一化并派发'
-    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_core.i_stepLaneSearch '③检索候选知识'
-    feat_answer_f.lane_core.i_stepLaneSearch -> feat_answer_f.lane_core.step_answerLane '④候选返回'
-    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_core.i_stepLaneStep '⑤置信度校验'
-    feat_answer_f.lane_core.i_stepLaneStep -> feat_answer_f.lane_edge.api_chatCallback '⑥生成答复'
-    feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.lane_client.actor_customer '⑦答复送达'
+    feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.us_ask.i_ask_normalize '②归一化提问'
+    feat_answer_f.us_ask.i_ask_normalize -> feat_answer_f.us_ask.i_ask_retrieve '③发起检索'
+    feat_answer_f.us_ask.i_ask_retrieve -> feat_answer_f.lane_ext.ext_ragflow '④请求RAGFlow'
+    feat_answer_f.lane_ext.ext_ragflow -> feat_answer_f.us_ask.i_ask_retrieve '⑤返回候选知识'
+    feat_answer_f.us_ask.i_ask_retrieve -> feat_answer_f.us_ask.i_ask_rank '⑥候选排序'
+    feat_answer_f.us_ask.i_ask_rank -> feat_answer_f.us_ask.i_ask_verify '⑦置信度校验'
+    feat_answer_f.us_ask.i_ask_verify -> feat_answer_f.us_ask.i_ask_compose '⑧生成答复'
+    feat_answer_f.us_ask.i_ask_compose -> feat_answer_f.us_ask.i_ask_deliver '⑨下发答复'
+    feat_answer_f.us_ask.i_ask_deliver -> feat_answer_f.lane_edge.api_chatCallback '⑩回复会话'
+    feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.lane_client.actor_customer '⑪答复送达'
+  }
+
+  dynamic view seq001F-branch-low-confidence {
+    variant sequence
+    title 'I 环 · 分支泳道流程 · Feature-001-F · 置信度不足'
+    description '归属 Feature-001-F。自置信度校验节点岔出，走 US-002 的三个步骤。分支独立成图，不重复主干步骤。'
+
+    include feat_answer_f.us_ask.i_ask_verify
+    include feat_answer_f.us_lowConfidence.i_lowEscalate
+    include feat_answer_f.us_lowConfidence.i_lowTicket
+    include feat_answer_f.us_lowConfidence.i_lowNotify
+    include feat_answer_f.lane_edge.api_chatCallback
+
+    feat_answer_f.us_ask.i_ask_verify -> feat_answer_f.us_lowConfidence.i_lowEscalate '置信度不足'
+    feat_answer_f.us_lowConfidence.i_lowEscalate -> feat_answer_f.us_lowConfidence.i_lowTicket '创建工单'
+    feat_answer_f.us_lowConfidence.i_lowTicket -> feat_answer_f.us_lowConfidence.i_lowNotify '告知等待'
+    feat_answer_f.us_lowConfidence.i_lowNotify -> feat_answer_f.lane_edge.api_chatCallback '回复会话'
   }
 
   dynamic view seq001NF-i-step-lanes {
@@ -131,16 +155,16 @@ views {
     include feat_degrade_nf.lane_operator.actor_ops
     include feat_degrade_nf.lane_edge.api_status
     include feat_degrade_nf.lane_core.step_probeLane
-    include feat_degrade_nf.lane_core.i_stepLaneKbCheck
-    include feat_degrade_nf.lane_core.i_stepLaneTimeoutCheck
-    include feat_degrade_nf.lane_core.i_stepLaneLlmCheck
+    include feat_degrade_nf.us_kbEmpty.i_kb_judge
+    include feat_degrade_nf.us_ragTimeout.i_to_check
+    include feat_degrade_nf.us_llmDown.i_ll_detect
 
     feat_degrade_nf.lane_operator.actor_ops -> feat_degrade_nf.lane_edge.api_status '①查询状态'
     feat_degrade_nf.lane_edge.api_status -> feat_degrade_nf.lane_core.step_probeLane '②发起探测'
-    feat_degrade_nf.lane_core.step_probeLane -> feat_degrade_nf.lane_core.i_stepLaneKbCheck '③判定条目数'
-    feat_degrade_nf.lane_core.i_stepLaneKbCheck -> feat_degrade_nf.lane_core.i_stepLaneTimeoutCheck '④判定响应耗时'
-    feat_degrade_nf.lane_core.i_stepLaneTimeoutCheck -> feat_degrade_nf.lane_core.i_stepLaneLlmCheck '⑤判定模型可用性'
-    feat_degrade_nf.lane_core.i_stepLaneLlmCheck -> feat_degrade_nf.lane_operator.actor_ops '⑥下发提示或转人工'
+    feat_degrade_nf.lane_core.step_probeLane -> feat_degrade_nf.us_kbEmpty.i_kb_judge '③判定条目数'
+    feat_degrade_nf.us_kbEmpty.i_kb_judge -> feat_degrade_nf.us_ragTimeout.i_to_check '④判定响应耗时'
+    feat_degrade_nf.us_ragTimeout.i_to_check -> feat_degrade_nf.us_llmDown.i_ll_detect '⑤判定模型可用性'
+    feat_degrade_nf.us_llmDown.i_ll_detect -> feat_degrade_nf.lane_operator.actor_ops '⑥下发提示或转人工'
   }
 
   dynamic view seq001F-api-chat {

@@ -13,13 +13,65 @@ model {
     description '按业务能力切分。交付边界：客户在企业微信提问美妆问题，能得到基于知识库的专业答复。所属愿景：让美妆咨询有据可依。'
 
     // ---- US：本链自己识别 ----
+    //
+    // **I 环元素嵌套在 US 容器内**：归属关系由嵌套表达，不用跨层边。
+    // 这样 I 环视图里能直接看到「这几个步骤属于哪条 US」，不需要连线解释。
 
     us_ask = userStory 'US-001 客户提问获得专业答复' {
       description '作为客户，我在企业微信提问美妆问题，以便拿到有依据的答复而不是广告。验收：答复内容来自知识库检索结果且不含未验证成分。'
+
+      // ---- I 环：业务步骤（本 US 的完整主干） ----
+
+      i_ask_normalize = implStep 'I-001 归一化提问' {
+        description '把企业微信加密报文解密并归一化为标准提问，识别客户与问题边界。'
+      }
+      i_ask_retrieve = implStep 'I-002 检索候选知识' {
+        description '按归一化后的查询向 RAGFlow 发起检索，取得候选知识条目与相似度。'
+      }
+      i_ask_rank = implStep 'I-003 候选排序与择优' {
+        description '按相似度与知识新鲜度对候选条目排序，取置信度最高的一条进入校验。'
+      }
+      i_ask_verify = implStep 'I-004 置信度校验' {
+        description '用回复策略的置信度与风险阈值判定是否达标；不达标则转 US-002 的路径。'
+      }
+      i_ask_compose = implStep 'I-005 生成答复' {
+        description '按候选知识组织答复正文，附来源条目，不加入未验证内容。'
+      }
+      i_ask_deliver = implStep 'I-006 下发答复' {
+        description '把答复通过企业微信会话回传给客户，完成本次闭环。'
+      }
     }
+
     us_lowConfidence = userStory 'US-002 答不准时转人工而非硬答' {
       description '作为客户，当知识库没有覆盖我的问题时，以便被转给人工而不是收到编造答案。验收：置信度不足时生成人工工单并告知我等待。'
+
+      i_lowEscalate = implStep 'I-011 判定转人工' {
+        description '置信度低于阈值或无候选时，判定进入人工路径。'
+      }
+      i_lowTicket = implStep 'I-012 创建人工工单' {
+        description '把提问内容、候选摘要与置信度写入工单，供人工接手。'
+      }
+      i_lowNotify = implStep 'I-013 告知客户等待' {
+        description '在会话中告知客户已转人工并给出预计等待，不做内容性答复。'
+      }
     }
+
+    // ---- 业务状态：问答状态机的状态与迁移 ----
+    //
+    // 状态是全局的（跨 US 共享），所以放在 Feature 层而非某个 US 内。
+    // 步骤嵌在 US 内，状态留在 Feature 层——两者归属粒度不同。
+
+    st_received = state '已接收'
+    st_retrieving = state '检索中'
+    st_answering = state '应答中'
+    st_answered = state '已答复'
+    st_waitingHuman = state '待人工'
+
+    st_received -> st_retrieving '发起检索'
+    st_retrieving -> st_answering '置信度达标'
+    st_retrieving -> st_waitingHuman '置信度不足'
+    st_answering -> st_answered '答复已下发'
+    st_waitingHuman -> st_answered '人工已接管'
 
     // ---- F 单元清单：与 US 并列，非路径环节 ----
 
@@ -30,16 +82,10 @@ model {
       description '从 RAGFlow 检索候选知识并按置信度排序。'
     }
 
-    // ---- I 环：业务逻辑（不含源码） ----
+    // ---- 业务目标：Feature 级，不是某个 US 的附属 ----
 
-    i_goal = implStep 'I-001 业务目标' {
-      description '客户提问后得到有据可依的答复，或明确被转人工。'
-    }
-    i_state = implStep 'I-002 业务状态' {
-      description '问答状态：已接收 → 检索中 → 应答中 → 已答复 / 待人工。'
-    }
-    i_step = implStep 'I-003 业务步骤' {
-      description '主干步骤：接收消息 → 检索候选知识 → 置信度校验 → 生成答复。'
+    i_goal = implStep 'I-101 业务目标' {
+      description '客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。'
     }
 
     // ---- UI 环 ----
@@ -114,14 +160,8 @@ model {
       }
     }
     lane_core = feature '领域层泳道' {
-      step_answerLane = implStep 'I-003 业务步骤（应答泳道）' {
-        description '编排、检索、校验、生成答复的领域环节。'
-      }
-      i_stepLaneSearch = implStep 'I-004 检索环节' {
-        description '向 RAGFlow 发起检索并接收候选知识。'
-      }
-      i_stepLaneStep = implStep 'I-005 校验与生成环节' {
-        description '按置信度与风险阈值判定放行或转人工，并生成答复正文。'
+      step_answerLane = implStep 'I-201 应答编排（泳道引用）' {
+        description '泳道中的编排环节，具体步骤见 US-001 容器下的 I-001~I-006。'
       }
     }
     lane_ext = feature '外部依赖泳道' {
@@ -139,12 +179,13 @@ model {
     us_lowConfidence .trace f_retrieval '要求'
 
     // ---- 追溯边：下钻路径 US → I → UI → SRC ----
+    //
+    // **US 与其内嵌的 I 环步骤是嵌套关系，不是边关系**，所以这里不画 US→I 的边。
+    // 归属由嵌套表达；边只用于跨容器的路径环节。
 
-    us_ask .trace i_step '落为业务步骤'
     us_lowConfidence .trace i_goal '落为业务目标'
-    i_step .trace i_state '推进问答状态'
-    i_state .trace ui_information '展示应答状态'
-    i_step .trace ui_interaction '反馈交互'
+    i_goal .trace ui_information '展示治理状态'
+    us_ask .trace ui_interaction '反馈交互'
     ui_interaction .trace src_wechatCallback '由回调触发'
     ui_information .trace src_store '读取工单状态'
 
@@ -173,6 +214,8 @@ model {
     cvt_normalize .trace out_answer '负责 POD-001→OUT-001 映射'
 
     // ---- 边界顺序 ----
+    //
+    // 泳道之间表达调用方向的边界，具体步骤顺序见 seq001F-i-step-lanes。
 
     lane_client.actor_customer -> lane_edge.api_chatCallback '企业微信提问'
     lane_edge.api_chatCallback -> lane_core.step_answerLane '触发应答'
@@ -180,20 +223,4 @@ model {
     lane_ext.ext_ragflow -> lane_core.step_answerLane '返回候选知识'
     lane_core.step_answerLane -> lane_edge.api_chatCallback '返回答复或工单号'
   }
-}
-
-// ---- 业务状态机：状态即元素，迁移即关系 ----
-
-model {
-  st_received = state '已接收'
-  st_retrieving = state '检索中'
-  st_answering = state '应答中'
-  st_answered = state '已答复'
-  st_waitingHuman = state '待人工'
-
-  st_received -> st_retrieving '发起检索'
-  st_retrieving -> st_answering '置信度达标'
-  st_retrieving -> st_waitingHuman '置信度不足'
-  st_answering -> st_answered '答复已下发'
-  st_waitingHuman -> st_answered '人工已接管'
 }

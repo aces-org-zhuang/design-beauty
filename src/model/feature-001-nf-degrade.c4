@@ -15,15 +15,49 @@ model {
     description '按极端场景切分。交付边界：知识库为空、RAGFlow 超时、LLM 不可用三类场景下，运营人员与客户都能及时察觉并知道下一步。所属愿景：让美妆咨询有据可依。'
 
     // ---- US：本链自己识别 ----
+    //
+    // I 环判定步骤嵌套在对应 US 内：归属靠嵌套容器表达，不用跨层边。
 
     us_kbEmpty = userStory 'US-101 知识库为空时运营人员能看见' {
       description '作为运营人员，新知识还没入库时，我能看见知识库为空的状态，以便知道要先补素材而不是以为系统坏了。验收：控制台显式提示当前知识条目为 0 条。'
+
+      i_kb_count = implStep 'I-111 读取条目数' {
+        description '从文档登记簿读取当前知识条目数，不做过滤。'
+      }
+      i_kb_judge = implStep 'I-112 判定零条场景' {
+        description '条目数为 0 时判定为空库场景，标记需先补素材。'
+      }
+      i_kb_render = implStep 'I-113 渲染空库提示' {
+        description '在控制台显式提示条目数为 0，不显示空白列表。'
+      }
     }
+
     us_ragTimeout = userStory 'US-102 RAGFlow 超时时客户不被静默等待' {
       description '作为客户，RAGFlow 响应慢时，我能被告知系统在处理而不是一直等不到回复。验收：超过 8 秒未返回时下发带说明的提示。'
+
+      i_to_timer = implStep 'I-121 启动超时计时' {
+        description '发起检索时同时启动 8 秒计时。'
+      }
+      i_to_check = implStep 'I-122 判定超时' {
+        description '计时到期仍未返回候选知识时判定超时场景。'
+      }
+      i_to_notify = implStep 'I-123 下发处理中提示' {
+        description '在会话中告知系统仍在处理，不让客户反复刷新。'
+      }
     }
+
     us_llmDown = userStory 'US-103 LLM 不可用时转人工而非静默失败' {
       description '作为客户，模型服务不可用时，我能被转给人工而不是收到空白回复。验收：模型调用失败时生成人工工单并告知我等待。'
+
+      i_ll_detect = implStep 'I-131 判定调用结果' {
+        description '识别模型服务调用失败或返回异常。'
+      }
+      i_ll_ticket = implStep 'I-132 生成人工工单' {
+        description '把提问内容与失败原因写入工单。'
+      }
+      i_ll_notify = implStep 'I-133 告知等待人工' {
+        description '在会话中告知已转人工，不返回空白内容。'
+      }
     }
 
     // ---- NF 单元：场景化的系统表现 ----
@@ -38,13 +72,10 @@ model {
       description '场景：模型服务不可用。表现：生成人工工单并告知等待，不出现空白回复。角色：客户。'
     }
 
-    // ---- I 环：业务逻辑 ----
+    // ---- 业务目标：Feature 级 ----
 
-    i_goal = implStep 'I-101 业务目标' {
+    i_goal = implStep 'I-141 业务目标' {
       description '三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。'
-    }
-    i_step = implStep 'I-102 场景判定逻辑' {
-      description '主干步骤：判定知识库条目数 → 判定 RAG 响应耗时 → 判定 LLM 调用结果 → 分发对应提示或工单。'
     }
 
     // ---- UI 环 ----
@@ -109,17 +140,8 @@ model {
       }
     }
     lane_core = feature '判定层泳道' {
-      step_probeLane = implStep 'I-102 场景判定逻辑（判定泳道）' {
-        description '知识条目、响应耗时、模型可用性的判定环节。'
-      }
-      i_stepLaneKbCheck = implStep 'I-103 条目数判定' {
-        description '判定知识库当前条目数，为零时标记空库场景。'
-      }
-      i_stepLaneTimeoutCheck = implStep 'I-104 响应耗时判定' {
-        description '判定 RAGFlow 响应是否超过 8 秒阈值。'
-      }
-      i_stepLaneLlmCheck = implStep 'I-105 模型可用性判定' {
-        description '判定模型服务调用结果，失败时标记转人工场景。'
+      step_probeLane = implStep 'I-151 场景判定（泳道引用）' {
+        description '泳道中的判定环节，具体步骤见各 US 容器下的 I-11x~I-13x。'
       }
     }
     lane_ext = feature '外部依赖泳道' {
@@ -137,10 +159,8 @@ model {
     // ---- 追溯边：下钻路径 ----
 
     us_kbEmpty .trace i_goal '落为业务目标'
-    us_ragTimeout .trace i_step '落为场景判定逻辑'
-    us_llmDown .trace i_step '落为场景判定逻辑'
-    i_step .trace ui_status '反馈知识状态'
-    i_step .trace ui_notice '反馈场景提示'
+    us_kbEmpty .trace ui_status '反馈知识状态'
+    us_ragTimeout .trace ui_notice '反馈场景提示'
     ui_status .trace src_operatorUi '渲染于控制台'
     ui_notice .trace src_evaluationGate '由门禁决定是否阻断'
     ui_notice .trace src_knowledgeAlert '上报告警'

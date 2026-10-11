@@ -46,16 +46,18 @@ views {
   view pano-i {
     title 'I 全景 · 全部 Feature 的业务逻辑'
     description '聚合单位是 Feature：收录所有 Feature 的 I 环元素，按编号段区分（F 链 I-0xx，NF 链 I-1xx，Feature-002 用 I-2xx）。'
-    include feat_answer_f.i_goal, feat_answer_f.i_step
-    include feat_knowledge_f.i_goal, feat_knowledge_f.i_step
-    include feat_degrade_nf.i_goal, feat_degrade_nf.i_step
+    include feat_answer_f.i_goal
+    include feat_answer_f.us_ask
+    include feat_answer_f.us_lowConfidence
+    include feat_knowledge_f.i_goal, feat_knowledge_f.us_scan
+    include feat_degrade_nf.i_goal, feat_degrade_nf.us_kbEmpty
   }
 
   view pano-i-state {
     title 'I 环 · 业务状态全景'
     description '全部业务状态。状态即元素、迁移即关系；主干与分支在 stateMain / stateBranchHuman 各自成图。'
-    include st_received, st_retrieving, st_answering, st_answered
-    include st_waitingHuman
+    include feat_answer_f.st_received, feat_answer_f.st_retrieving, feat_answer_f.st_answering, feat_answer_f.st_answered
+    include feat_answer_f.st_waitingHuman
   }
 
   view pano-ui {
@@ -154,13 +156,13 @@ views {
   view stateMain {
     title 'I 环 · 业务状态主干'
     description '必经状态链路，不含转人工分支。'
-    include st_received, st_retrieving, st_answering, st_answered
+    include feat_answer_f.st_received, feat_answer_f.st_retrieving, feat_answer_f.st_answering, feat_answer_f.st_answered
   }
 
   view stateBranchHuman {
     title 'I 环 · 业务状态分支 · 转人工'
     description '自检索中节点岔出，合流至已答复。分支独立成图，不重复主干状态。'
-    include st_retrieving, st_waitingHuman
+    include feat_answer_f.st_retrieving, feat_answer_f.st_waitingHuman
   }
 
   view index {
