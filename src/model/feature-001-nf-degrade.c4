@@ -29,6 +29,27 @@ model {
       }
       i_kb_render = implStep 'I-113 渲染空库提示' {
         description '在控制台显式提示条目数为 0，不显示空白列表。'
+
+        // ---- UI 环：嵌在 I 步骤内（UI 的直接上层是 I） ----
+        //
+        // **SRC 嵌在 UI 元素内部**：SRC 的直接上层是 UI。
+
+        ui_status = uiSurface 'UI-101 控制台状态提示' {
+          description '展示知识条目数与集成状态；空态显式提示「尚未入库」而非空白。'
+
+          src_integrationRoutes = srcUnit 'SRC-101 集成状态路由' {
+            description 'src/routes/integration-routes.js — 功能概览与集成状态查询。'
+          }
+          src_ragflowProbe = srcUnit 'SRC-104 RAGFlow 生命周期探针' {
+            description 'src/services/ragflow-lifecycle-probe-service.js — 校验 RAGFlow 数据集状态与可用性。'
+          }
+          src_knowledgeAlert = srcUnit 'SRC-103 知识告警' {
+            description 'src/services/knowledge-alert-service.js — 暴露知识新鲜度与空库问题。'
+          }
+          src_operatorUi = srcUnit 'SRC-105 运营人员控制台' {
+            description 'src/ui/operator.html — 运营人员单页控制台。'
+          }
+        }
       }
     }
 
@@ -57,6 +78,21 @@ model {
       }
       i_ll_notify = implStep 'I-133 告知等待人工' {
         description '在会话中告知已转人工，不返回空白内容。'
+
+        // ---- UI 环：嵌在 I 步骤内 ----
+        //
+        // **SRC 嵌在 UI 元素内部**：SRC 的直接上层是 UI。
+
+        ui_notice = uiSurface 'UI-102 极端场景提示' {
+          description '会话内提示层：说明原因并给出下一步（等待或转人工）。覆盖加载态（判定中）与错误态（判定失败）。'
+
+          src_evaluationGate = srcUnit 'SRC-102 评测闸门' {
+            description 'src/services/evaluation-gate.js — 本地发布策略门禁，判定是否阻断应答。'
+          }
+          src_storeAlert = srcUnit 'SRC-106 告警状态存储' {
+            description 'src/domain/store.js — 本链侧的告警与状态快照存储单元。'
+          }
+        }
       }
     }
 
@@ -76,36 +112,6 @@ model {
 
     i_goal = implStep 'I-141 业务目标' {
       description '三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。'
-    }
-
-    // ---- UI 环 ----
-
-    ui_status = uiSurface 'UI-101 控制台状态提示' {
-      description '展示知识条目数与集成状态；空态显式提示「尚未入库」而非空白。'
-    }
-    ui_notice = uiSurface 'UI-102 极端场景提示' {
-      description '会话内提示层：说明原因并给出下一步（等待或转人工）。覆盖加载态（判定中）与错误态（判定失败）。'
-    }
-
-    // ---- SRC 环：代码结构 ----
-
-    src_integrationRoutes = srcUnit 'SRC-101 集成状态路由' {
-      description 'src/routes/integration-routes.js — 功能概览与集成状态查询。'
-    }
-    src_evaluationGate = srcUnit 'SRC-102 评测闸门' {
-      description 'src/services/evaluation-gate.js — 本地发布策略门禁，判定是否阻断应答。'
-    }
-    src_knowledgeAlert = srcUnit 'SRC-103 知识告警' {
-      description 'src/services/knowledge-alert-service.js — 暴露知识新鲜度与空库问题。'
-    }
-    src_ragflowProbe = srcUnit 'SRC-104 RAGFlow 生命周期探针' {
-      description 'src/services/ragflow-lifecycle-probe-service.js — 校验 RAGFlow 数据集状态与可用性。'
-    }
-    src_operatorUi = srcUnit 'SRC-105 运营人员控制台' {
-      description 'src/ui/operator.html — 运营人员单页控制台。'
-    }
-    src_storeAlert = srcUnit 'SRC-106 告警状态存储' {
-      description 'src/domain/store.js — 本链侧的告警与状态快照存储单元。'
     }
 
     // ---- SRC 环：数据载体 ----
@@ -157,13 +163,11 @@ model {
     us_llmDown .trace nf_llmDown '要求'
 
     // ---- 追溯边：下钻路径 ----
+    //
+    // **US→I、I→UI、UI→SRC 全部是嵌套关系，不是边关系**，所以这里不画这些边。
 
     us_kbEmpty .trace i_goal '落为业务目标'
-    us_kbEmpty .trace ui_status '反馈知识状态'
-    us_ragTimeout .trace ui_notice '反馈场景提示'
-    ui_status .trace src_operatorUi '渲染于控制台'
-    ui_notice .trace src_evaluationGate '由门禁决定是否阻断'
-    ui_notice .trace src_knowledgeAlert '上报告警'
+    us_ragTimeout .trace i_ll_notify '统一由提示环节下发'
 
     // ---- 依赖边 ----
 

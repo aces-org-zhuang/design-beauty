@@ -39,6 +39,48 @@ model {
       }
       i_ask_deliver = implStep 'I-006 下发答复' {
         description '把答复通过企业微信会话回传给客户，完成本次闭环。'
+
+        // ---- UI 环：嵌在 I 步骤内 ----
+        //
+        // **UI 的直接上层是 I**，不是 Feature。归属靠嵌套表达，
+        // 视图里 include 本步骤即带出这些界面面。
+        //
+        // **SRC 嵌在 UI 元素内部**：SRC 的直接上层是 UI。
+        // 归属靠嵌套表达，SRC 视图的锚是 UI 容器。
+
+        ui_interaction = uiSurface 'UI-001 企业微信会话交互' {
+          description '客户在企业微信会话中提问与接收答复；答复与提问同屏呈现。'
+
+          src_wechatCallback = srcUnit 'SRC-001 微信客服回调入口' {
+            description 'src/routes/wechat-kf-routes.js — 接收企业微信加密回调并解密分发。'
+
+            wechatRoutes = srcUnit 'SRC-001-1 微信客服路由' {
+              description 'src/routes/wechat-kf-routes.js — 路由注册与报文解密。'
+            }
+          }
+          src_answerOrchestrator = srcUnit 'SRC-002 应答编排器' {
+            description 'src/services/answer-orchestrator.js — 决定自动应答或转人工。'
+          }
+          src_answerLoop = srcUnit 'SRC-003 知识应答循环' {
+            description 'src/services/knowledge-answer-loop-service.js — 检索增强的应答循环。'
+          }
+          src_replyPolicy = srcUnit 'SRC-004 回复策略' {
+            description 'src/services/reply-policy-service.js — 置信度与风险阈值判定。'
+          }
+          src_ragflowKnowledge = srcUnit 'SRC-005 RAGFlow 知识检索' {
+            description 'src/services/ragflow-knowledge-service.js — 检索与数据集访问。'
+          }
+          src_handoffService = srcUnit 'SRC-006 转人工服务' {
+            description 'src/services/handoff-service.js — 创建并跟踪人工工单。'
+          }
+        }
+        ui_information = uiSurface 'UI-002 答复信息设计' {
+          description '展示字段：问题原文、知识来源条目、答复正文。覆盖空态（无检索结果）、加载态（检索中）、错误态（检索失败）、无权限态（未授权知识）。'
+
+          src_store = srcUnit 'SRC-007 本地存储' {
+            description 'src/domain/store.js — 以 JSON 文件承载工单与反馈状态。'
+          }
+        }
       }
     }
 
@@ -88,42 +130,7 @@ model {
       description '客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。'
     }
 
-    // ---- UI 环 ----
-
-    ui_interaction = uiSurface 'UI-001 企业微信会话交互' {
-      description '客户在企业微信会话中提问与接收答复；答复与提问同屏呈现。'
-    }
-    ui_information = uiSurface 'UI-002 答复信息设计' {
-      description '展示字段：问题原文、知识来源条目、答复正文。覆盖空态（无检索结果）、加载态（检索中）、错误态（检索失败）、无权限态（未授权知识）。'
-    }
-
     // ---- SRC 环：代码结构 ----
-
-    src_wechatCallback = srcUnit 'SRC-001 微信客服回调入口' {
-      description 'src/routes/wechat-kf-routes.js — 接收企业微信加密回调并解密分发。'
-
-      wechatRoutes = srcUnit 'SRC-001-1 微信客服路由' {
-        description 'src/routes/wechat-kf-routes.js — 路由注册与报文解密。'
-      }
-    }
-    src_answerOrchestrator = srcUnit 'SRC-002 应答编排器' {
-      description 'src/services/answer-orchestrator.js — 决定自动应答或转人工。'
-    }
-    src_answerLoop = srcUnit 'SRC-003 知识应答循环' {
-      description 'src/services/knowledge-answer-loop-service.js — 检索增强的应答循环。'
-    }
-    src_replyPolicy = srcUnit 'SRC-004 回复策略' {
-      description 'src/services/reply-policy-service.js — 置信度与风险阈值判定。'
-    }
-    src_ragflowKnowledge = srcUnit 'SRC-005 RAGFlow 知识检索' {
-      description 'src/services/ragflow-knowledge-service.js — 检索与数据集访问。'
-    }
-    src_handoffService = srcUnit 'SRC-006 转人工服务' {
-      description 'src/services/handoff-service.js — 创建并跟踪人工工单。'
-    }
-    src_store = srcUnit 'SRC-007 本地存储' {
-      description 'src/domain/store.js — 以 JSON 文件承载工单与反馈状态。'
-    }
 
     // ---- SRC 环：数据载体（按角色编号） ----
 
@@ -180,14 +187,11 @@ model {
 
     // ---- 追溯边：下钻路径 US → I → UI → SRC ----
     //
-    // **US 与其内嵌的 I 环步骤是嵌套关系，不是边关系**，所以这里不画 US→I 的边。
+    // **US→I、I→UI、UI→SRC 全部是嵌套关系，不是边关系**，所以这里不画这些边。
     // 归属由嵌套表达；边只用于跨容器的路径环节。
 
     us_lowConfidence .trace i_goal '落为业务目标'
-    i_goal .trace ui_information '展示治理状态'
-    us_ask .trace ui_interaction '反馈交互'
-    ui_interaction .trace src_wechatCallback '由回调触发'
-    ui_information .trace src_store '读取工单状态'
+    i_goal .trace i_ask_deliver '支撑下发环节'
 
     // ---- 依赖边：运行时怎么走 ----
 

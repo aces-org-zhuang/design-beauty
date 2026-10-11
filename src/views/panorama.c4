@@ -63,26 +63,57 @@ views {
   view pano-ui {
     title 'UI 全景 · 全部 Feature 的界面面'
     description '聚合单位是 Feature：收录所有 Feature 的 UI 元素。'
-    include feat_answer_f.ui_interaction, feat_answer_f.ui_information
-    include feat_knowledge_f.ui_console, feat_knowledge_f.ui_information
-    include feat_degrade_nf.ui_status, feat_degrade_nf.ui_notice
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction, feat_answer_f.us_ask.i_ask_deliver.ui_information
+    include feat_knowledge_f.us_alert.i_alert_report.ui_console, feat_knowledge_f.us_alert.i_alert_report.ui_information
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status, feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice
   }
 
-  view pano-src {
-    title 'SRC 全景 · 全部 Feature 的源码单元'
-    description '聚合单位是 Feature：收录所有 Feature 的 SRC 单元，只含代码结构单元。文件路径见各链的 srcdir 视图。'
-    include feat_answer_f.src_wechatCallback
-    include feat_answer_f.src_answerOrchestrator, feat_answer_f.src_answerLoop
-    include feat_answer_f.src_replyPolicy, feat_answer_f.src_ragflowKnowledge
-    include feat_answer_f.src_handoffService, feat_answer_f.src_store
-    include feat_degrade_nf.src_integrationRoutes, feat_degrade_nf.src_evaluationGate
-    include feat_degrade_nf.src_knowledgeAlert, feat_degrade_nf.src_ragflowProbe
-    include feat_knowledge_f.src_materialRoutes, feat_knowledge_f.src_knowledgeRoutes
-    include feat_knowledge_f.src_materialService, feat_knowledge_f.src_materialBatch
-    include feat_knowledge_f.src_documentRegistry, feat_knowledge_f.src_knowledgeScan
-    include feat_knowledge_f.src_governance, feat_knowledge_f.src_knowledgeSync
-    include feat_knowledge_f.src_lifecycle
-    include feat_degrade_nf.src_operatorUi, feat_degrade_nf.src_storeAlert
+  view panoSrc001F {
+    title 'SRC 单元 · Feature-001-F'
+    description '归属锚是 UI 面容器——SRC 的直接上层是 UI。只含代码结构单元，文件路径见 srcdir001F。'
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_wechatCallback
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerLoop
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_ragflowKnowledge
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_handoffService
+    include feat_answer_f.us_ask.i_ask_deliver.ui_information
+    include feat_answer_f.us_ask.i_ask_deliver.ui_information.src_store
+  }
+
+  view panoSrc001NF {
+    title 'SRC 单元 · Feature-001-NF · 空库与探测'
+    description '归属锚是 UI 面容器——SRC 的直接上层是 UI。本链的 UI 分属不同 US，LikeC4 会把每个 US 提为根并展开中间层造成越层，故按 US 拆成两张。'
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_integrationRoutes
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_knowledgeAlert
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_ragflowProbe
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_operatorUi
+  }
+
+  view panoSrc001NFnotice {
+    title 'SRC 单元 · Feature-001-NF · 场景提示'
+    description '归属锚是 UI 面容器。本链的 UI 分属不同 US，按 US 拆分以避免越层。'
+    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice
+    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_evaluationGate
+    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_storeAlert
+  }
+
+  view panoSrc002F {
+    title 'SRC 单元 · Feature-002-F'
+    description '归属锚是 UI 面容器。只含代码结构单元，文件路径见 srcdir002F。'
+    include feat_knowledge_f.us_alert.i_alert_report.ui_console
+    include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_materialRoutes
+    include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_materialService
+    include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_materialBatch
+    include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_knowledgeScan
+    include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_governance
+    include feat_knowledge_f.us_alert.i_alert_report.ui_information
+    include feat_knowledge_f.us_alert.i_alert_report.ui_information.src_knowledgeRoutes
+    include feat_knowledge_f.us_alert.i_alert_report.ui_information.src_documentRegistry
+    include feat_knowledge_f.us_alert.i_alert_report.ui_information.src_knowledgeSync
+    include feat_knowledge_f.us_alert.i_alert_report.ui_information.src_lifecycle
   }
 
   view pano-carrier {
@@ -107,22 +138,36 @@ views {
     include feat_degrade_nf.lane_edge
   }
 
-  view srcdir001F of feat_answer_f {
+  view srcdir001F {
     title 'SRC 目录视图 · Feature-001-F'
-    description '本链源码单元与真实文件路径的对应，含嵌套子单元。SRC 是唯一带真实磁盘资产的环。'
-    include feat_answer_f.src_wechatCallback
-    include feat_answer_f.src_answerOrchestrator, feat_answer_f.src_answerLoop
-    include feat_answer_f.src_replyPolicy, feat_answer_f.src_ragflowKnowledge
-    include feat_answer_f.src_handoffService, feat_answer_f.src_store
+    description '本链源码单元与真实文件路径的对应。归属锚是 UI 面容器——SRC 的直接上层是 UI，不是 Feature。'
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_wechatCallback
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerLoop
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_ragflowKnowledge
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_handoffService
+    include feat_answer_f.us_ask.i_ask_deliver.ui_information
+    include feat_answer_f.us_ask.i_ask_deliver.ui_information.src_store
   }
 
-  view srcdir001NF of feat_degrade_nf {
-    title 'SRC 目录视图 · Feature-001-NF'
-    description '极端场景链的源码单元与真实文件路径对应。'
-    include feat_degrade_nf.src_integrationRoutes
-    include feat_degrade_nf.src_evaluationGate, feat_degrade_nf.src_knowledgeAlert
-    include feat_degrade_nf.src_ragflowProbe, feat_degrade_nf.src_operatorUi
-    include feat_degrade_nf.src_storeAlert
+  view srcdir001NF {
+    title 'SRC 目录视图 · Feature-001-NF · 空库与探测'
+    description '本链源码单元与真实文件路径对应。归属锚是 UI 面容器。按 US 拆分以避免 LikeC4 补齐中间层造成越层。'
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_integrationRoutes
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_knowledgeAlert
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_ragflowProbe
+    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_operatorUi
+  }
+
+  view srcdir001NFnotice {
+    title 'SRC 目录视图 · Feature-001-NF · 场景提示'
+    description '归属锚是 UI 面容器。按 US 拆分以避免越层。'
+    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice
+    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_evaluationGate
+    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_storeAlert
   }
 
   view carrier001F of feat_answer_f {

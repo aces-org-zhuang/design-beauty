@@ -55,6 +55,46 @@ model {
       }
       i_alert_report = implStep 'I-233 上报告警' {
         description '把问题条目写入告警并在控制台列出。'
+
+        // ---- UI 环：嵌在 I 步骤内（UI 的直接上层是 I） ----
+        //
+        // **SRC 嵌在 UI 元素内部**：SRC 的直接上层是 UI。
+
+        ui_console = uiSurface 'UI-201 运营控制台' {
+          description '运营人员管理素材、审核候选知识、查看新鲜度告警的单页控制台。'
+
+          src_materialRoutes = srcUnit 'SRC-201 素材路由' {
+            description 'src/routes/material-routes.js — 美妆素材接入接口。'
+          }
+          src_materialService = srcUnit 'SRC-203 素材服务' {
+            description 'src/services/material-service.js — 素材接入规则。'
+          }
+          src_materialBatch = srcUnit 'SRC-204 素材批处理' {
+            description 'src/services/material-batch-service.js — 批量素材接入。'
+          }
+          src_knowledgeScan = srcUnit 'SRC-206 知识扫描' {
+            description 'src/services/knowledge-scan-service.js — 发现候选知识。'
+          }
+          src_governance = srcUnit 'SRC-207 知识治理' {
+            description 'src/services/knowledge-governance-service.js — 发布决策与治理。'
+          }
+        }
+        ui_information = uiSurface 'UI-202 知识运营信息设计' {
+          description '字段：素材标识、来源、扫描状态、决策结果、新鲜度天数。覆盖空态（暂无素材）、加载态（扫描中）、错误态（同步失败）、无权限态（未授权）。'
+
+          src_knowledgeRoutes = srcUnit 'SRC-202 知识库路由' {
+            description 'src/routes/knowledge-routes.js — 知识扫描、同步与生命周期接口。'
+          }
+          src_documentRegistry = srcUnit 'SRC-205 文档登记簿' {
+            description 'src/services/knowledge-document-registry.js — 跟踪素材与文档标识。'
+          }
+          src_knowledgeSync = srcUnit 'SRC-208 知识同步' {
+            description 'src/services/knowledge-sync-service.js — 把已批准知识推送到 RAGFlow。'
+          }
+          src_lifecycle = srcUnit 'SRC-209 知识生命周期视图' {
+            description 'src/services/knowledge-lifecycle-service.js — 知识的晋升与下线。'
+          }
+        }
       }
     }
 
@@ -71,45 +111,6 @@ model {
 
     i_goal = implStep 'I-201 业务目标' {
       description '素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。'
-    }
-
-    // ---- UI 环 ----
-
-    ui_console = uiSurface 'UI-201 运营控制台' {
-      description '运营人员管理素材、审核候选知识、查看新鲜度告警的单页控制台。'
-    }
-    ui_information = uiSurface 'UI-202 知识运营信息设计' {
-      description '字段：素材标识、来源、扫描状态、决策结果、新鲜度天数。覆盖空态（暂无素材）、加载态（扫描中）、错误态（同步失败）、无权限态（未授权）。'
-    }
-
-    // ---- SRC 环 ----
-
-    src_materialRoutes = srcUnit 'SRC-201 素材路由' {
-      description 'src/routes/material-routes.js — 美妆素材接入接口。'
-    }
-    src_knowledgeRoutes = srcUnit 'SRC-202 知识库路由' {
-      description 'src/routes/knowledge-routes.js — 知识扫描、同步与生命周期接口。'
-    }
-    src_materialService = srcUnit 'SRC-203 素材服务' {
-      description 'src/services/material-service.js — 素材接入规则。'
-    }
-    src_materialBatch = srcUnit 'SRC-204 素材批处理' {
-      description 'src/services/material-batch-service.js — 批量素材接入。'
-    }
-    src_documentRegistry = srcUnit 'SRC-205 文档登记簿' {
-      description 'src/services/knowledge-document-registry.js — 跟踪素材与文档标识。'
-    }
-    src_knowledgeScan = srcUnit 'SRC-206 知识扫描' {
-      description 'src/services/knowledge-scan-service.js — 发现候选知识。'
-    }
-    src_governance = srcUnit 'SRC-207 知识治理' {
-      description 'src/services/knowledge-governance-service.js — 发布决策与治理。'
-    }
-    src_knowledgeSync = srcUnit 'SRC-208 知识同步' {
-      description 'src/services/knowledge-sync-service.js — 把已批准知识推送到 RAGFlow。'
-    }
-    src_lifecycle = srcUnit 'SRC-209 知识生命周期视图' {
-      description 'src/services/knowledge-lifecycle-service.js — 知识的晋升与下线。'
     }
 
     // ---- 数据载体 ----
@@ -170,13 +171,11 @@ model {
     us_alert .trace f_govern '要求'
 
     // ---- 下钻路径 ----
+    //
+    // **US→I、I→UI、UI→SRC 全部是嵌套关系，不是边关系**，所以这里不画这些边。
 
-    us_govern .trace i_goal '落为业务目标'
-    us_govern .trace i_goal '推进治理目标'
-    i_goal .trace ui_information '展示治理状态'
-    us_scan .trace ui_console '反馈交互'
-    ui_console .trace src_knowledgeRoutes '由知识路由支撑'
-    ui_information .trace src_knowledgeRoutes '读取状态'
+    i_scan_submit .trace i_gov_review '提交候选进入治理'
+    i_gov_promote .trace i_alert_judge '晋升后进入新鲜度巡检'
 
     // ---- 依赖边 ----
 

@@ -17,17 +17,17 @@ views {
     include feat_answer_f.lane_client.actor_customer
     include feat_answer_f.lane_edge.api_chatCallback
     include feat_answer_f.lane_core.step_answerLane
-    include feat_answer_f.src_ragflowKnowledge
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_ragflowKnowledge
     include feat_answer_f.lane_ext.ext_ragflow
-    include feat_answer_f.src_handoffService
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_handoffService
 
     feat_answer_f.lane_client.actor_customer -> feat_answer_f.lane_edge.api_chatCallback '企业微信提问'
-    feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.src_answerOrchestrator '分发归一化消息'
-    feat_answer_f.src_answerOrchestrator -> feat_answer_f.lane_core.step_answerLane '请求应答'
+    feat_answer_f.lane_edge.api_chatCallback -> feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator '分发归一化消息'
+    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator -> feat_answer_f.lane_core.step_answerLane '请求应答'
     feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_ext.ext_ragflow '检索候选知识'
     feat_answer_f.lane_ext.ext_ragflow -> feat_answer_f.lane_core.step_answerLane '返回候选知识'
-    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.src_replyPolicy '校验置信度'
-    feat_answer_f.src_replyPolicy -> feat_answer_f.lane_core.step_answerLane '达标放行'
+    feat_answer_f.lane_core.step_answerLane -> feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy '校验置信度'
+    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy -> feat_answer_f.lane_core.step_answerLane '达标放行'
     feat_answer_f.lane_core.step_answerLane -> feat_answer_f.lane_edge.api_chatCallback '返回答复'
   }
 
@@ -36,14 +36,14 @@ views {
     title 'SRC · 分支时序 · Feature-001-F · 置信度不足转人工'
     description '归属 Feature-001-F 的 SRC 环。自策略校验节点岔出，经编排到工单落库。SRC 环的分支，与 I 环的分支各自成图。'
 
-    include feat_answer_f.src_replyPolicy
-    include feat_answer_f.src_answerOrchestrator
-    include feat_answer_f.src_handoffService
-    include feat_answer_f.src_store
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_handoffService
+    include feat_answer_f.us_ask.i_ask_deliver.ui_information.src_store
 
-    feat_answer_f.src_replyPolicy -> feat_answer_f.src_answerOrchestrator '置信度不足'
-    feat_answer_f.src_answerOrchestrator -> feat_answer_f.src_handoffService '转人工'
-    feat_answer_f.src_handoffService -> feat_answer_f.src_store '持久化工单'
+    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy -> feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator '置信度不足'
+    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator -> feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_handoffService '转人工'
+    feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_handoffService -> feat_answer_f.us_ask.i_ask_deliver.ui_information.src_store '持久化工单'
   }
 
   dynamic view dfd001F-answer {
@@ -51,17 +51,17 @@ views {
     title 'DFD 全景 · Feature-001-F 应答数据流'
     description '归属 Feature-001-F。业务数据从提问入参到落库再回显的完整链路，含转换点。'
 
-    include feat_answer_f.ui_interaction
+    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction
     include feat_answer_f.in_chatMessage, feat_answer_f.biz_query
     include feat_answer_f.pod_ticket, feat_answer_f.dao_store
-    include feat_answer_f.out_answer, feat_answer_f.ui_information
+    include feat_answer_f.out_answer, feat_answer_f.us_ask.i_ask_deliver.ui_information
 
-    feat_answer_f.ui_interaction -> feat_answer_f.in_chatMessage '提交提问'
+    feat_answer_f.us_ask.i_ask_deliver.ui_interaction -> feat_answer_f.in_chatMessage '提交提问'
     feat_answer_f.in_chatMessage -> feat_answer_f.biz_query '转换为检索查询'
     feat_answer_f.biz_query -> feat_answer_f.pod_ticket '低置信度落工单'
     feat_answer_f.pod_ticket -> feat_answer_f.dao_store '写入工单'
     feat_answer_f.dao_store -> feat_answer_f.out_answer '查询答复内容'
-    feat_answer_f.out_answer -> feat_answer_f.ui_information '渲染答复'
+    feat_answer_f.out_answer -> feat_answer_f.us_ask.i_ask_deliver.ui_information '渲染答复'
   }
 
   dynamic view seq001NF-degrade {
@@ -73,15 +73,15 @@ views {
     include feat_degrade_nf.lane_edge.api_status
     include feat_degrade_nf.lane_core.step_probeLane
     include feat_degrade_nf.lane_ext.ext_ragflow
-    include feat_degrade_nf.src_evaluationGate
-    include feat_degrade_nf.ui_notice
+    include feat_degrade_nf.us_llmDown.i_ll_notify
+    include feat_degrade_nf.lane_operator.actor_ops
 
     feat_degrade_nf.lane_operator.actor_ops -> feat_degrade_nf.lane_edge.api_status '查询集成状态'
     feat_degrade_nf.lane_edge.api_status -> feat_degrade_nf.lane_core.step_probeLane '发起探测'
     feat_degrade_nf.lane_core.step_probeLane -> feat_degrade_nf.lane_ext.ext_ragflow '探测数据集可用性'
     feat_degrade_nf.lane_ext.ext_ragflow -> feat_degrade_nf.lane_core.step_probeLane '返回探测结论'
-    feat_degrade_nf.lane_core.step_probeLane -> feat_degrade_nf.src_evaluationGate '提交发布判定'
-    feat_degrade_nf.src_evaluationGate -> feat_degrade_nf.ui_notice '下发场景提示'
+    feat_degrade_nf.lane_core.step_probeLane -> feat_degrade_nf.us_llmDown.i_ll_notify '提交发布判定并下发提示'
+    feat_degrade_nf.us_llmDown.i_ll_notify -> feat_degrade_nf.lane_operator.actor_ops '告知客户'
   }
 
   dynamic view dfd001NF-probe {
@@ -91,13 +91,13 @@ views {
 
     include feat_degrade_nf.lane_operator.actor_ops
     include feat_degrade_nf.in_probeQuery, feat_degrade_nf.biz_probeResult
-    include feat_degrade_nf.out_status, feat_degrade_nf.ui_status
+    include feat_degrade_nf.out_status, feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status
     include feat_degrade_nf.pod_alert, feat_degrade_nf.dao_alert
 
     feat_degrade_nf.lane_operator.actor_ops -> feat_degrade_nf.in_probeQuery '构造探测入参'
     feat_degrade_nf.in_probeQuery -> feat_degrade_nf.biz_probeResult '转换为探测结果'
     feat_degrade_nf.biz_probeResult -> feat_degrade_nf.out_status '渲染状态载荷'
-    feat_degrade_nf.out_status -> feat_degrade_nf.ui_status '显示条目数与异常提示'
+    feat_degrade_nf.out_status -> feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status '显示条目数与异常提示'
     feat_degrade_nf.biz_probeResult -> feat_degrade_nf.pod_alert '异常转告警实体'
     feat_degrade_nf.pod_alert -> feat_degrade_nf.dao_alert '写入告警'
   }
