@@ -55,9 +55,13 @@ views {
 
   view pano-i-state {
     title 'I 环 · 全部 Feature · 业务状态'
-    description '全部业务状态。状态即元素、迁移即关系；主干与分支在 chain001F-i-state-main / chain001F-i-state-branch-human 各自成图。'
+    description '全部业务状态，跨全部链聚合。状态即元素、迁移即关系。每条链都有独立状态机，编号段分开：Feature-001-F 用 S-0xx、Feature-001-NF 用 S-1xx、Feature-002-F 用 S-2xx。'
     include feat_answer_f.st_received, feat_answer_f.st_retrieving, feat_answer_f.st_answering, feat_answer_f.st_answered
     include feat_answer_f.st_waitingHuman
+    include feat_degrade_nf.st_unprobed, feat_degrade_nf.st_probing, feat_degrade_nf.st_healthy
+    include feat_degrade_nf.st_scenarioHit, feat_degrade_nf.st_notified
+    include feat_knowledge_f.st_intake, feat_knowledge_f.st_scanning, feat_knowledge_f.st_pendingReview
+    include feat_knowledge_f.st_published, feat_knowledge_f.st_stale
   }
 
   view pano-ui {
@@ -202,6 +206,13 @@ views {
     title 'I 环 · Feature-001-F · 业务状态 · 主干'
     description '必经状态链路，不含转人工分支。'
     include feat_answer_f.st_received, feat_answer_f.st_retrieving, feat_answer_f.st_answering, feat_answer_f.st_answered
+  }
+
+  view chain001F-i-state {
+    title 'I 环 · Feature-001-F · 业务状态'
+    description '本链的业务状态与迁移全貌：状态即元素、迁移即关系。转人工分支另见 chain001F-i-state-branch-human。'
+    include feat_answer_f.st_received, feat_answer_f.st_retrieving, feat_answer_f.st_answering, feat_answer_f.st_answered
+    include feat_answer_f.st_waitingHuman
   }
 
   view chain001F-i-state-branch-human {

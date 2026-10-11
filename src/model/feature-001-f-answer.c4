@@ -103,11 +103,11 @@ model {
     // 状态是全局的（跨 US 共享），所以放在 Feature 层而非某个 US 内。
     // 步骤嵌在 US 内，状态留在 Feature 层——两者归属粒度不同。
 
-    st_received = state '已接收'
-    st_retrieving = state '检索中'
-    st_answering = state '应答中'
-    st_answered = state '已答复'
-    st_waitingHuman = state '待人工'
+    st_received = state 'S-000 已接收'
+    st_retrieving = state 'S-001 检索中'
+    st_answering = state 'S-002 应答中'
+    st_answered = state 'S-003 已答复'
+    st_waitingHuman = state 'S-004 待人工'
 
     st_received -> st_retrieving '发起检索'
     st_retrieving -> st_answering '置信度达标'
@@ -124,9 +124,12 @@ model {
       description '从 RAGFlow 检索候选知识并按置信度排序。'
     }
 
-    // ---- 业务目标：Feature 级，不是某个 US 的附属 ----
+    // ---- I 环 · 业务目标（每条链恰好一个）----
+    //
+    // **I 环固定包含三类内容：目标 / 状态 / 步骤，缺一不可。**
+    // 三类各用独立编号段：目标用 I-G0，状态用 S-0xx，步骤用 I-0xx。
 
-    i_goal = implStep 'I-101 业务目标' {
+    i_goal = implStep 'I-G0 业务目标' {
       description '客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。'
     }
 

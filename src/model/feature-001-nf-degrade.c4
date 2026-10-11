@@ -108,11 +108,30 @@ model {
       description '场景：模型服务不可用。表现：生成人工工单并告知等待，不出现空白回复。角色：客户。'
     }
 
-    // ---- 业务目标：Feature 级 ----
+    // ---- I 环 · 业务目标（每条链恰好一个）----
+    //
+    // **I 环固定包含三类内容：目标 / 状态 / 步骤，缺一不可。**
+    // 三类各用独立编号段：目标用 I-G0，状态用 S-xxx，步骤用 I-1xx。
 
-    i_goal = implStep 'I-141 业务目标' {
+    i_goal = implStep 'I-G0 业务目标' {
       description '三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。'
     }
+
+    // ---- I 环 · 业务状态（状态即元素，迁移即关系）----
+    //
+    // 本链的状态是「场景判定与提示的推进过程」，不是问答链路的状态。
+
+    st_unprobed = state 'S-100 未探测'
+    st_probing = state 'S-101 探测中'
+    st_healthy = state 'S-102 正常'
+    st_scenarioHit = state 'S-103 命中极端场景'
+    st_notified = state 'S-104 已下发提示'
+
+    st_unprobed -> st_probing '发起探测'
+    st_probing -> st_healthy '探测通过'
+    st_probing -> st_scenarioHit '探测命中异常'
+    st_scenarioHit -> st_notified '下发提示'
+    st_notified -> st_probing '继续巡检'
 
     // ---- SRC 环：数据载体 ----
 

@@ -79,6 +79,13 @@ views {
     include feat_degrade_nf.i_goal
   }
 
+  view chain001NF-i-state {
+    title 'I 环 · Feature-001-NF · 业务状态'
+    description '本链的业务状态与迁移：场景判定与提示的推进过程。状态即元素、迁移即关系。'
+    include feat_degrade_nf.st_unprobed, feat_degrade_nf.st_probing, feat_degrade_nf.st_healthy
+    include feat_degrade_nf.st_scenarioHit, feat_degrade_nf.st_notified
+  }
+
   view chain001NF-i-step {
     title 'I 环 · Feature-001-NF · 场景判定步骤'
     description '三类极端场景的判定步骤。归属靠 US 容器表达，祖先与目标元素同时 include。'
@@ -136,6 +143,13 @@ views {
     title 'I 环 · Feature-002-F · 业务目标'
     description '只承载业务目标。归属锚是业务目标元素本身。状态流转与业务步骤各自成图。'
     include feat_knowledge_f.i_goal
+  }
+
+  view chain002F-i-state {
+    title 'I 环 · Feature-002-F · 业务状态'
+    description '本链的业务状态与迁移：一条素材从入库到可检索的推进过程。状态即元素、迁移即关系。'
+    include feat_knowledge_f.st_intake, feat_knowledge_f.st_scanning, feat_knowledge_f.st_pendingReview
+    include feat_knowledge_f.st_published, feat_knowledge_f.st_stale
   }
 
   view chain002F-i-step {

@@ -162,6 +162,75 @@ for (const [feat, byRing] of buckets) {
   }
 }
 
+/* ---------- 5. 一个环是一组固定内容（I 环三类齐备） ---------- */
+
+// I 环固定包含三类内容：业务目标 / 业务状态 / 业务步骤，缺一不可。
+// 业务目标 = implStep 且 title 匹配 I-G<序号>
+// 业务状态 = state 元素
+// 业务步骤 = implStep 且 title 是 I-<三位数字>（非 I-G）
+
+const featureIds = new Set(
+  Object.keys(model.elements ?? {})
+    .map((fqn) => fqn.split('.')[0])
+    .filter((id) => model.elements[id]?.kind === 'feature'),
+)
+
+const iRing = new Map() // featureId -> { goal, states, steps }
+
+for (const [fqn, el] of Object.entries(model.elements ?? {})) {
+  const title = (el.title ?? '').trim()
+  const feat = fqn.split('.')[0]
+  if (!featureIds.has(feat)) continue
+
+  if (!iRing.has(feat)) iRing.set(feat, { goal: 0, states: 0, steps: 0 })
+  const bucket = iRing.get(feat)
+
+  if (el.kind === 'state') {
+    bucket.states++
+  } else if (el.kind === 'implStep') {
+    if (/^I-G\d+/.test(title)) bucket.goal++
+    else if (/^I-\d{3}/.test(title)) bucket.steps++
+  }
+}
+
+// 每条链的三类 i 视图是否齐备
+const viewIds = Object.keys(model.views ?? {})
+for (const [feat, b] of iRing) {
+  const label = `${feat} 的 I 环`
+
+  if (b.goal === 0) {
+    add('ERROR', label, '缺业务目标。每个 Feature 的 I 环必须有且仅有一个业务目标（编号 I-G<n>）')
+  } else if (b.goal > 1) {
+    add('ERROR', label, `有 ${b.goal} 个业务目标，应恰好 1 个`)
+  }
+
+  if (b.states === 0) {
+    add(
+      'ERROR',
+      label,
+      '缺业务状态。真实系统几乎总有状态，「本链无状态」通常是漏做而非事实。请补 state 元素与迁移关系',
+    )
+  } else if (b.states < 2) {
+    add('ERROR', label, `业务状态只有 ${b.states} 个。单个状态不构成状态机，至少需要 2 个且有迁移`)
+  }
+
+  if (b.steps === 0) {
+    add('ERROR', label, '缺业务步骤。I 环三类内容缺一不可')
+  }
+
+  // 三张视图齐备
+  const hasGoalView = viewIds.some((v) => v.startsWith(`chain`) && v.endsWith('-i-goal'))
+  const hasStateView = viewIds.some((v) => v.startsWith(`chain`) && v.includes('-i-state'))
+  const hasStepView = viewIds.some((v) => v.startsWith(`chain`) && v.includes('-i-step'))
+  const missing = []
+  if (!hasGoalView) missing.push('i-goal')
+  if (!hasStateView) missing.push('i-state')
+  if (!hasStepView) missing.push('i-step')
+  if (missing.length) {
+    add('ERROR', label, `缺视图：${missing.join(' / ')}。每个 I 环都要有目标 / 状态 / 步骤三张视图`)
+  }
+}
+
 /* ---------- 输出 ---------- */
 
 const errors = violations.filter((v) => v.level === 'ERROR')

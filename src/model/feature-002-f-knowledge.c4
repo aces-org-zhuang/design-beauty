@@ -107,11 +107,31 @@ model {
       description '候选知识的扫描、决策、晋升与下线。'
     }
 
-    // ---- I 环 ----
+    // ---- I 环 · 业务目标（每条链恰好一个）----
+    //
+    // **I 环固定包含三类内容：目标 / 状态 / 步骤，缺一不可。**
+    // 三类各用独立编号段：目标用 I-G0，状态用 S-2xx，步骤用 I-2xx。
 
-    i_goal = implStep 'I-201 业务目标' {
+    i_goal = implStep 'I-G0 业务目标' {
       description '素材进入系统后，经扫描与治理成为可检索知识；陈旧时能被发现。'
     }
+
+    // ---- I 环 · 业务状态（状态即元素，迁移即关系）----
+    //
+    // 本链的状态是「一条素材从入库到可检索的推进过程」。
+
+    st_intake = state 'S-200 待接入'
+    st_scanning = state 'S-201 扫描中'
+    st_pendingReview = state 'S-202 待人工审阅'
+    st_published = state 'S-203 已发布可检索'
+    st_stale = state 'S-204 新鲜度异常'
+
+    st_intake -> st_scanning '抽取候选知识'
+    st_scanning -> st_pendingReview '提交候选'
+    st_pendingReview -> st_published '批准晋升'
+    st_pendingReview -> st_intake '驳回退回'
+    st_published -> st_stale '超出新鲜度阈值'
+    st_stale -> st_scanning '重新扫描'
 
     // ---- 数据载体 ----
 
