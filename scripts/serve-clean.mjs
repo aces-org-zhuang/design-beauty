@@ -17,6 +17,7 @@
 
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
+import os from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -60,10 +61,26 @@ if (!existsSync(sources)) {
 // 切到项目目录，保证 serve 读取正确的 workspace
 process.chdir(projectRoot);
 
-const child = spawn(process.execPath, [bin, 'serve', sources, '--port', port], {
-  env,
-  stdio: 'inherit',
-});
+// 监听全部网卡：手机连同一 WiFi / 局域网即可访问
+const child = spawn(
+  process.execPath,
+  [bin, 'serve', sources, '--port', port, '--listen', '0.0.0.0'],
+  {
+    env,
+    stdio: 'inherit',
+  },
+);
+
+// 打印本机与局域网可访问地址（含全部非回环 IPv4）
+console.log(`\n  本机访问   http://localhost:${port}`);
+for (const ni of Object.values(os.networkInterfaces())) {
+  for (const a of ni ?? []) {
+    if (a.family === 'IPv4' && !a.internal) {
+      console.log(`  局域网访问 http://${a.address}:${port}`);
+    }
+  }
+}
+console.log('');
 
 child.on('exit', (code) => process.exit(code ?? 0));
 
