@@ -14,7 +14,7 @@ views {
     include feat_answer_f.us_lowConfidence.i_012.ui_012.src_006
   }
   view carrier001F {
-    title 'SRC 环 · Feature-001-F · 数据载体'
+    title 'SRC 环 · Feature-001-F · 数据载体全景'
     description '本链的数据载体，按角色编号 IN/BIZ/POD/OUT/DAO/CVT。'
     include feat_answer_f.in_chatMessage
     include feat_answer_f.biz_query
@@ -24,7 +24,7 @@ views {
     include feat_answer_f.cvt_normalize
   }
   view erm001F-ticket {
-    title 'SRC 环 · Feature-001-F · 数据模型 · 工单'
+    title 'SRC 环 · Feature-001-F · 数据模型全景 · 工单'
     description '持久化实体与数据访问单元。'
     include feat_answer_f.pod_ticket
     include feat_answer_f.dao_store
@@ -52,7 +52,7 @@ views {
     include feat_degrade_nf.us_llmDown.i_132.ui_132.src_106
   }
   view carrier001NF {
-    title 'SRC 环 · Feature-001-NF · 数据载体'
+    title 'SRC 环 · Feature-001-NF · 数据载体全景'
     description '本链的数据载体，按角色编号 IN/BIZ/POD/OUT/DAO/CVT。'
     include feat_degrade_nf.in_probeQuery
     include feat_degrade_nf.biz_probeResult
@@ -62,7 +62,7 @@ views {
     include feat_degrade_nf.cvt_probe
   }
   view erm001NF-alert {
-    title 'SRC 环 · Feature-001-NF · 数据模型 · 告警'
+    title 'SRC 环 · Feature-001-NF · 数据模型全景 · 告警'
     description '持久化实体与数据访问单元。'
     include feat_degrade_nf.pod_alert
     include feat_degrade_nf.dao_alert
@@ -87,7 +87,7 @@ views {
     include feat_knowledge_f.us_alert.i_232.ui_232.src_209
   }
   view carrier002F {
-    title 'SRC 环 · Feature-002-F · 数据载体'
+    title 'SRC 环 · Feature-002-F · 数据载体全景'
     description '本链的数据载体，按角色编号 IN/BIZ/POD/OUT/DAO/CVT。'
     include feat_knowledge_f.in_material
     include feat_knowledge_f.biz_candidate
@@ -97,7 +97,7 @@ views {
     include feat_knowledge_f.cvt_material
   }
   view erm002F-document {
-    title 'SRC 环 · Feature-002-F · 数据模型 · 文档'
+    title 'SRC 环 · Feature-002-F · 数据模型全景 · 文档'
     description '持久化实体与数据访问单元。'
     include feat_knowledge_f.pod_document
     include feat_knowledge_f.dao_registry

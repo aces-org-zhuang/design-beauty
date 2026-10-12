@@ -19,7 +19,7 @@ views {
     include feat_answer_f.f_retrieval
   }
   view chain001F-i-001 {
-    title 'I 环 · Feature-001-F · 阶段 I-001 取得可靠候选知识'
+    title 'I 环 · Feature-001-F · I-001 取得可靠候选知识'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_answer_f.us_ask.i_001
     include feat_answer_f.us_ask.i_001.st_001_pending
@@ -31,7 +31,7 @@ views {
     include feat_answer_f.us_ask.i_001.i_001_3
   }
   view chain001F-i-002 {
-    title 'I 环 · Feature-001-F · 阶段 I-002 判定可否自动答复'
+    title 'I 环 · Feature-001-F · I-002 判定可否自动答复'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_answer_f.us_ask.i_002
     include feat_answer_f.us_ask.i_002.st_002_pending
@@ -41,7 +41,7 @@ views {
     include feat_answer_f.us_ask.i_002.i_002_1
   }
   view chain001F-i-003 {
-    title 'I 环 · Feature-001-F · 阶段 I-003 生成并下发答复'
+    title 'I 环 · Feature-001-F · I-003 生成并下发答复'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_answer_f.us_ask.i_003
     include feat_answer_f.us_ask.i_003.st_003_pending
@@ -52,7 +52,7 @@ views {
     include feat_answer_f.us_ask.i_003.i_003_2
   }
   view chain001F-i-011 {
-    title 'I 环 · Feature-001-F · 阶段 I-011 判定进入人工路径'
+    title 'I 环 · Feature-001-F · I-011 判定进入人工路径'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_answer_f.us_lowConfidence.i_011
     include feat_answer_f.us_lowConfidence.i_011.st_011_pending
@@ -61,7 +61,7 @@ views {
     include feat_answer_f.us_lowConfidence.i_011.i_011_1
   }
   view chain001F-i-012 {
-    title 'I 环 · Feature-001-F · 阶段 I-012 生成工单并告知等待'
+    title 'I 环 · Feature-001-F · I-012 生成工单并告知等待'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_answer_f.us_lowConfidence.i_012
     include feat_answer_f.us_lowConfidence.i_012.st_012_pending
@@ -91,7 +91,7 @@ views {
     include feat_degrade_nf.nf_llmDown
   }
   view chain001NF-i-111 {
-    title 'I 环 · Feature-001-NF · 阶段 I-111 读出条目数并判定空库'
+    title 'I 环 · Feature-001-NF · I-111 读出条目数并判定空库'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_degrade_nf.us_kbEmpty.i_111
     include feat_degrade_nf.us_kbEmpty.i_111.st_111_pending
@@ -102,7 +102,7 @@ views {
     include feat_degrade_nf.us_kbEmpty.i_111.i_111_2
   }
   view chain001NF-i-112 {
-    title 'I 环 · Feature-001-NF · 阶段 I-112 把空库显式呈现出来'
+    title 'I 环 · Feature-001-NF · I-112 把空库显式呈现出来'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_degrade_nf.us_kbEmpty.i_112
     include feat_degrade_nf.us_kbEmpty.i_112.st_112_pending
@@ -111,7 +111,7 @@ views {
     include feat_degrade_nf.us_kbEmpty.i_112.i_112_1
   }
   view chain001NF-i-121 {
-    title 'I 环 · Feature-001-NF · 阶段 I-121 计时并判定超时'
+    title 'I 环 · Feature-001-NF · I-121 计时并判定超时'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_degrade_nf.us_ragTimeout.i_121
     include feat_degrade_nf.us_ragTimeout.i_121.st_121_pending
@@ -122,7 +122,7 @@ views {
     include feat_degrade_nf.us_ragTimeout.i_121.i_121_2
   }
   view chain001NF-i-122 {
-    title 'I 环 · Feature-001-NF · 阶段 I-122 告知客户系统在处理'
+    title 'I 环 · Feature-001-NF · I-122 告知客户系统在处理'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_degrade_nf.us_ragTimeout.i_122
     include feat_degrade_nf.us_ragTimeout.i_122.st_122_pending
@@ -131,7 +131,7 @@ views {
     include feat_degrade_nf.us_ragTimeout.i_122.i_122_1
   }
   view chain001NF-i-131 {
-    title 'I 环 · Feature-001-NF · 阶段 I-131 识别模型不可用并转人工'
+    title 'I 环 · Feature-001-NF · I-131 识别模型不可用并转人工'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_degrade_nf.us_llmDown.i_131
     include feat_degrade_nf.us_llmDown.i_131.st_131_pending
@@ -141,7 +141,7 @@ views {
     include feat_degrade_nf.us_llmDown.i_131.i_131_1
   }
   view chain001NF-i-132 {
-    title 'I 环 · Feature-001-NF · 阶段 I-132 建单并告知等待'
+    title 'I 环 · Feature-001-NF · I-132 建单并告知等待'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_degrade_nf.us_llmDown.i_132
     include feat_degrade_nf.us_llmDown.i_132.st_132_pending
@@ -170,7 +170,7 @@ views {
     include feat_knowledge_f.f_govern
   }
   view chain002F-i-211 {
-    title 'I 环 · Feature-002-F · 阶段 I-211 素材入库并产出候选'
+    title 'I 环 · Feature-002-F · I-211 素材入库并产出候选'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_knowledge_f.us_scan.i_211
     include feat_knowledge_f.us_scan.i_211.st_211_pending
@@ -182,7 +182,7 @@ views {
     include feat_knowledge_f.us_scan.i_211.i_211_3
   }
   view chain002F-i-221 {
-    title 'I 环 · Feature-002-F · 阶段 I-221 审阅决策并晋升'
+    title 'I 环 · Feature-002-F · I-221 审阅决策并晋升'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_knowledge_f.us_govern.i_221
     include feat_knowledge_f.us_govern.i_221.st_221_pending
@@ -195,7 +195,7 @@ views {
     include feat_knowledge_f.us_govern.i_221.i_221_3
   }
   view chain002F-i-231 {
-    title 'I 环 · Feature-002-F · 阶段 I-231 巡检并判定新鲜度'
+    title 'I 环 · Feature-002-F · I-231 巡检并判定新鲜度'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_knowledge_f.us_alert.i_231
     include feat_knowledge_f.us_alert.i_231.st_231_pending
@@ -206,7 +206,7 @@ views {
     include feat_knowledge_f.us_alert.i_231.i_231_2
   }
   view chain002F-i-232 {
-    title 'I 环 · Feature-002-F · 阶段 I-232 上报告警并呈现'
+    title 'I 环 · Feature-002-F · I-232 上报告警并呈现'
     description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
     include feat_knowledge_f.us_alert.i_232
     include feat_knowledge_f.us_alert.i_232.st_232_pending

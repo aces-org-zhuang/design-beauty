@@ -256,7 +256,7 @@ views {
 
   dynamic view seq001F-i-001-lanes {
     variant sequence
-    title 'I 环 · Feature-001-F · 阶段 I-001 泳道流程'
+    title 'I 环 · Feature-001-F · I-001 泳道流程'
     description '按责任分区。'
     include feat_answer_f.lane_client.actor_customer
     include feat_answer_f.us_ask.i_001.ui_001.src_001
@@ -276,7 +276,7 @@ views {
 
   dynamic view seq001F-i-003-lanes {
     variant sequence
-    title 'I 环 · Feature-001-F · 阶段 I-003 泳道流程'
+    title 'I 环 · Feature-001-F · I-003 泳道流程'
     description '按责任分区。'
     include feat_answer_f.us_ask.i_001.ui_001.src_002
     include feat_answer_f.us_ask.i_003.i_003_1
@@ -289,7 +289,7 @@ views {
 
   dynamic view seq001F-i-012-lanes {
     variant sequence
-    title 'I 环 · Feature-001-F · 阶段 I-012 泳道流程'
+    title 'I 环 · Feature-001-F · I-012 泳道流程'
     description '按责任分区。'
     include feat_answer_f.us_ask.i_001.ui_001.src_002
     include feat_answer_f.us_lowConfidence.i_012.i_012_1
@@ -302,7 +302,7 @@ views {
 
   dynamic view seq001NF-i-111-lanes {
     variant sequence
-    title 'I 环 · Feature-001-NF · 阶段 I-111 泳道流程'
+    title 'I 环 · Feature-001-NF · I-111 泳道流程'
     description '按责任分区。'
     include feat_degrade_nf.lane_operator.actor_ops
     include feat_degrade_nf.us_kbEmpty.i_111.i_111_1
@@ -313,7 +313,7 @@ views {
 
   dynamic view seq001NF-i-121-lanes {
     variant sequence
-    title 'I 环 · Feature-001-NF · 阶段 I-121 泳道流程'
+    title 'I 环 · Feature-001-NF · I-121 泳道流程'
     description '按责任分区。'
     include feat_degrade_nf.us_ragTimeout.i_121.i_121_1
     include feat_degrade_nf.us_ragTimeout.i_121.i_121_2
@@ -324,7 +324,7 @@ views {
 
   dynamic view seq001NF-i-132-lanes {
     variant sequence
-    title 'I 环 · Feature-001-NF · 阶段 I-132 泳道流程'
+    title 'I 环 · Feature-001-NF · I-132 泳道流程'
     description '按责任分区。'
     include feat_degrade_nf.us_llmDown.i_132.i_132_1
     include feat_degrade_nf.us_llmDown.i_132.i_132_2
@@ -335,7 +335,7 @@ views {
 
   dynamic view seq002F-i-211-lanes {
     variant sequence
-    title 'I 环 · Feature-002-F · 阶段 I-211 泳道流程'
+    title 'I 环 · Feature-002-F · I-211 泳道流程'
     description '按责任分区。'
     include feat_knowledge_f.lane_ops.actor_operator
     include feat_knowledge_f.us_scan.i_211.ui_211.src_201
@@ -350,7 +350,7 @@ views {
 
   dynamic view seq002F-i-221-lanes {
     variant sequence
-    title 'I 环 · Feature-002-F · 阶段 I-221 泳道流程'
+    title 'I 环 · Feature-002-F · I-221 泳道流程'
     description '按责任分区。'
     include feat_knowledge_f.lane_ops.actor_operator
     include feat_knowledge_f.us_govern.i_221.i_221_1
@@ -363,7 +363,7 @@ views {
 
   dynamic view seq002F-i-231-lanes {
     variant sequence
-    title 'I 环 · Feature-002-F · 阶段 I-231 泳道流程'
+    title 'I 环 · Feature-002-F · I-231 泳道流程'
     description '按责任分区。'
     include feat_knowledge_f.us_alert.i_231.i_231_1
     include feat_knowledge_f.us_alert.i_231.i_231_2
