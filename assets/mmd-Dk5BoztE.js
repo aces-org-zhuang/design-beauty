@@ -207,7 +207,7 @@ graph LR
   Feat_knowledge_fUs_alertI_232Ui_232Src_209 -. "\`晋升或下线\`" .-> Feat_knowledge_fPod_document
   Feat_knowledge_fPod_document -. "\`更新登记\`" .-> Feat_knowledge_fDao_registry
 `;case`seq001F-i-001-lanes`:return`---
-title: "I 环 · Feature-001-F · 阶段 I-001 泳道流程"
+title: "I 环 · Feature-001-F · I-001 泳道流程"
 ---
 graph LR
   Feat_answer_fLane_clientActor_customer@{ icon: "fa:user", shape: rounded, label: "客户" }
@@ -225,7 +225,7 @@ graph LR
   Feat_answer_fLane_extExt_ragflow -. "\`⑥返回候选\`" .-> Feat_answer_fUs_askI_001Ui_001Src_005
   Feat_answer_fUs_askI_001I_001_2 -. "\`⑦排序择优\`" .-> Feat_answer_fUs_askI_001I_001_3
 `;case`seq001F-i-003-lanes`:return`---
-title: "I 环 · Feature-001-F · 阶段 I-003 泳道流程"
+title: "I 环 · Feature-001-F · I-003 泳道流程"
 ---
 graph LR
   Feat_answer_fUs_askI_001Ui_001Src_002@{ shape: rectangle, label: "SRC-002 应答编排器" }
@@ -236,7 +236,7 @@ graph LR
   Feat_answer_fUs_askI_003I_003_1 -. "\`②答复就绪\`" .-> Feat_answer_fUs_askI_003I_003_2
   Feat_answer_fUs_askI_003I_003_2 -. "\`③答复送达\`" .-> Feat_answer_fLane_clientActor_customer
 `;case`seq001F-i-012-lanes`:return`---
-title: "I 环 · Feature-001-F · 阶段 I-012 泳道流程"
+title: "I 环 · Feature-001-F · I-012 泳道流程"
 ---
 graph LR
   Feat_answer_fUs_askI_001Ui_001Src_002@{ shape: rectangle, label: "SRC-002 应答编排器" }
@@ -247,7 +247,7 @@ graph LR
   Feat_answer_fUs_lowConfidenceI_012I_012_1 -. "\`②工单创建\`" .-> Feat_answer_fUs_lowConfidenceI_012I_012_2
   Feat_answer_fUs_lowConfidenceI_012I_012_2 -. "\`③告知等待\`" .-> Feat_answer_fLane_clientActor_customer
 `;case`seq001NF-i-111-lanes`:return`---
-title: "I 环 · Feature-001-NF · 阶段 I-111 泳道流程"
+title: "I 环 · Feature-001-NF · I-111 泳道流程"
 ---
 graph LR
   Feat_degrade_nfLane_operatorActor_ops@{ icon: "fa:user", shape: rounded, label: "运营人员" }
@@ -256,7 +256,7 @@ graph LR
   Feat_degrade_nfLane_operatorActor_ops -. "\`①发起查询\`" .-> Feat_degrade_nfUs_kbEmptyI_111I_111_1
   Feat_degrade_nfUs_kbEmptyI_111I_111_1 -. "\`②判定零条场景\`" .-> Feat_degrade_nfUs_kbEmptyI_111I_111_2
 `;case`seq001NF-i-121-lanes`:return`---
-title: "I 环 · Feature-001-NF · 阶段 I-121 泳道流程"
+title: "I 环 · Feature-001-NF · I-121 泳道流程"
 ---
 graph LR
   Feat_degrade_nfUs_ragTimeoutI_121I_121_1@{ shape: rectangle, label: "I-121-1 启动超时计时" }
@@ -265,7 +265,7 @@ graph LR
   Feat_degrade_nfUs_ragTimeoutI_121I_121_1 -. "\`①等待 RAGFlow 响应\`" .-> Feat_answer_fLane_extExt_ragflow
   Feat_answer_fLane_extExt_ragflow -. "\`②到期判定\`" .-> Feat_degrade_nfUs_ragTimeoutI_121I_121_2
 `;case`seq001NF-i-132-lanes`:return`---
-title: "I 环 · Feature-001-NF · 阶段 I-132 泳道流程"
+title: "I 环 · Feature-001-NF · I-132 泳道流程"
 ---
 graph LR
   Feat_degrade_nfUs_llmDownI_132I_132_1@{ shape: rectangle, label: "I-132-1 生成人工工单" }
@@ -274,7 +274,7 @@ graph LR
   Feat_degrade_nfUs_llmDownI_132I_132_1 -. "\`①工单创建完成\`" .-> Feat_degrade_nfUs_llmDownI_132I_132_2
   Feat_degrade_nfUs_llmDownI_132I_132_2 -. "\`②告警落库\`" .-> Feat_degrade_nfUs_llmDownI_132Ui_132Src_106
 `;case`seq002F-i-211-lanes`:return`---
-title: "I 环 · Feature-002-F · 阶段 I-211 泳道流程"
+title: "I 环 · Feature-002-F · I-211 泳道流程"
 ---
 graph LR
   Feat_knowledge_fLane_opsActor_operator@{ icon: "fa:user", shape: rounded, label: "运营人员" }
@@ -287,7 +287,7 @@ graph LR
   Feat_knowledge_fUs_scanI_211I_211_1 -. "\`③抽取候选\`" .-> Feat_knowledge_fUs_scanI_211I_211_2
   Feat_knowledge_fUs_scanI_211I_211_2 -. "\`④提交候选\`" .-> Feat_knowledge_fUs_scanI_211I_211_3
 `;case`seq002F-i-221-lanes`:return`---
-title: "I 环 · Feature-002-F · 阶段 I-221 泳道流程"
+title: "I 环 · Feature-002-F · I-221 泳道流程"
 ---
 graph LR
   Feat_knowledge_fLane_opsActor_operator@{ icon: "fa:user", shape: rounded, label: "运营人员" }
@@ -298,7 +298,7 @@ graph LR
   Feat_knowledge_fUs_governI_221I_221_1 -. "\`②记录决策\`" .-> Feat_knowledge_fUs_governI_221I_221_2
   Feat_knowledge_fUs_governI_221I_221_2 -. "\`③批准晋升或驳回\`" .-> Feat_knowledge_fUs_governI_221I_221_3
 `;case`seq002F-i-231-lanes`:return`---
-title: "I 环 · Feature-002-F · 阶段 I-231 泳道流程"
+title: "I 环 · Feature-002-F · I-231 泳道流程"
 ---
 graph LR
   Feat_knowledge_fUs_alertI_231I_231_1@{ shape: rectangle, label: "I-231-1 巡检数据集状态" }
@@ -694,7 +694,7 @@ graph TB
   Feat_answer_f.Us_ask -. "\`要求\`" .-> Feat_answer_f.F_answer
   Feat_answer_f.Us_lowConfidence -. "\`要求\`" .-> Feat_answer_f.F_retrieval
 `;case`chain001F-i-001`:return`---
-title: "I 环 · Feature-001-F · 阶段 I-001 取得可靠候选知识"
+title: "I 环 · Feature-001-F · I-001 取得可靠候选知识"
 ---
 graph TB
   subgraph Feat_answer_fUs_askI_001["\`I-001 阶段性目标 · 取得可靠候选知识\`"]
@@ -710,7 +710,7 @@ graph TB
   Feat_answer_fUs_askI_001.St_001_normalizing -. "\`归一化完成\`" .-> Feat_answer_fUs_askI_001.St_001_searching
   Feat_answer_fUs_askI_001.St_001_searching -. "\`检索返回候选条目\`" .-> Feat_answer_fUs_askI_001.St_001_got
 `;case`chain001F-i-002`:return`---
-title: "I 环 · Feature-001-F · 阶段 I-002 判定可否自动答复"
+title: "I 环 · Feature-001-F · I-002 判定可否自动答复"
 ---
 graph TB
   subgraph Feat_answer_fUs_askI_002["\`I-002 阶段性目标 · 判定可否自动答复\`"]
@@ -724,7 +724,7 @@ graph TB
   Feat_answer_fUs_askI_002.St_002_checking -. "\`置信度达标\`" .-> Feat_answer_fUs_askI_002.St_002_passed
   Feat_answer_fUs_askI_002.St_002_checking -. "\`置信度不足，转 US-002\`" .-> Feat_answer_fUs_askI_002.St_002_failed
 `;case`chain001F-i-003`:return`---
-title: "I 环 · Feature-001-F · 阶段 I-003 生成并下发答复"
+title: "I 环 · Feature-001-F · I-003 生成并下发答复"
 ---
 graph TB
   subgraph Feat_answer_fUs_askI_003["\`I-003 阶段性目标 · 生成并下发答复\`"]
@@ -739,7 +739,7 @@ graph TB
   Feat_answer_fUs_askI_003.St_003_composing -. "\`答复正文就绪\`" .-> Feat_answer_fUs_askI_003.St_003_delivering
   Feat_answer_fUs_askI_003.St_003_delivering -. "\`企业微信回传成功\`" .-> Feat_answer_fUs_askI_003.St_003_answered
 `;case`chain001F-i-011`:return`---
-title: "I 环 · Feature-001-F · 阶段 I-011 判定进入人工路径"
+title: "I 环 · Feature-001-F · I-011 判定进入人工路径"
 ---
 graph TB
   subgraph Feat_answer_fUs_lowConfidenceI_011["\`I-011 阶段性目标 · 判定进入人工路径\`"]
@@ -751,7 +751,7 @@ graph TB
   Feat_answer_fUs_lowConfidenceI_011.St_011_pending -. "\`置信度不足触发\`" .-> Feat_answer_fUs_lowConfidenceI_011.St_011_judging
   Feat_answer_fUs_lowConfidenceI_011.St_011_judging -. "\`确认无可靠候选\`" .-> Feat_answer_fUs_lowConfidenceI_011.St_011_escalated
 `;case`chain001F-i-012`:return`---
-title: "I 环 · Feature-001-F · 阶段 I-012 生成工单并告知等待"
+title: "I 环 · Feature-001-F · I-012 生成工单并告知等待"
 ---
 graph TB
   subgraph Feat_answer_fUs_lowConfidenceI_012["\`I-012 阶段性目标 · 生成工单并告知等待\`"]
@@ -794,7 +794,7 @@ graph TB
   Feat_degrade_nf.Us_ragTimeout -. "\`要求\`" .-> Feat_degrade_nf.Nf_ragTimeout
   Feat_degrade_nf.Us_llmDown -. "\`要求\`" .-> Feat_degrade_nf.Nf_llmDown
 `;case`chain001NF-i-111`:return`---
-title: "I 环 · Feature-001-NF · 阶段 I-111 读出条目数并判定空库"
+title: "I 环 · Feature-001-NF · I-111 读出条目数并判定空库"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_kbEmptyI_111["\`I-111 阶段性目标 · 读出条目数并判定空库\`"]
@@ -809,7 +809,7 @@ graph TB
   Feat_degrade_nfUs_kbEmptyI_111.St_111_counting -. "\`条目数为 0\`" .-> Feat_degrade_nfUs_kbEmptyI_111.St_111_empty
   Feat_degrade_nfUs_kbEmptyI_111.St_111_counting -. "\`条目数大于 0\`" .-> Feat_degrade_nfUs_kbEmptyI_111.St_111_ready
 `;case`chain001NF-i-112`:return`---
-title: "I 环 · Feature-001-NF · 阶段 I-112 把空库显式呈现出来"
+title: "I 环 · Feature-001-NF · I-112 把空库显式呈现出来"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_kbEmptyI_112["\`I-112 阶段性目标 · 把空库显式呈现出来\`"]
@@ -821,7 +821,7 @@ graph TB
   Feat_degrade_nfUs_kbEmptyI_112.St_112_pending -. "\`判定为空库\`" .-> Feat_degrade_nfUs_kbEmptyI_112.St_112_rendering
   Feat_degrade_nfUs_kbEmptyI_112.St_112_rendering -. "\`提示已渲染\`" .-> Feat_degrade_nfUs_kbEmptyI_112.St_112_shown
 `;case`chain001NF-i-121`:return`---
-title: "I 环 · Feature-001-NF · 阶段 I-121 计时并判定超时"
+title: "I 环 · Feature-001-NF · I-121 计时并判定超时"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_ragTimeoutI_121["\`I-121 阶段性目标 · 计时并判定超时\`"]
@@ -836,7 +836,7 @@ graph TB
   Feat_degrade_nfUs_ragTimeoutI_121.St_121_waiting -. "\`超过 8 秒未返回\`" .-> Feat_degrade_nfUs_ragTimeoutI_121.St_121_timedOut
   Feat_degrade_nfUs_ragTimeoutI_121.St_121_waiting -. "\`8 秒内返回候选\`" .-> Feat_degrade_nfUs_ragTimeoutI_121.St_121_returned
 `;case`chain001NF-i-122`:return`---
-title: "I 环 · Feature-001-NF · 阶段 I-122 告知客户系统在处理"
+title: "I 环 · Feature-001-NF · I-122 告知客户系统在处理"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_ragTimeoutI_122["\`I-122 阶段性目标 · 告知客户系统在处理\`"]
@@ -848,7 +848,7 @@ graph TB
   Feat_degrade_nfUs_ragTimeoutI_122.St_122_pending -. "\`判定超时\`" .-> Feat_degrade_nfUs_ragTimeoutI_122.St_122_notifying
   Feat_degrade_nfUs_ragTimeoutI_122.St_122_notifying -. "\`提示已下发\`" .-> Feat_degrade_nfUs_ragTimeoutI_122.St_122_notified
 `;case`chain001NF-i-131`:return`---
-title: "I 环 · Feature-001-NF · 阶段 I-131 识别模型不可用并转人工"
+title: "I 环 · Feature-001-NF · I-131 识别模型不可用并转人工"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_llmDownI_131["\`I-131 阶段性目标 · 识别模型不可用并转人工\`"]
@@ -862,7 +862,7 @@ graph TB
   Feat_degrade_nfUs_llmDownI_131.St_131_calling -. "\`调用失败或返回异常\`" .-> Feat_degrade_nfUs_llmDownI_131.St_131_failed
   Feat_degrade_nfUs_llmDownI_131.St_131_calling -. "\`调用正常返回\`" .-> Feat_degrade_nfUs_llmDownI_131.St_131_ok
 `;case`chain001NF-i-132`:return`---
-title: "I 环 · Feature-001-NF · 阶段 I-132 建单并告知等待"
+title: "I 环 · Feature-001-NF · I-132 建单并告知等待"
 ---
 graph TB
   subgraph Feat_degrade_nfUs_llmDownI_132["\`I-132 阶段性目标 · 建单并告知等待\`"]
@@ -908,7 +908,7 @@ graph TB
   Feat_knowledge_f.Us_govern -. "\`要求\`" .-> Feat_knowledge_f.F_govern
   Feat_knowledge_f.Us_alert -. "\`要求\`" .-> Feat_knowledge_f.F_govern
 `;case`chain002F-i-211`:return`---
-title: "I 环 · Feature-002-F · 阶段 I-211 素材入库并产出候选"
+title: "I 环 · Feature-002-F · I-211 素材入库并产出候选"
 ---
 graph TB
   subgraph Feat_knowledge_fUs_scanI_211["\`I-211 阶段性目标 · 素材入库并产出候选\`"]
@@ -924,7 +924,7 @@ graph TB
   Feat_knowledge_fUs_scanI_211.St_211_registering -. "\`登记完成\`" .-> Feat_knowledge_fUs_scanI_211.St_211_scanning
   Feat_knowledge_fUs_scanI_211.St_211_scanning -. "\`候选已抽取并提交\`" .-> Feat_knowledge_fUs_scanI_211.St_211_submitted
 `;case`chain002F-i-221`:return`---
-title: "I 环 · Feature-002-F · 阶段 I-221 审阅决策并晋升"
+title: "I 环 · Feature-002-F · I-221 审阅决策并晋升"
 ---
 graph TB
   subgraph Feat_knowledge_fUs_governI_221["\`I-221 阶段性目标 · 审阅决策并晋升\`"]
@@ -942,7 +942,7 @@ graph TB
   Feat_knowledge_fUs_governI_221.St_221_decided -. "\`批准晋升\`" .-> Feat_knowledge_fUs_governI_221.St_221_promoted
   Feat_knowledge_fUs_governI_221.St_221_decided -. "\`驳回退回\`" .-> Feat_knowledge_fUs_governI_221.St_221_rejected
 `;case`chain002F-i-231`:return`---
-title: "I 环 · Feature-002-F · 阶段 I-231 巡检并判定新鲜度"
+title: "I 环 · Feature-002-F · I-231 巡检并判定新鲜度"
 ---
 graph TB
   subgraph Feat_knowledge_fUs_alertI_231["\`I-231 阶段性目标 · 巡检并判定新鲜度\`"]
@@ -957,7 +957,7 @@ graph TB
   Feat_knowledge_fUs_alertI_231.St_231_probing -. "\`全部在阈值内\`" .-> Feat_knowledge_fUs_alertI_231.St_231_fresh
   Feat_knowledge_fUs_alertI_231.St_231_probing -. "\`存在超阈值条目\`" .-> Feat_knowledge_fUs_alertI_231.St_231_stale
 `;case`chain002F-i-232`:return`---
-title: "I 环 · Feature-002-F · 阶段 I-232 上报告警并呈现"
+title: "I 环 · Feature-002-F · I-232 上报告警并呈现"
 ---
 graph TB
   subgraph Feat_knowledge_fUs_alertI_232["\`I-232 阶段性目标 · 上报告警并呈现\`"]
@@ -1000,7 +1000,7 @@ graph TB
   Feat_answer_fUs_ask.I_001.Ui_001.Src_002 -. "\`低置信度时转人工\`" .-> Feat_answer_fUs_lowConfidence.I_012Ui_012Src_006
   Feat_answer_fUs_lowConfidence.I_012Ui_012Src_006 -. "\`持久化工单\`" .-> Feat_answer_fUs_ask.I_003.Ui_003Src_007
 `;case`carrier001F`:return`---
-title: "SRC 环 · Feature-001-F · 数据载体"
+title: "SRC 环 · Feature-001-F · 数据载体全景"
 ---
 graph TB
   Feat_answer_fCvt_normalize@{ shape: rounded, label: "CVT-001 提问归一化转换器" }
@@ -1016,7 +1016,7 @@ graph TB
   Feat_answer_fCvt_normalize -. "\`负责 报文→IN-001 映射\`" .-> Feat_answer_fIn_chatMessage
   Feat_answer_fCvt_normalize -. "\`负责 POD-001→OUT-001 映射\`" .-> Feat_answer_fOut_answer
 `;case`erm001F-ticket`:return`---
-title: "SRC 环 · Feature-001-F · 数据模型 · 工单"
+title: "SRC 环 · Feature-001-F · 数据模型全景 · 工单"
 ---
 graph TB
   Feat_answer_fPod_ticket@{ shape: rectangle, label: "POD-001 工单持久化实体" }
@@ -1049,7 +1049,7 @@ graph TB
   Feat_degrade_nfUs_kbEmpty.I_112.Ui_112Src_103 -. "\`提交发布判定\`" .-> Feat_degrade_nfUs_ragTimeout.I_122Ui_122Src_102
   Feat_degrade_nfUs_ragTimeout.I_122Ui_122Src_102 -. "\`读取告警快照\`" .-> Feat_degrade_nfUs_llmDown.I_132Ui_132Src_106
 `;case`carrier001NF`:return`---
-title: "SRC 环 · Feature-001-NF · 数据载体"
+title: "SRC 环 · Feature-001-NF · 数据载体全景"
 ---
 graph TB
   Feat_degrade_nfIn_probeQuery@{ shape: rectangle, label: "IN-101 状态探测入参" }
@@ -1065,7 +1065,7 @@ graph TB
   Feat_degrade_nfCvt_probe -. "\`负责 BIZ-101→OUT-101 映射\`" .-> Feat_degrade_nfBiz_probeResult
   Feat_degrade_nfCvt_probe -. "\`负责 BIZ-101→POD-101 映射\`" .-> Feat_degrade_nfPod_alert
 `;case`erm001NF-alert`:return`---
-title: "SRC 环 · Feature-001-NF · 数据模型 · 告警"
+title: "SRC 环 · Feature-001-NF · 数据模型全景 · 告警"
 ---
 graph TB
   Feat_degrade_nfPod_alert@{ shape: rectangle, label: "POD-101 告警持久化实体" }
@@ -1105,7 +1105,7 @@ graph TB
   Feat_knowledge_fUs_alert.I_231.Ui_231Src_208 -. "\`更新生命周期\`" .-> Feat_knowledge_fUs_alert.I_232.Ui_232Src_209
   Feat_knowledge_fUs_alert.I_232.Ui_232Src_209 -. "\`晋升或下线\`" .-> Feat_knowledge_fUs_govern.I_221Ui_221Src_205
 `;case`carrier002F`:return`---
-title: "SRC 环 · Feature-002-F · 数据载体"
+title: "SRC 环 · Feature-002-F · 数据载体全景"
 ---
 graph TB
   Feat_knowledge_fIn_material@{ shape: rectangle, label: "IN-201 素材入参" }
@@ -1121,7 +1121,7 @@ graph TB
   Feat_knowledge_fCvt_material -. "\`负责 素材→BIZ-201 映射\`" .-> Feat_knowledge_fBiz_candidate
   Feat_knowledge_fCvt_material -. "\`负责 BIZ-201→POD-201 映射\`" .-> Feat_knowledge_fPod_document
 `;case`erm002F-document`:return`---
-title: "SRC 环 · Feature-002-F · 数据模型 · 文档"
+title: "SRC 环 · Feature-002-F · 数据模型全景 · 文档"
 ---
 graph TB
   Feat_knowledge_fPod_document@{ shape: rectangle, label: "POD-201 文档登记实体" }

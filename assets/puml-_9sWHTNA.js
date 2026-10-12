@@ -838,7 +838,7 @@ Feat_knowledge_fUs_alertI_232Ui_232Src_209 .[#8D8D8D,thickness=2].> Feat_knowled
 Feat_knowledge_fPod_document .[#3b82f6,thickness=2].> Feat_knowledge_fDao_registry : <color:#3b82f6>更新登记
 @enduml
 `;case`seq001F-i-001-lanes`:return`@startuml
-title "I 环 · Feature-001-F · 阶段 I-001 泳道流程"
+title "I 环 · Feature-001-F · I-001 泳道流程"
 left to right direction
 
 hide stereotype
@@ -904,7 +904,7 @@ Feat_answer_fLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_0
 Feat_answer_fUs_askI_001I_001_2 .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_001I_001_3 : <color:#8D8D8D>⑦排序择优
 @enduml
 `;case`seq001F-i-003-lanes`:return`@startuml
-title "I 环 · Feature-001-F · 阶段 I-003 泳道流程"
+title "I 环 · Feature-001-F · I-003 泳道流程"
 left to right direction
 
 hide stereotype
@@ -948,7 +948,7 @@ Feat_answer_fUs_askI_003I_003_1 .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_00
 Feat_answer_fUs_askI_003I_003_2 .[#8D8D8D,thickness=2].> Feat_answer_fLane_clientActor_customer : <color:#8D8D8D>③答复送达
 @enduml
 `;case`seq001F-i-012-lanes`:return`@startuml
-title "I 环 · Feature-001-F · 阶段 I-012 泳道流程"
+title "I 环 · Feature-001-F · I-012 泳道流程"
 left to right direction
 
 hide stereotype
@@ -992,7 +992,7 @@ Feat_answer_fUs_lowConfidenceI_012I_012_1 .[#8D8D8D,thickness=2].> Feat_answer_f
 Feat_answer_fUs_lowConfidenceI_012I_012_2 .[#8D8D8D,thickness=2].> Feat_answer_fLane_clientActor_customer : <color:#8D8D8D>③告知等待
 @enduml
 `;case`seq001NF-i-111-lanes`:return`@startuml
-title "I 环 · Feature-001-NF · 阶段 I-111 泳道流程"
+title "I 环 · Feature-001-NF · I-111 泳道流程"
 left to right direction
 
 hide stereotype
@@ -1029,7 +1029,7 @@ Feat_degrade_nfLane_operatorActor_ops .[#8D8D8D,thickness=2].> Feat_degrade_nfUs
 Feat_degrade_nfUs_kbEmptyI_111I_111_1 .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_111I_111_2 : <color:#8D8D8D>②判定零条场景
 @enduml
 `;case`seq001NF-i-121-lanes`:return`@startuml
-title "I 环 · Feature-001-NF · 阶段 I-121 泳道流程"
+title "I 环 · Feature-001-NF · I-121 泳道流程"
 left to right direction
 
 hide stereotype
@@ -1066,7 +1066,7 @@ Feat_degrade_nfUs_ragTimeoutI_121I_121_1 .[#8D8D8D,thickness=2].> Feat_answer_fL
 Feat_answer_fLane_extExt_ragflow .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_ragTimeoutI_121I_121_2 : <color:#8D8D8D>②到期判定
 @enduml
 `;case`seq001NF-i-132-lanes`:return`@startuml
-title "I 环 · Feature-001-NF · 阶段 I-132 泳道流程"
+title "I 环 · Feature-001-NF · I-132 泳道流程"
 left to right direction
 
 hide stereotype
@@ -1103,7 +1103,7 @@ Feat_degrade_nfUs_llmDownI_132I_132_1 .[#8D8D8D,thickness=2].> Feat_degrade_nfUs
 Feat_degrade_nfUs_llmDownI_132I_132_2 .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_llmDownI_132Ui_132Src_106 : <color:#8D8D8D>②告警落库
 @enduml
 `;case`seq002F-i-211-lanes`:return`@startuml
-title "I 环 · Feature-002-F · 阶段 I-211 泳道流程"
+title "I 环 · Feature-002-F · I-211 泳道流程"
 left to right direction
 
 hide stereotype
@@ -1154,7 +1154,7 @@ Feat_knowledge_fUs_scanI_211I_211_1 .[#8D8D8D,thickness=2].> Feat_knowledge_fUs_
 Feat_knowledge_fUs_scanI_211I_211_2 .[#8D8D8D,thickness=2].> Feat_knowledge_fUs_scanI_211I_211_3 : <color:#8D8D8D>④提交候选
 @enduml
 `;case`seq002F-i-221-lanes`:return`@startuml
-title "I 环 · Feature-002-F · 阶段 I-221 泳道流程"
+title "I 环 · Feature-002-F · I-221 泳道流程"
 left to right direction
 
 hide stereotype
@@ -1198,7 +1198,7 @@ Feat_knowledge_fUs_governI_221I_221_1 .[#8D8D8D,thickness=2].> Feat_knowledge_fU
 Feat_knowledge_fUs_governI_221I_221_2 .[#8D8D8D,thickness=2].> Feat_knowledge_fUs_governI_221I_221_3 : <color:#8D8D8D>③批准晋升或驳回
 @enduml
 `;case`seq002F-i-231-lanes`:return`@startuml
-title "I 环 · Feature-002-F · 阶段 I-231 泳道流程"
+title "I 环 · Feature-002-F · I-231 泳道流程"
 left to right direction
 
 hide stereotype
@@ -2649,7 +2649,7 @@ Feat_answer_fUs_ask .[#0ea5e9,thickness=2].> Feat_answer_fF_answer : <color:#0ea
 Feat_answer_fUs_lowConfidence .[#0ea5e9,thickness=2].> Feat_answer_fF_retrieval : <color:#0ea5e9>要求
 @enduml
 `;case`chain001F-i-001`:return`@startuml
-title "I 环 · Feature-001-F · 阶段 I-001 取得可靠候选知识"
+title "I 环 · Feature-001-F · I-001 取得可靠候选知识"
 top to bottom direction
 
 hide stereotype
@@ -2717,7 +2717,7 @@ Feat_answer_fUs_askI_001St_001_normalizing .[#8D8D8D,thickness=2].> Feat_answer_
 Feat_answer_fUs_askI_001St_001_searching .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_001St_001_got : <color:#8D8D8D>检索返回候选条目
 @enduml
 `;case`chain001F-i-002`:return`@startuml
-title "I 环 · Feature-001-F · 阶段 I-002 判定可否自动答复"
+title "I 环 · Feature-001-F · I-002 判定可否自动答复"
 top to bottom direction
 
 hide stereotype
@@ -2773,7 +2773,7 @@ Feat_answer_fUs_askI_002St_002_checking .[#8D8D8D,thickness=2].> Feat_answer_fUs
 Feat_answer_fUs_askI_002St_002_checking .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_002St_002_failed : <color:#8D8D8D>置信度不足，转 US-002
 @enduml
 `;case`chain001F-i-003`:return`@startuml
-title "I 环 · Feature-001-F · 阶段 I-003 生成并下发答复"
+title "I 环 · Feature-001-F · I-003 生成并下发答复"
 top to bottom direction
 
 hide stereotype
@@ -2835,7 +2835,7 @@ Feat_answer_fUs_askI_003St_003_composing .[#8D8D8D,thickness=2].> Feat_answer_fU
 Feat_answer_fUs_askI_003St_003_delivering .[#8D8D8D,thickness=2].> Feat_answer_fUs_askI_003St_003_answered : <color:#8D8D8D>企业微信回传成功
 @enduml
 `;case`chain001F-i-011`:return`@startuml
-title "I 环 · Feature-001-F · 阶段 I-011 判定进入人工路径"
+title "I 环 · Feature-001-F · I-011 判定进入人工路径"
 top to bottom direction
 
 hide stereotype
@@ -2884,7 +2884,7 @@ Feat_answer_fUs_lowConfidenceI_011St_011_pending .[#8D8D8D,thickness=2].> Feat_a
 Feat_answer_fUs_lowConfidenceI_011St_011_judging .[#8D8D8D,thickness=2].> Feat_answer_fUs_lowConfidenceI_011St_011_escalated : <color:#8D8D8D>确认无可靠候选
 @enduml
 `;case`chain001F-i-012`:return`@startuml
-title "I 环 · Feature-001-F · 阶段 I-012 生成工单并告知等待"
+title "I 环 · Feature-001-F · I-012 生成工单并告知等待"
 top to bottom direction
 
 hide stereotype
@@ -3053,7 +3053,7 @@ Feat_degrade_nfUs_ragTimeout .[#0ea5e9,thickness=2].> Feat_degrade_nfNf_ragTimeo
 Feat_degrade_nfUs_llmDown .[#0ea5e9,thickness=2].> Feat_degrade_nfNf_llmDown : <color:#0ea5e9>要求
 @enduml
 `;case`chain001NF-i-111`:return`@startuml
-title "I 环 · Feature-001-NF · 阶段 I-111 读出条目数并判定空库"
+title "I 环 · Feature-001-NF · I-111 读出条目数并判定空库"
 top to bottom direction
 
 hide stereotype
@@ -3115,7 +3115,7 @@ Feat_degrade_nfUs_kbEmptyI_111St_111_counting .[#8D8D8D,thickness=2].> Feat_degr
 Feat_degrade_nfUs_kbEmptyI_111St_111_counting .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_111St_111_ready : <color:#8D8D8D>条目数大于 0
 @enduml
 `;case`chain001NF-i-112`:return`@startuml
-title "I 环 · Feature-001-NF · 阶段 I-112 把空库显式呈现出来"
+title "I 环 · Feature-001-NF · I-112 把空库显式呈现出来"
 top to bottom direction
 
 hide stereotype
@@ -3164,7 +3164,7 @@ Feat_degrade_nfUs_kbEmptyI_112St_112_pending .[#8D8D8D,thickness=2].> Feat_degra
 Feat_degrade_nfUs_kbEmptyI_112St_112_rendering .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_kbEmptyI_112St_112_shown : <color:#8D8D8D>提示已渲染
 @enduml
 `;case`chain001NF-i-121`:return`@startuml
-title "I 环 · Feature-001-NF · 阶段 I-121 计时并判定超时"
+title "I 环 · Feature-001-NF · I-121 计时并判定超时"
 top to bottom direction
 
 hide stereotype
@@ -3226,7 +3226,7 @@ Feat_degrade_nfUs_ragTimeoutI_121St_121_waiting .[#8D8D8D,thickness=2].> Feat_de
 Feat_degrade_nfUs_ragTimeoutI_121St_121_waiting .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_ragTimeoutI_121St_121_returned : <color:#8D8D8D>8 秒内返回候选
 @enduml
 `;case`chain001NF-i-122`:return`@startuml
-title "I 环 · Feature-001-NF · 阶段 I-122 告知客户系统在处理"
+title "I 环 · Feature-001-NF · I-122 告知客户系统在处理"
 top to bottom direction
 
 hide stereotype
@@ -3275,7 +3275,7 @@ Feat_degrade_nfUs_ragTimeoutI_122St_122_pending .[#8D8D8D,thickness=2].> Feat_de
 Feat_degrade_nfUs_ragTimeoutI_122St_122_notifying .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_ragTimeoutI_122St_122_notified : <color:#8D8D8D>提示已下发
 @enduml
 `;case`chain001NF-i-131`:return`@startuml
-title "I 环 · Feature-001-NF · 阶段 I-131 识别模型不可用并转人工"
+title "I 环 · Feature-001-NF · I-131 识别模型不可用并转人工"
 top to bottom direction
 
 hide stereotype
@@ -3331,7 +3331,7 @@ Feat_degrade_nfUs_llmDownI_131St_131_calling .[#8D8D8D,thickness=2].> Feat_degra
 Feat_degrade_nfUs_llmDownI_131St_131_calling .[#8D8D8D,thickness=2].> Feat_degrade_nfUs_llmDownI_131St_131_ok : <color:#8D8D8D>调用正常返回
 @enduml
 `;case`chain001NF-i-132`:return`@startuml
-title "I 环 · Feature-001-NF · 阶段 I-132 建单并告知等待"
+title "I 环 · Feature-001-NF · I-132 建单并告知等待"
 top to bottom direction
 
 hide stereotype
@@ -3498,7 +3498,7 @@ Feat_knowledge_fUs_govern .[#0ea5e9,thickness=2].> Feat_knowledge_fF_govern : <c
 Feat_knowledge_fUs_alert .[#0ea5e9,thickness=2].> Feat_knowledge_fF_govern : <color:#0ea5e9>要求
 @enduml
 `;case`chain002F-i-211`:return`@startuml
-title "I 环 · Feature-002-F · 阶段 I-211 素材入库并产出候选"
+title "I 环 · Feature-002-F · I-211 素材入库并产出候选"
 top to bottom direction
 
 hide stereotype
@@ -3566,7 +3566,7 @@ Feat_knowledge_fUs_scanI_211St_211_registering .[#8D8D8D,thickness=2].> Feat_kno
 Feat_knowledge_fUs_scanI_211St_211_scanning .[#8D8D8D,thickness=2].> Feat_knowledge_fUs_scanI_211St_211_submitted : <color:#8D8D8D>候选已抽取并提交
 @enduml
 `;case`chain002F-i-221`:return`@startuml
-title "I 环 · Feature-002-F · 阶段 I-221 审阅决策并晋升"
+title "I 环 · Feature-002-F · I-221 审阅决策并晋升"
 top to bottom direction
 
 hide stereotype
@@ -3641,7 +3641,7 @@ Feat_knowledge_fUs_governI_221St_221_decided .[#8D8D8D,thickness=2].> Feat_knowl
 Feat_knowledge_fUs_governI_221St_221_decided .[#8D8D8D,thickness=2].> Feat_knowledge_fUs_governI_221St_221_rejected : <color:#8D8D8D>驳回退回
 @enduml
 `;case`chain002F-i-231`:return`@startuml
-title "I 环 · Feature-002-F · 阶段 I-231 巡检并判定新鲜度"
+title "I 环 · Feature-002-F · I-231 巡检并判定新鲜度"
 top to bottom direction
 
 hide stereotype
@@ -3703,7 +3703,7 @@ Feat_knowledge_fUs_alertI_231St_231_probing .[#8D8D8D,thickness=2].> Feat_knowle
 Feat_knowledge_fUs_alertI_231St_231_probing .[#8D8D8D,thickness=2].> Feat_knowledge_fUs_alertI_231St_231_stale : <color:#8D8D8D>存在超阈值条目
 @enduml
 `;case`chain002F-i-232`:return`@startuml
-title "I 环 · Feature-002-F · 阶段 I-232 上报告警并呈现"
+title "I 环 · Feature-002-F · I-232 上报告警并呈现"
 top to bottom direction
 
 hide stereotype
@@ -3860,7 +3860,7 @@ Feat_answer_fUs_askI_001Ui_001Src_002 .[#15803d,thickness=2].> Feat_answer_fUs_l
 Feat_answer_fUs_lowConfidenceI_012Ui_012Src_006 .[#15803d,thickness=2].> Feat_answer_fUs_askI_003Ui_003Src_007 : <color:#15803d>持久化工单
 @enduml
 `;case`carrier001F`:return`@startuml
-title "SRC 环 · Feature-001-F · 数据载体"
+title "SRC 环 · Feature-001-F · 数据载体全景"
 top to bottom direction
 
 hide stereotype
@@ -3919,7 +3919,7 @@ Feat_answer_fCvt_normalize .[#0ea5e9,thickness=2].> Feat_answer_fIn_chatMessage 
 Feat_answer_fCvt_normalize .[#0ea5e9,thickness=2].> Feat_answer_fOut_answer : <color:#0ea5e9>负责 POD-001→OUT-001 映射
 @enduml
 `;case`erm001F-ticket`:return`@startuml
-title "SRC 环 · Feature-001-F · 数据模型 · 工单"
+title "SRC 环 · Feature-001-F · 数据模型全景 · 工单"
 top to bottom direction
 
 hide stereotype
@@ -4042,7 +4042,7 @@ Feat_degrade_nfUs_kbEmptyI_112Ui_112Src_103 .[#15803d,thickness=2].> Feat_degrad
 Feat_degrade_nfUs_ragTimeoutI_122Ui_122Src_102 .[#15803d,thickness=2].> Feat_degrade_nfUs_llmDownI_132Ui_132Src_106 : <color:#15803d>读取告警快照
 @enduml
 `;case`carrier001NF`:return`@startuml
-title "SRC 环 · Feature-001-NF · 数据载体"
+title "SRC 环 · Feature-001-NF · 数据载体全景"
 top to bottom direction
 
 hide stereotype
@@ -4101,7 +4101,7 @@ Feat_degrade_nfCvt_probe .[#0ea5e9,thickness=2].> Feat_degrade_nfBiz_probeResult
 Feat_degrade_nfCvt_probe .[#0ea5e9,thickness=2].> Feat_degrade_nfPod_alert : <color:#0ea5e9>负责 BIZ-101→POD-101 映射
 @enduml
 `;case`erm001NF-alert`:return`@startuml
-title "SRC 环 · Feature-001-NF · 数据模型 · 告警"
+title "SRC 环 · Feature-001-NF · 数据模型全景 · 告警"
 top to bottom direction
 
 hide stereotype
@@ -4246,7 +4246,7 @@ Feat_knowledge_fUs_alertI_231Ui_231Src_208 .[#15803d,thickness=2].> Feat_knowled
 Feat_knowledge_fUs_alertI_232Ui_232Src_209 .[#15803d,thickness=2].> Feat_knowledge_fUs_governI_221Ui_221Src_205 : <color:#15803d>晋升或下线
 @enduml
 `;case`carrier002F`:return`@startuml
-title "SRC 环 · Feature-002-F · 数据载体"
+title "SRC 环 · Feature-002-F · 数据载体全景"
 top to bottom direction
 
 hide stereotype
@@ -4305,7 +4305,7 @@ Feat_knowledge_fCvt_material .[#0ea5e9,thickness=2].> Feat_knowledge_fBiz_candid
 Feat_knowledge_fCvt_material .[#0ea5e9,thickness=2].> Feat_knowledge_fPod_document : <color:#0ea5e9>负责 BIZ-201→POD-201 映射
 @enduml
 `;case`erm002F-document`:return`@startuml
-title "SRC 环 · Feature-002-F · 数据模型 · 文档"
+title "SRC 环 · Feature-002-F · 数据模型全景 · 文档"
 top to bottom direction
 
 hide stereotype
