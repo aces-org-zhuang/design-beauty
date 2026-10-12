@@ -1,0 +1,158 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-002-F · 知识运营 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+
+  dynamic view dfd002F-src201-1 {
+    variant sequence
+    title 'SRC 环 · Feature-002-F · SRC-201-DFD-001 素材接入数据流'
+    description '归属模块 SRC-201。数据经该模块的流动与转换。'
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_201
+    include feat_knowledge_f.in_material
+    include feat_knowledge_f.lane_ops.actor_operator
+    feat_knowledge_f.lane_ops.actor_operator -> feat_knowledge_f.us_scan.i_211.ui_211.src_201 '上传素材'
+    feat_knowledge_f.us_scan.i_211.ui_211.src_201 -> feat_knowledge_f.in_material '产出 IN-201'
+  }
+
+
+  dynamic view dfd002F-src202-1 {
+    variant sequence
+    title 'SRC 环 · Feature-002-F · SRC-202-DFD-001 知识状态数据流'
+    description '归属模块 SRC-202。数据经该模块的流动与转换。'
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202
+    include feat_knowledge_f.dao_registry
+    include feat_knowledge_f.out_knowledgeStatus
+    feat_knowledge_f.dao_registry -> feat_knowledge_f.us_govern.i_221.ui_221.src_202 '读取登记'
+    feat_knowledge_f.us_govern.i_221.ui_221.src_202 -> feat_knowledge_f.out_knowledgeStatus '产出 OUT-201'
+  }
+
+
+  dynamic view dfd002F-src203-1 {
+    variant sequence
+    title 'SRC 环 · Feature-002-F · SRC-203-DFD-001 素材转换数据流'
+    description '归属模块 SRC-203。数据经该模块的流动与转换。'
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_203
+    include feat_knowledge_f.in_material
+    include feat_knowledge_f.cvt_material
+    include feat_knowledge_f.biz_candidate
+    feat_knowledge_f.in_material -> feat_knowledge_f.us_scan.i_211.ui_211.src_203 '入参校验'
+    feat_knowledge_f.us_scan.i_211.ui_211.src_203 -> feat_knowledge_f.cvt_material '交给转换'
+    feat_knowledge_f.cvt_material -> feat_knowledge_f.biz_candidate '转为 BIZ-201'
+  }
+
+
+  dynamic view dfd002F-src204-1 {
+    variant sequence
+    title 'SRC 环 · Feature-002-F · SRC-204-DFD-001 批量接入数据流'
+    description '归属模块 SRC-204。数据经该模块的流动与转换。'
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_204
+    include feat_knowledge_f.lane_ops.actor_operator
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_203
+    feat_knowledge_f.lane_ops.actor_operator -> feat_knowledge_f.us_scan.i_211.ui_211.src_204 '批量上传'
+    feat_knowledge_f.us_scan.i_211.ui_211.src_204 -> feat_knowledge_f.us_scan.i_211.ui_211.src_203 '逐条接入'
+  }
+
+
+  dynamic view dfd002F-src205-1 {
+    variant sequence
+    title 'SRC 环 · Feature-002-F · SRC-205-DFD-001 文档登记数据流'
+    description '归属模块 SRC-205。数据经该模块的流动与转换。'
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_205
+    include feat_knowledge_f.biz_candidate
+    include feat_knowledge_f.pod_document
+    include feat_knowledge_f.dao_registry
+    feat_knowledge_f.biz_candidate -> feat_knowledge_f.us_govern.i_221.ui_221.src_205 '登记文档标识'
+    feat_knowledge_f.us_govern.i_221.ui_221.src_205 -> feat_knowledge_f.pod_document '生成 POD-201'
+    feat_knowledge_f.pod_document -> feat_knowledge_f.dao_registry '写入'
+  }
+
+
+  dynamic view dfd002F-src206-1 {
+    variant sequence
+    title 'SRC 环 · Feature-002-F · SRC-206-DFD-001 扫描抽取数据流'
+    description '归属模块 SRC-206。数据经该模块的流动与转换。'
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_206
+    include feat_knowledge_f.lane_ext.ext_wiki
+    include feat_knowledge_f.biz_candidate
+    feat_knowledge_f.us_scan.i_211.ui_211.src_206 -> feat_knowledge_f.lane_ext.ext_wiki '读取 wiki 候选'
+    feat_knowledge_f.lane_ext.ext_wiki -> feat_knowledge_f.us_scan.i_211.ui_211.src_206 '返回候选'
+    feat_knowledge_f.us_scan.i_211.ui_211.src_206 -> feat_knowledge_f.biz_candidate '产出候选对象'
+  }
+
+
+  dynamic view dfd002F-src207-1 {
+    variant sequence
+    title 'SRC 环 · Feature-002-F · SRC-207-DFD-001 治理决策数据流'
+    description '归属模块 SRC-207。数据经该模块的流动与转换。'
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_207
+    include feat_knowledge_f.biz_candidate
+    include feat_knowledge_f.pod_document
+    feat_knowledge_f.biz_candidate -> feat_knowledge_f.us_govern.i_221.ui_221.src_207 '候选进入治理'
+    feat_knowledge_f.us_govern.i_221.ui_221.src_207 -> feat_knowledge_f.pod_document '批准后登记'
+  }
+
+
+  dynamic view dfd002F-src208-1 {
+    variant sequence
+    title 'SRC 环 · Feature-002-F · SRC-208-DFD-001 知识同步数据流'
+    description '归属模块 SRC-208。数据经该模块的流动与转换。'
+    include feat_knowledge_f.us_alert.i_231.ui_231.src_208
+    include feat_knowledge_f.lane_ext.ext_ragflow2
+    feat_knowledge_f.us_alert.i_231.ui_231.src_208 -> feat_knowledge_f.lane_ext.ext_ragflow2 '推送已批准知识'
+    feat_knowledge_f.lane_ext.ext_ragflow2 -> feat_knowledge_f.us_alert.i_231.ui_231.src_208 '同步确认'
+  }
+
+
+  dynamic view dfd002F-src209-1 {
+    variant sequence
+    title 'SRC 环 · Feature-002-F · SRC-209-DFD-001 生命周期数据流'
+    description '归属模块 SRC-209。数据经该模块的流动与转换。'
+    include feat_knowledge_f.us_alert.i_232.ui_232.src_209
+    include feat_knowledge_f.pod_document
+    include feat_knowledge_f.dao_registry
+    feat_knowledge_f.us_alert.i_232.ui_232.src_209 -> feat_knowledge_f.pod_document '晋升或下线'
+    feat_knowledge_f.pod_document -> feat_knowledge_f.dao_registry '更新登记'
+  }
+
+
+  dynamic view seq002F-i-211-lanes {
+    variant sequence
+    title 'I 环 · Feature-002-F · I-211 泳道流程'
+    description '按责任分区。'
+    include feat_knowledge_f.lane_ops.actor_operator
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_201
+    include feat_knowledge_f.us_scan.i_211.i_211_1
+    include feat_knowledge_f.us_scan.i_211.i_211_2
+    include feat_knowledge_f.us_scan.i_211.i_211_3
+    feat_knowledge_f.lane_ops.actor_operator -> feat_knowledge_f.us_scan.i_211.ui_211.src_201 '①上传素材'
+    feat_knowledge_f.us_scan.i_211.ui_211.src_201 -> feat_knowledge_f.us_scan.i_211.i_211_1 '②登记素材'
+    feat_knowledge_f.us_scan.i_211.i_211_1 -> feat_knowledge_f.us_scan.i_211.i_211_2 '③抽取候选'
+    feat_knowledge_f.us_scan.i_211.i_211_2 -> feat_knowledge_f.us_scan.i_211.i_211_3 '④提交候选'
+  }
+
+
+  dynamic view seq002F-i-221-lanes {
+    variant sequence
+    title 'I 环 · Feature-002-F · I-221 泳道流程'
+    description '按责任分区。'
+    include feat_knowledge_f.lane_ops.actor_operator
+    include feat_knowledge_f.us_govern.i_221.i_221_1
+    include feat_knowledge_f.us_govern.i_221.i_221_2
+    include feat_knowledge_f.us_govern.i_221.i_221_3
+    feat_knowledge_f.lane_ops.actor_operator -> feat_knowledge_f.us_govern.i_221.i_221_1 '①逐条审阅'
+    feat_knowledge_f.us_govern.i_221.i_221_1 -> feat_knowledge_f.us_govern.i_221.i_221_2 '②记录决策'
+    feat_knowledge_f.us_govern.i_221.i_221_2 -> feat_knowledge_f.us_govern.i_221.i_221_3 '③批准晋升或驳回'
+  }
+
+
+  dynamic view seq002F-i-231-lanes {
+    variant sequence
+    title 'I 环 · Feature-002-F · I-231 泳道流程'
+    description '按责任分区。'
+    include feat_knowledge_f.us_alert.i_231.i_231_1
+    include feat_knowledge_f.us_alert.i_231.i_231_2
+    include feat_knowledge_f.lane_ext.ext_ragflow2
+    feat_knowledge_f.us_alert.i_231.i_231_1 -> feat_knowledge_f.lane_ext.ext_ragflow2 '①巡检数据集'
+    feat_knowledge_f.lane_ext.ext_ragflow2 -> feat_knowledge_f.us_alert.i_231.i_231_2 '②新鲜度判定'
+  }
+}

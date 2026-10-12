@@ -1,0 +1,57 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-002-F · 知识运营 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+  view pano-src-002F {
+    title 'SRC 环 · Feature-002-F · 模块目录全览'
+    description '源码模块目录：每个模块带真实文件路径，MECE 全览。路径见各模块 description。'
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_201
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_203
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_204
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_206
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_207
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_205
+    include feat_knowledge_f.us_alert.i_231.ui_231.src_208
+    include feat_knowledge_f.us_alert.i_232.ui_232.src_209
+  }
+
+  view carrier002F {
+    title 'SRC 环 · Feature-002-F · 数据载体全景'
+    description '本链的数据载体，按角色编号 IN/BIZ/POD/OUT/DAO/CVT。'
+    include feat_knowledge_f.in_material
+    include feat_knowledge_f.biz_candidate
+    include feat_knowledge_f.pod_document
+    include feat_knowledge_f.out_knowledgeStatus
+    include feat_knowledge_f.dao_registry
+    include feat_knowledge_f.cvt_material
+  }
+
+  view erm002F-document {
+    title 'SRC 环 · Feature-002-F · 数据模型全景 · 文档'
+    description '持久化实体与数据访问单元。'
+    include feat_knowledge_f.pod_document
+    include feat_knowledge_f.dao_registry
+  }
+
+  view api002F-src201-1 {
+    title 'SRC 环 · Feature-002-F · SRC-201-API-201 POST /materials 素材接入'
+    description '归属模块 SRC-201。每个接口一张视图。'
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_201
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_201.api_201
+  }
+
+  view api002F-src202-1 {
+    title 'SRC 环 · Feature-002-F · SRC-202-API-202 POST /knowledge/scan 知识扫描'
+    description '归属模块 SRC-202。每个接口一张视图。'
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202.api_202
+  }
+
+  view api002F-src202-2 {
+    title 'SRC 环 · Feature-002-F · SRC-202-API-203 GET /knowledge/status 知识状态'
+    description '归属模块 SRC-202。每个接口一张视图。'
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202.api_203
+  }
+}

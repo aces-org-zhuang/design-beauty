@@ -1,0 +1,40 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-001-NF · 极端场景 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+  view pano-src-001NF {
+    title 'SRC 环 · Feature-001-NF · 模块目录全览'
+    description '源码模块目录：每个模块带真实文件路径，MECE 全览。路径见各模块 description。'
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_101
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_104
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.src_103
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.src_105
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122.src_102
+    include feat_degrade_nf.us_llmDown.i_132.ui_132.src_106
+  }
+
+  view carrier001NF {
+    title 'SRC 环 · Feature-001-NF · 数据载体全景'
+    description '本链的数据载体，按角色编号 IN/BIZ/POD/OUT/DAO/CVT。'
+    include feat_degrade_nf.in_probeQuery
+    include feat_degrade_nf.biz_probeResult
+    include feat_degrade_nf.pod_alert
+    include feat_degrade_nf.out_status
+    include feat_degrade_nf.dao_alert
+    include feat_degrade_nf.cvt_probe
+  }
+
+  view erm001NF-alert {
+    title 'SRC 环 · Feature-001-NF · 数据模型全景 · 告警'
+    description '持久化实体与数据访问单元。'
+    include feat_degrade_nf.pod_alert
+    include feat_degrade_nf.dao_alert
+  }
+
+  view api001NF-src101-1 {
+    title 'SRC 环 · Feature-001-NF · SRC-101-API-101 GET /integration/status 集成状态'
+    description '归属模块 SRC-101。每个接口一张视图。'
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_101
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_101.api_101
+  }
+}

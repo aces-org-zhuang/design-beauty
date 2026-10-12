@@ -1,0 +1,74 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-002-F · 知识运营 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+  view chain002F-us {
+    title 'US 环 · Feature-002-F · 用户故事'
+    description '本链的用户故事。归属锚是 Feature 容器——US 的直接上层。'
+    include feat_knowledge_f
+    include feat_knowledge_f.us_scan
+    include feat_knowledge_f.us_govern
+    include feat_knowledge_f.us_alert
+  }
+
+  view chain002F-f {
+    title 'F 环 · Feature-002-F · 业务能力单元清单'
+    description '本链的业务能力单元与对应 US。US 在此仅用于展示对应关系。'
+    include feat_knowledge_f
+    include feat_knowledge_f.us_scan
+    include feat_knowledge_f.us_govern
+    include feat_knowledge_f.us_alert
+    include feat_knowledge_f.f_ingest
+    include feat_knowledge_f.f_govern
+  }
+
+  view chain002F-i-211 {
+    title 'I 环 · Feature-002-F · I-211 素材入库并产出候选'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_knowledge_f.us_scan.i_211
+    include feat_knowledge_f.us_scan.i_211.st_211_pending
+    include feat_knowledge_f.us_scan.i_211.st_211_registering
+    include feat_knowledge_f.us_scan.i_211.st_211_scanning
+    include feat_knowledge_f.us_scan.i_211.st_211_submitted
+    include feat_knowledge_f.us_scan.i_211.i_211_1
+    include feat_knowledge_f.us_scan.i_211.i_211_2
+    include feat_knowledge_f.us_scan.i_211.i_211_3
+  }
+
+  view chain002F-i-221 {
+    title 'I 环 · Feature-002-F · I-221 审阅决策并晋升'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_knowledge_f.us_govern.i_221
+    include feat_knowledge_f.us_govern.i_221.st_221_pending
+    include feat_knowledge_f.us_govern.i_221.st_221_reviewing
+    include feat_knowledge_f.us_govern.i_221.st_221_decided
+    include feat_knowledge_f.us_govern.i_221.st_221_promoted
+    include feat_knowledge_f.us_govern.i_221.st_221_rejected
+    include feat_knowledge_f.us_govern.i_221.i_221_1
+    include feat_knowledge_f.us_govern.i_221.i_221_2
+    include feat_knowledge_f.us_govern.i_221.i_221_3
+  }
+
+  view chain002F-i-231 {
+    title 'I 环 · Feature-002-F · I-231 巡检并判定新鲜度'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_knowledge_f.us_alert.i_231
+    include feat_knowledge_f.us_alert.i_231.st_231_pending
+    include feat_knowledge_f.us_alert.i_231.st_231_probing
+    include feat_knowledge_f.us_alert.i_231.st_231_fresh
+    include feat_knowledge_f.us_alert.i_231.st_231_stale
+    include feat_knowledge_f.us_alert.i_231.i_231_1
+    include feat_knowledge_f.us_alert.i_231.i_231_2
+  }
+
+  view chain002F-i-232 {
+    title 'I 环 · Feature-002-F · I-232 上报告警并呈现'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_knowledge_f.us_alert.i_232
+    include feat_knowledge_f.us_alert.i_232.st_232_pending
+    include feat_knowledge_f.us_alert.i_232.st_232_reporting
+    include feat_knowledge_f.us_alert.i_232.st_232_listed
+    include feat_knowledge_f.us_alert.i_232.st_232_fixed
+    include feat_knowledge_f.us_alert.i_232.i_232_1
+  }
+}

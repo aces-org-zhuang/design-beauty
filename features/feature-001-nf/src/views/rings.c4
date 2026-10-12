@@ -1,0 +1,92 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-001-NF · 极端场景 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+  view chain001NF-us {
+    title 'US 环 · Feature-001-NF · 用户故事'
+    description '本链的用户故事。归属锚是 Feature 容器——US 的直接上层。'
+    include feat_degrade_nf
+    include feat_degrade_nf.us_kbEmpty
+    include feat_degrade_nf.us_ragTimeout
+    include feat_degrade_nf.us_llmDown
+  }
+
+  view chain001NF-nf {
+    title 'NF 环 · Feature-001-NF · 极端场景单元清单'
+    description '本链的极端场景单元与对应 US。每项答出谁、什么场景、因此得到什么。'
+    include feat_degrade_nf
+    include feat_degrade_nf.us_kbEmpty
+    include feat_degrade_nf.us_ragTimeout
+    include feat_degrade_nf.us_llmDown
+    include feat_degrade_nf.nf_kbEmpty
+    include feat_degrade_nf.nf_ragTimeout
+    include feat_degrade_nf.nf_llmDown
+  }
+
+  view chain001NF-i-111 {
+    title 'I 环 · Feature-001-NF · I-111 读出条目数并判定空库'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_degrade_nf.us_kbEmpty.i_111
+    include feat_degrade_nf.us_kbEmpty.i_111.st_111_pending
+    include feat_degrade_nf.us_kbEmpty.i_111.st_111_counting
+    include feat_degrade_nf.us_kbEmpty.i_111.st_111_empty
+    include feat_degrade_nf.us_kbEmpty.i_111.st_111_ready
+    include feat_degrade_nf.us_kbEmpty.i_111.i_111_1
+    include feat_degrade_nf.us_kbEmpty.i_111.i_111_2
+  }
+
+  view chain001NF-i-112 {
+    title 'I 环 · Feature-001-NF · I-112 把空库显式呈现出来'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_degrade_nf.us_kbEmpty.i_112
+    include feat_degrade_nf.us_kbEmpty.i_112.st_112_pending
+    include feat_degrade_nf.us_kbEmpty.i_112.st_112_rendering
+    include feat_degrade_nf.us_kbEmpty.i_112.st_112_shown
+    include feat_degrade_nf.us_kbEmpty.i_112.i_112_1
+  }
+
+  view chain001NF-i-121 {
+    title 'I 环 · Feature-001-NF · I-121 计时并判定超时'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_degrade_nf.us_ragTimeout.i_121
+    include feat_degrade_nf.us_ragTimeout.i_121.st_121_pending
+    include feat_degrade_nf.us_ragTimeout.i_121.st_121_waiting
+    include feat_degrade_nf.us_ragTimeout.i_121.st_121_timedOut
+    include feat_degrade_nf.us_ragTimeout.i_121.st_121_returned
+    include feat_degrade_nf.us_ragTimeout.i_121.i_121_1
+    include feat_degrade_nf.us_ragTimeout.i_121.i_121_2
+  }
+
+  view chain001NF-i-122 {
+    title 'I 环 · Feature-001-NF · I-122 告知客户系统在处理'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_degrade_nf.us_ragTimeout.i_122
+    include feat_degrade_nf.us_ragTimeout.i_122.st_122_pending
+    include feat_degrade_nf.us_ragTimeout.i_122.st_122_notifying
+    include feat_degrade_nf.us_ragTimeout.i_122.st_122_notified
+    include feat_degrade_nf.us_ragTimeout.i_122.i_122_1
+  }
+
+  view chain001NF-i-131 {
+    title 'I 环 · Feature-001-NF · I-131 识别模型不可用并转人工'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_degrade_nf.us_llmDown.i_131
+    include feat_degrade_nf.us_llmDown.i_131.st_131_pending
+    include feat_degrade_nf.us_llmDown.i_131.st_131_calling
+    include feat_degrade_nf.us_llmDown.i_131.st_131_failed
+    include feat_degrade_nf.us_llmDown.i_131.st_131_ok
+    include feat_degrade_nf.us_llmDown.i_131.i_131_1
+  }
+
+  view chain001NF-i-132 {
+    title 'I 环 · Feature-001-NF · I-132 建单并告知等待'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_degrade_nf.us_llmDown.i_132
+    include feat_degrade_nf.us_llmDown.i_132.st_132_pending
+    include feat_degrade_nf.us_llmDown.i_132.st_132_ticketing
+    include feat_degrade_nf.us_llmDown.i_132.st_132_notified
+    include feat_degrade_nf.us_llmDown.i_132.st_132_handedOff
+    include feat_degrade_nf.us_llmDown.i_132.i_132_1
+    include feat_degrade_nf.us_llmDown.i_132.i_132_2
+  }
+}

@@ -1,0 +1,113 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-001-NF · 极端场景 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+
+  dynamic view dfd001NF-src101-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-NF · SRC-101-DFD-001 状态查询数据流'
+    description '归属模块 SRC-101。数据经该模块的流动与转换。'
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_101
+    include feat_degrade_nf.in_probeQuery
+    include feat_degrade_nf.out_status
+    feat_degrade_nf.in_probeQuery -> feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_101 '入参进入'
+    feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_101 -> feat_degrade_nf.out_status '产出 OUT-101'
+  }
+
+
+  dynamic view dfd001NF-src102-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-NF · SRC-102-DFD-001 发布判定数据流'
+    description '归属模块 SRC-102。数据经该模块的流动与转换。'
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122.src_102
+    include feat_degrade_nf.biz_probeResult
+    include feat_degrade_nf.pod_alert
+    feat_degrade_nf.biz_probeResult -> feat_degrade_nf.us_ragTimeout.i_122.ui_122.src_102 '探测结论判定'
+    feat_degrade_nf.us_ragTimeout.i_122.ui_122.src_102 -> feat_degrade_nf.pod_alert '异常转告警'
+  }
+
+
+  dynamic view dfd001NF-src103-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-NF · SRC-103-DFD-001 空库告警数据流'
+    description '归属模块 SRC-103。数据经该模块的流动与转换。'
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.src_103
+    include feat_degrade_nf.biz_probeResult
+    include feat_degrade_nf.pod_alert
+    feat_degrade_nf.biz_probeResult -> feat_degrade_nf.us_kbEmpty.i_112.ui_112.src_103 '暴露空库'
+    feat_degrade_nf.us_kbEmpty.i_112.ui_112.src_103 -> feat_degrade_nf.pod_alert '写入告警'
+  }
+
+
+  dynamic view dfd001NF-src104-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-NF · SRC-104-DFD-001 探针数据流'
+    description '归属模块 SRC-104。数据经该模块的流动与转换。'
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_104
+    include feat_degrade_nf.biz_probeResult
+    include feat_answer_f.lane_ext.ext_ragflow
+    feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_104 -> feat_answer_f.lane_ext.ext_ragflow '探测数据集'
+    feat_answer_f.lane_ext.ext_ragflow -> feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_104 '返回结论'
+    feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_104 -> feat_degrade_nf.biz_probeResult '产出 BIZ-101'
+  }
+
+
+  dynamic view dfd001NF-src105-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-NF · SRC-105-DFD-001 控制台渲染数据流'
+    description '归属模块 SRC-105。数据经该模块的流动与转换。'
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.src_105
+    include feat_degrade_nf.out_status
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.ui_112_info_1
+    feat_degrade_nf.out_status -> feat_degrade_nf.us_kbEmpty.i_112.ui_112.src_105 '状态载荷'
+    feat_degrade_nf.us_kbEmpty.i_112.ui_112.src_105 -> feat_degrade_nf.us_kbEmpty.i_112.ui_112.ui_112_info_1 '呈现提示'
+  }
+
+
+  dynamic view dfd001NF-src106-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-NF · SRC-106-DFD-001 告警快照数据流'
+    description '归属模块 SRC-106。数据经该模块的流动与转换。'
+    include feat_degrade_nf.us_llmDown.i_132.ui_132.src_106
+    include feat_degrade_nf.pod_alert
+    include feat_degrade_nf.dao_alert
+    feat_degrade_nf.pod_alert -> feat_degrade_nf.us_llmDown.i_132.ui_132.src_106 '告警数据'
+    feat_degrade_nf.us_llmDown.i_132.ui_132.src_106 -> feat_degrade_nf.dao_alert '写入快照'
+  }
+
+
+  dynamic view seq001NF-i-111-lanes {
+    variant sequence
+    title 'I 环 · Feature-001-NF · I-111 泳道流程'
+    description '按责任分区。'
+    include feat_degrade_nf.lane_operator.actor_ops
+    include feat_degrade_nf.us_kbEmpty.i_111.i_111_1
+    include feat_degrade_nf.us_kbEmpty.i_111.i_111_2
+    feat_degrade_nf.lane_operator.actor_ops -> feat_degrade_nf.us_kbEmpty.i_111.i_111_1 '①发起查询'
+    feat_degrade_nf.us_kbEmpty.i_111.i_111_1 -> feat_degrade_nf.us_kbEmpty.i_111.i_111_2 '②判定零条场景'
+  }
+
+
+  dynamic view seq001NF-i-121-lanes {
+    variant sequence
+    title 'I 环 · Feature-001-NF · I-121 泳道流程'
+    description '按责任分区。'
+    include feat_degrade_nf.us_ragTimeout.i_121.i_121_1
+    include feat_degrade_nf.us_ragTimeout.i_121.i_121_2
+    include feat_answer_f.lane_ext.ext_ragflow
+    feat_degrade_nf.us_ragTimeout.i_121.i_121_1 -> feat_answer_f.lane_ext.ext_ragflow '①等待 RAGFlow 响应'
+    feat_answer_f.lane_ext.ext_ragflow -> feat_degrade_nf.us_ragTimeout.i_121.i_121_2 '②到期判定'
+  }
+
+
+  dynamic view seq001NF-i-132-lanes {
+    variant sequence
+    title 'I 环 · Feature-001-NF · I-132 泳道流程'
+    description '按责任分区。'
+    include feat_degrade_nf.us_llmDown.i_132.i_132_1
+    include feat_degrade_nf.us_llmDown.i_132.i_132_2
+    include feat_degrade_nf.us_llmDown.i_132.ui_132.src_106
+    feat_degrade_nf.us_llmDown.i_132.i_132_1 -> feat_degrade_nf.us_llmDown.i_132.i_132_2 '①工单创建完成'
+    feat_degrade_nf.us_llmDown.i_132.i_132_2 -> feat_degrade_nf.us_llmDown.i_132.ui_132.src_106 '②告警落库'
+  }
+}

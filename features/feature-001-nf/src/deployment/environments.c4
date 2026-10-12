@@ -1,0 +1,75 @@
+// 构建与部署：SRC 的运行投影。交付落地之后产出。
+//
+// 收敛点在这里：两条链的 SRC 最终进同一个制品、同一个运行时。
+// 分出去的是关注点，合回来的是运行现实。
+//
+// 实测约束：
+//   - instanceOf 节点内不可再嵌节点，逻辑挂载与线程树必须并列
+//   - 部署模型自动继承逻辑模型的关系，无需重复声明
+
+deployment {
+  environment local '本地开发环境' {
+    zone appTier '应用层' {
+      vm appVm '本机 8787' {
+        answerInst = instanceOf feat_answer_f.us_ask.i_001.ui_001.src_002
+        degradeInst = instanceOf feat_degrade_nf.us_ragTimeout.i_122.ui_122.src_102
+        knowledgeInst = instanceOf feat_knowledge_f.us_govern.i_221.ui_221.src_202
+
+        processNode serverProc '服务进程 · node src/server.js' {
+          threadNode httpPool 'HTTP 线程池 · 8' { }
+          threadNode fsPool '文件 IO 线程池 · 4' { }
+        }
+
+        processNode scanProc '扫描进程 · node src/scripts/scan.js' {
+          threadNode scanWorker '扫描工作线程 · 2' { }
+        }
+      }
+    }
+
+    zone dataTier '数据层' {
+      vm storeVm '本地文件系统' {
+        processNode storeProc 'JSON 存储读写进程' { }
+      }
+    }
+
+    zone extTier '外部依赖' {
+      ragflow = instanceOf feat_answer_f.lane_ext.ext_ragflow {
+        title 'RAGFlow'
+        technology '本机 9380'
+      }
+      wechat = instanceOf feat_answer_f.lane_ext.ext_wechat {
+        title '企业微信'
+      }
+    }
+  }
+
+  environment prod '生产环境' {
+    zone appTier '应用层' {
+      vm appVm '服务实例 · 2C4G' {
+        answerInstProd = instanceOf feat_answer_f.us_ask.i_001.ui_001.src_002
+        degradeInstProd = instanceOf feat_degrade_nf.us_ragTimeout.i_122.ui_122.src_102
+        knowledgeInstProd = instanceOf feat_knowledge_f.us_govern.i_221.ui_221.src_202
+
+        processNode serverProc '服务进程 · node src/server.js' {
+          threadNode httpPool 'HTTP 线程池 · 32' { }
+          threadNode fsPool '文件 IO 线程池 · 8' { }
+        }
+      }
+    }
+
+    zone dataTier '数据层' {
+      vm storeVm '持久化卷' {
+        processNode storeProc '持久化进程' { }
+      }
+    }
+
+    zone extTier '外部依赖' {
+      ragflow = instanceOf feat_answer_f.lane_ext.ext_ragflow {
+        title 'RAGFlow 托管实例'
+      }
+      wechat = instanceOf feat_answer_f.lane_ext.ext_wechat {
+        title '企业微信客服平台'
+      }
+    }
+  }
+}

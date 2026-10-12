@@ -1,0 +1,9 @@
+// 由 scripts/sync-features.mjs 生成。跨 Feature 全景见主工程（npm run dev）。
+
+views {
+  view index {
+    title 'Feature-002-F · 知识运营 · 各环视图导航'
+    description '本 Feature 配套的完整体系各层视图。跨 Feature 全景（pano-*）与全局导航在主工程。'
+    include feat_knowledge_f
+  }
+}

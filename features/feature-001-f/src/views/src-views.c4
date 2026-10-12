@@ -1,0 +1,51 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-001-F · 应答能力 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+// SRC 视图：模块目录全览 / 载体 / 数据模型 / 模块接口。
+// 每个接口一张视图，title 带模块路径（SRC-001-API-001）。
+
+  view pano-src-001F {
+    title 'SRC 环 · Feature-001-F · 模块目录全览'
+    description '源码模块目录：每个模块带真实文件路径，MECE 全览。路径见各模块 description。'
+    include feat_answer_f.us_ask.i_001.ui_001.src_001
+    include feat_answer_f.us_ask.i_001.ui_001.src_002
+    include feat_answer_f.us_ask.i_001.ui_001.src_005
+    include feat_answer_f.us_ask.i_002.ui_002.src_004
+    include feat_answer_f.us_ask.i_003.ui_003.src_003
+    include feat_answer_f.us_ask.i_003.ui_003.src_007
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.src_006
+  }
+
+  view carrier001F {
+    title 'SRC 环 · Feature-001-F · 数据载体全景'
+    description '本链的数据载体，按角色编号 IN/BIZ/POD/OUT/DAO/CVT。'
+    include feat_answer_f.in_chatMessage
+    include feat_answer_f.biz_query
+    include feat_answer_f.pod_ticket
+    include feat_answer_f.out_answer
+    include feat_answer_f.dao_store
+    include feat_answer_f.cvt_normalize
+  }
+
+  view erm001F-ticket {
+    title 'SRC 环 · Feature-001-F · 数据模型全景 · 工单'
+    description '持久化实体与数据访问单元。'
+    include feat_answer_f.pod_ticket
+    include feat_answer_f.dao_store
+  }
+
+  view api001F-src001-1 {
+    title 'SRC 环 · Feature-001-F · SRC-001-API-001 POST /wechat/callback 微信客服回调'
+    description '归属模块 SRC-001。每个接口一张视图。'
+    include feat_answer_f.us_ask.i_001.ui_001.src_001
+    include feat_answer_f.us_ask.i_001.ui_001.src_001.api_001
+  }
+
+  view api001F-src006-1 {
+    title 'SRC 环 · Feature-001-F · SRC-006-API-002 GET /handoffs 工单列表'
+    description '归属模块 SRC-006。每个接口一张视图。'
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.src_006
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.src_006.api_002
+  }
+}

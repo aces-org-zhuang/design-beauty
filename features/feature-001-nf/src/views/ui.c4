@@ -1,0 +1,136 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-001-NF · 极端场景 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+  view ui001NF-111 {
+    title 'UI 环 · Feature-001-NF · I-111-UI-111 状态查询'
+    description 'UI 单元对应阶段 I-111。单元内含信息设计与交互设计叶子。'
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.ui_111_info_1
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.ui_111_act_1
+  }
+
+  view ui001NF-111-info-1 {
+    title 'UI 环 · Feature-001-NF · UI-111-信息设计-001 条目数展示'
+    description '归属 UI-111。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.ui_111_info_1
+  }
+
+  view ui001NF-111-act-1 {
+    title 'UI 环 · Feature-001-NF · UI-111-交互设计-001 发起查询'
+    description '归属 UI-111。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.ui_111_act_1
+  }
+
+  view ui001NF-112 {
+    title 'UI 环 · Feature-001-NF · I-112-UI-112 空库提示呈现'
+    description 'UI 单元对应阶段 I-112。单元内含信息设计与交互设计叶子。'
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.ui_112_info_1
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.ui_112_act_1
+  }
+
+  view ui001NF-112-info-1 {
+    title 'UI 环 · Feature-001-NF · UI-112-信息设计-001 空库提示信息'
+    description '归属 UI-112。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.ui_112_info_1
+  }
+
+  view ui001NF-112-act-1 {
+    title 'UI 环 · Feature-001-NF · UI-112-交互设计-001 控制台查看'
+    description '归属 UI-112。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.ui_112_act_1
+  }
+
+  view ui001NF-121 {
+    title 'UI 环 · Feature-001-NF · I-121-UI-121 等待反馈'
+    description 'UI 单元对应阶段 I-121。单元内含信息设计与交互设计叶子。'
+    include feat_degrade_nf.us_ragTimeout.i_121.ui_121
+    include feat_degrade_nf.us_ragTimeout.i_121.ui_121.ui_121_info_1
+    include feat_degrade_nf.us_ragTimeout.i_121.ui_121.ui_121_act_1
+  }
+
+  view ui001NF-121-info-1 {
+    title 'UI 环 · Feature-001-NF · UI-121-信息设计-001 等待中提示'
+    description '归属 UI-121。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_ragTimeout.i_121.ui_121
+    include feat_degrade_nf.us_ragTimeout.i_121.ui_121.ui_121_info_1
+  }
+
+  view ui001NF-121-act-1 {
+    title 'UI 环 · Feature-001-NF · UI-121-交互设计-001 免手动刷新'
+    description '归属 UI-121。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_ragTimeout.i_121.ui_121
+    include feat_degrade_nf.us_ragTimeout.i_121.ui_121.ui_121_act_1
+  }
+
+  view ui001NF-122 {
+    title 'UI 环 · Feature-001-NF · I-122-UI-122 处理中提示'
+    description 'UI 单元对应阶段 I-122。单元内含信息设计与交互设计叶子。'
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122.ui_122_info_1
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122.ui_122_act_1
+  }
+
+  view ui001NF-122-info-1 {
+    title 'UI 环 · Feature-001-NF · UI-122-信息设计-001 处理中提示信息'
+    description '归属 UI-122。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122.ui_122_info_1
+  }
+
+  view ui001NF-122-act-1 {
+    title 'UI 环 · Feature-001-NF · UI-122-交互设计-001 提示下发'
+    description '归属 UI-122。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122.ui_122_act_1
+  }
+
+  view ui001NF-131 {
+    title 'UI 环 · Feature-001-NF · I-131-UI-131 调用反馈'
+    description 'UI 单元对应阶段 I-131。单元内含信息设计与交互设计叶子。'
+    include feat_degrade_nf.us_llmDown.i_131.ui_131
+    include feat_degrade_nf.us_llmDown.i_131.ui_131.ui_131_info_1
+    include feat_degrade_nf.us_llmDown.i_131.ui_131.ui_131_act_1
+  }
+
+  view ui001NF-131-info-1 {
+    title 'UI 环 · Feature-001-NF · UI-131-信息设计-001 调用异常提示'
+    description '归属 UI-131。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_llmDown.i_131.ui_131
+    include feat_degrade_nf.us_llmDown.i_131.ui_131.ui_131_info_1
+  }
+
+  view ui001NF-131-act-1 {
+    title 'UI 环 · Feature-001-NF · UI-131-交互设计-001 异常反馈'
+    description '归属 UI-131。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_llmDown.i_131.ui_131
+    include feat_degrade_nf.us_llmDown.i_131.ui_131.ui_131_act_1
+  }
+
+  view ui001NF-132 {
+    title 'UI 环 · Feature-001-NF · I-132-UI-132 转人工告知'
+    description 'UI 单元对应阶段 I-132。单元内含信息设计与交互设计叶子。'
+    include feat_degrade_nf.us_llmDown.i_132.ui_132
+    include feat_degrade_nf.us_llmDown.i_132.ui_132.ui_132_info_1
+    include feat_degrade_nf.us_llmDown.i_132.ui_132.ui_132_act_1
+  }
+
+  view ui001NF-132-info-1 {
+    title 'UI 环 · Feature-001-NF · UI-132-信息设计-001 等待告知信息'
+    description '归属 UI-132。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_llmDown.i_132.ui_132
+    include feat_degrade_nf.us_llmDown.i_132.ui_132.ui_132_info_1
+  }
+
+  view ui001NF-132-act-1 {
+    title 'UI 环 · Feature-001-NF · UI-132-交互设计-001 告警查看'
+    description '归属 UI-132。每个编号叶子一张视图。'
+    include feat_degrade_nf.us_llmDown.i_132.ui_132
+    include feat_degrade_nf.us_llmDown.i_132.ui_132.ui_132_act_1
+  }
+}

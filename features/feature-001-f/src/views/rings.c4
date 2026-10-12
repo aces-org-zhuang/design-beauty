@@ -1,0 +1,83 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-001-F · 应答能力 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+// 分环视图：US / F / NF / 阶段视图。
+// I 环按阶段性目标切分，每阶段一张图，三类内容同图。
+
+  view chain001F-us {
+    title 'US 环 · Feature-001-F · 用户故事'
+    description '本链的用户故事。归属锚是 Feature 容器——US 的直接上层。'
+    include feat_answer_f
+    include feat_answer_f.us_ask
+    include feat_answer_f.us_lowConfidence
+  }
+
+  view chain001F-f {
+    title 'F 环 · Feature-001-F · 业务能力单元清单'
+    description '本链的业务能力单元与对应 US。US 在此仅用于展示对应关系。'
+    include feat_answer_f
+    include feat_answer_f.us_ask
+    include feat_answer_f.us_lowConfidence
+    include feat_answer_f.f_answer
+    include feat_answer_f.f_retrieval
+  }
+
+  view chain001F-i-001 {
+    title 'I 环 · Feature-001-F · I-001 取得可靠候选知识'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_answer_f.us_ask.i_001
+    include feat_answer_f.us_ask.i_001.st_001_pending
+    include feat_answer_f.us_ask.i_001.st_001_normalizing
+    include feat_answer_f.us_ask.i_001.st_001_searching
+    include feat_answer_f.us_ask.i_001.st_001_got
+    include feat_answer_f.us_ask.i_001.i_001_1
+    include feat_answer_f.us_ask.i_001.i_001_2
+    include feat_answer_f.us_ask.i_001.i_001_3
+  }
+
+  view chain001F-i-002 {
+    title 'I 环 · Feature-001-F · I-002 判定可否自动答复'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_answer_f.us_ask.i_002
+    include feat_answer_f.us_ask.i_002.st_002_pending
+    include feat_answer_f.us_ask.i_002.st_002_checking
+    include feat_answer_f.us_ask.i_002.st_002_passed
+    include feat_answer_f.us_ask.i_002.st_002_failed
+    include feat_answer_f.us_ask.i_002.i_002_1
+  }
+
+  view chain001F-i-003 {
+    title 'I 环 · Feature-001-F · I-003 生成并下发答复'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_answer_f.us_ask.i_003
+    include feat_answer_f.us_ask.i_003.st_003_pending
+    include feat_answer_f.us_ask.i_003.st_003_composing
+    include feat_answer_f.us_ask.i_003.st_003_delivering
+    include feat_answer_f.us_ask.i_003.st_003_answered
+    include feat_answer_f.us_ask.i_003.i_003_1
+    include feat_answer_f.us_ask.i_003.i_003_2
+  }
+
+  view chain001F-i-011 {
+    title 'I 环 · Feature-001-F · I-011 判定进入人工路径'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_answer_f.us_lowConfidence.i_011
+    include feat_answer_f.us_lowConfidence.i_011.st_011_pending
+    include feat_answer_f.us_lowConfidence.i_011.st_011_judging
+    include feat_answer_f.us_lowConfidence.i_011.st_011_escalated
+    include feat_answer_f.us_lowConfidence.i_011.i_011_1
+  }
+
+  view chain001F-i-012 {
+    title 'I 环 · Feature-001-F · I-012 生成工单并告知等待'
+    description '一个阶段 = 目标 + 状态 + 步骤，三类内容同图。状态不跨阶段共享。'
+    include feat_answer_f.us_lowConfidence.i_012
+    include feat_answer_f.us_lowConfidence.i_012.st_012_pending
+    include feat_answer_f.us_lowConfidence.i_012.st_012_ticketing
+    include feat_answer_f.us_lowConfidence.i_012.st_012_notified
+    include feat_answer_f.us_lowConfidence.i_012.st_012_answered
+    include feat_answer_f.us_lowConfidence.i_012.i_012_1
+    include feat_answer_f.us_lowConfidence.i_012.i_012_2
+  }
+}

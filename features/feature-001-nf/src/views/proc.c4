@@ -1,0 +1,19 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-001-NF · 极端场景 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+// 构建部署：收敛点。两条链的 SRC 挂在同一个制品与运行时。
+
+  deployment view proc-local {
+    title '构建部署 · 本地开发环境 · 进程与线程'
+    description '本地环境的服务进程与线程构成。instanceOf 与 processNode 并列。'
+    include local.**
+  }
+
+
+  deployment view proc-prod {
+    title '构建部署 · 生产环境 · 进程与线程'
+    description '生产环境的进程与线程构成。两条链的 SRC 同处服务进程——收敛的运行现实。'
+    include prod.**
+  }
+}

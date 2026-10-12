@@ -1,0 +1,100 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-002-F · 知识运营 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+  view ui002F-211 {
+    title 'UI 环 · Feature-002-F · I-211-UI-211 素材上传'
+    description 'UI 单元对应阶段 I-211。单元内含信息设计与交互设计叶子。'
+    include feat_knowledge_f.us_scan.i_211.ui_211
+    include feat_knowledge_f.us_scan.i_211.ui_211.ui_211_info_1
+    include feat_knowledge_f.us_scan.i_211.ui_211.ui_211_act_1
+  }
+
+  view ui002F-211-info-1 {
+    title 'UI 环 · Feature-002-F · UI-211-信息设计-001 上传表单信息'
+    description '归属 UI-211。每个编号叶子一张视图。'
+    include feat_knowledge_f.us_scan.i_211.ui_211
+    include feat_knowledge_f.us_scan.i_211.ui_211.ui_211_info_1
+  }
+
+  view ui002F-211-act-1 {
+    title 'UI 环 · Feature-002-F · UI-211-交互设计-001 上传提交'
+    description '归属 UI-211。每个编号叶子一张视图。'
+    include feat_knowledge_f.us_scan.i_211.ui_211
+    include feat_knowledge_f.us_scan.i_211.ui_211.ui_211_act_1
+  }
+
+  view ui002F-221 {
+    title 'UI 环 · Feature-002-F · I-221-UI-221 审阅工作台'
+    description 'UI 单元对应阶段 I-221。单元内含信息设计与交互设计叶子。'
+    include feat_knowledge_f.us_govern.i_221.ui_221
+    include feat_knowledge_f.us_govern.i_221.ui_221.ui_221_info_1
+    include feat_knowledge_f.us_govern.i_221.ui_221.ui_221_info_2
+    include feat_knowledge_f.us_govern.i_221.ui_221.ui_221_act_1
+  }
+
+  view ui002F-221-info-1 {
+    title 'UI 环 · Feature-002-F · UI-221-信息设计-001 候选条目列表'
+    description '归属 UI-221。每个编号叶子一张视图。'
+    include feat_knowledge_f.us_govern.i_221.ui_221
+    include feat_knowledge_f.us_govern.i_221.ui_221.ui_221_info_1
+  }
+
+  view ui002F-221-info-2 {
+    title 'UI 环 · Feature-002-F · UI-221-信息设计-002 决策记录字段'
+    description '归属 UI-221。每个编号叶子一张视图。'
+    include feat_knowledge_f.us_govern.i_221.ui_221
+    include feat_knowledge_f.us_govern.i_221.ui_221.ui_221_info_2
+  }
+
+  view ui002F-221-act-1 {
+    title 'UI 环 · Feature-002-F · UI-221-交互设计-001 批准驳回操作'
+    description '归属 UI-221。每个编号叶子一张视图。'
+    include feat_knowledge_f.us_govern.i_221.ui_221
+    include feat_knowledge_f.us_govern.i_221.ui_221.ui_221_act_1
+  }
+
+  view ui002F-231 {
+    title 'UI 环 · Feature-002-F · I-231-UI-231 巡检状态'
+    description 'UI 单元对应阶段 I-231。单元内含信息设计与交互设计叶子。'
+    include feat_knowledge_f.us_alert.i_231.ui_231
+    include feat_knowledge_f.us_alert.i_231.ui_231.ui_231_info_1
+    include feat_knowledge_f.us_alert.i_231.ui_231.ui_231_act_1
+  }
+
+  view ui002F-231-info-1 {
+    title 'UI 环 · Feature-002-F · UI-231-信息设计-001 新鲜度状态'
+    description '归属 UI-231。每个编号叶子一张视图。'
+    include feat_knowledge_f.us_alert.i_231.ui_231
+    include feat_knowledge_f.us_alert.i_231.ui_231.ui_231_info_1
+  }
+
+  view ui002F-231-act-1 {
+    title 'UI 环 · Feature-002-F · UI-231-交互设计-001 触发巡检'
+    description '归属 UI-231。每个编号叶子一张视图。'
+    include feat_knowledge_f.us_alert.i_231.ui_231
+    include feat_knowledge_f.us_alert.i_231.ui_231.ui_231_act_1
+  }
+
+  view ui002F-232 {
+    title 'UI 环 · Feature-002-F · I-232-UI-232 告警呈现'
+    description 'UI 单元对应阶段 I-232。单元内含信息设计与交互设计叶子。'
+    include feat_knowledge_f.us_alert.i_232.ui_232
+    include feat_knowledge_f.us_alert.i_232.ui_232.ui_232_info_1
+    include feat_knowledge_f.us_alert.i_232.ui_232.ui_232_act_1
+  }
+
+  view ui002F-232-info-1 {
+    title 'UI 环 · Feature-002-F · UI-232-信息设计-001 告警列表'
+    description '归属 UI-232。每个编号叶子一张视图。'
+    include feat_knowledge_f.us_alert.i_232.ui_232
+    include feat_knowledge_f.us_alert.i_232.ui_232.ui_232_info_1
+  }
+
+  view ui002F-232-act-1 {
+    title 'UI 环 · Feature-002-F · UI-232-交互设计-001 告警处理'
+    description '归属 UI-232。每个编号叶子一张视图。'
+    include feat_knowledge_f.us_alert.i_232.ui_232
+    include feat_knowledge_f.us_alert.i_232.ui_232.ui_232_act_1
+  }
+}

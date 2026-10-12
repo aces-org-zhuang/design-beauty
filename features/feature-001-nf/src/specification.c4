@@ -1,0 +1,181 @@
+// architecture-design 体系 · specification
+//
+// 体系：产品愿景 → Feature 分叉 → 两条完整链 → 构建部署收敛
+//   Feature-001-F   能力链（按业务能力切）
+//   Feature-001-NF  极端场景链（按极端场景切）
+//
+// 语法特性以 likec4 1.58.0 实测为准。已验证的关键约束：
+//   - shape 合法值不含 hexagon / database
+//   - color 合法值不含 purple
+//   - views 块内不支持 // 注释
+//   - dynamic view 不支持 of <容器>
+//   - instanceOf 节点内不可再嵌节点
+//   - 父子之间不可连边（包含关系由嵌套表达）
+//   - 链式写边 a.kind b.kind c 会被当作路径，须拆成独立边
+
+specification {
+  // ---- 设计链各环 ----
+
+  element feature {
+    style {
+      shape rectangle
+    }
+  }
+
+  element userStory {
+    style {
+      shape document
+    }
+  }
+
+  // F 链：业务能力单元（与 US 并列，非路径环节）
+  element function {
+    style {
+      shape rectangle
+    }
+  }
+
+  // NF 链：极端场景单元（与 US 并列，非路径环节）
+  element nonFunction {
+    style {
+      shape mobile
+    }
+  }
+
+  element implStep {
+    style {
+      shape rectangle
+    }
+  }
+
+  element uiSurface {
+    style {
+      shape browser
+    }
+  }
+
+  element srcUnit {
+    style {
+      shape component
+    }
+  }
+
+  element state {
+    style {
+      shape rectangle
+    }
+  }
+
+  // ---- SRC 环：对外接口 ----
+
+  element apiEndpoint {
+    style {
+      shape rectangle
+    }
+  }
+
+  // ---- SRC 环：数据载体（按角色，不按 PO/VO/BO/DTO 术语） ----
+
+  // IN   入参载体
+  element dto {
+    style {
+      shape rectangle
+    }
+  }
+  // OUT  出参载体
+  element vo {
+    style {
+      shape rectangle
+    }
+  }
+  // BIZ  与 POD  业务载体与持久化载体
+  element entity {
+    style {
+      shape rectangle
+    }
+  }
+  // DAO 数据访问单元
+  element dataAccess {
+    style {
+      shape cylinder
+    }
+  }
+  // CVT 转换单元（无 hexagon，用 mobile）
+  element converter {
+    style {
+      shape mobile
+    }
+  }
+
+  element person {
+    style {
+      shape person
+    }
+  }
+
+  element system
+
+  // ---- 运行时：进程与线程（1.58.0 不自带，须自定义） ----
+
+  deploymentNode environment {
+    style {
+      shape rectangle
+    }
+  }
+  deploymentNode zone {
+    style {
+      shape rectangle
+    }
+  }
+  deploymentNode vm {
+    style {
+      shape rectangle
+    }
+  }
+  deploymentNode processNode {
+    style {
+      shape rectangle
+    }
+  }
+  deploymentNode threadNode {
+    style {
+      shape rectangle
+    }
+  }
+  deploymentNode external {
+    notation 'External'
+    style {
+      color muted
+    }
+  }
+
+  // ---- 四类边：语义必须分开 ----
+
+  // 设计追溯：这个元素为什么存在
+  relationship trace {
+    notation '追溯'
+    line solid
+    color secondary
+  }
+
+  // 运行时依赖：运行时怎么走
+  relationship depends {
+    notation '依赖'
+    line solid
+    color green
+  }
+
+  // 数据流：数据往哪走
+  relationship flow {
+    notation '数据流'
+    line solid
+    color blue
+  }
+
+  // 载体转换：在哪一步换了载体
+  relationship convert {
+    notation '转换'
+    line dashed
+    color muted
+  }
+}

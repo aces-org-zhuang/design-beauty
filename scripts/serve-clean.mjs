@@ -8,6 +8,12 @@
 //
 // 这里在启动前清掉这些变量，让服务只做纯粹的架构图渲染。
 // 已实测：不清变量时 serve 以 ERROR 退出；清掉后正常监听。
+//
+// 用法：node scripts/serve-clean.mjs [sources目录] [端口]
+//   npm run dev          → 主工程（全部视图含跨 Feature 全景），默认 3000
+//   npm run dev:001F     → feature-001-f 独立服务，3001
+//   npm run dev:001NF    → feature-001-nf 独立服务，3002
+//   npm run dev:002F     → feature-002-f 独立服务，3003
 
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
@@ -34,7 +40,8 @@ for (const key of AI_ENV_KEYS) {
   delete env[key];
 }
 
-const port = process.env.LIKEC4_PORT ?? '3000';
+const [targetDir = 'src', portArg] = process.argv.slice(2);
+const port = portArg ?? process.env.LIKEC4_PORT ?? '3000';
 const here = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(here, '..');
 const bin = join(projectRoot, 'node_modules', 'likec4', 'bin', 'likec4.mjs');
@@ -44,10 +51,16 @@ if (!existsSync(bin)) {
   process.exit(1);
 }
 
+const sources = resolve(projectRoot, targetDir);
+if (!existsSync(sources)) {
+  console.error(`找不到 ${sources}\n若是 Feature 工程，先运行 npm run sync:features`);
+  process.exit(1);
+}
+
 // 切到项目目录，保证 serve 读取正确的 workspace
 process.chdir(projectRoot);
 
-const child = spawn(process.execPath, [bin, 'serve', '--port', port], {
+const child = spawn(process.execPath, [bin, 'serve', sources, '--port', port], {
   env,
   stdio: 'inherit',
 });

@@ -1,0 +1,125 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-001-F · 应答能力 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+// UI 视图：单元 + 信息/交互叶子，每个编号单元一张视图。
+// 单元编号镜像阶段号（I-0xx → UI-0xx）。
+
+  view ui001F-001 {
+    title 'UI 环 · Feature-001-F · I-001-UI-001 会话输入'
+    description 'UI 单元对应阶段 I-001。单元内含信息设计与交互设计叶子。'
+    include feat_answer_f.us_ask.i_001.ui_001
+    include feat_answer_f.us_ask.i_001.ui_001.ui_001_info_1
+    include feat_answer_f.us_ask.i_001.ui_001.ui_001_act_1
+  }
+
+  view ui001F-001-info-1 {
+    title 'UI 环 · Feature-001-F · UI-001-信息设计-001 提问输入信息'
+    description '归属 UI-001。每个编号叶子一张视图。'
+    include feat_answer_f.us_ask.i_001.ui_001
+    include feat_answer_f.us_ask.i_001.ui_001.ui_001_info_1
+  }
+
+  view ui001F-001-act-1 {
+    title 'UI 环 · Feature-001-F · UI-001-交互设计-001 提交提问'
+    description '归属 UI-001。每个编号叶子一张视图。'
+    include feat_answer_f.us_ask.i_001.ui_001
+    include feat_answer_f.us_ask.i_001.ui_001.ui_001_act_1
+  }
+
+  view ui001F-002 {
+    title 'UI 环 · Feature-001-F · I-002-UI-002 判定反馈'
+    description 'UI 单元对应阶段 I-002。单元内含信息设计与交互设计叶子。'
+    include feat_answer_f.us_ask.i_002.ui_002
+    include feat_answer_f.us_ask.i_002.ui_002.ui_002_info_1
+    include feat_answer_f.us_ask.i_002.ui_002.ui_002_act_1
+  }
+
+  view ui001F-002-info-1 {
+    title 'UI 环 · Feature-001-F · UI-002-信息设计-001 判定中提示'
+    description '归属 UI-002。每个编号叶子一张视图。'
+    include feat_answer_f.us_ask.i_002.ui_002
+    include feat_answer_f.us_ask.i_002.ui_002.ui_002_info_1
+  }
+
+  view ui001F-002-act-1 {
+    title 'UI 环 · Feature-001-F · UI-002-交互设计-001 等待免刷新'
+    description '归属 UI-002。每个编号叶子一张视图。'
+    include feat_answer_f.us_ask.i_002.ui_002
+    include feat_answer_f.us_ask.i_002.ui_002.ui_002_act_1
+  }
+
+  view ui001F-003 {
+    title 'UI 环 · Feature-001-F · I-003-UI-003 答复呈现'
+    description 'UI 单元对应阶段 I-003。单元内含信息设计与交互设计叶子。'
+    include feat_answer_f.us_ask.i_003.ui_003
+    include feat_answer_f.us_ask.i_003.ui_003.ui_003_info_1
+    include feat_answer_f.us_ask.i_003.ui_003.ui_003_info_2
+    include feat_answer_f.us_ask.i_003.ui_003.ui_003_act_1
+  }
+
+  view ui001F-003-info-1 {
+    title 'UI 环 · Feature-001-F · UI-003-信息设计-001 答复正文字段'
+    description '归属 UI-003。每个编号叶子一张视图。'
+    include feat_answer_f.us_ask.i_003.ui_003
+    include feat_answer_f.us_ask.i_003.ui_003.ui_003_info_1
+  }
+
+  view ui001F-003-info-2 {
+    title 'UI 环 · Feature-001-F · UI-003-信息设计-002 知识来源条目'
+    description '归属 UI-003。每个编号叶子一张视图。'
+    include feat_answer_f.us_ask.i_003.ui_003
+    include feat_answer_f.us_ask.i_003.ui_003.ui_003_info_2
+  }
+
+  view ui001F-003-act-1 {
+    title 'UI 环 · Feature-001-F · UI-003-交互设计-001 答复同屏呈现'
+    description '归属 UI-003。每个编号叶子一张视图。'
+    include feat_answer_f.us_ask.i_003.ui_003
+    include feat_answer_f.us_ask.i_003.ui_003.ui_003_act_1
+  }
+
+  view ui001F-011 {
+    title 'UI 环 · Feature-001-F · I-011-UI-011 转接提示'
+    description 'UI 单元对应阶段 I-011。单元内含信息设计与交互设计叶子。'
+    include feat_answer_f.us_lowConfidence.i_011.ui_011
+    include feat_answer_f.us_lowConfidence.i_011.ui_011.ui_011_info_1
+    include feat_answer_f.us_lowConfidence.i_011.ui_011.ui_011_act_1
+  }
+
+  view ui001F-011-info-1 {
+    title 'UI 环 · Feature-001-F · UI-011-信息设计-001 转接中提示'
+    description '归属 UI-011。每个编号叶子一张视图。'
+    include feat_answer_f.us_lowConfidence.i_011.ui_011
+    include feat_answer_f.us_lowConfidence.i_011.ui_011.ui_011_info_1
+  }
+
+  view ui001F-011-act-1 {
+    title 'UI 环 · Feature-001-F · UI-011-交互设计-001 转接反馈'
+    description '归属 UI-011。每个编号叶子一张视图。'
+    include feat_answer_f.us_lowConfidence.i_011.ui_011
+    include feat_answer_f.us_lowConfidence.i_011.ui_011.ui_011_act_1
+  }
+
+  view ui001F-012 {
+    title 'UI 环 · Feature-001-F · I-012-UI-012 转人工告知'
+    description 'UI 单元对应阶段 I-012。单元内含信息设计与交互设计叶子。'
+    include feat_answer_f.us_lowConfidence.i_012.ui_012
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.ui_012_info_1
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.ui_012_act_1
+  }
+
+  view ui001F-012-info-1 {
+    title 'UI 环 · Feature-001-F · UI-012-信息设计-001 等待告知信息'
+    description '归属 UI-012。每个编号叶子一张视图。'
+    include feat_answer_f.us_lowConfidence.i_012.ui_012
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.ui_012_info_1
+  }
+
+  view ui001F-012-act-1 {
+    title 'UI 环 · Feature-001-F · UI-012-交互设计-001 工单状态查看'
+    description '归属 UI-012。每个编号叶子一张视图。'
+    include feat_answer_f.us_lowConfidence.i_012.ui_012
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.ui_012_act_1
+  }
+}

@@ -1,0 +1,144 @@
+// 由 scripts/sync-features.mjs 生成，属于 Feature-001-F · 应答能力 的视图集。
+// 模型改动后运行 npm run sync:features 重新生成，不要手工编辑。
+
+views {
+// SRC 模块数据流（每个模块独立 DFD）+ 阶段泳道流程。
+// title 带模块路径：SRC-001-DFD-001。
+
+  dynamic view dfd001F-src001-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-F · SRC-001-DFD-001 提问进入数据流'
+    description '归属模块 SRC-001。数据经该模块的流动与转换。'
+    include feat_answer_f.us_ask.i_001.ui_001.src_001
+    include feat_answer_f.in_chatMessage
+    include feat_answer_f.cvt_normalize
+    include feat_answer_f.biz_query
+    feat_answer_f.us_ask.i_001.ui_001.src_001 -> feat_answer_f.in_chatMessage '解密产出 IN-001'
+    feat_answer_f.in_chatMessage -> feat_answer_f.cvt_normalize '归一化'
+    feat_answer_f.cvt_normalize -> feat_answer_f.biz_query '转为 BIZ-001'
+  }
+
+
+  dynamic view dfd001F-src002-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-F · SRC-002-DFD-001 编排分发数据流'
+    description '归属模块 SRC-002。数据经该模块的流动与转换。'
+    include feat_answer_f.us_ask.i_001.ui_001.src_002
+    include feat_answer_f.biz_query
+    include feat_answer_f.pod_ticket
+    feat_answer_f.biz_query -> feat_answer_f.us_ask.i_001.ui_001.src_002 '查询进入编排'
+    feat_answer_f.us_ask.i_001.ui_001.src_002 -> feat_answer_f.pod_ticket '低置信度落工单'
+  }
+
+
+  dynamic view dfd001F-src003-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-F · SRC-003-DFD-001 应答生成数据流'
+    description '归属模块 SRC-003。数据经该模块的流动与转换。'
+    include feat_answer_f.us_ask.i_003.ui_003.src_003
+    include feat_answer_f.biz_query
+    include feat_answer_f.out_answer
+    feat_answer_f.biz_query -> feat_answer_f.us_ask.i_003.ui_003.src_003 '候选进入应答循环'
+    feat_answer_f.us_ask.i_003.ui_003.src_003 -> feat_answer_f.out_answer '组装 OUT-001'
+  }
+
+
+  dynamic view dfd001F-src004-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-F · SRC-004-DFD-001 置信度判定数据流'
+    description '归属模块 SRC-004。数据经该模块的流动与转换。'
+    include feat_answer_f.us_ask.i_002.ui_002.src_004
+    include feat_answer_f.biz_query
+    include feat_answer_f.pod_ticket
+    feat_answer_f.biz_query -> feat_answer_f.us_ask.i_002.ui_002.src_004 '查询置信度判定'
+    feat_answer_f.us_ask.i_002.ui_002.src_004 -> feat_answer_f.pod_ticket '不足时标记工单'
+  }
+
+
+  dynamic view dfd001F-src005-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-F · SRC-005-DFD-001 检索数据流'
+    description '归属模块 SRC-005。数据经该模块的流动与转换。'
+    include feat_answer_f.us_ask.i_001.ui_001.src_005
+    include feat_answer_f.biz_query
+    include feat_answer_f.lane_ext.ext_ragflow
+    feat_answer_f.biz_query -> feat_answer_f.us_ask.i_001.ui_001.src_005 '发起检索'
+    feat_answer_f.us_ask.i_001.ui_001.src_005 -> feat_answer_f.lane_ext.ext_ragflow '请求 RAGFlow'
+    feat_answer_f.lane_ext.ext_ragflow -> feat_answer_f.us_ask.i_001.ui_001.src_005 '返回候选'
+  }
+
+
+  dynamic view dfd001F-src006-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-F · SRC-006-DFD-001 工单数据流'
+    description '归属模块 SRC-006。数据经该模块的流动与转换。'
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.src_006
+    include feat_answer_f.pod_ticket
+    include feat_answer_f.dao_store
+    feat_answer_f.pod_ticket -> feat_answer_f.us_lowConfidence.i_012.ui_012.src_006 '工单数据'
+    feat_answer_f.us_lowConfidence.i_012.ui_012.src_006 -> feat_answer_f.dao_store '写入工单'
+  }
+
+
+  dynamic view dfd001F-src007-1 {
+    variant sequence
+    title 'SRC 环 · Feature-001-F · SRC-007-DFD-001 存储读写数据流'
+    description '归属模块 SRC-007。数据经该模块的流动与转换。'
+    include feat_answer_f.us_ask.i_003.ui_003.src_007
+    include feat_answer_f.pod_ticket
+    include feat_answer_f.dao_store
+    include feat_answer_f.out_answer
+    feat_answer_f.pod_ticket -> feat_answer_f.us_ask.i_003.ui_003.src_007 '读取工单'
+    feat_answer_f.us_ask.i_003.ui_003.src_007 -> feat_answer_f.dao_store '落盘'
+    feat_answer_f.dao_store -> feat_answer_f.out_answer '读出答复内容'
+  }
+
+
+  dynamic view seq001F-i-001-lanes {
+    variant sequence
+    title 'I 环 · Feature-001-F · I-001 泳道流程'
+    description '按责任分区。'
+    include feat_answer_f.lane_client.actor_customer
+    include feat_answer_f.us_ask.i_001.ui_001.src_001
+    include feat_answer_f.us_ask.i_001.i_001_1
+    include feat_answer_f.us_ask.i_001.i_001_2
+    include feat_answer_f.us_ask.i_001.i_001_3
+    include feat_answer_f.us_ask.i_001.ui_001.src_005
+    include feat_answer_f.lane_ext.ext_ragflow
+    feat_answer_f.lane_client.actor_customer -> feat_answer_f.us_ask.i_001.ui_001.src_001 '①提交提问'
+    feat_answer_f.us_ask.i_001.ui_001.src_001 -> feat_answer_f.us_ask.i_001.i_001_1 '②解密归一化'
+    feat_answer_f.us_ask.i_001.i_001_1 -> feat_answer_f.us_ask.i_001.i_001_2 '③发起检索'
+    feat_answer_f.us_ask.i_001.i_001_2 -> feat_answer_f.us_ask.i_001.ui_001.src_005 '④请求RAGFlow'
+    feat_answer_f.us_ask.i_001.ui_001.src_005 -> feat_answer_f.lane_ext.ext_ragflow '⑤检索'
+    feat_answer_f.lane_ext.ext_ragflow -> feat_answer_f.us_ask.i_001.ui_001.src_005 '⑥返回候选'
+    feat_answer_f.us_ask.i_001.i_001_2 -> feat_answer_f.us_ask.i_001.i_001_3 '⑦排序择优'
+  }
+
+
+  dynamic view seq001F-i-003-lanes {
+    variant sequence
+    title 'I 环 · Feature-001-F · I-003 泳道流程'
+    description '按责任分区。'
+    include feat_answer_f.us_ask.i_001.ui_001.src_002
+    include feat_answer_f.us_ask.i_003.i_003_1
+    include feat_answer_f.us_ask.i_003.i_003_2
+    include feat_answer_f.lane_client.actor_customer
+    feat_answer_f.us_ask.i_001.ui_001.src_002 -> feat_answer_f.us_ask.i_003.i_003_1 '①校验通过'
+    feat_answer_f.us_ask.i_003.i_003_1 -> feat_answer_f.us_ask.i_003.i_003_2 '②答复就绪'
+    feat_answer_f.us_ask.i_003.i_003_2 -> feat_answer_f.lane_client.actor_customer '③答复送达'
+  }
+
+
+  dynamic view seq001F-i-012-lanes {
+    variant sequence
+    title 'I 环 · Feature-001-F · I-012 泳道流程'
+    description '按责任分区。'
+    include feat_answer_f.us_ask.i_001.ui_001.src_002
+    include feat_answer_f.us_lowConfidence.i_012.i_012_1
+    include feat_answer_f.us_lowConfidence.i_012.i_012_2
+    include feat_answer_f.lane_client.actor_customer
+    feat_answer_f.us_ask.i_001.ui_001.src_002 -> feat_answer_f.us_lowConfidence.i_012.i_012_1 '①判定转人工'
+    feat_answer_f.us_lowConfidence.i_012.i_012_1 -> feat_answer_f.us_lowConfidence.i_012.i_012_2 '②工单创建'
+    feat_answer_f.us_lowConfidence.i_012.i_012_2 -> feat_answer_f.lane_client.actor_customer '③告知等待'
+  }
+}
