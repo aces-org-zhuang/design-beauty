@@ -1657,26 +1657,46 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         penwidth=2,
         style=""
     ];
-    lane_edge [height=2.5,
-        label=<<FONT POINT-SIZE="20">服务端接入泳道</FONT>>,
-        likec4_id="feat_answer_f.lane_edge",
+    api_chatcallback [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">API-001 POST /wechat/callback 微信客服回调</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/wechat-kf-routes.js:12 —<BR/>接收企业微信加密回调。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_answer_f.lane_edge.api_chatCallback",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
-    lane_edge_1 [height=2.5,
-        label=<<FONT POINT-SIZE="20">服务端接入泳道</FONT>>,
-        likec4_id="feat_knowledge_f.lane_edge",
+    api_handofflist [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">API-002 GET /handoffs 工单列表</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/handoff-routes.js:9 — 运营人员查看人工工单。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_answer_f.lane_edge.api_handoffList",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
-    lane_edge -> lane_edge_1 [style=invis];
-    lane_edge_2 [height=2.5,
-        label=<<FONT POINT-SIZE="20">服务端接入泳道</FONT>>,
-        likec4_id="feat_degrade_nf.lane_edge",
+    api_chatcallback -> api_handofflist [style=invis];
+    api_status [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">API-101 GET /integration/status 集成状态</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/integration-routes.js:7 —<BR/>查询集成状态与知识条目数。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_degrade_nf.lane_edge.api_status",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
-    lane_edge_1 -> lane_edge_2 [style=invis];
+    api_handofflist -> api_status [style=invis];
+    api_material [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">API-201 POST /materials 素材接入</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/material-routes.js:8 — 接收素材。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.lane_edge.api_material",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    api_status -> api_material [style=invis];
+    api_scan [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">API-202 POST /knowledge/scan 知识扫描</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/knowledge-routes.js:10 — 触发候选知识扫描。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.lane_edge.api_scan",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    api_status_1 [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">API-203 GET /knowledge/status 知识状态</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/knowledge-routes.js:26 —<BR/>查询扫描与治理状态。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.lane_edge.api_status",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    api_scan -> api_status_1 [style=invis];
 }
 `;case`srcdir001F`:return`digraph {
     graph [TBbalance=min,
@@ -4409,12 +4429,26 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
         penwidth=2,
         style=""
     ];
-    lane_edge [height=2.5,
-        label=<<FONT POINT-SIZE="20">服务端接入泳道</FONT>>,
-        likec4_id="feat_knowledge_f.lane_edge",
+    api_material [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">API-201 POST /materials 素材接入</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/material-routes.js:8 — 接收素材。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.lane_edge.api_material",
         likec4_level=0,
         margin="0.223,0.223",
         width=4.445];
+    api_scan [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">API-202 POST /knowledge/scan 知识扫描</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/knowledge-routes.js:10 — 触发候选知识扫描。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.lane_edge.api_scan",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    api_material -> api_scan [style=invis];
+    api_status [height=2.5,
+        label=<<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4"><TR><TD><FONT POINT-SIZE="20">API-203 GET /knowledge/status 知识状态</FONT></TD></TR><TR><TD><FONT POINT-SIZE="15" COLOR="#bfdbfe">src/routes/knowledge-routes.js:26 —<BR/>查询扫描与治理状态。</FONT></TD></TR></TABLE>>,
+        likec4_id="feat_knowledge_f.lane_edge.api_status",
+        likec4_level=0,
+        margin="0.223,0.223",
+        width=4.445];
+    api_scan -> api_status [style=invis];
 }
 `;case`seq001F-answer`:return`digraph {
   likec4_viewId = "seq001F-answer";
@@ -6927,29 +6961,58 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="350pt" height="810pt"
- viewBox="0.00 0.00 350.00 810.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 795.05)">
-<!-- lane_edge -->
+<svg width="970pt" height="1110pt"
+ viewBox="0.00 0.00 970.00 1110.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 1095.05)">
+<!-- api_chatcallback -->
 <g id="node1" class="node">
-<title>lane_edge</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-780 0,-780 0,-600 320.04,-600 320.04,-780"/>
-<text xml:space="preserve" text-anchor="start" x="101.68" y="-682" font-family="Arial" font-size="20.00" fill="#eff6ff">服务端接入泳道</text>
+<title>api_chatcallback</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="430.26,-1080 0,-1080 0,-900 430.26,-900 430.26,-1080"/>
+<text xml:space="preserve" text-anchor="start" x="20.06" y="-1002" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;001 POST /wechat/callback 微信客服回调</text>
+<text xml:space="preserve" text-anchor="start" x="98.42" y="-979" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/wechat&#45;kf&#45;routes.js:12 —</text>
+<text xml:space="preserve" text-anchor="start" x="146.37" y="-961" font-family="Arial" font-size="15.00" fill="#bfdbfe">接收企业微信加密回调。</text>
 </g>
-<!-- lane_edge_1 -->
+<!-- api_handofflist -->
 <g id="node2" class="node">
-<title>lane_edge_1</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-480 0,-480 0,-300 320.04,-300 320.04,-480"/>
-<text xml:space="preserve" text-anchor="start" x="101.68" y="-382" font-family="Arial" font-size="20.00" fill="#eff6ff">服务端接入泳道</text>
+<title>api_handofflist</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="411.5,-780 18.76,-780 18.76,-600 411.5,-600 411.5,-780"/>
+<text xml:space="preserve" text-anchor="start" x="75.62" y="-693" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;002 GET /handoffs 工单列表</text>
+<text xml:space="preserve" text-anchor="start" x="38.82" y="-670" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/handoff&#45;routes.js:9 — 运营人员查看人工工单。</text>
 </g>
-<!-- lane_edge_2 -->
+<!-- api_status -->
 <g id="node3" class="node">
-<title>lane_edge_2</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-180 0,-180 0,0 320.04,0 320.04,-180"/>
-<text xml:space="preserve" text-anchor="start" x="101.68" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">服务端接入泳道</text>
+<title>api_status</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="412.49,-480 17.77,-480 17.77,-300 412.49,-300 412.49,-480"/>
+<text xml:space="preserve" text-anchor="start" x="37.83" y="-402" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;101 GET /integration/status 集成状态</text>
+<text xml:space="preserve" text-anchor="start" x="99.66" y="-379" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/integration&#45;routes.js:7 —</text>
+<text xml:space="preserve" text-anchor="start" x="133.86" y="-361" font-family="Arial" font-size="15.00" fill="#bfdbfe">查询集成状态与知识条目数。</text>
 </g>
-<!-- lane_edge&#45;&gt;lane_edge_1 -->
-<!-- lane_edge_1&#45;&gt;lane_edge_2 -->
+<!-- api_material -->
+<g id="node4" class="node">
+<title>api_material</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="383.56,-180 46.69,-180 46.69,0 383.56,0 383.56,-180"/>
+<text xml:space="preserve" text-anchor="start" x="66.75" y="-93" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;201 POST /materials 素材接入</text>
+<text xml:space="preserve" text-anchor="start" x="74.67" y="-70" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/material&#45;routes.js:8 — 接收素材。</text>
+</g>
+<!-- api_scan -->
+<g id="node5" class="node">
+<title>api_scan</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="939.71,-1080 540.55,-1080 540.55,-900 939.71,-900 939.71,-1080"/>
+<text xml:space="preserve" text-anchor="start" x="560.6" y="-993" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;202 POST /knowledge/scan 知识扫描</text>
+<text xml:space="preserve" text-anchor="start" x="561.31" y="-970" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/knowledge&#45;routes.js:10 — 触发候选知识扫描。</text>
+</g>
+<!-- api_status_1 -->
+<g id="node6" class="node">
+<title>api_status_1</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="938.6,-780 541.66,-780 541.66,-600 938.6,-600 938.6,-780"/>
+<text xml:space="preserve" text-anchor="start" x="561.72" y="-702" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;203 GET /knowledge/status 知识状态</text>
+<text xml:space="preserve" text-anchor="start" x="619.66" y="-679" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/knowledge&#45;routes.js:26 —</text>
+<text xml:space="preserve" text-anchor="start" x="677.62" y="-661" font-family="Arial" font-size="15.00" fill="#bfdbfe">查询扫描与治理状态。</text>
+</g>
+<!-- api_chatcallback&#45;&gt;api_handofflist -->
+<!-- api_handofflist&#45;&gt;api_status -->
+<!-- api_status&#45;&gt;api_material -->
+<!-- api_scan&#45;&gt;api_status_1 -->
 </g>
 </svg>
 `;case`srcdir001F`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -9019,15 +9082,33 @@ var e=e=>{switch(e){case`proc-local`:return`digraph {
 <!-- Generated by graphviz version 14.1.5 (0)
  -->
 <!-- Pages: 1 -->
-<svg width="350pt" height="210pt"
- viewBox="0.00 0.00 350.00 210.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 195.05)">
-<!-- lane_edge -->
+<svg width="429pt" height="810pt"
+ viewBox="0.00 0.00 429.00 810.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(15.05 795.05)">
+<!-- api_material -->
 <g id="node1" class="node">
-<title>lane_edge</title>
-<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="320.04,-180 0,-180 0,0 320.04,0 320.04,-180"/>
-<text xml:space="preserve" text-anchor="start" x="101.68" y="-82" font-family="Arial" font-size="20.00" fill="#eff6ff">服务端接入泳道</text>
+<title>api_material</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="368.02,-780 31.15,-780 31.15,-600 368.02,-600 368.02,-780"/>
+<text xml:space="preserve" text-anchor="start" x="51.2" y="-693" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;201 POST /materials 素材接入</text>
+<text xml:space="preserve" text-anchor="start" x="59.13" y="-670" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/material&#45;routes.js:8 — 接收素材。</text>
 </g>
+<!-- api_scan -->
+<g id="node2" class="node">
+<title>api_scan</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="399.16,-480 0,-480 0,-300 399.16,-300 399.16,-480"/>
+<text xml:space="preserve" text-anchor="start" x="20.06" y="-393" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;202 POST /knowledge/scan 知识扫描</text>
+<text xml:space="preserve" text-anchor="start" x="20.77" y="-370" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/knowledge&#45;routes.js:10 — 触发候选知识扫描。</text>
+</g>
+<!-- api_status -->
+<g id="node3" class="node">
+<title>api_status</title>
+<polygon fill="#3b82f6" stroke="#2563eb" stroke-width="0" points="398.05,-180 1.11,-180 1.11,0 398.05,0 398.05,-180"/>
+<text xml:space="preserve" text-anchor="start" x="21.17" y="-102" font-family="Arial" font-size="20.00" fill="#eff6ff">API&#45;203 GET /knowledge/status 知识状态</text>
+<text xml:space="preserve" text-anchor="start" x="79.11" y="-79" font-family="Arial" font-size="15.00" fill="#bfdbfe">src/routes/knowledge&#45;routes.js:26 —</text>
+<text xml:space="preserve" text-anchor="start" x="137.07" y="-61" font-family="Arial" font-size="15.00" fill="#bfdbfe">查询扫描与治理状态。</text>
+</g>
+<!-- api_material&#45;&gt;api_scan -->
+<!-- api_scan&#45;&gt;api_status -->
 </g>
 </svg>
 `;case`seq001F-answer`:return`<?xml version="1.0" encoding="UTF-8" standalone="no"?>

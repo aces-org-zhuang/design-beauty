@@ -910,24 +910,42 @@ skinparam {
   shadowing false
 }
 
-skinparam rectangle<<Feat_answer_fLane_edge>>{
+skinparam rectangle<<Feat_answer_fLane_edgeApi_chatCallback>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_knowledge_fLane_edge>>{
+skinparam rectangle<<Feat_answer_fLane_edgeApi_handoffList>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-skinparam rectangle<<Feat_degrade_nfLane_edge>>{
+skinparam rectangle<<Feat_degrade_nfLane_edgeApi_status>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==服务端接入泳道" <<Feat_answer_fLane_edge>> as Feat_answer_fLane_edge
-rectangle "==服务端接入泳道" <<Feat_knowledge_fLane_edge>> as Feat_knowledge_fLane_edge
-rectangle "==服务端接入泳道" <<Feat_degrade_nfLane_edge>> as Feat_degrade_nfLane_edge
+skinparam rectangle<<Feat_knowledge_fLane_edgeApi_material>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fLane_edgeApi_scan>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fLane_edgeApi_status>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+rectangle "==API-001 POST /wechat/callback 微信客服回调\\n\\nsrc/routes/wechat-kf-routes.js:12 — 接收企业微信加密回调。" <<Feat_answer_fLane_edgeApi_chatCallback>> as Feat_answer_fLane_edgeApi_chatCallback
+rectangle "==API-002 GET /handoffs 工单列表\\n\\nsrc/routes/handoff-routes.js:9 — 运营人员查看人工工单。" <<Feat_answer_fLane_edgeApi_handoffList>> as Feat_answer_fLane_edgeApi_handoffList
+rectangle "==API-101 GET /integration/status 集成状态\\n\\nsrc/routes/integration-routes.js:7 — 查询集成状态与知识条目数。" <<Feat_degrade_nfLane_edgeApi_status>> as Feat_degrade_nfLane_edgeApi_status
+rectangle "==API-201 POST /materials 素材接入\\n\\nsrc/routes/material-routes.js:8 — 接收素材。" <<Feat_knowledge_fLane_edgeApi_material>> as Feat_knowledge_fLane_edgeApi_material
+rectangle "==API-202 POST /knowledge/scan 知识扫描\\n\\nsrc/routes/knowledge-routes.js:10 — 触发候选知识扫描。" <<Feat_knowledge_fLane_edgeApi_scan>> as Feat_knowledge_fLane_edgeApi_scan
+rectangle "==API-203 GET /knowledge/status 知识状态\\n\\nsrc/routes/knowledge-routes.js:26 — 查询扫描与治理状态。" <<Feat_knowledge_fLane_edgeApi_status>> as Feat_knowledge_fLane_edgeApi_status
 @enduml
 `;case`srcdir001F`:return`@startuml
 title "SRC 环 · Feature-001-F · 代码结构"
@@ -2479,12 +2497,24 @@ skinparam {
   shadowing false
 }
 
-skinparam rectangle<<Feat_knowledge_fLane_edge>>{
+skinparam rectangle<<Feat_knowledge_fLane_edgeApi_material>>{
   BackgroundColor #3b82f6
   FontColor #eff6ff
   BorderColor #2563eb
 }
-rectangle "==服务端接入泳道" <<Feat_knowledge_fLane_edge>> as Feat_knowledge_fLane_edge
+skinparam rectangle<<Feat_knowledge_fLane_edgeApi_scan>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+skinparam rectangle<<Feat_knowledge_fLane_edgeApi_status>>{
+  BackgroundColor #3b82f6
+  FontColor #eff6ff
+  BorderColor #2563eb
+}
+rectangle "==API-201 POST /materials 素材接入\\n\\nsrc/routes/material-routes.js:8 — 接收素材。" <<Feat_knowledge_fLane_edgeApi_material>> as Feat_knowledge_fLane_edgeApi_material
+rectangle "==API-202 POST /knowledge/scan 知识扫描\\n\\nsrc/routes/knowledge-routes.js:10 — 触发候选知识扫描。" <<Feat_knowledge_fLane_edgeApi_scan>> as Feat_knowledge_fLane_edgeApi_scan
+rectangle "==API-203 GET /knowledge/status 知识状态\\n\\nsrc/routes/knowledge-routes.js:26 — 查询扫描与治理状态。" <<Feat_knowledge_fLane_edgeApi_status>> as Feat_knowledge_fLane_edgeApi_status
 @enduml
 `;case`seq001F-answer`:return`@startuml
 title "SRC 环 · Feature-001-F · 应答主干时序"

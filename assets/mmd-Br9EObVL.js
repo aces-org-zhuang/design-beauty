@@ -239,9 +239,12 @@ graph TB
 title: "SRC 环 · 全部 Feature · 对外接口"
 ---
 graph TB
-  Feat_answer_fLane_edge@{ shape: rectangle, label: "服务端接入泳道" }
-  Feat_knowledge_fLane_edge@{ shape: rectangle, label: "服务端接入泳道" }
-  Feat_degrade_nfLane_edge@{ shape: rectangle, label: "服务端接入泳道" }
+  Feat_answer_fLane_edgeApi_chatCallback@{ shape: rectangle, label: "API-001 POST /wechat/callback 微信客服回调" }
+  Feat_answer_fLane_edgeApi_handoffList@{ shape: rectangle, label: "API-002 GET /handoffs 工单列表" }
+  Feat_degrade_nfLane_edgeApi_status@{ shape: rectangle, label: "API-101 GET /integration/status 集成状态" }
+  Feat_knowledge_fLane_edgeApi_material@{ shape: rectangle, label: "API-201 POST /materials 素材接入" }
+  Feat_knowledge_fLane_edgeApi_scan@{ shape: rectangle, label: "API-202 POST /knowledge/scan 知识扫描" }
+  Feat_knowledge_fLane_edgeApi_status@{ shape: rectangle, label: "API-203 GET /knowledge/status 知识状态" }
 `;case`srcdir001F`:return`---
 title: "SRC 环 · Feature-001-F · 代码结构"
 ---
@@ -632,7 +635,9 @@ graph TB
 title: "SRC 环 · Feature-002-F · 对外接口"
 ---
 graph TB
-  Feat_knowledge_fLane_edge@{ shape: rectangle, label: "服务端接入泳道" }
+  Feat_knowledge_fLane_edgeApi_material@{ shape: rectangle, label: "API-201 POST /materials 素材接入" }
+  Feat_knowledge_fLane_edgeApi_scan@{ shape: rectangle, label: "API-202 POST /knowledge/scan 知识扫描" }
+  Feat_knowledge_fLane_edgeApi_status@{ shape: rectangle, label: "API-203 GET /knowledge/status 知识状态" }
 `;case`seq001F-answer`:return`---
 title: "SRC 环 · Feature-001-F · 应答主干时序"
 ---

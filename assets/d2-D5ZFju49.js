@@ -443,14 +443,23 @@ Feat_degrade_nf.Cvt_probe -> Feat_degrade_nf.Biz_probeResult: "负责 BIZ-101→
 Feat_degrade_nf.Cvt_probe -> Feat_degrade_nf.Pod_alert: "负责 BIZ-101→POD-101 映射"
 `;case`pano-api`:return`direction: down
 
-Feat_answer_fLane_edge: {
-  label: "服务端接入泳道"
+Feat_answer_fLane_edgeApi_chatCallback: {
+  label: "API-001 POST /wechat/callback 微信客服回调"
 }
-Feat_knowledge_fLane_edge: {
-  label: "服务端接入泳道"
+Feat_answer_fLane_edgeApi_handoffList: {
+  label: "API-002 GET /handoffs 工单列表"
 }
-Feat_degrade_nfLane_edge: {
-  label: "服务端接入泳道"
+Feat_degrade_nfLane_edgeApi_status: {
+  label: "API-101 GET /integration/status 集成状态"
+}
+Feat_knowledge_fLane_edgeApi_material: {
+  label: "API-201 POST /materials 素材接入"
+}
+Feat_knowledge_fLane_edgeApi_scan: {
+  label: "API-202 POST /knowledge/scan 知识扫描"
+}
+Feat_knowledge_fLane_edgeApi_status: {
+  label: "API-203 GET /knowledge/status 知识状态"
 }
 `;case`srcdir001F`:return`direction: down
 
@@ -1136,8 +1145,14 @@ Feat_knowledge_fDao_registry: {
 Feat_knowledge_fPod_document -> Feat_knowledge_fDao_registry: "写入文档标识"
 `;case`api002F`:return`direction: down
 
-Feat_knowledge_fLane_edge: {
-  label: "服务端接入泳道"
+Feat_knowledge_fLane_edgeApi_material: {
+  label: "API-201 POST /materials 素材接入"
+}
+Feat_knowledge_fLane_edgeApi_scan: {
+  label: "API-202 POST /knowledge/scan 知识扫描"
+}
+Feat_knowledge_fLane_edgeApi_status: {
+  label: "API-203 GET /knowledge/status 知识状态"
 }
 `;case`seq001F-answer`:return`direction: right
 
