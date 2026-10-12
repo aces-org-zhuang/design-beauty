@@ -25,15 +25,16 @@ const add = (level, where, msg) => violations.push({ level, where, msg })
 
 const VIEW_PREFIXES = [
   { re: /^pano-[a-z][a-z-]*$/, kind: '同类聚合全景', ring: null },
-  // pano-src-001F / pano-src-001NF-notice：跨 Feature 聚合但按 Feature 分图时用
-  { re: /^pano-src-[0-9]{3}(F|NF)(-[a-z][a-z-]*)?$/, kind: 'SRC 同类聚合全景', ring: 'SRC' },
-  { re: /^chain[0-9]{3}(F|NF)-[a-z][a-z-]*$/, kind: '分环视图', ring: 'chain' },
-  { re: /^seq[0-9]{3}(F|NF)-[a-z][a-z-]*$/, kind: '时序', ring: 'seq' },
-  { re: /^dfd[0-9]{3}(F|NF)-[a-z][a-z-]*$/, kind: 'SRC 数据流', ring: 'SRC' },
-  { re: /^carrier[0-9]{3}(F|NF)(-[a-z][a-z-]*)?$/, kind: 'SRC 数据载体', ring: 'SRC' },
-  { re: /^erm[0-9]{3}(F|NF)-[a-z][a-z-]*$/, kind: 'SRC 数据模型', ring: 'SRC' },
-  { re: /^srcdir[0-9]{3}(F|NF)(-[a-z][a-z-]*)?$/, kind: 'SRC 目录', ring: 'SRC' },
-  { re: /^api[0-9]{3}(F|NF)(-[a-z][a-z-]*)?$/, kind: 'SRC 接口', ring: 'SRC' },
+  { re: /^pano-src-[0-9]{3}(F|NF)$/, kind: 'SRC 模块目录全览', ring: 'SRC' },
+  { re: /^chain[0-9]{3}(F|NF)-us$/, kind: 'US 视图', ring: 'US' },
+  { re: /^chain[0-9]{3}(F|NF)-(f|nf)$/, kind: '单元清单视图', ring: null },
+  { re: /^chain[0-9]{3}(F|NF)-i-\d{3}$/, kind: '阶段视图', ring: 'I' },
+  { re: /^ui[0-9]{3}(F|NF)-\d{3}(-(info|act)-\d+)?$/, kind: 'UI 单元/叶子视图', ring: 'UI' },
+  { re: /^seq[0-9]{3}(F|NF)-i-\d{3}-lanes$/, kind: '阶段泳道流程', ring: 'I' },
+  { re: /^dfd[0-9]{3}(F|NF)-src\d{3}-\d+$/, kind: 'SRC 模块数据流', ring: 'SRC' },
+  { re: /^carrier[0-9]{3}(F|NF)$/, kind: 'SRC 数据载体', ring: 'SRC' },
+  { re: /^erm[0-9]{3}(F|NF)-[a-z]+$/, kind: 'SRC 数据模型', ring: 'SRC' },
+  { re: /^api[0-9]{3}(F|NF)-src\d{3}-\d+$/, kind: 'SRC 模块接口', ring: 'SRC' },
   { re: /^proc-[a-z][a-z-]*$/, kind: '构建部署', ring: '构建部署' },
   { re: /^index$/, kind: '导航', ring: null },
 ]
@@ -162,12 +163,12 @@ for (const [feat, byRing] of buckets) {
   }
 }
 
-/* ---------- 5. 一个环是一组固定内容（I 环三类齐备） ---------- */
+/* ---------- 5. 一个环是一组固定内容（I 环按阶段齐备） ---------- */
 
-// I 环固定包含三类内容：业务目标 / 业务状态 / 业务步骤，缺一不可。
-// 业务目标 = implStep 且 title 匹配 I-G<序号>
-// 业务状态 = state 元素
-// 业务步骤 = implStep 且 title 是 I-<三位数字>（非 I-G）
+// I 环按阶段性目标切分：每个阶段元素内部必须同时含业务状态与业务步骤。
+// 业务目标 = 阶段本身（title 匹配 I-xxx 阶段性目标）
+// 业务状态 = state 元素（阶段的直接子）
+// 业务步骤 = implStep 且 title 是 I-xxx-N（阶段的直接子）
 
 const featureIds = new Set(
   Object.keys(model.elements ?? {})
@@ -175,59 +176,44 @@ const featureIds = new Set(
     .filter((id) => model.elements[id]?.kind === 'feature'),
 )
 
-const iRing = new Map() // featureId -> { goal, states, steps }
+const iRing = new Map() // featureId -> [{ states, steps, uiUnit }]
 
 for (const [fqn, el] of Object.entries(model.elements ?? {})) {
-  const title = (el.title ?? '').trim()
+  if (el.kind !== 'implStep') continue
+  if (!/^I-\d{3} 阶段性目标/.test((el.title ?? '').trim())) continue
   const feat = fqn.split('.')[0]
-  if (!featureIds.has(feat)) continue
-
-  if (!iRing.has(feat)) iRing.set(feat, { goal: 0, states: 0, steps: 0 })
-  const bucket = iRing.get(feat)
-
-  if (el.kind === 'state') {
-    bucket.states++
-  } else if (el.kind === 'implStep') {
-    if (/^I-G\d+/.test(title)) bucket.goal++
-    else if (/^I-\d{3}/.test(title)) bucket.steps++
-  }
+  if (!iRing.has(feat)) iRing.set(feat, [])
+  const kids = Object.keys(model.elements ?? {}).filter((k) => k.slice(0, k.lastIndexOf('.')) === fqn)
+  iRing.get(feat).push({
+    fqn,
+    states: kids.filter((k) => model.elements[k].kind === 'state').length,
+    steps: kids.filter((k) => model.elements[k].kind === 'implStep').length,
+    uiUnit: kids.filter((k) => model.elements[k].kind === 'uiSurface').length,
+  })
 }
 
-// 每条链的三类 i 视图是否齐备
 const viewIds = Object.keys(model.views ?? {})
-for (const [feat, b] of iRing) {
-  const label = `${feat} 的 I 环`
+for (const [feat, stages] of iRing) {
+  for (const st of stages) {
+    const label = `${feat} 的 ${st.fqn.split('.').pop()}`
 
-  if (b.goal === 0) {
-    add('ERROR', label, '缺业务目标。每个 Feature 的 I 环必须有且仅有一个业务目标（编号 I-G<n>）')
-  } else if (b.goal > 1) {
-    add('ERROR', label, `有 ${b.goal} 个业务目标，应恰好 1 个`)
+    if (st.states === 0) {
+      add('ERROR', label, '缺业务状态。「本阶段无状态」几乎总是漏做，请补 state 元素与迁移')
+    } else if (st.states < 2) {
+      add('ERROR', label, `业务状态只有 ${st.states} 个，至少需要 2 个且有迁移`)
+    }
+    if (st.steps === 0) {
+      add('ERROR', label, '缺业务步骤。阶段内三类内容（目标/状态/步骤）缺一不可')
+    }
+    if (st.uiUnit === 0) {
+      add('ERROR', label, '缺 UI 单元。每个阶段都要有对应 UI（编号镜像阶段号），确无界面必须显式声明并给理由')
+    }
   }
 
-  if (b.states === 0) {
-    add(
-      'ERROR',
-      label,
-      '缺业务状态。真实系统几乎总有状态，「本链无状态」通常是漏做而非事实。请补 state 元素与迁移关系',
-    )
-  } else if (b.states < 2) {
-    add('ERROR', label, `业务状态只有 ${b.states} 个。单个状态不构成状态机，至少需要 2 个且有迁移`)
-  }
-
-  if (b.steps === 0) {
-    add('ERROR', label, '缺业务步骤。I 环三类内容缺一不可')
-  }
-
-  // 三张视图齐备
-  const hasGoalView = viewIds.some((v) => v.startsWith(`chain`) && v.endsWith('-i-goal'))
-  const hasStateView = viewIds.some((v) => v.startsWith(`chain`) && v.includes('-i-state'))
-  const hasStepView = viewIds.some((v) => v.startsWith(`chain`) && v.includes('-i-step'))
-  const missing = []
-  if (!hasGoalView) missing.push('i-goal')
-  if (!hasStateView) missing.push('i-state')
-  if (!hasStepView) missing.push('i-step')
-  if (missing.length) {
-    add('ERROR', label, `缺视图：${missing.join(' / ')}。每个 I 环都要有目标 / 状态 / 步骤三张视图`)
+  // 每个阶段一张视图
+  const stageViews = viewIds.filter((v) => /^chain\d{3}(F|NF)-i-\d{3}$/.test(v))
+  if (stages.length > 0 && stageViews.length === 0) {
+    add('ERROR', `${feat} 的 I 环`, '缺阶段视图 chain<链>-i-<阶段号>。每个阶段一张图')
   }
 }
 
@@ -241,9 +227,10 @@ for (const [feat, b] of iRing) {
 const NUMBERED_TITLE = [
   /^Feature-\d{3}-(F|NF)\s/,                    // Feature 容器
   /^(US|F|NF|UI|SRC|IN|BIZ|POD|OUT|DAO|CVT|API)-\d{3}(-\d+)?\s/, // 标准编号
-  /^I-\d{3}\s/,                                 // I 业务步骤
-  /^I-G\d+\s/,                                  // I 业务目标
-  /^S-\d{3}\s/,                                 // 业务状态
+  /^UI-\d{3}-(信息设计|交互设计)-\d{3}\s/,       // UI 叶子（信息/交互设计）
+  /^I-\d{3}(-\d+)?\s/,                           // I 阶段 / I 阶段步骤
+  /^I-\d{3}\s*阶段性目标/,                       // I 阶段性目标
+  /^S-\d{3}\s/,                                  // 业务状态
 ]
 
 for (const [id, v] of Object.entries(model.views ?? {})) {
@@ -262,6 +249,27 @@ for (const [id, v] of Object.entries(model.views ?? {})) {
       `全部 ${leaves.length} 个叶子节点都没有体系编号：${unnumbered.map((n) => n.title).join('、')}。
        视图只显示分类容器，没有拆到具体元素。include 容器不会带出子元素，
        必须逐个 include 叶子元素（如 lane_edge.api_xxx）`,
+    )
+  }
+}
+
+/* ---------- 7. 单元视图层级 ≤ 1（全景豁免：祖先链即归属） ---------- */
+
+// 单元视图（chain / ui / dfd / api / carrier / erm）最多跨一层。
+// 全景（pano-*）豁免：跨深层单元聚合时 LikeC4 必然补齐祖先链，
+// 而祖先链（US→阶段→UI→模块）就是目录归属信息，正是全览要表达的。
+
+for (const [id, v] of Object.entries(model.views ?? {})) {
+  if (v._type !== 'element') continue
+  if (id.startsWith('pano-') || id === 'index') continue
+
+  const nodes = v.nodes ?? []
+  const maxLevel = nodes.reduce((m, n) => Math.max(m, n.level ?? 0), 0)
+  if (maxLevel >= 2) {
+    add(
+      'ERROR',
+      `视图 ${id}`,
+      `嵌套层级 ${maxLevel} ≥ 2，单元视图最多跨一层（本环 + 直接上层）。全景视图（pano-*）不受此限`,
     )
   }
 }

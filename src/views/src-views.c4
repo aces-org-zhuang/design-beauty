@@ -1,0 +1,123 @@
+// SRC 视图：模块目录全览 / 载体 / 数据模型 / 模块接口。
+// 每个接口一张视图，title 带模块路径（SRC-001-API-001）。
+
+views {
+  view pano-src-001F {
+    title 'SRC 环 · Feature-001-F · 模块目录全览'
+    description '源码模块目录：每个模块带真实文件路径，MECE 全览。路径见各模块 description。'
+    include feat_answer_f.us_ask.i_001.ui_001.src_001
+    include feat_answer_f.us_ask.i_001.ui_001.src_002
+    include feat_answer_f.us_ask.i_001.ui_001.src_005
+    include feat_answer_f.us_ask.i_002.ui_002.src_004
+    include feat_answer_f.us_ask.i_003.ui_003.src_003
+    include feat_answer_f.us_ask.i_003.ui_003.src_007
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.src_006
+  }
+  view carrier001F {
+    title 'SRC 环 · Feature-001-F · 数据载体'
+    description '本链的数据载体，按角色编号 IN/BIZ/POD/OUT/DAO/CVT。'
+    include feat_answer_f.in_chatMessage
+    include feat_answer_f.biz_query
+    include feat_answer_f.pod_ticket
+    include feat_answer_f.out_answer
+    include feat_answer_f.dao_store
+    include feat_answer_f.cvt_normalize
+  }
+  view erm001F-ticket {
+    title 'SRC 环 · Feature-001-F · 数据模型 · 工单'
+    description '持久化实体与数据访问单元。'
+    include feat_answer_f.pod_ticket
+    include feat_answer_f.dao_store
+  }
+  view api001F-src001-1 {
+    title 'SRC 环 · Feature-001-F · SRC-001-API-001 POST /wechat/callback 微信客服回调'
+    description '归属模块 SRC-001。每个接口一张视图。'
+    include feat_answer_f.us_ask.i_001.ui_001.src_001
+    include feat_answer_f.us_ask.i_001.ui_001.src_001.api_001
+  }
+  view api001F-src006-1 {
+    title 'SRC 环 · Feature-001-F · SRC-006-API-002 GET /handoffs 工单列表'
+    description '归属模块 SRC-006。每个接口一张视图。'
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.src_006
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.src_006.api_002
+  }
+  view pano-src-001NF {
+    title 'SRC 环 · Feature-001-NF · 模块目录全览'
+    description '源码模块目录：每个模块带真实文件路径，MECE 全览。路径见各模块 description。'
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_101
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_104
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.src_103
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112.src_105
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122.src_102
+    include feat_degrade_nf.us_llmDown.i_132.ui_132.src_106
+  }
+  view carrier001NF {
+    title 'SRC 环 · Feature-001-NF · 数据载体'
+    description '本链的数据载体，按角色编号 IN/BIZ/POD/OUT/DAO/CVT。'
+    include feat_degrade_nf.in_probeQuery
+    include feat_degrade_nf.biz_probeResult
+    include feat_degrade_nf.pod_alert
+    include feat_degrade_nf.out_status
+    include feat_degrade_nf.dao_alert
+    include feat_degrade_nf.cvt_probe
+  }
+  view erm001NF-alert {
+    title 'SRC 环 · Feature-001-NF · 数据模型 · 告警'
+    description '持久化实体与数据访问单元。'
+    include feat_degrade_nf.pod_alert
+    include feat_degrade_nf.dao_alert
+  }
+  view api001NF-src101-1 {
+    title 'SRC 环 · Feature-001-NF · SRC-101-API-101 GET /integration/status 集成状态'
+    description '归属模块 SRC-101。每个接口一张视图。'
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_101
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_101.api_101
+  }
+  view pano-src-002F {
+    title 'SRC 环 · Feature-002-F · 模块目录全览'
+    description '源码模块目录：每个模块带真实文件路径，MECE 全览。路径见各模块 description。'
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_201
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_203
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_204
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_206
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_207
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_205
+    include feat_knowledge_f.us_alert.i_231.ui_231.src_208
+    include feat_knowledge_f.us_alert.i_232.ui_232.src_209
+  }
+  view carrier002F {
+    title 'SRC 环 · Feature-002-F · 数据载体'
+    description '本链的数据载体，按角色编号 IN/BIZ/POD/OUT/DAO/CVT。'
+    include feat_knowledge_f.in_material
+    include feat_knowledge_f.biz_candidate
+    include feat_knowledge_f.pod_document
+    include feat_knowledge_f.out_knowledgeStatus
+    include feat_knowledge_f.dao_registry
+    include feat_knowledge_f.cvt_material
+  }
+  view erm002F-document {
+    title 'SRC 环 · Feature-002-F · 数据模型 · 文档'
+    description '持久化实体与数据访问单元。'
+    include feat_knowledge_f.pod_document
+    include feat_knowledge_f.dao_registry
+  }
+  view api002F-src201-1 {
+    title 'SRC 环 · Feature-002-F · SRC-201-API-201 POST /materials 素材接入'
+    description '归属模块 SRC-201。每个接口一张视图。'
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_201
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_201.api_201
+  }
+  view api002F-src202-1 {
+    title 'SRC 环 · Feature-002-F · SRC-202-API-202 POST /knowledge/scan 知识扫描'
+    description '归属模块 SRC-202。每个接口一张视图。'
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202.api_202
+  }
+  view api002F-src202-2 {
+    title 'SRC 环 · Feature-002-F · SRC-202-API-203 GET /knowledge/status 知识状态'
+    description '归属模块 SRC-202。每个接口一张视图。'
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202.api_203
+  }
+}

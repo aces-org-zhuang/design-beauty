@@ -11,9 +11,9 @@ deployment {
   environment local '本地开发环境' {
     zone appTier '应用层' {
       vm appVm '本机 8787' {
-        answerInst = instanceOf feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator
-        degradeInst = instanceOf feat_degrade_nf.src_evaluationGate
-        knowledgeInst = instanceOf feat_knowledge_f.us_alert.i_alert_report.ui_information.src_knowledgeRoutes
+        answerInst = instanceOf feat_answer_f.us_ask.i_001.ui_001.src_002
+        degradeInst = instanceOf feat_degrade_nf.us_ragTimeout.i_122.ui_122.src_102
+        knowledgeInst = instanceOf feat_knowledge_f.us_govern.i_221.ui_221.src_202
 
         processNode serverProc '服务进程 · node src/server.js' {
           threadNode httpPool 'HTTP 线程池 · 8' { }
@@ -46,9 +46,9 @@ deployment {
   environment prod '生产环境' {
     zone appTier '应用层' {
       vm appVm '服务实例 · 2C4G' {
-        answerInstProd = instanceOf feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator
-        degradeInstProd = instanceOf feat_degrade_nf.src_evaluationGate
-        knowledgeInstProd = instanceOf feat_knowledge_f.us_alert.i_alert_report.ui_information.src_knowledgeRoutes
+        answerInstProd = instanceOf feat_answer_f.us_ask.i_001.ui_001.src_002
+        degradeInstProd = instanceOf feat_degrade_nf.us_ragTimeout.i_122.ui_122.src_102
+        knowledgeInstProd = instanceOf feat_knowledge_f.us_govern.i_221.ui_221.src_202
 
         processNode serverProc '服务进程 · node src/server.js' {
           threadNode httpPool 'HTTP 线程池 · 32' { }

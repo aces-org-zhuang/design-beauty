@@ -6,114 +6,241 @@
 // 下钻路径：US → I → UI → SRC，中途不经过 F。
 // F 单元清单与 US 并列，是该链交付的业务能力单元。
 //
-// 所有 SRC 单元与数据载体都绑定真实路径，路径取自 BeautyCustomerService 源码树。
+// **I 环按「阶段性目标」纵向切分**：US 拆成若干阶段，
+// 每个阶段是一个 I-<三位编号> 元素，内部同时含业务状态与业务步骤。
+//
+// **UI 单元对应 I 阶段**：I-0xx → UI-0xx（编号镜像）。
+// 单元内拆成独立编号的信息设计 / 交互设计元素。
+//
+// **SRC 模块嵌在 UI 单元内**（模块与信息/交互叶子并列）。
+// **API 嵌在所属模块内**：API-001 的父元素是暴露它的 SRC-001。
+//
+// 所有 SRC 单元绑定真实路径，取自 BeautyCustomerService 源码树。
 
 model {
   feat_answer_f = feature 'Feature-001-F 知识应答能力' {
     description '按业务能力切分。交付边界：客户在企业微信提问美妆问题，能得到基于知识库的专业答复。所属愿景：让美妆咨询有据可依。'
 
-    // ---- US：本链自己识别 ----
-    //
-    // **I 环元素嵌套在 US 容器内**：归属关系由嵌套表达，不用跨层边。
-    // 这样 I 环视图里能直接看到「这几个步骤属于哪条 US」，不需要连线解释。
+    // ==================== US-001 ====================
 
     us_ask = userStory 'US-001 客户提问获得专业答复' {
       description '作为客户，我在企业微信提问美妆问题，以便拿到有依据的答复而不是广告。验收：答复内容来自知识库检索结果且不含未验证成分。'
 
-      // ---- I 环：业务步骤（本 US 的完整主干） ----
+      // ========== 阶段 I-001：取得可靠候选知识 ==========
 
-      i_ask_normalize = implStep 'I-001 归一化提问' {
-        description '把企业微信加密报文解密并归一化为标准提问，识别客户与问题边界。'
-      }
-      i_ask_retrieve = implStep 'I-002 检索候选知识' {
-        description '按归一化后的查询向 RAGFlow 发起检索，取得候选知识条目与相似度。'
-      }
-      i_ask_rank = implStep 'I-003 候选排序与择优' {
-        description '按相似度与知识新鲜度对候选条目排序，取置信度最高的一条进入校验。'
-      }
-      i_ask_verify = implStep 'I-004 置信度校验' {
-        description '用回复策略的置信度与风险阈值判定是否达标；不达标则转 US-002 的路径。'
-      }
-      i_ask_compose = implStep 'I-005 生成答复' {
-        description '按候选知识组织答复正文，附来源条目，不加入未验证内容。'
-      }
-      i_ask_deliver = implStep 'I-006 下发答复' {
-        description '把答复通过企业微信会话回传给客户，完成本次闭环。'
+      i_001 = implStep 'I-001 阶段性目标 · 取得可靠候选知识' {
+        description '把客户提问变成可用的候选知识条目。这一阶段做完，就掌握了后续判定所需的事实基础。'
 
-        // ---- UI 环：嵌在 I 步骤内 ----
-        //
-        // **UI 的直接上层是 I**，不是 Feature。归属靠嵌套表达，
-        // 视图里 include 本步骤即带出这些界面面。
-        //
-        // **SRC 嵌在 UI 元素内部**：SRC 的直接上层是 UI。
-        // 归属靠嵌套表达，SRC 视图的锚是 UI 容器。
+        st_001_pending = state 'S-001 待检索'
+        st_001_normalizing = state 'S-002 归一化中'
+        st_001_searching = state 'S-003 检索中'
+        st_001_got = state 'S-004 已取得候选'
 
-        ui_interaction = uiSurface 'UI-001 企业微信会话交互' {
-          description '客户在企业微信会话中提问与接收答复；答复与提问同屏呈现。'
+        st_001_pending -> st_001_normalizing '收到企业微信提问'
+        st_001_normalizing -> st_001_searching '归一化完成'
+        st_001_searching -> st_001_got '检索返回候选条目'
 
-          src_wechatCallback = srcUnit 'SRC-001 微信客服回调入口' {
+        i_001_1 = implStep 'I-001-1 归一化提问' {
+          description '把企业微信加密报文解密并归一化为标准提问，识别客户与问题边界。'
+        }
+        i_001_2 = implStep 'I-001-2 检索候选知识' {
+          description '按归一化后的查询向 RAGFlow 发起检索，取得候选知识条目与相似度。'
+        }
+        i_001_3 = implStep 'I-001-3 候选排序与择优' {
+          description '按相似度与知识新鲜度对候选条目排序，取置信度最高的一条进入校验。'
+        }
+
+        // ---- UI-001：对应阶段 I-001 ----
+
+        ui_001 = uiSurface 'UI-001 会话输入' {
+          description '对应阶段性目标 I-001。客户提问的输入界面：提交问题并看到受理反馈。'
+
+          ui_001_info_1 = uiSurface 'UI-001-信息设计-001 提问输入信息' {
+            description '字段：问题原文。覆盖空态（未输入）、加载态（提交中）、错误态（解密失败）、无权限态（未授权会话）。'
+          }
+          ui_001_act_1 = uiSurface 'UI-001-交互设计-001 提交提问' {
+            description '客户发送提问后立即进入等待，无需任何手动操作；提交失败可原位重试。'
+          }
+
+          src_001 = srcUnit 'SRC-001 微信客服回调入口' {
             description 'src/routes/wechat-kf-routes.js — 接收企业微信加密回调并解密分发。'
 
-            wechatRoutes = srcUnit 'SRC-001-1 微信客服路由' {
+            api_001 = apiEndpoint 'API-001 POST /wechat/callback 微信客服回调' {
+              description 'src/routes/wechat-kf-routes.js:12 — 接收企业微信加密回调。'
+            }
+            src_001_1 = srcUnit 'SRC-001-1 微信客服路由' {
               description 'src/routes/wechat-kf-routes.js — 路由注册与报文解密。'
             }
           }
-          src_answerOrchestrator = srcUnit 'SRC-002 应答编排器' {
-            description 'src/services/answer-orchestrator.js — 决定自动应答或转人工。'
+          src_002 = srcUnit 'SRC-002 应答编排器' {
+            description 'src/services/answer-orchestrator.js — 跨阶段编排：自 I-001 入口分发，决定走自动应答（I-002→I-003）还是转人工（I-011）。主属 UI-001 入口分发。'
           }
-          src_answerLoop = srcUnit 'SRC-003 知识应答循环' {
-            description 'src/services/knowledge-answer-loop-service.js — 检索增强的应答循环。'
-          }
-          src_replyPolicy = srcUnit 'SRC-004 回复策略' {
-            description 'src/services/reply-policy-service.js — 置信度与风险阈值判定。'
-          }
-          src_ragflowKnowledge = srcUnit 'SRC-005 RAGFlow 知识检索' {
-            description 'src/services/ragflow-knowledge-service.js — 检索与数据集访问。'
-          }
-          src_handoffService = srcUnit 'SRC-006 转人工服务' {
-            description 'src/services/handoff-service.js — 创建并跟踪人工工单。'
+          src_005 = srcUnit 'SRC-005 RAGFlow 知识检索' {
+            description 'src/services/ragflow-knowledge-service.js — 检索与数据集访问，服务 I-001-2 检索步骤。'
           }
         }
-        ui_information = uiSurface 'UI-002 答复信息设计' {
-          description '展示字段：问题原文、知识来源条目、答复正文。覆盖空态（无检索结果）、加载态（检索中）、错误态（检索失败）、无权限态（未授权知识）。'
+      }
 
-          src_store = srcUnit 'SRC-007 本地存储' {
+      // ========== 阶段 I-002：判定可否自动答复 ==========
+
+      i_002 = implStep 'I-002 阶段性目标 · 判定可否自动答复' {
+        description '用置信度与风险阈值判断这条候选知识是否足以自动答复。这一阶段决定走自动路径还是转人工。'
+
+        st_002_pending = state 'S-005 待校验'
+        st_002_checking = state 'S-006 校验中'
+        st_002_passed = state 'S-007 校验通过'
+        st_002_failed = state 'S-008 置信度不足'
+
+        st_002_pending -> st_002_checking '进入回复策略'
+        st_002_checking -> st_002_passed '置信度达标'
+        st_002_checking -> st_002_failed '置信度不足，转 US-002'
+
+        i_002_1 = implStep 'I-002-1 置信度校验' {
+          description '用回复策略的置信度与风险阈值判定是否达标；不达标则转 US-002 的路径。'
+        }
+
+        // ---- UI-002：对应阶段 I-002 ----
+
+        ui_002 = uiSurface 'UI-002 判定反馈' {
+          description '对应阶段性目标 I-002。判定过程中的客户侧反馈：让客户知道系统在处理。'
+
+          ui_002_info_1 = uiSurface 'UI-002-信息设计-001 判定中提示' {
+            description '字段：处理中状态文案。覆盖加载态（校验中）、错误态（校验服务不可用）。'
+          }
+          ui_002_act_1 = uiSurface 'UI-002-交互设计-001 等待免刷新' {
+            description '判定期间客户无需任何操作，不出现需要手动刷新的界面。'
+          }
+
+          src_004 = srcUnit 'SRC-004 回复策略' {
+            description 'src/services/reply-policy-service.js — 置信度与风险阈值判定。'
+          }
+        }
+      }
+
+      // ========== 阶段 I-003：生成并下发答复 ==========
+
+      i_003 = implStep 'I-003 阶段性目标 · 生成并下发答复' {
+        description '把通过校验的候选知识组织成答复并送达客户。做到这一步本 US 就完成了。'
+
+        st_003_pending = state 'S-009 待生成'
+        st_003_composing = state 'S-010 生成中'
+        st_003_delivering = state 'S-011 下发中'
+        st_003_answered = state 'S-012 已答复'
+
+        st_003_pending -> st_003_composing '校验通过'
+        st_003_composing -> st_003_delivering '答复正文就绪'
+        st_003_delivering -> st_003_answered '企业微信回传成功'
+
+        i_003_1 = implStep 'I-003-1 生成答复' {
+          description '按候选知识组织答复正文，附来源条目，不加入未验证内容。'
+        }
+        i_003_2 = implStep 'I-003-2 下发答复' {
+          description '把答复通过企业微信会话回传给客户，完成本次闭环。'
+        }
+
+        // ---- UI-003：对应阶段 I-003 ----
+
+        ui_003 = uiSurface 'UI-003 答复呈现' {
+          description '对应阶段性目标 I-003。答复的呈现界面：客户在这里读到有据可依的答复。'
+
+          ui_003_info_1 = uiSurface 'UI-003-信息设计-001 答复正文字段' {
+            description '字段：答复正文。覆盖加载态（生成中）、错误态（生成失败转人工）。'
+          }
+          ui_003_info_2 = uiSurface 'UI-003-信息设计-002 知识来源条目' {
+            description '字段：来源知识条目标题与链接。空态：无来源（转人工路径不展示）。'
+          }
+          ui_003_act_1 = uiSurface 'UI-003-交互设计-001 答复同屏呈现' {
+            description '答复与提问同屏呈现，客户无需滚动查找；答复不可编辑。'
+          }
+
+          src_003 = srcUnit 'SRC-003 知识应答循环' {
+            description 'src/services/knowledge-answer-loop-service.js — 检索增强的应答循环。'
+          }
+          src_007 = srcUnit 'SRC-007 本地存储' {
             description 'src/domain/store.js — 以 JSON 文件承载工单与反馈状态。'
           }
         }
       }
     }
 
+    // ==================== US-002 ====================
+
     us_lowConfidence = userStory 'US-002 答不准时转人工而非硬答' {
       description '作为客户，当知识库没有覆盖我的问题时，以便被转给人工而不是收到编造答案。验收：置信度不足时生成人工工单并告知我等待。'
 
-      i_lowEscalate = implStep 'I-011 判定转人工' {
-        description '置信度低于阈值或无候选时，判定进入人工路径。'
+      // ========== 阶段 I-011：判定进入人工路径 ==========
+
+      i_011 = implStep 'I-011 阶段性目标 · 判定进入人工路径' {
+        description '确认这条提问不能自动答复，转入人工。做完后客户不再等待系统硬答。'
+
+        st_011_pending = state 'S-101 待判定'
+        st_011_judging = state 'S-102 判定中'
+        st_011_escalated = state 'S-103 已转人工'
+
+        st_011_pending -> st_011_judging '置信度不足触发'
+        st_011_judging -> st_011_escalated '确认无可靠候选'
+
+        i_011_1 = implStep 'I-011-1 判定转人工' {
+          description '置信度低于阈值或无候选时，判定进入人工路径。'
+        }
+
+        // ---- UI-011：对应阶段 I-011 ----
+
+        ui_011 = uiSurface 'UI-011 转接提示' {
+          description '对应阶段性目标 I-011。转接过程中的客户侧提示：让客户知道正在转入人工。'
+
+          ui_011_info_1 = uiSurface 'UI-011-信息设计-001 转接中提示' {
+            description '字段：转接状态文案。覆盖加载态（判定中）、错误态（转接失败重试）。'
+          }
+          ui_011_act_1 = uiSurface 'UI-011-交互设计-001 转接反馈' {
+            description '转接期间客户可见状态变化，无需重复提问。'
+          }
+        }
       }
-      i_lowTicket = implStep 'I-012 创建人工工单' {
-        description '把提问内容、候选摘要与置信度写入工单，供人工接手。'
-      }
-      i_lowNotify = implStep 'I-013 告知客户等待' {
-        description '在会话中告知客户已转人工并给出预计等待，不做内容性答复。'
+
+      // ========== 阶段 I-012：生成工单并告知等待 ==========
+
+      i_012 = implStep 'I-012 阶段性目标 · 生成工单并告知等待' {
+        description '创建人工工单承接这条提问，并让客户知道等待。做完后 US-002 完成。'
+
+        st_012_pending = state 'S-104 待建单'
+        st_012_ticketing = state 'S-105 建单中'
+        st_012_notified = state 'S-106 已告知等待'
+        st_012_answered = state 'S-107 人工已接管'
+
+        st_012_pending -> st_012_ticketing '判定已转人工'
+        st_012_ticketing -> st_012_notified '工单创建完成'
+        st_012_notified -> st_012_answered '人工接手'
+
+        i_012_1 = implStep 'I-012-1 创建人工工单' {
+          description '把提问内容、候选摘要与置信度写入工单，供人工接手。'
+        }
+        i_012_2 = implStep 'I-012-2 告知客户等待' {
+          description '在会话中告知客户已转人工并给出预计等待，不做内容性答复。'
+        }
+
+        // ---- UI-012：对应阶段 I-012 ----
+
+        ui_012 = uiSurface 'UI-012 转人工告知' {
+          description '对应阶段性目标 I-012。工单创建后的告知界面与运营侧工单查看。'
+
+          ui_012_info_1 = uiSurface 'UI-012-信息设计-001 等待告知信息' {
+            description '字段：预计等待说明。覆盖加载态（建单中）、错误态（建单失败）。'
+          }
+          ui_012_act_1 = uiSurface 'UI-012-交互设计-001 工单状态查看' {
+            description '运营人员通过工单列表查看待接手工单，客户无需操作。'
+          }
+
+          src_006 = srcUnit 'SRC-006 转人工服务' {
+            description 'src/services/handoff-service.js — 创建并跟踪人工工单。'
+
+            api_002 = apiEndpoint 'API-002 GET /handoffs 工单列表' {
+              description 'src/routes/handoff-routes.js:9 — 运营人员查看人工工单。'
+            }
+          }
+        }
       }
     }
-
-    // ---- 业务状态：问答状态机的状态与迁移 ----
-    //
-    // 状态是全局的（跨 US 共享），所以放在 Feature 层而非某个 US 内。
-    // 步骤嵌在 US 内，状态留在 Feature 层——两者归属粒度不同。
-
-    st_received = state 'S-000 已接收'
-    st_retrieving = state 'S-001 检索中'
-    st_answering = state 'S-002 应答中'
-    st_answered = state 'S-003 已答复'
-    st_waitingHuman = state 'S-004 待人工'
-
-    st_received -> st_retrieving '发起检索'
-    st_retrieving -> st_answering '置信度达标'
-    st_retrieving -> st_waitingHuman '置信度不足'
-    st_answering -> st_answered '答复已下发'
-    st_waitingHuman -> st_answered '人工已接管'
 
     // ---- F 单元清单：与 US 并列，非路径环节 ----
 
@@ -123,17 +250,6 @@ model {
     f_retrieval = function 'F-002 知识检索能力' {
       description '从 RAGFlow 检索候选知识并按置信度排序。'
     }
-
-    // ---- I 环 · 业务目标（每条链恰好一个）----
-    //
-    // **I 环固定包含三类内容：目标 / 状态 / 步骤，缺一不可。**
-    // 三类各用独立编号段：目标用 I-G0，状态用 S-0xx，步骤用 I-0xx。
-
-    i_goal = implStep 'I-G0 业务目标' {
-      description '客户提问后得到有据可依的答复，或明确被转人工；两条路径都不产生编造内容。'
-    }
-
-    // ---- SRC 环：代码结构 ----
 
     // ---- SRC 环：数据载体（按角色编号） ----
 
@@ -156,23 +272,14 @@ model {
       description 'src/domain/normalize.js — 覆盖 微信原始报文→IN-001 与 POD-001→OUT-001 两组映射。'
     }
 
-    // ---- 泳道：按调用方向分组，不按操作步骤 ----
+    // ---- 泳道：只是视图分组手段，不是存放位置 ----
+    // API 已嵌在所属模块内，泳道只承载角色与外部系统。
 
     lane_client = feature '客户端泳道' {
       actor_customer = person '客户'
     }
-    lane_edge = feature '服务端接入泳道' {
-      api_chatCallback = apiEndpoint 'API-001 POST /wechat/callback 微信客服回调' {
-        description 'src/routes/wechat-kf-routes.js:12 — 接收企业微信加密回调。'
-      }
-      api_handoffList = apiEndpoint 'API-002 GET /handoffs 工单列表' {
-        description 'src/routes/handoff-routes.js:9 — 运营人员查看人工工单。'
-      }
-    }
-    // 泳道只做分组，**不自造编号**。环节用真实的 I 步骤元素，
-    // 由 seq001F-i-step-lanes 等流程图 include 真实 FQN 表达。
     lane_core = feature '领域层泳道' {
-      description '领域层负责编排与校验。具体环节见 US-001 下的 I-001~I-006、US-002 下的 I-011~I-013，此处不重复定义。'
+      description '领域层负责编排与校验。具体环节见各阶段内的模块与步骤，此处不重复定义。'
     }
     lane_ext = feature '外部依赖泳道' {
       ext_ragflow = system 'RAGFlow' {
@@ -188,47 +295,36 @@ model {
     us_ask .trace f_answer '要求'
     us_lowConfidence .trace f_retrieval '要求'
 
-    // ---- 追溯边：下钻路径 US → I → UI → SRC ----
-    //
-    // **US→I、I→UI、UI→SRC 全部是嵌套关系，不是边关系**，所以这里不画这些边。
-    // 归属由嵌套表达；边只用于跨容器的路径环节。
+    // ---- 追溯边：阶段之间的流转 ----
+    // US→I、I→UI、UI→SRC 全部是嵌套关系，不画边。
 
-    us_lowConfidence .trace i_goal '落为业务目标'
-    i_goal .trace i_ask_deliver '支撑下发环节'
+    us_ask.i_001 .trace us_ask.i_002 '取得候选后进入判定'
+    us_ask.i_002 .trace us_ask.i_003 '校验通过后生成答复'
+    us_ask.i_002 .trace us_lowConfidence.i_011 '校验不通过转人工'
+    us_lowConfidence.i_011 .trace us_lowConfidence.i_012 '判定后建单并告知'
 
     // ---- 依赖边：运行时怎么走 ----
 
-    src_wechatCallback .depends src_answerOrchestrator '分发归一化消息'
-    src_answerOrchestrator .depends src_answerLoop '请求应答'
-    src_answerLoop .depends src_ragflowKnowledge '检索候选知识'
-    src_answerLoop .depends src_replyPolicy '校验置信度'
-    src_answerOrchestrator .depends src_handoffService '低置信度时转人工'
-    src_handoffService .depends src_store '持久化工单'
+    us_ask.i_001.ui_001.src_001 .depends us_ask.i_001.ui_001.src_002 '分发归一化消息'
+    us_ask.i_001.ui_001.src_002 .depends us_ask.i_003.ui_003.src_003 '请求应答'
+    us_ask.i_003.ui_003.src_003 .depends us_ask.i_001.ui_001.src_005 '检索候选知识'
+    us_ask.i_003.ui_003.src_003 .depends us_ask.i_002.ui_002.src_004 '校验置信度'
+    us_ask.i_001.ui_001.src_002 .depends us_lowConfidence.i_012.ui_012.src_006 '低置信度时转人工'
+    us_lowConfidence.i_012.ui_012.src_006 .depends us_ask.i_003.ui_003.src_007 '持久化工单'
 
     // ---- 数据流：业务数据从入口到落库再回显 ----
 
-    ui_interaction .flow in_chatMessage '提交提问'
+    us_ask.i_001.ui_001.ui_001_act_1 .flow in_chatMessage '提交提问'
     in_chatMessage .convert biz_query '转换为检索查询'
-    biz_query .flow src_ragflowKnowledge '发起检索'
+    biz_query .flow us_ask.i_001.ui_001.src_005 '发起检索'
     biz_query .flow pod_ticket '低置信度落工单'
     pod_ticket .flow dao_store '写入工单'
     dao_store .flow out_answer '查询答复内容'
-    out_answer .flow ui_information '渲染答复'
+    out_answer .flow us_ask.i_003.ui_003.ui_003_info_1 '渲染答复'
 
     // ---- 转换单元的覆盖范围：必须写成独立边 ----
 
     cvt_normalize .trace in_chatMessage '负责 报文→IN-001 映射'
     cvt_normalize .trace out_answer '负责 POD-001→OUT-001 映射'
-
-    // ---- 边界顺序 ----
-    //
-    // 泳道之间表达调用方向的边界，具体步骤顺序见 seq001F-i-step-lanes。
-    // 引用真实的 I 步骤元素（US-001 下的 I-001~I-006），不引用泳道占位元素。
-
-    lane_client.actor_customer -> lane_edge.api_chatCallback '企业微信提问'
-    lane_edge.api_chatCallback -> us_ask.i_ask_normalize '触发应答'
-    us_ask.i_ask_retrieve -> lane_ext.ext_ragflow '检索知识'
-    lane_ext.ext_ragflow -> us_ask.i_ask_retrieve '返回候选知识'
-    us_ask.i_ask_deliver -> lane_edge.api_chatCallback '返回答复或工单号'
   }
 }

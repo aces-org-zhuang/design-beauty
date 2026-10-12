@@ -1,0 +1,7 @@
+views {
+  view index {
+    title '美妆客服服务 · 全部 Feature 导航'
+    description '导航入口。'
+    include feat_answer_f, feat_degrade_nf, feat_knowledge_f
+  }
+}

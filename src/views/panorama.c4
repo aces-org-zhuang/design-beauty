@@ -1,230 +1,163 @@
-// 全景视图：同类聚合，跨全部链。
-//
-// 核心原则：**全景必须同类聚合**。
-//   pano-f     只放所有链的 F 单元，不放任何 US / I / SRC
-//   pano-nf    只放所有链的 NF 单元
-//   pano-us    只放所有链的 US
-//   pano-i     只放所有链的 I 环元素
-//   pano-ui    只放所有链的 UI 元素
-//   pano-src   只放所有链的 SRC 单元
-//
-// **全景不是链视图的放大版**。链视图按环聚焦，全景按同类横向聚合。
-// 把 F 单元和它服务的 US 放进同一张「全景」，会让「F 全景」这个词失去含义。
-//
-// 命名规范（强制，便于识别与检索）：
-//   pano-<环>       同类全景，如 pano-f / pano-nf / pano-us / pano-i / pano-ui / pano-src
-//   chain<链>-<环>  分环视图，见 rings.c4
-//   dfd<链> / carrier<链> / erm<链> / api<链> / srcdir<链>   SRC 各维度视图
-//   proc<环境>      运行时视图
-//   seq<链>-<场景>  时序视图
+// 全景视图：同类聚合，跨全部 Feature。
 
 views {
   view pano-us {
     title 'US 环 · 全部 Feature · 用户故事'
-    description '所有链的用户故事，按链分组。两条链的 US 分别识别，不是共享的。不含任何其他环的元素。'
-    include feat_answer_f.us_ask, feat_answer_f.us_lowConfidence
-    include feat_degrade_nf.us_kbEmpty, feat_degrade_nf.us_ragTimeout
-    include feat_knowledge_f.us_scan, feat_knowledge_f.us_govern
-    include feat_knowledge_f.us_alert
-    include feat_degrade_nf.us_llmDown
-  }
-
-  view pano-f {
-    title 'F 环 · 全部 Feature-NNN-F · 业务能力单元'
-    description '聚合单位是 Feature 而非链：收录所有 Feature-NNN-F 的 F 单元。当前有 Feature-001-F 与 Feature-002-F 两条，新增 Feature-003-F 后本视图自动聚合。只含业务能力，刻意不含 US——单元与 US 的对应见各链的能力清单视图。'
-    include feat_answer_f.f_answer, feat_answer_f.f_retrieval
-    include feat_knowledge_f.f_ingest, feat_knowledge_f.f_govern
-  }
-
-  view pano-nf {
-    title 'NF 环 · 全部 Feature-NNN-NF · 极端场景单元'
-    description '聚合单位是 Feature 而非链：收录所有 Feature-NNN-NF 的 NF 单元。当前仅 Feature-001-NF 一条；Feature-002 走能力链无 NF 侧，新增后本视图自动聚合。只含场景化表现，刻意不含 US。'
-    include feat_degrade_nf.nf_kbEmpty
-    include feat_degrade_nf.nf_ragTimeout, feat_degrade_nf.nf_llmDown
-  }
-
-  view pano-i {
-    title 'I 环 · 全部 Feature · 业务目标与步骤'
-    description '聚合单位是 Feature：收录所有 Feature 的 I 环元素，按编号段区分（F 链 I-0xx，NF 链 I-1xx，Feature-002 用 I-2xx）。'
-    include feat_answer_f.i_goal
+    description '跨全部 Feature 聚合。'
     include feat_answer_f.us_ask
     include feat_answer_f.us_lowConfidence
-    include feat_knowledge_f.i_goal, feat_knowledge_f.us_scan
-    include feat_degrade_nf.i_goal, feat_degrade_nf.us_kbEmpty
+    include feat_degrade_nf.us_kbEmpty
+    include feat_degrade_nf.us_ragTimeout
+    include feat_degrade_nf.us_llmDown
+    include feat_knowledge_f.us_scan
+    include feat_knowledge_f.us_govern
+    include feat_knowledge_f.us_alert
   }
-
+  view pano-f {
+    title 'F 环 · 全部 Feature-NNN-F · 业务能力单元'
+    description '跨全部 F 链聚合。'
+    include feat_answer_f.f_answer
+    include feat_answer_f.f_retrieval
+    include feat_knowledge_f.f_ingest
+    include feat_knowledge_f.f_govern
+  }
+  view pano-nf {
+    title 'NF 环 · 全部 Feature-NNN-NF · 极端场景单元'
+    description '跨全部 NF 链聚合。'
+    include feat_degrade_nf.nf_kbEmpty
+    include feat_degrade_nf.nf_ragTimeout
+    include feat_degrade_nf.nf_llmDown
+  }
+  view pano-i {
+    title 'I 环 · 全部 Feature · 阶段性目标'
+    description '全部阶段性目标。'
+    include feat_answer_f.us_ask.i_001
+    include feat_answer_f.us_ask.i_002
+    include feat_answer_f.us_ask.i_003
+    include feat_answer_f.us_lowConfidence.i_011
+    include feat_answer_f.us_lowConfidence.i_012
+    include feat_degrade_nf.us_kbEmpty.i_111
+    include feat_degrade_nf.us_kbEmpty.i_112
+    include feat_degrade_nf.us_ragTimeout.i_121
+    include feat_degrade_nf.us_ragTimeout.i_122
+    include feat_degrade_nf.us_llmDown.i_131
+    include feat_degrade_nf.us_llmDown.i_132
+    include feat_knowledge_f.us_scan.i_211
+    include feat_knowledge_f.us_govern.i_221
+    include feat_knowledge_f.us_alert.i_231
+    include feat_knowledge_f.us_alert.i_232
+  }
   view pano-i-state {
     title 'I 环 · 全部 Feature · 业务状态'
-    description '全部业务状态，跨全部链聚合。状态即元素、迁移即关系。每条链都有独立状态机，编号段分开：Feature-001-F 用 S-0xx、Feature-001-NF 用 S-1xx、Feature-002-F 用 S-2xx。'
-    include feat_answer_f.st_received, feat_answer_f.st_retrieving, feat_answer_f.st_answering, feat_answer_f.st_answered
-    include feat_answer_f.st_waitingHuman
-    include feat_degrade_nf.st_unprobed, feat_degrade_nf.st_probing, feat_degrade_nf.st_healthy
-    include feat_degrade_nf.st_scenarioHit, feat_degrade_nf.st_notified
-    include feat_knowledge_f.st_intake, feat_knowledge_f.st_scanning, feat_knowledge_f.st_pendingReview
-    include feat_knowledge_f.st_published, feat_knowledge_f.st_stale
+    description '全部业务状态，状态即元素、迁移即关系。'
+    include feat_answer_f.us_ask.i_001.st_001_pending
+    include feat_answer_f.us_ask.i_001.st_001_normalizing
+    include feat_answer_f.us_ask.i_001.st_001_searching
+    include feat_answer_f.us_ask.i_001.st_001_got
+    include feat_answer_f.us_ask.i_002.st_002_pending
+    include feat_answer_f.us_ask.i_002.st_002_checking
+    include feat_answer_f.us_ask.i_002.st_002_passed
+    include feat_answer_f.us_ask.i_002.st_002_failed
+    include feat_answer_f.us_ask.i_003.st_003_pending
+    include feat_answer_f.us_ask.i_003.st_003_composing
+    include feat_answer_f.us_ask.i_003.st_003_delivering
+    include feat_answer_f.us_ask.i_003.st_003_answered
+    include feat_answer_f.us_lowConfidence.i_011.st_011_pending
+    include feat_answer_f.us_lowConfidence.i_011.st_011_judging
+    include feat_answer_f.us_lowConfidence.i_011.st_011_escalated
+    include feat_answer_f.us_lowConfidence.i_012.st_012_pending
+    include feat_answer_f.us_lowConfidence.i_012.st_012_ticketing
+    include feat_answer_f.us_lowConfidence.i_012.st_012_notified
+    include feat_answer_f.us_lowConfidence.i_012.st_012_answered
+    include feat_degrade_nf.us_kbEmpty.i_111.st_111_pending
+    include feat_degrade_nf.us_kbEmpty.i_111.st_111_counting
+    include feat_degrade_nf.us_kbEmpty.i_111.st_111_empty
+    include feat_degrade_nf.us_kbEmpty.i_111.st_111_ready
+    include feat_degrade_nf.us_kbEmpty.i_112.st_112_pending
+    include feat_degrade_nf.us_kbEmpty.i_112.st_112_rendering
+    include feat_degrade_nf.us_kbEmpty.i_112.st_112_shown
+    include feat_degrade_nf.us_ragTimeout.i_121.st_121_pending
+    include feat_degrade_nf.us_ragTimeout.i_121.st_121_waiting
+    include feat_degrade_nf.us_ragTimeout.i_121.st_121_timedOut
+    include feat_degrade_nf.us_ragTimeout.i_121.st_121_returned
+    include feat_degrade_nf.us_ragTimeout.i_122.st_122_pending
+    include feat_degrade_nf.us_ragTimeout.i_122.st_122_notifying
+    include feat_degrade_nf.us_ragTimeout.i_122.st_122_notified
+    include feat_degrade_nf.us_llmDown.i_131.st_131_pending
+    include feat_degrade_nf.us_llmDown.i_131.st_131_calling
+    include feat_degrade_nf.us_llmDown.i_131.st_131_failed
+    include feat_degrade_nf.us_llmDown.i_131.st_131_ok
+    include feat_degrade_nf.us_llmDown.i_132.st_132_pending
+    include feat_degrade_nf.us_llmDown.i_132.st_132_ticketing
+    include feat_degrade_nf.us_llmDown.i_132.st_132_notified
+    include feat_degrade_nf.us_llmDown.i_132.st_132_handedOff
+    include feat_knowledge_f.us_scan.i_211.st_211_pending
+    include feat_knowledge_f.us_scan.i_211.st_211_registering
+    include feat_knowledge_f.us_scan.i_211.st_211_scanning
+    include feat_knowledge_f.us_scan.i_211.st_211_submitted
+    include feat_knowledge_f.us_govern.i_221.st_221_pending
+    include feat_knowledge_f.us_govern.i_221.st_221_reviewing
+    include feat_knowledge_f.us_govern.i_221.st_221_decided
+    include feat_knowledge_f.us_govern.i_221.st_221_promoted
+    include feat_knowledge_f.us_govern.i_221.st_221_rejected
+    include feat_knowledge_f.us_alert.i_231.st_231_pending
+    include feat_knowledge_f.us_alert.i_231.st_231_probing
+    include feat_knowledge_f.us_alert.i_231.st_231_fresh
+    include feat_knowledge_f.us_alert.i_231.st_231_stale
+    include feat_knowledge_f.us_alert.i_232.st_232_pending
+    include feat_knowledge_f.us_alert.i_232.st_232_reporting
+    include feat_knowledge_f.us_alert.i_232.st_232_listed
+    include feat_knowledge_f.us_alert.i_232.st_232_fixed
   }
-
   view pano-ui {
-    title 'UI 环 · 全部 Feature · 交互面与信息设计'
-    description '聚合单位是 Feature：收录所有 Feature 的 UI 元素。'
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction, feat_answer_f.us_ask.i_ask_deliver.ui_information
-    include feat_knowledge_f.us_alert.i_alert_report.ui_console, feat_knowledge_f.us_alert.i_alert_report.ui_information
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status, feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice
+    title 'UI 环 · 全部 Feature · 界面单元'
+    description '全部 UI 单元。'
+    include feat_answer_f.us_ask.i_001.ui_001
+    include feat_answer_f.us_ask.i_002.ui_002
+    include feat_answer_f.us_ask.i_003.ui_003
+    include feat_answer_f.us_lowConfidence.i_011.ui_011
+    include feat_answer_f.us_lowConfidence.i_012.ui_012
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111
+    include feat_degrade_nf.us_kbEmpty.i_112.ui_112
+    include feat_degrade_nf.us_ragTimeout.i_121.ui_121
+    include feat_degrade_nf.us_ragTimeout.i_122.ui_122
+    include feat_degrade_nf.us_llmDown.i_131.ui_131
+    include feat_degrade_nf.us_llmDown.i_132.ui_132
+    include feat_knowledge_f.us_scan.i_211.ui_211
+    include feat_knowledge_f.us_govern.i_221.ui_221
+    include feat_knowledge_f.us_alert.i_231.ui_231
+    include feat_knowledge_f.us_alert.i_232.ui_232
   }
-
-  view pano-src-001F {
-    title 'SRC 环 · Feature-001-F · 代码结构'
-    description '归属锚是 UI 面容器——SRC 的直接上层是 UI。只含代码结构单元，文件路径见 srcdir001F。'
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_wechatCallback
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerLoop
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_ragflowKnowledge
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_handoffService
-    include feat_answer_f.us_ask.i_ask_deliver.ui_information
-    include feat_answer_f.us_ask.i_ask_deliver.ui_information.src_store
-  }
-
-  view pano-src-001NF-empty {
-    title 'SRC 环 · Feature-001-NF · 代码结构 · 空库与探测'
-    description '归属锚是 UI 面容器——SRC 的直接上层是 UI。本链的 UI 分属不同 US，LikeC4 会把每个 US 提为根并展开中间层造成越层，故按 US 拆成两张。'
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_integrationRoutes
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_knowledgeAlert
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_ragflowProbe
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_operatorUi
-  }
-
-  view pano-src-001NF-notice {
-    title 'SRC 环 · Feature-001-NF · 代码结构 · 场景提示'
-    description '归属锚是 UI 面容器。本链的 UI 分属不同 US，按 US 拆分以避免越层。'
-    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice
-    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_evaluationGate
-    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_storeAlert
-  }
-
-  view pano-src-002F {
-    title 'SRC 环 · Feature-002-F · 代码结构'
-    description '归属锚是 UI 面容器。只含代码结构单元，文件路径见 srcdir002F。'
-    include feat_knowledge_f.us_alert.i_alert_report.ui_console
-    include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_materialRoutes
-    include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_materialService
-    include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_materialBatch
-    include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_knowledgeScan
-    include feat_knowledge_f.us_alert.i_alert_report.ui_console.src_governance
-    include feat_knowledge_f.us_alert.i_alert_report.ui_information
-    include feat_knowledge_f.us_alert.i_alert_report.ui_information.src_knowledgeRoutes
-    include feat_knowledge_f.us_alert.i_alert_report.ui_information.src_documentRegistry
-    include feat_knowledge_f.us_alert.i_alert_report.ui_information.src_knowledgeSync
-    include feat_knowledge_f.us_alert.i_alert_report.ui_information.src_lifecycle
-  }
-
-  view pano-carrier {
-    title 'SRC 环 · 全部 Feature · 数据载体'
-    description '聚合单位是 Feature：收录所有 Feature 的数据载体，按角色分列：入参 / 业务 / 持久化 / 出参 / 数据访问 / 转换。这是 SRC 维度，不是某一环的内容。'
-    include feat_answer_f.in_chatMessage, feat_answer_f.biz_query
-    include feat_answer_f.pod_ticket, feat_answer_f.out_answer
-    include feat_answer_f.dao_store, feat_answer_f.cvt_normalize
-    include feat_degrade_nf.in_probeQuery, feat_degrade_nf.biz_probeResult
-    include feat_degrade_nf.pod_alert, feat_degrade_nf.out_status
-    include feat_knowledge_f.in_material, feat_knowledge_f.biz_candidate
-    include feat_knowledge_f.pod_document, feat_knowledge_f.out_knowledgeStatus
-    include feat_knowledge_f.dao_registry, feat_knowledge_f.cvt_material
-    include feat_degrade_nf.dao_alert, feat_degrade_nf.cvt_probe
-  }
-
   view pano-api {
     title 'SRC 环 · 全部 Feature · 对外接口'
-    description '聚合单位是 Feature：收录所有 Feature 的对外接口，只含接口元素。**必须逐个 include 接口元素**——只 include 泳道容器不会带出子元素，图上只剩一个空的「服务端接入泳道」框。'
-    include feat_answer_f.lane_edge.api_chatCallback, feat_answer_f.lane_edge.api_handoffList
-    include feat_degrade_nf.lane_edge.api_status
-    include feat_knowledge_f.lane_edge.api_material, feat_knowledge_f.lane_edge.api_scan
-    include feat_knowledge_f.lane_edge.api_status
+    description '全部接口。'
+    include feat_answer_f.us_ask.i_001.ui_001.src_001.api_001
+    include feat_answer_f.us_lowConfidence.i_012.ui_012.src_006.api_002
+    include feat_degrade_nf.us_kbEmpty.i_111.ui_111.src_101.api_101
+    include feat_knowledge_f.us_scan.i_211.ui_211.src_201.api_201
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202.api_202
+    include feat_knowledge_f.us_govern.i_221.ui_221.src_202.api_203
   }
-
-  view srcdir001F {
-    title 'SRC 环 · Feature-001-F · 代码结构'
-    description '本链源码单元与真实文件路径的对应。归属锚是 UI 面容器——SRC 的直接上层是 UI，不是 Feature。'
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_wechatCallback
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerOrchestrator
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_answerLoop
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_replyPolicy
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_ragflowKnowledge
-    include feat_answer_f.us_ask.i_ask_deliver.ui_interaction.src_handoffService
-    include feat_answer_f.us_ask.i_ask_deliver.ui_information
-    include feat_answer_f.us_ask.i_ask_deliver.ui_information.src_store
-  }
-
-  view srcdir001NF {
-    title 'SRC 环 · Feature-001-NF · 代码结构 · 空库与探测'
-    description '本链源码单元与真实文件路径对应。归属锚是 UI 面容器。按 US 拆分以避免 LikeC4 补齐中间层造成越层。'
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_integrationRoutes
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_knowledgeAlert
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_ragflowProbe
-    include feat_degrade_nf.us_kbEmpty.i_kb_render.ui_status.src_operatorUi
-  }
-
-  view srcdir001NF-notice {
-    title 'SRC 环 · Feature-001-NF · 代码结构 · 场景提示'
-    description '归属锚是 UI 面容器。按 US 拆分以避免越层。'
-    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice
-    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_evaluationGate
-    include feat_degrade_nf.us_llmDown.i_ll_notify.ui_notice.src_storeAlert
-  }
-
-  view carrier001F of feat_answer_f {
-    title 'SRC 环 · Feature-001-F · 数据载体'
-    description '本链的数据载体与转换关系。角色为 IN / BIZ / POD / OUT / DAO / CVT。'
-    include feat_answer_f.in_chatMessage, feat_answer_f.biz_query
-    include feat_answer_f.pod_ticket, feat_answer_f.out_answer
-    include feat_answer_f.dao_store, feat_answer_f.cvt_normalize
-  }
-
-  view carrier001NF of feat_degrade_nf {
-    title 'SRC 环 · Feature-001-NF · 数据载体'
-    description '极端场景链的数据载体。编号段与 F 链分开。'
-    include feat_degrade_nf.in_probeQuery, feat_degrade_nf.biz_probeResult
-    include feat_degrade_nf.pod_alert, feat_degrade_nf.out_status
-    include feat_degrade_nf.dao_alert, feat_degrade_nf.cvt_probe
-  }
-
-  view erm001F-ticket of feat_answer_f {
-    title 'SRC 环 · Feature-001-F · 数据模型 · 工单'
-    description '本链的持久化实体与数据访问单元。字段清单写在 description，图上不承载字段定义。'
-    include feat_answer_f.pod_ticket, feat_answer_f.dao_store
-  }
-
-  view erm001NF-alert of feat_degrade_nf {
-    title 'SRC 环 · Feature-001-NF · 数据模型 · 告警'
-    description '极端场景链的持久化实体与数据访问单元。'
-    include feat_degrade_nf.pod_alert, feat_degrade_nf.dao_alert
-  }
-
-  view chain001F-i-state-main {
-    title 'I 环 · Feature-001-F · 业务状态 · 主干'
-    description '必经状态链路，不含转人工分支。'
-    include feat_answer_f.st_received, feat_answer_f.st_retrieving, feat_answer_f.st_answering, feat_answer_f.st_answered
-  }
-
-  view chain001F-i-state {
-    title 'I 环 · Feature-001-F · 业务状态'
-    description '本链的业务状态与迁移全貌：状态即元素、迁移即关系。转人工分支另见 chain001F-i-state-branch-human。'
-    include feat_answer_f.st_received, feat_answer_f.st_retrieving, feat_answer_f.st_answering, feat_answer_f.st_answered
-    include feat_answer_f.st_waitingHuman
-  }
-
-  view chain001F-i-state-branch-human {
-    title 'I 环 · Feature-001-F · 业务状态 · 分支转人工'
-    description '自检索中节点岔出，合流至已答复。分支独立成图，不重复主干状态。'
-    include feat_answer_f.st_retrieving, feat_answer_f.st_waitingHuman
-  }
-
-  view index {
-    title '美妆客服服务 · 全部 Feature 导航'
-    description '导航入口，不是某个 Feature 的总览。当前交付 2 个 Feature：Feature-001 分叉为能力链与极端场景链，Feature-002 走能力链。每个 Feature 各自识别 US、各自下钻，最后在构建部署收敛。分出去的是关注点，合回来的是运行现实。'
-    include feat_answer_f, feat_degrade_nf, feat_knowledge_f
+  view pano-carrier {
+    title 'SRC 环 · 全部 Feature · 数据载体'
+    description '全部数据载体，按角色编号。'
+    include feat_answer_f.in_chatMessage
+    include feat_answer_f.biz_query
+    include feat_answer_f.pod_ticket
+    include feat_answer_f.out_answer
+    include feat_answer_f.dao_store
+    include feat_answer_f.cvt_normalize
+    include feat_degrade_nf.in_probeQuery
+    include feat_degrade_nf.biz_probeResult
+    include feat_degrade_nf.pod_alert
+    include feat_degrade_nf.out_status
+    include feat_degrade_nf.dao_alert
+    include feat_degrade_nf.cvt_probe
+    include feat_knowledge_f.in_material
+    include feat_knowledge_f.biz_candidate
+    include feat_knowledge_f.pod_document
+    include feat_knowledge_f.out_knowledgeStatus
+    include feat_knowledge_f.dao_registry
+    include feat_knowledge_f.cvt_material
   }
 }

@@ -4,92 +4,254 @@
 // 本链的 US 与 F 链的 US 分别识别，不是共享的——
 // F 链的 US 写业务结果，本链的 US 写极端场景下的可感知表现。
 //
-// NF 单元是场景，不是角度。「可用性」「响应时延」这类是观察角度，
-// 必须落到具体场景、并且能答出「谁 / 什么场景 / 因此得到什么」三项，
-// 才是本链的交付单元。
+// NF 单元是场景，不是角度。必须答出「谁 / 什么场景 / 因此得到什么」三项。
 //
-// 编号段与 F 链分开：NF 链用 I-1xx / SRC-1xx / US-1xx。
+// **I 环按「阶段性目标」纵向切分**：每条 US 拆成若干阶段，
+// 每个阶段是一个 I-1xx 元素，内部同时含业务状态与业务步骤。
+// **UI 单元对应 I 阶段**（I-1xx → UI-1xx），单元内拆信息/交互叶子。
+// **SRC 模块嵌在 UI 单元内，API 嵌在所属模块内。**
+//
+// 编号段与 F 链分开：NF 链用 I-1xx / S-1xx / UI-1xx / SRC-1xx。
 
 model {
   feat_degrade_nf = feature 'Feature-001-NF 极端场景保障' {
     description '按极端场景切分。交付边界：知识库为空、RAGFlow 超时、LLM 不可用三类场景下，运营人员与客户都能及时察觉并知道下一步。所属愿景：让美妆咨询有据可依。'
 
-    // ---- US：本链自己识别 ----
-    //
-    // I 环判定步骤嵌套在对应 US 内：归属靠嵌套容器表达，不用跨层边。
+    // ==================== US-101 ====================
 
     us_kbEmpty = userStory 'US-101 知识库为空时运营人员能看见' {
       description '作为运营人员，新知识还没入库时，我能看见知识库为空的状态，以便知道要先补素材而不是以为系统坏了。验收：控制台显式提示当前知识条目为 0 条。'
 
-      i_kb_count = implStep 'I-111 读取条目数' {
-        description '从文档登记簿读取当前知识条目数，不做过滤。'
-      }
-      i_kb_judge = implStep 'I-112 判定零条场景' {
-        description '条目数为 0 时判定为空库场景，标记需先补素材。'
-      }
-      i_kb_render = implStep 'I-113 渲染空库提示' {
-        description '在控制台显式提示条目数为 0，不显示空白列表。'
+      // ========== 阶段 I-111：读出条目数并判定空库 ==========
 
-        // ---- UI 环：嵌在 I 步骤内（UI 的直接上层是 I） ----
-        //
-        // **SRC 嵌在 UI 元素内部**：SRC 的直接上层是 UI。
+      i_111 = implStep 'I-111 阶段性目标 · 读出条目数并判定空库' {
+        description '拿到当前知识条目数并判定是否为空库。做到这一步运营人员就知道该补素材还是该查集成。'
 
-        ui_status = uiSurface 'UI-101 控制台状态提示' {
-          description '展示知识条目数与集成状态；空态显式提示「尚未入库」而非空白。'
+        st_111_pending = state 'S-111 待读取'
+        st_111_counting = state 'S-112 读取中'
+        st_111_empty = state 'S-113 判定为空库'
+        st_111_ready = state 'S-114 条目正常'
 
-          src_integrationRoutes = srcUnit 'SRC-101 集成状态路由' {
-            description 'src/routes/integration-routes.js — 功能概览与集成状态查询。'
+        st_111_pending -> st_111_counting '运营人员发起查询'
+        st_111_counting -> st_111_empty '条目数为 0'
+        st_111_counting -> st_111_ready '条目数大于 0'
+
+        i_111_1 = implStep 'I-111-1 读取条目数' {
+          description '从文档登记簿读取当前知识条目数，不做过滤。'
+        }
+        i_111_2 = implStep 'I-111-2 判定零条场景' {
+          description '条目数为 0 时判定为空库场景，标记需先补素材。'
+        }
+
+        // ---- UI-111：对应阶段 I-111 ----
+
+        ui_111 = uiSurface 'UI-111 状态查询' {
+          description '对应阶段性目标 I-111。运营人员发起状态查询并看到判定入口。'
+
+          ui_111_info_1 = uiSurface 'UI-111-信息设计-001 条目数展示' {
+            description '字段：当前知识条目数。覆盖空态（尚未入库）、加载态（读取中）、错误态（读取失败）。'
           }
-          src_ragflowProbe = srcUnit 'SRC-104 RAGFlow 生命周期探针' {
+          ui_111_act_1 = uiSurface 'UI-111-交互设计-001 发起查询' {
+            description '运营人员点击查询后立即反馈读取中，无需刷新页面。'
+          }
+
+          src_101 = srcUnit 'SRC-101 集成状态路由' {
+            description 'src/routes/integration-routes.js — 功能概览与集成状态查询。'
+
+            api_101 = apiEndpoint 'API-101 GET /integration/status 集成状态' {
+              description 'src/routes/integration-routes.js:7 — 查询集成状态与知识条目数。'
+            }
+          }
+          src_104 = srcUnit 'SRC-104 RAGFlow 生命周期探针' {
             description 'src/services/ragflow-lifecycle-probe-service.js — 校验 RAGFlow 数据集状态与可用性。'
           }
-          src_knowledgeAlert = srcUnit 'SRC-103 知识告警' {
+        }
+      }
+
+      // ========== 阶段 I-112：把空库显式呈现出来 ==========
+
+      i_112 = implStep 'I-112 阶段性目标 · 把空库显式呈现出来' {
+        description '在控制台显式提示条目数为 0，不显示空白列表。做到这一步运营人员就知道要补素材。'
+
+        st_112_pending = state 'S-115 待呈现'
+        st_112_rendering = state 'S-116 渲染中'
+        st_112_shown = state 'S-117 已显式提示'
+
+        st_112_pending -> st_112_rendering '判定为空库'
+        st_112_rendering -> st_112_shown '提示已渲染'
+
+        i_112_1 = implStep 'I-112-1 渲染空库提示' {
+          description '在控制台显式提示条目数为 0，不显示空白列表。'
+        }
+
+        // ---- UI-112：对应阶段 I-112 ----
+
+        ui_112 = uiSurface 'UI-112 空库提示呈现' {
+          description '对应阶段性目标 I-112。空库状态的显式呈现与告警入口。'
+
+          ui_112_info_1 = uiSurface 'UI-112-信息设计-001 空库提示信息' {
+            description '字段：空库原因与下一步指引（补素材）。空态显式提示「尚未入库」而非空白列表。'
+          }
+          ui_112_act_1 = uiSurface 'UI-112-交互设计-001 控制台查看' {
+            description '运营人员打开控制台即见提示，无需逐页排查。'
+          }
+
+          src_103 = srcUnit 'SRC-103 知识告警' {
             description 'src/services/knowledge-alert-service.js — 暴露知识新鲜度与空库问题。'
           }
-          src_operatorUi = srcUnit 'SRC-105 运营人员控制台' {
+          src_105 = srcUnit 'SRC-105 运营人员控制台' {
             description 'src/ui/operator.html — 运营人员单页控制台。'
           }
         }
       }
     }
 
+    // ==================== US-102 ====================
+
     us_ragTimeout = userStory 'US-102 RAGFlow 超时时客户不被静默等待' {
       description '作为客户，RAGFlow 响应慢时，我能被告知系统在处理而不是一直等不到回复。验收：超过 8 秒未返回时下发带说明的提示。'
 
-      i_to_timer = implStep 'I-121 启动超时计时' {
-        description '发起检索时同时启动 8 秒计时。'
+      // ========== 阶段 I-121：计时并判定超时 ==========
+
+      i_121 = implStep 'I-121 阶段性目标 · 计时并判定超时' {
+        description '给检索装上 8 秒上限并判定是否超时。做到这一步就知道该不该给客户提示。'
+
+        st_121_pending = state 'S-121 待计时'
+        st_121_waiting = state 'S-122 等待响应'
+        st_121_timedOut = state 'S-123 判定超时'
+        st_121_returned = state 'S-124 按时返回'
+
+        st_121_pending -> st_121_waiting '发起检索并启动计时'
+        st_121_waiting -> st_121_timedOut '超过 8 秒未返回'
+        st_121_waiting -> st_121_returned '8 秒内返回候选'
+
+        i_121_1 = implStep 'I-121-1 启动超时计时' {
+          description '发起检索时同时启动 8 秒计时。'
+        }
+        i_121_2 = implStep 'I-121-2 判定超时' {
+          description '计时到期仍未返回候选知识时判定超时场景。'
+        }
+
+        // ---- UI-121：对应阶段 I-121 ----
+
+        ui_121 = uiSurface 'UI-121 等待反馈' {
+          description '对应阶段性目标 I-121。检索等待期间的客户侧反馈。'
+
+          ui_121_info_1 = uiSurface 'UI-121-信息设计-001 等待中提示' {
+            description '字段：等待状态文案。覆盖加载态（检索中）、超时态（判定中）。'
+          }
+          ui_121_act_1 = uiSurface 'UI-121-交互设计-001 免手动刷新' {
+            description '等待期间界面持续显示处理中，客户不需反复刷新。'
+          }
+        }
       }
-      i_to_check = implStep 'I-122 判定超时' {
-        description '计时到期仍未返回候选知识时判定超时场景。'
-      }
-      i_to_notify = implStep 'I-123 下发处理中提示' {
-        description '在会话中告知系统仍在处理，不让客户反复刷新。'
+
+      // ========== 阶段 I-122：告知客户系统在处理 ==========
+
+      i_122 = implStep 'I-122 阶段性目标 · 告知客户系统在处理' {
+        description '在会话中告知系统仍在处理，不让客户反复刷新。做到这一步 US-102 闭环。'
+
+        st_122_pending = state 'S-125 待提示'
+        st_122_notifying = state 'S-126 提示中'
+        st_122_notified = state 'S-127 已告知处理中'
+
+        st_122_pending -> st_122_notifying '判定超时'
+        st_122_notifying -> st_122_notified '提示已下发'
+
+        i_122_1 = implStep 'I-122-1 下发处理中提示' {
+          description '在会话中告知系统仍在处理，不让客户反复刷新。'
+        }
+
+        // ---- UI-122：对应阶段 I-122 ----
+
+        ui_122 = uiSurface 'UI-122 处理中提示' {
+          description '对应阶段性目标 I-122。超时后的会话内提示下发。'
+
+          ui_122_info_1 = uiSurface 'UI-122-信息设计-001 处理中提示信息' {
+            description '字段：处理说明与预计时长。覆盖加载态（判定中）、错误态（判定失败）。'
+          }
+          ui_122_act_1 = uiSurface 'UI-122-交互设计-001 提示下发' {
+            description '提示在会话内直接出现，客户无需操作。'
+          }
+
+          src_102 = srcUnit 'SRC-102 评测闸门' {
+            description 'src/services/evaluation-gate.js — 本地发布策略门禁，判定是否阻断应答。'
+          }
+        }
       }
     }
+
+    // ==================== US-103 ====================
 
     us_llmDown = userStory 'US-103 LLM 不可用时转人工而非静默失败' {
       description '作为客户，模型服务不可用时，我能被转给人工而不是收到空白回复。验收：模型调用失败时生成人工工单并告知我等待。'
 
-      i_ll_detect = implStep 'I-131 判定调用结果' {
-        description '识别模型服务调用失败或返回异常。'
-      }
-      i_ll_ticket = implStep 'I-132 生成人工工单' {
-        description '把提问内容与失败原因写入工单。'
-      }
-      i_ll_notify = implStep 'I-133 告知等待人工' {
-        description '在会话中告知已转人工，不返回空白内容。'
+      // ========== 阶段 I-131：识别模型不可用并转人工 ==========
 
-        // ---- UI 环：嵌在 I 步骤内 ----
-        //
-        // **SRC 嵌在 UI 元素内部**：SRC 的直接上层是 UI。
+      i_131 = implStep 'I-131 阶段性目标 · 识别模型不可用并转人工' {
+        description '识别模型调用失败并判定转人工。做到这一步客户不会再收到空白回复。'
 
-        ui_notice = uiSurface 'UI-102 极端场景提示' {
-          description '会话内提示层：说明原因并给出下一步（等待或转人工）。覆盖加载态（判定中）与错误态（判定失败）。'
+        st_131_pending = state 'S-131 待调用'
+        st_131_calling = state 'S-132 调用中'
+        st_131_failed = state 'S-133 模型不可用'
+        st_131_ok = state 'S-134 调用成功'
 
-          src_evaluationGate = srcUnit 'SRC-102 评测闸门' {
-            description 'src/services/evaluation-gate.js — 本地发布策略门禁，判定是否阻断应答。'
+        st_131_pending -> st_131_calling '发起模型调用'
+        st_131_calling -> st_131_failed '调用失败或返回异常'
+        st_131_calling -> st_131_ok '调用正常返回'
+
+        i_131_1 = implStep 'I-131-1 判定调用结果' {
+          description '识别模型服务调用失败或返回异常。'
+        }
+
+        // ---- UI-131：对应阶段 I-131 ----
+
+        ui_131 = uiSurface 'UI-131 调用反馈' {
+          description '对应阶段性目标 I-131。模型调用异常的客户侧反馈。'
+
+          ui_131_info_1 = uiSurface 'UI-131-信息设计-001 调用异常提示' {
+            description '字段：异常状态说明。覆盖加载态（调用中）、错误态（模型不可用）。'
           }
-          src_storeAlert = srcUnit 'SRC-106 告警状态存储' {
+          ui_131_act_1 = uiSurface 'UI-131-交互设计-001 异常反馈' {
+            description '异常时界面不出现空白回复，自动进入转接流程。'
+          }
+        }
+      }
+
+      // ========== 阶段 I-132：建单并告知等待 ==========
+
+      i_132 = implStep 'I-132 阶段性目标 · 建单并告知等待' {
+        description '生成人工工单并告知客户等待，不返回空白内容。做到这一步 US-103 闭环。'
+
+        st_132_pending = state 'S-135 待建单'
+        st_132_ticketing = state 'S-136 建单中'
+        st_132_notified = state 'S-137 已告知等待'
+        st_132_handedOff = state 'S-138 人工已接管'
+
+        st_132_pending -> st_132_ticketing '模型判定不可用'
+        st_132_ticketing -> st_132_notified '工单创建完成'
+        st_132_notified -> st_132_handedOff '人工接手'
+
+        i_132_1 = implStep 'I-132-1 生成人工工单' {
+          description '把提问内容与失败原因写入工单。'
+        }
+        i_132_2 = implStep 'I-132-2 告知等待人工' {
+          description '在会话中告知已转人工，不返回空白内容。'
+        }
+
+        // ---- UI-132：对应阶段 I-132 ----
+
+        ui_132 = uiSurface 'UI-132 转人工告知' {
+          description '对应阶段性目标 I-132。建单后的客户告知与告警呈现。'
+
+          ui_132_info_1 = uiSurface 'UI-132-信息设计-001 等待告知信息' {
+            description '字段：等待说明与失败原因摘要。覆盖加载态（建单中）、错误态（建单失败）。'
+          }
+          ui_132_act_1 = uiSurface 'UI-132-交互设计-001 告警查看' {
+            description '运营人员在控制台查看告警并接手工单。'
+          }
+
+          src_106 = srcUnit 'SRC-106 告警状态存储' {
             description 'src/domain/store.js — 本链侧的告警与状态快照存储单元。'
           }
         }
@@ -108,32 +270,7 @@ model {
       description '场景：模型服务不可用。表现：生成人工工单并告知等待，不出现空白回复。角色：客户。'
     }
 
-    // ---- I 环 · 业务目标（每条链恰好一个）----
-    //
-    // **I 环固定包含三类内容：目标 / 状态 / 步骤，缺一不可。**
-    // 三类各用独立编号段：目标用 I-G0，状态用 S-xxx，步骤用 I-1xx。
-
-    i_goal = implStep 'I-G0 业务目标' {
-      description '三类极端场景下，运营人员与客户都能察觉异常并知道下一步动作。'
-    }
-
-    // ---- I 环 · 业务状态（状态即元素，迁移即关系）----
-    //
-    // 本链的状态是「场景判定与提示的推进过程」，不是问答链路的状态。
-
-    st_unprobed = state 'S-100 未探测'
-    st_probing = state 'S-101 探测中'
-    st_healthy = state 'S-102 正常'
-    st_scenarioHit = state 'S-103 命中极端场景'
-    st_notified = state 'S-104 已下发提示'
-
-    st_unprobed -> st_probing '发起探测'
-    st_probing -> st_healthy '探测通过'
-    st_probing -> st_scenarioHit '探测命中异常'
-    st_scenarioHit -> st_notified '下发提示'
-    st_notified -> st_probing '继续巡检'
-
-    // ---- SRC 环：数据载体 ----
+    // ---- SRC 环：数据载体（按角色编号） ----
 
     in_probeQuery = dto 'IN-101 状态探测入参' {
       description 'src/routes/integration-routes.js — 控制台发起的集成状态查询。'
@@ -154,19 +291,13 @@ model {
       description 'src/services/knowledge-alert-service.js — 覆盖 BIZ-101→OUT-101 与 BIZ-101→POD-101 两组映射。'
     }
 
-    // ---- 泳道：按调用方向 ----
+    // ---- 泳道：只是视图分组手段，不是存放位置 ----
 
     lane_operator = feature '运营人员泳道' {
       actor_ops = person '运营人员'
     }
-    lane_edge = feature '服务端接入泳道' {
-      api_status = apiEndpoint 'API-101 GET /integration/status 集成状态' {
-        description 'src/routes/integration-routes.js:7 — 查询集成状态与知识条目数。'
-      }
-    }
-    // 泳道只做分组，**不自造编号**。环节用真实的 I 步骤元素。
     lane_core = feature '判定层泳道' {
-      description '判定层负责场景识别。具体环节见各 US 容器下的 I-111~I-133，此处不重复定义。'
+      description '判定层负责场景识别。具体环节见各阶段内的模块与步骤，此处不重复定义。'
     }
     lane_ext = feature '外部依赖泳道' {
       ext_ragflow = system 'RAGFlow' {
@@ -180,29 +311,28 @@ model {
     us_ragTimeout .trace nf_ragTimeout '要求'
     us_llmDown .trace nf_llmDown '要求'
 
-    // ---- 追溯边：下钻路径 ----
-    //
-    // **US→I、I→UI、UI→SRC 全部是嵌套关系，不是边关系**，所以这里不画这些边。
+    // ---- 追溯边：阶段之间的流转 ----
 
-    us_kbEmpty .trace i_goal '落为业务目标'
-    us_ragTimeout .trace i_ll_notify '统一由提示环节下发'
+    us_kbEmpty.i_111 .trace us_kbEmpty.i_112 '判定空库后显式呈现'
+    us_ragTimeout.i_121 .trace us_ragTimeout.i_122 '判定超时后告知客户'
+    us_llmDown.i_131 .trace us_llmDown.i_132 '判定不可用后建单告知'
 
     // ---- 依赖边 ----
 
-    src_integrationRoutes .depends src_knowledgeAlert '查询空库告警'
-    src_integrationRoutes .depends src_ragflowProbe '探测数据集状态'
-    src_knowledgeAlert .depends src_evaluationGate '提交发布判定'
-    src_evaluationGate .depends src_storeAlert '读取告警快照'
+    us_kbEmpty.i_111.ui_111.src_101 .depends us_kbEmpty.i_111.ui_111.src_104 '探测数据集状态'
+    us_kbEmpty.i_111.ui_111.src_101 .depends us_kbEmpty.i_112.ui_112.src_103 '查询空库告警'
+    us_kbEmpty.i_112.ui_112.src_103 .depends us_ragTimeout.i_122.ui_122.src_102 '提交发布判定'
+    us_ragTimeout.i_122.ui_122.src_102 .depends us_llmDown.i_132.ui_132.src_106 '读取告警快照'
 
     // ---- 数据流 ----
 
-    lane_operator.actor_ops -> lane_edge.api_status '查询状态'
-    lane_edge.api_status -> in_probeQuery '构造探测入参'
+    lane_operator.actor_ops -> us_kbEmpty.i_111.ui_111.src_101.api_101 '查询状态'
+    us_kbEmpty.i_111.ui_111.src_101.api_101 .flow in_probeQuery '构造探测入参'
     in_probeQuery .convert biz_probeResult '转换为探测结果'
-    biz_probeResult .flow ext_ragflow '探测数据集可用性'
-    ext_ragflow .flow biz_probeResult '返回探测结论'
+    biz_probeResult .flow lane_ext.ext_ragflow '探测数据集可用性'
+    lane_ext.ext_ragflow .flow biz_probeResult '返回探测结论'
     biz_probeResult .flow out_status '渲染状态载荷'
-    out_status .flow ui_status '显示条目数与异常提示'
+    out_status .flow us_kbEmpty.i_111.ui_111.ui_111_info_1 '显示条目数与异常提示'
     biz_probeResult .convert pod_alert '异常转告警实体'
     pod_alert .flow dao_alert '写入告警'
 
