@@ -203,9 +203,11 @@ views {
     include feat_knowledge_f.pod_document, feat_knowledge_f.dao_registry
   }
 
-  view api002F of feat_knowledge_f.lane_edge {
+  view api002F {
     title 'SRC 环 · Feature-002-F · 对外接口'
-    description '本链对外接口，含方法、路径与路由位置。归属锚是接入泳道容器。'
-    include feat_knowledge_f.lane_edge
+    description '本链对外接口，含方法、路径与路由位置。**逐个 include 接口元素**——只 include 泳道容器不会带出子元素，接口会全部丢失。'
+    include feat_knowledge_f.lane_edge.api_material
+    include feat_knowledge_f.lane_edge.api_scan
+    include feat_knowledge_f.lane_edge.api_status
   }
 }

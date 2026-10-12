@@ -136,10 +136,11 @@ views {
 
   view pano-api {
     title 'SRC 环 · 全部 Feature · 对外接口'
-    description '聚合单位是 Feature：收录所有 Feature 的对外接口，只含接口元素。这是 SRC 维度，不含任何内部单元。'
-    include feat_answer_f.lane_edge
-    include feat_knowledge_f.lane_edge
-    include feat_degrade_nf.lane_edge
+    description '聚合单位是 Feature：收录所有 Feature 的对外接口，只含接口元素。**必须逐个 include 接口元素**——只 include 泳道容器不会带出子元素，图上只剩一个空的「服务端接入泳道」框。'
+    include feat_answer_f.lane_edge.api_chatCallback, feat_answer_f.lane_edge.api_handoffList
+    include feat_degrade_nf.lane_edge.api_status
+    include feat_knowledge_f.lane_edge.api_material, feat_knowledge_f.lane_edge.api_scan
+    include feat_knowledge_f.lane_edge.api_status
   }
 
   view srcdir001F {

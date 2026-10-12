@@ -231,6 +231,41 @@ for (const [feat, b] of iRing) {
   }
 }
 
+/* ---------- 6. 视图必须拆到具体元素，不能只有分类容器 ---------- */
+
+// 视图里应该有带编号的具体元素。
+// 反面：只 include 一个分类容器（如「服务端接入泳道」），图上只剩一个空框，
+// 读者看到的不是 SRC-001/002，而是「一个叫泳道的东西」。
+// include 容器不会带出子元素，所以必须逐个 include 叶子元素。
+
+const NUMBERED_TITLE = [
+  /^Feature-\d{3}-(F|NF)\s/,                    // Feature 容器
+  /^(US|F|NF|UI|SRC|IN|BIZ|POD|OUT|DAO|CVT|API)-\d{3}(-\d+)?\s/, // 标准编号
+  /^I-\d{3}\s/,                                 // I 业务步骤
+  /^I-G\d+\s/,                                  // I 业务目标
+  /^S-\d{3}\s/,                                 // 业务状态
+]
+
+for (const [id, v] of Object.entries(model.views ?? {})) {
+  if (v._type !== 'element') continue
+  const nodes = v.nodes ?? []
+  if (nodes.length === 0) continue
+
+  // 叶子 = 无子节点的元素，即视图真正展示的内容
+  const leaves = nodes.filter((n) => !n.children || n.children.length === 0)
+  const unnumbered = leaves.filter((n) => !NUMBERED_TITLE.some((r) => r.test(n.title ?? '')))
+
+  if (unnumbered.length > 0 && leaves.length === unnumbered.length) {
+    add(
+      'ERROR',
+      `视图 ${id}`,
+      `全部 ${leaves.length} 个叶子节点都没有体系编号：${unnumbered.map((n) => n.title).join('、')}。
+       视图只显示分类容器，没有拆到具体元素。include 容器不会带出子元素，
+       必须逐个 include 叶子元素（如 lane_edge.api_xxx）`,
+    )
+  }
+}
+
 /* ---------- 输出 ---------- */
 
 const errors = violations.filter((v) => v.level === 'ERROR')
